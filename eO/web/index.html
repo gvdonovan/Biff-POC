@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Originations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <base href="/">
+
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
+
+    <style>
+
+        [ui-view].ng-enter, [ui-view].ng-leave {
+            position: absolute;
+            left: 0;
+            right: 0;
+            -webkit-transition:all .5s ease-in-out;
+            transition:all .5s ease-in-out;
+        }
+
+        [ui-view].ng-enter {
+          opacity: 0;
+        }
+
+        [ui-view].ng-enter-active {
+          opacity: 1;
+        }
+
+        [ui-view].ng-leave {
+          opacity: 1;
+        }
+
+        [ui-view].ng-leave-active {
+          opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">E-Originations</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="nav navbar-nav">                    
+                    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a ui-sref="admin"><i class="fa fa-shield"></i> Admin</a></li>
+                    <li><a ui-sref="search"><i class="fa fa-search"></i> Search</a></li>                    
+                </ul>
+
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search this site">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div id="main">
+
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ui-view></div>
+
+    </div>    
+
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/toastr/toastr.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+
+    <!--Modules-->
+    <script src="/app/app.module.js"></script>
+    <script src="/app/blocks/exception/exception.module.js"></script>
+    <script src="/app/blocks/logger/logger.module.js"></script>
+    <script src="/app/blocks/router/router.module.js"></script>
+    <script src="/app/core/core.module.js"></script>    
+    <script src="/app/home/home.module.js"></script>
+    <script src="/app/admin/admin.module.js"></script>
+    <script src="/app/search/search.module.js"></script>
+
+    <script src="/app/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/app/blocks/exception/exception.js"></script>
+    <script src="/app/blocks/logger/logger.js"></script>
+    <script src="/app/blocks/router/router-helper.provider.js"></script>
+
+    <script src="/app/core/config.js"></script>
+    <script src="/app/core/constants.js"></script>
+    <script src="/app/core/core.route.js"></script>
+
+    <script src="/app/home/controllers/home.controller.js"></script>
+    <script src="/app/home/home.route.js"></script>
+
+    <script src="/app/admin/controllers/admin.controller.js"></script>
+    <script src="/app/admin/admin.route.js"></script>
+
+    <script src="/app/search/controllers/search.controller.js"></script>
+    <script src="/app/search/search.route.js"></script>      
+    
+</body>
+</html>
