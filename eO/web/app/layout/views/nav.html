@@ -10,10 +10,12 @@
             <a class="navbar-brand" href="/">E-Originations</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar1">
-            <ul class="nav navbar-nav">
-                <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
-                <li><a ui-sref="admin"><i class="fa fa-shield"></i> Admin</a></li>
-                <li><a ui-sref="search"><i class="fa fa-search"></i> Search</a></li>
+            <ul class="nav navbar-nav" ng-repeat="r in vm.navRoutes">
+                <li><a ui-sref="{{r.name}}" ng-bind-html="r.settings.content"></a> </li>
+
+                <!--<li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>-->
+                <!--<li><a ui-sref="admin"><i class="fa fa-shield"></i> Admin</a></li>-->
+                <!--<li><a ui-sref="search"><i class="fa fa-search"></i> Search</a></li>-->
             </ul>
 
             <form class="navbar-form navbar-right" role="search">

@@ -26,7 +26,7 @@
                         group: 'Search',
                         top: true,
                         nav: 2,
-                        content: '<i class="fa fa-search"></i> Admin'
+                        content: '<i class="fa fa-search"></i> Search'
                     }
                 }
             }
