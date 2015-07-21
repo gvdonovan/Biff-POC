@@ -16,6 +16,7 @@
         "moment": "~2.10.3",
         "font-awesome": "~4.3.0",
         "angular-ui-router": "~0.2.15",
-        "angular-route": "~1.4.3"
+        "angular-route": "~1.4.3",
+        "toastr": "~2.1.0"
     }
 }
