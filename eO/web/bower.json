@@ -1,22 +1,25 @@
 {
-    "name": "eo.web",
-    "version": "0.0.1",
-    "authors": [
-        "gdonovan <gdonovan@optimalblue.com>"
-    ],
-    "description": "e-Originations Web",
-    "license": "MIT",
-    "homepage": "www.optimalblue.com",
-    "dependencies": {
-        "jquery": "~2.1.4",
-        "angular": "~1.4.3",
-        "angular-sanitize": "~1.4.3",
-        "angular-animate": "~1.4.3",
-        "bootstrap": "~3.3.5",
-        "moment": "~2.10.3",
-        "font-awesome": "~4.3.0",
-        "angular-ui-router": "~0.2.15",
-        "angular-route": "~1.4.3",
-        "toastr": "~2.1.0"
-    }
+  "name": "eo.web",
+  "version": "0.0.1",
+  "authors": [
+    "gdonovan <gdonovan@optimalblue.com>"
+  ],
+  "description": "e-Originations Web",
+  "license": "MIT",
+  "homepage": "www.optimalblue.com",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.3",
+    "angular-sanitize": "~1.4.3",
+    "angular-animate": "~1.4.3",
+    "bootstrap": "~3.3.5",
+    "moment": "~2.10.3",
+    "font-awesome": "~4.3.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-route": "~1.4.3",
+    "toastr": "~2.1.0",
+    "angular-schema-form": "~0.8.4",
+    "angular-scroll": "~0.7.1",
+    "underscore": "~1.8.3"
+  }
 }
