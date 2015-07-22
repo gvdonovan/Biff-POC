@@ -5,19 +5,20 @@
         .module('app.search')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['logger', '$scope', '$timeout', 'quickSearchService'];
+    SearchController.$inject = ['logger', '$timeout', 'quickSearchService'];
     /* @ngInject */
-    function SearchController(logger, $scope, $timeout, quickSearch) {
-        var vm = {
-            title: 'Quick Search',
-            submit: submit,
-            isLoading: false,
-            showJson: false,
-            json: "",
-            searchResults: [],
-            underScoreJson: ""
-        };
-        $scope.vm = vm;
+    function SearchController(logger, $timeout, quickSearch) {
+        var vm = this;
+        vm.title = 'Quick Search';
+        vm.submit = submit;
+        vm.isLoading = false;
+        vm.showJson = false;
+        vm.json = "";
+        vm.searchResults = [];
+        vm.underScoreJson = "";
+        vm.schema = [];
+        vm.form = [];
+        vm.criteria = {};
 
         activate();
 
@@ -25,21 +26,21 @@
             logger.info('Activated search View');
 
             quickSearch.getFormConfig().then(function (data) {
-                $scope.data = data;
-                $scope.criteria = {};
+                vm.data = data;
+                vm.criteria = {};
 
                 // configurations of the form
-                $scope.schema = $scope.data.schema;
+                vm.schema = vm.data.schema;
                 //How form is presented
-                $scope.form = $scope.data.form;
+                vm.form = vm.data.form;
             });
         }
 
         function submit() {
             vm.isLoading = true;
-            return quickSearch.getResults($scope.criteria).then(function (data) {
+            return quickSearch.getResults(vm.criteria).then(function (data) {
                 vm.searchResults = data;
-                vm.json = JSON.stringify($scope.criteria, null, 4);
+                vm.json = JSON.stringify(vm.criteria, null, 4);
                 vm.showJson = true;
                 vm.underScoreJson = underScoreFilter();
                 $timeout(function () {
@@ -48,10 +49,10 @@
             });
         }
 
-        function underScoreFilter(){
-            var biff =  _.pluck(vm.searchResults, 'items');
+        function underScoreFilter() {
+            var biff = _.pluck(vm.searchResults, 'items');
             var flat = _.flatten(biff);
-            var x =  _.filter(flat, function(item){
+            var x = _.filter(flat, function (item) {
                 return item.rebate >= 500;
             });
             return x;
