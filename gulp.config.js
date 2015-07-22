@@ -1,6 +1,6 @@
 module.exports = function() {
-    var client = './eO/web/';
-    var server = './eO/web/server/';
+    var client = './src/client/';
+    var server = './src/server/';
     var clientApp = client + 'app/';
     var report = './report/';
     var root = './';
@@ -122,9 +122,13 @@ module.exports = function() {
         /**
          * Node settings
          */
-        nodeServer: './server/server.js',
+        nodeServer: './src/server/app.js',
         defaultPort: '8001'
     };
+
+    biff(client);
+    biff(server);
+    biff(clientApp);
 
     /**
      * wiredep and bower settings
@@ -171,5 +175,9 @@ module.exports = function() {
         };
         options.preprocessors[clientApp + '**/!(*.spec)+(.js)'] = ['coverage'];
         return options;
+    }
+
+    function biff(message){
+        console.log('[Biff:] - ' + message);
     }
 };

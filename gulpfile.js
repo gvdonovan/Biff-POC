@@ -325,13 +325,9 @@ gulp.task('autotest', function(done) {
  * --debug-brk or --debug
  * --nosync
  */
-gulp.task('serve-dev', [], function() {
+gulp.task('serve-dev', ['inject'], function() {
     serve(true /*isDev*/);
 });
-
-//gulp.task('serve-dev', ['inject'], function() {
-//    serve(true /*isDev*/);
-//});
 
 /**
  * serve the build environment
@@ -460,6 +456,9 @@ function serve(isDev, specRunner) {
 }
 
 function getNodeOptions(isDev) {
+
+    biff(config.nodeServer);
+
     return {
         script: config.nodeServer,
         delayTime: 1,
@@ -492,6 +491,12 @@ function startBrowserSync(isDev, specRunner) {
     // If build: watches the files, builds, and restarts browser-sync.
     // If dev: watches less, compiles it to css, browser-sync handles reload
     if (isDev) {
+
+        biff(config.less);
+        biff(config.html);
+        biff(config.client + '**/*.*');
+
+
         gulp.watch([config.less], ['styles'])
             .on('change', changeEvent);
     } else {
@@ -685,3 +690,7 @@ function notify(options) {
 }
 
 module.exports = gulp;
+
+function biff(message){
+    console.log('[Biff:] - ' + message);
+}
