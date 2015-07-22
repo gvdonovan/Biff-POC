@@ -1,12 +1,13 @@
-﻿var args = require('yargs').argv;
+﻿var args        = require('yargs').argv;
 var browserSync = require('browser-sync');
-var config = require('./gulp.config')();
-var del = require('del');
-var glob = require('glob');
-var gulp = require('gulp');
-var path = require('path');
-var _ = require('lodash');
-var $ = require('gulp-load-plugins')({lazy: true});
+var config      = require('./gulp.config')();
+var del         = require('del');
+var glob        = require('glob');
+var gulp        = require('gulp');
+var path        = require('path');
+var wiredep     = require('wiredep').stream;
+var _           = require('lodash');
+var $           = require('gulp-load-plugins')({ lazy: true });
 
 var colors = $.util.colors;
 var envenv = $.util.env;
@@ -125,8 +126,7 @@ gulp.task('templatecache', ['clean-code'], function() {
  */
 gulp.task('wiredep', function() {
     log('Wiring the bower dependencies into the html');
-
-    var wiredep = require('wiredep').stream;
+    
     var options = config.getWiredepDefaultOptions();
 
     // Only include stubs if flag is enabled
@@ -165,7 +165,6 @@ gulp.task('serve-specs', ['build-specs'], function(done) {
 gulp.task('build-specs', ['templatecache'], function(done) {
     log('building the spec runner');
 
-    var wiredep = require('wiredep').stream;
     var templateCache = config.temp + config.templateCache.file;
     var options = config.getWiredepDefaultOptions();
     var specs = config.specs;

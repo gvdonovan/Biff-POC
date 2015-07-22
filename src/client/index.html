@@ -5,12 +5,14 @@
     <title>E-Originations</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
-    <base href="/">
+    <base href="/"> 
 
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css"/>
-    <link rel="stylesheet" href="/bower_components/toastr/toastr.css"/>
-
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
+    <!-- endbower -->
+    
     <style>
 
         [ui-view].ng-enter, [ui-view].ng-leave {
@@ -53,66 +55,55 @@
     <div ng-include="'app/layout/views/shell.html'"></div>
 </div>
 
+<!-- bower:js -->
 <script src="/bower_components/jquery/dist/jquery.js"></script>
-
 <script src="/bower_components/angular/angular.js"></script>
-<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="/bower_components/angular-animate/angular-animate.js"></script>
 <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="/bower_components/angular-animate/angular-animate.js"></script>
 <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="/bower_components/toastr/toastr.js"></script>
 <script src="/bower_components/moment/moment.js"></script>
-<script src="/bower_components/underscore/underscore-min.js"></script>
-<!--Schema Form-->
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/toastr/toastr.js"></script>
 <script src="/bower_components/tv4/tv4.js"></script>
 <script src="/bower_components/objectpath/lib/ObjectPath.js"></script>
-<script src="/bower_components/angular-schema-form/dist/schema-form.min.js"></script>
-<script src="/bower_components/angular-schema-form/dist/bootstrap-decorator.min.js"></script>
-<!--smooth scroll-->
-<script src="/bower_components/angular-scroll/angular-scroll.min.js"></script>
+<script src="/bower_components/angular-schema-form/dist/schema-form.js"></script>
+<script src="/bower_components/angular-schema-form/dist/bootstrap-decorator.js"></script>
+<script src="/bower_components/angular-scroll/angular-scroll.js"></script>
+<script src="/bower_components/underscore/underscore.js"></script>
+<!-- endbower -->
 
-<!--Modules-->
-<script src="/app/app.module.js"></script>
-<script src="/app/blocks/exception/exception.module.js"></script>
-<script src="/app/blocks/logger/logger.module.js"></script>
-<script src="/app/blocks/router/router.module.js"></script>
-<script src="/app/core/core.module.js"></script>
-<script src="/app/layout/layout.module.js"></script>
-<script src="/app/home/home.module.js"></script>
-<script src="/app/admin/admin.module.js"></script>
-<script src="/app/search/search.module.js"></script>
-
-<!-- app module-->
-<script src="/app/directives/common.js"></script>
-
-<!--blocks module-->   
-<script src="/app/blocks/exception/exception-handler.provider.js"></script>
-<script src="/app/blocks/exception/exception.js"></script>
-<script src="/app/blocks/logger/logger.js"></script>
-<script src="/app/blocks/router/router-helper.provider.js"></script>
-
-<!--core module-->
-<script src="/app/core/config.js"></script>
-<script src="/app/core/constants.js"></script>
-<script src="/app/core/core.route.js"></script>
-
-<!--layout module-->
-<script src="/app/layout/controllers/shell.controller.js"></script>
-<script src="/app/layout/controllers/nav.controller.js"></script>
-<script src="/app/layout/controllers/sidebar.controller.js"></script>
-
-<!--home module-->
-<script src="/app/home/controllers/home.controller.js"></script>
-<script src="/app/home/home.route.js"></script>
-
-<!--admin module-->
-<script src="/app/admin/controllers/admin.controller.js"></script>
-<script src="/app/admin/admin.route.js"></script>
-
-<!--search module-->
-<script src="/app/search/controllers/search.controller.js"></script>
-<script src="/app/search/search.route.js"></script>
-<script src="/app/search/services/quickSearchService.js"></script>
+<!-- inject:js -->
+<script src="/src/client/app/app.module.js"></script>
+<script src="/src/client/app/admin/admin.module.js"></script>
+<script src="/src/client/app/blocks/exception/exception.module.js"></script>
+<script src="/src/client/app/blocks/logger/logger.module.js"></script>
+<script src="/src/client/app/blocks/router/router.module.js"></script>
+<script src="/src/client/app/core/core.module.js"></script>
+<script src="/src/client/app/home/home.module.js"></script>
+<script src="/src/client/app/layout/layout.module.js"></script>
+<script src="/src/client/app/search/search.module.js"></script>
+<script src="/src/client/app/admin/admin.route.js"></script>
+<script src="/src/client/app/admin/controllers/admin.controller.js"></script>
+<script src="/src/client/app/app.js"></script>
+<script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
+<script src="/src/client/app/blocks/exception/exception.js"></script>
+<script src="/src/client/app/blocks/logger/logger.js"></script>
+<script src="/src/client/app/blocks/router/router-helper.provider.js"></script>
+<script src="/src/client/app/core/config.js"></script>
+<script src="/src/client/app/core/constants.js"></script>
+<script src="/src/client/app/core/core.route.js"></script>
+<script src="/src/client/app/core/dataservice.js"></script>
+<script src="/src/client/app/directives/common.js"></script>
+<script src="/src/client/app/home/controllers/home.controller.js"></script>
+<script src="/src/client/app/home/home.route.js"></script>
+<script src="/src/client/app/layout/controllers/nav.controller.js"></script>
+<script src="/src/client/app/layout/controllers/shell.controller.js"></script>
+<script src="/src/client/app/layout/controllers/sidebar.controller.js"></script>
+<script src="/src/client/app/search/controllers/search.controller.js"></script>
+<script src="/src/client/app/search/search.route.js"></script>
+<script src="/src/client/app/search/services/quickSearchService.js"></script>
+<!-- endinject -->
 
 </body>
 </html>

@@ -33,16 +33,8 @@ module.exports = function() {
         images: client + 'images/**/*.*',
         index: client + 'index.html',
         // app js, with no specs
-        js: [
-            clientApp + '**/*.module.js',
-            clientApp + '**/*.js',
-            '!' + clientApp + '**/*.spec.js'
-        ],
-        jsOrder: [
-            '**/app.module.js',
-            '**/*.module.js',
-            '**/*.js'
-        ],
+        js: [ clientApp + '**/*.js', '!' + clientApp + '**/*.spec.js'],
+        jsOrder: ['**/app.module.js', '**/*.module.js', '**/*.js'],
         less: client + 'styles/styles.less',
         report: report,
         root: root,
@@ -126,10 +118,6 @@ module.exports = function() {
         defaultPort: '8001'
     };
 
-    biff(client);
-    biff(server);
-    biff(clientApp);
-
     /**
      * wiredep and bower settings
      */
@@ -175,9 +163,5 @@ module.exports = function() {
         };
         options.preprocessors[clientApp + '**/!(*.spec)+(.js)'] = ['coverage'];
         return options;
-    }
-
-    function biff(message){
-        console.log('[Biff:] - ' + message);
-    }
+    }    
 };
