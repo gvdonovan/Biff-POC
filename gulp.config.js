@@ -45,7 +45,7 @@ module.exports = function() {
         report: report,
         root: root,
         server: server,
-        source: 'src/',
+        source: 'OB-POC/',
         stubsjs: [
             bower.directory + 'angular-mocks/angular-mocks.js',
             client + 'stubs/**/*.js'

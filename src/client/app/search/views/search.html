@@ -22,7 +22,6 @@
         color: darkorange;
     }
 </style>
-<div ng-controller="SearchController">
 <section>
     <div class="jumbotron text-center">
         <h1>{{vm.title}}</h1>
@@ -37,7 +36,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">Search</div>
         <div class="panel-body">
-            <form name="ngform" sf-model="criteria" sf-form="form" sf-schema="schema"></form>
+            <form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>
         </div>
         <div class="panel-footer clearfix">
             <button type="submit" class="btn btn-primary pull-right" ng-click="vm.submit()"
@@ -82,7 +81,6 @@
     </div>
 </div>
 
-
 <div class="col-xs-12 col-md-6" ng-show="vm.showJson">
     <div class="panel panel-success">
         <div class="panel-heading">Data</div>
@@ -95,5 +93,4 @@
         <div class="panel-heading">loans with rebate >= 500</div>
         <div class="panel-body">{{vm.underScoreJson}}</div>
     </div>
-</div>
 </div>
