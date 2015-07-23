@@ -457,8 +457,6 @@ function serve(isDev, specRunner) {
 
 function getNodeOptions(isDev) {
 
-    biff(config.nodeServer);
-
     return {
         script: config.nodeServer,
         delayTime: 1,
@@ -492,16 +490,9 @@ function startBrowserSync(isDev, specRunner) {
     // If dev: watches less, compiles it to css, browser-sync handles reload
     if (isDev) {
 
-        biff(config.less);
-        biff(config.html);
-        biff(config.client + '**/*.*');
-
-
-        gulp.watch([config.less], ['styles'])
-            .on('change', changeEvent);
+        gulp.watch([config.less], ['styles']).on('change', changeEvent);
     } else {
-        gulp.watch([config.less, config.js, config.html], ['optimize', browserSync.reload])
-            .on('change', changeEvent);
+        gulp.watch([config.less, config.js, config.html], ['optimize', browserSync.reload]).on('change', changeEvent);
     }
 
     var options = {
@@ -690,7 +681,3 @@ function notify(options) {
 }
 
 module.exports = gulp;
-
-function biff(message){
-    console.log('[Biff:] - ' + message);
-}
