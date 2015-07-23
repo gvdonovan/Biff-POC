@@ -11,7 +11,8 @@
         var service = {
             getFormConfig: getFormConfig,
             getResults: getResults
-        }
+        };
+        
         return service;
 
         function getFormConfig() {
@@ -103,11 +104,11 @@
             };
             deferred.resolve(data);
             return deferred.promise;
-        };
+        }
 
         function getResults(criteria) {
             var deferred = $q.defer();
-            if (criteria != null) {
+            if (criteria !== null) {
                 var data = getMockedResults();
                 deferred.resolve(data);
             }
@@ -115,7 +116,7 @@
                 deferred.resolve();
             }
             return deferred.promise;
-        };
+        }
 
         ////////////////////// Privates
 
@@ -249,9 +250,9 @@
                         }
                     ]
                 }
-            ]
+            ];
 
             return results;
-        };
+        }
     }
 })();
