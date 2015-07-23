@@ -33,8 +33,14 @@ module.exports = function() {
         images: client + 'images/**/*.*',
         index: client + 'index.html',
         // app js, with no specs
-        js: [ clientApp + '**/*.js', '!' + clientApp + '**/*.spec.js'],
-        jsOrder: ['**/app.module.js', '**/*.module.js', '**/*.js'],
+        js: [ 
+            clientApp + '**/*.js', 
+            '!' + clientApp + '**/*.spec.js'
+            ],
+        jsOrder: [
+            '**/app.module.js', 
+            '**/*.module.js', '**/*.js'
+            ],
         less: client + 'styles/styles.less',
         report: report,
         root: root,

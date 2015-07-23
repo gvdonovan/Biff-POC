@@ -9,9 +9,9 @@ var wiredep     = require('wiredep').stream;
 var _           = require('lodash');
 var $           = require('gulp-load-plugins')({ lazy: true });
 
-var colors = $.util.colors;
-var envenv = $.util.env;
-var port = process.env.PORT || config.defaultPort;
+var colors      = $.util.colors;
+var envenv      = $.util.env;
+var port        = process.env.PORT || config.defaultPort;
 
 /**
  * yargs variables can be passed in to alter the behavior, when present.
@@ -36,12 +36,12 @@ gulp.task('default', ['help']);
  */
 gulp.task('vet', function() {
     log('Analyzing source with JSHint and JSCS');
-
+    
     return gulp
         .src(config.alljs)
         .pipe($.if(args.verbose, $.print()))
         .pipe($.jshint())
-        .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
+        .pipe($.jshint.reporter('jshint-stylish', { verbose: true }))
         .pipe($.jshint.reporter('fail'))
         .pipe($.jscs());
 });
