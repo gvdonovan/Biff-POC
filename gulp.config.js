@@ -7,7 +7,7 @@ module.exports = function() {
     var specRunnerFile = 'specs.html';
     var temp = './.tmp/';
     var wiredep = require('wiredep');
-    var bowerFiles = wiredep({devDependencies: true})['js'];
+    var bowerFiles = wiredep({ devDependencies: true }).js;
     var bower = {
         json: require('./bower.json'),
         directory: './bower_components/',
