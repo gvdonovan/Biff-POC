@@ -1,4 +1,4 @@
-﻿var args        = require('yargs').argv;
+var args        = require('yargs').argv;
 var browserSync = require('browser-sync');
 var config      = require('./gulp.config')();
 var del         = require('del');
@@ -8,6 +8,7 @@ var path        = require('path');
 var wiredep     = require('wiredep').stream;
 var _           = require('lodash');
 var $           = require('gulp-load-plugins')({ lazy: true });
+var stylish     = require('jshint-stylish');
 
 var colors      = $.util.colors;
 var envenv      = $.util.env;
@@ -41,7 +42,7 @@ gulp.task('vet', function() {
         .src(config.alljs)
         .pipe($.if(args.verbose, $.print()))
         .pipe($.jshint())
-        .pipe($.jshint.reporter('jshint-stylish', { verbose: true }))
+        .pipe($.jshint.reporter(stylish, { verbose: true }))
         .pipe($.jshint.reporter('fail'))
         .pipe($.jscs());
 });
