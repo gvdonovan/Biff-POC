@@ -2,7 +2,7 @@
 .settings
 .tmp
 bower_components
-build
 node_modules
 packages
 report
+src/client/scripts/vendor
