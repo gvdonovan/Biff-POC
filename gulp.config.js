@@ -152,6 +152,7 @@ module.exports = function() {
                 config.specHelpers,
                 clientApp + '**/*.module.js',
                 clientApp + '**/*.js',
+                './src/client/tests/**/*.tests.js',
                 temp + config.templateCache.file,
                 config.serverIntegrationSpecs
             ),

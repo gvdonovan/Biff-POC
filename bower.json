@@ -8,12 +8,12 @@
   "license": "MIT",
   "homepage": "www.optimalblue.com",
   "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-  ],  
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
     "jquery": "~2.1.4",
     "angular": "~1.4.3",
@@ -27,6 +27,7 @@
     "toastr": "~2.1.0",
     "angular-schema-form": "~0.8.4",
     "angular-scroll": "~0.7.1",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-mocks": "~1.4.3"
   }
 }
