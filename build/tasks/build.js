@@ -6,7 +6,7 @@ var order   = require('gulp-order');
 var paths   = require('../paths');
 
 /**
- * Wire Bower dependencies and inject applicaiton js
+ * Wire Bower dependencies and inject application js
  */
 gulp.task('index', ['vendor-js', 'vendor-css', 'vendor-fonts'], function() {
   return gulp
