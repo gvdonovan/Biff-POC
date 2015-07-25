@@ -5,6 +5,9 @@ var order   = require('gulp-order');
 
 var paths   = require('../paths');
 
+/**
+ * Wire Bower dependencies and inject applicaiton js
+ */
 gulp.task('index', ['vendor-js', 'vendor-css', 'vendor-fonts'], function() {
   return gulp
     .src(paths.client + 'index.html')
@@ -24,18 +27,27 @@ gulp.task('index', ['vendor-js', 'vendor-css', 'vendor-fonts'], function() {
     .pipe(gulp.dest(paths.client));
 });
 
+/**
+ * Copy Bower js 
+ */
 gulp.task('vendor-js', function() {
   return gulp
     .src(wiredep(paths.bower).js)
     .pipe(gulp.dest(paths.vendor + 'js/'));
 });
 
+/**
+ * Copy Bower css
+ */
 gulp.task('vendor-css', function() {
   return gulp
     .src(wiredep(paths.bower).css)
     .pipe(gulp.dest(paths.vendor + 'css/'));
 });
 
+/**
+ * Copy Bower fonts
+ */
 gulp.task('vendor-fonts', function() {
   
   var fonts = [
