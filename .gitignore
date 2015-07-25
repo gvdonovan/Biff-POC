@@ -5,8 +5,6 @@ bower_components
 node_modules
 packages
 report
-<<<<<<< HEAD
-src/client/scripts/vendor
-=======
+src/client/vendor
 jspm_packages
->>>>>>> d4eb806342c14b81f00f579b8099719384edcf23
+

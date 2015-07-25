@@ -1,55 +1,55 @@
-var gulp = require('gulp');
+var gulp        = require('gulp');
 var browserSync = require('browser-sync');
-var gulpFilter = require('gulp-filter')
-var mainBowerFiles = require('gulp-main-bower-files');
-var wiredep = require('wiredep');
-
-var client = './src/client/';    
-var clientApp = client + 'app/';
-var index = client + 'index.html';
-var js = [ clientApp + '**/*.js']; 
-
-var bower = {
-  json: require('../../bower.json'),
-  directory: './bower_components/',
-  ignorePath: '../..'
-};
-
-var wiredepOptions = function() {
-  var options = {
-    bowerJson: bower.json,
-    directory: bower.directory,
-    ignorePath: bower.ignorePath
-  };
-  return options;
-};
- 
-gulp.task('wiredep', function() {
-  
-  var options = {bowerJson: bower.json, directory: bower.directory, ignorePath: bower.ignorePath};
-  
-  console.log(options.directory);
-  console.log(wiredep);
-  
-    return gulp
-       .src(index)
-       .pipe(wiredep(options))        
-       .pipe(gulp.dest(client));
-});
-  
-gulp.task('vendor', function() {
-    return gulp.src('./bower.json')
-        .pipe(mainBowerFiles())
-        .pipe(gulp.dest('./src/client/scripts/vendor/'));
-});
-
-gulp.task('serve', ['bower'], function(done) {
+       
+/**
+ * Serve
+ */      
+gulp.task('serve', ['index'], function(done) {
   browserSync({
-    open: false,
+    open: true,
     port: 9000,   
     server: {
       baseDir: 'src/client/',
-      index: "index.html"
+      index: "index.html",
+      middleware: function (req, res, next) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        next();
+      }
     }
   }, done);
 });
+
+
+/////////////// old scripts below //////////////////
+/**
+ * Wire dependencies
+ */
+// gulp.task('wiredep', function() {
+//   return gulp
+//        .src(index)
+//        .pipe(wiredep.stream({
+//          directory: './bower_components/',
+//          bowerJson: require('../../bower.json')
+//        }))        
+//        .pipe(gulp.dest(client));
+// });
+
+// /**
+//  * Inject Application Scripts
+//  */
+// gulp.task('scripts', function(){
+//   return gulp
+//     .src(index)
+//     .pipe(inject(gulp.src(js)
+//     .pipe(order(jsOrder), {read: false, name: 'inject'}), {relative: true}))
+//     .pipe(gulp.dest(client))
+// });
+
+// /**
+//  * Copy Bower Components (deep)
+//  */
+// gulp.task('vendor', function() {
+//     return gulp.src('./bower.json')
+//         .pipe(mainBowerFiles())
+//         .pipe(gulp.dest('./src/client/vendor/js/'));
+// });
