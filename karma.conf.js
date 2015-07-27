@@ -2,31 +2,33 @@
 // Generated on Thu Jul 23 2015 12:52:20 GMT-0500 (Central Daylight Time)
 
 module.exports = function (config) {
-    var gulpConfig = require('./gulp.config')();
+    var wiredep = require('wiredep');
+    var bowerFiles = wiredep({ devDependencies: true }).js;
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: './',
+        basePath: '',
 
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['jasmine'],
 
-
         // list of files / patterns to load in the browser
-        files: gulpConfig.karma.files,
+        files: [].concat(
+            bowerFiles,
+            './src/client/app/**/*.module.js',
+            './src/client/app/**/*.js',
+            './src/client/tests/**/*.tests.js',
+            './.tmp/templates.js'
+        ),
 
         // list of files to exclude
-        exclude: gulpConfig.karma.exclude,
-
-        proxies: {
-            '/': 'http://localhost:8888/'
-        },
+        exclude: [],
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: gulpConfig.karma.preprocessors,
+        preprocessors: {},
 
 
         // test results reporter to use
@@ -54,7 +56,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
 
 
         // Continuous Integration mode

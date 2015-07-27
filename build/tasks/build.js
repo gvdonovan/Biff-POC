@@ -2,6 +2,7 @@ var gulp 		= require('gulp');
 var wiredep = require('wiredep');
 var inject  = require('gulp-inject');
 var order   = require('gulp-order');
+var less    = require('gulp-less');
 
 var paths   = require('../paths');
 
@@ -58,4 +59,13 @@ gulp.task('vendor-fonts', function() {
   return gulp
     .src(fonts)
     .pipe(gulp.dest(paths.vendor + 'fonts/'));
+});
+
+gulp.task('less', function(){
+  return gulp
+    .src(paths.less + '*.less')
+    .pipe(less({
+      // paths: [ ]
+    }))
+    .pipe(gulp.dest(paths.style));
 });

@@ -3,11 +3,11 @@
 
     angular
         .module('app.search')
-        .factory('quickSearchService', quickSearchService);
+        .factory('quickSearchService', QuickSearchService);
 
-    quickSearchService.$inject = ['$q', 'logger'];
+    QuickSearchService.$inject = ['$q', 'logger'];
 
-    function quickSearchService($q, logger) {
+    function QuickSearchService($q, logger) {
         var service = {
             getFormConfig: getFormConfig,
             getResults: getResults
