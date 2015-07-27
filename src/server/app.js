@@ -31,7 +31,11 @@ app.use('/app/*', function(req, res, next) {
     four0four.send404(req, res);
 });
 // Any deep link calls should return index.html
-app.use('/*', express.static('./src/client/index.html'));
+//app.use('/*', express.static('./src/client/index.html'));
+app.use('/*', function(req, res) {
+    console.log(req);
+    res.sendfile('./src/client/index.html');
+});
 
 app.listen(port, function() {
     console.log('Express server listening on port ' + port);

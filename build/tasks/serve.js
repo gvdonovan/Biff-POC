@@ -1,5 +1,6 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync');
+var modRewrite = require('connect-modrewrite');
        
 /**
  * Serve
@@ -7,14 +8,21 @@ var browserSync = require('browser-sync');
 gulp.task('serve', ['index'], function(done) {
   browserSync({
     open: true,
-    port: 9000,   
+    port: 9000,
     server: {
       baseDir: 'src/client/',
       //index: "index.html",
+      /*
       middleware: function (req, res, next) {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
       }
+      */
+      middleware: [
+        modRewrite([
+          '^([^.]+)$ /index.html [L]'
+        ])
+      ]
     }
   }, done);
 });

@@ -7,7 +7,7 @@ function reportChange(event){
 }
 
 gulp.task('watch', ['serve'], function() {
-  gulp.watch(paths.source, browserSync.reload).on('change', reportChange);
-  gulp.watch(paths.html, browserSync.reload).on('change', reportChange);
-  gulp.watch(paths.style, browserSync.reload).on('change', reportChange);
+  gulp.watch(paths.source).on('change', browserSync.reload);
+  gulp.watch(paths.html).on('change',  browserSync.reload);
+  gulp.watch(paths.style).on('change',  browserSync.reload);
 });
