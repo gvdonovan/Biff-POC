@@ -10,13 +10,13 @@
     function AuthInterceptorService($q, $injector, $location, localStorageService) {
         
         var service = {
-            request: _request,
-            responseError: _responseError
+            request: request,
+            responseError: responseError
         };
         
         return service;
         
-        function _request (config) {
+        function request (config) {
             config.headers = config.headers || {};           
             var authData = localStorageService.get('authorizationData');
             if (authData) {
@@ -25,7 +25,7 @@
             return config;
         }
 
-        function _responseError (rejection) {
+        function responseError (rejection) {
             if (rejection.status === 401) {
                 var authService = $injector.get('authService');
                 var authData = localStorageService.get('authorizationData');    
