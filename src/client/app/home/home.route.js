@@ -36,7 +36,7 @@
                 config: {
                     url: '/login',
                     templateUrl: 'app/home/views/login.html',
-                    controller: 'LoginController',
+                    controller: 'loginController',
                     controllerAs: 'vm',
                     title: 'Login',
                     settings: {
@@ -44,6 +44,21 @@
                         top: true,
                         nav: 99,
                         content: '<i class="fa fa-key"></i> Login'
+                    }
+                }
+            },
+            {
+                state: 'register',
+                config: {
+                    url: '/register',
+                    templateUrl: 'app/home/views/register.html',
+                    controller: 'registerController',
+                    controllerAs: 'vm',
+                    title: 'Register',
+                    settings: {
+                        group: 'home',
+                        top: false,
+                        nav: 99
                     }
                 }
             }
