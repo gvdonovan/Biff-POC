@@ -42,8 +42,6 @@
 
             return service;
 
-            ///////////////
-
             function configureStates(states, otherwisePath) {
                 states.forEach(function(state) {
                     state.config.resolve =
@@ -54,6 +52,12 @@
                     hasOtherwise = true;
                     $urlRouterProvider.otherwise(otherwisePath);
                 }
+            }
+
+            function handleRoutingChanges() {
+                $rootScope.$on('$stateChangeStart', function (event, toState, toParams){
+                    logger.log(toState);
+                });
             }
 
             function handleRoutingErrors() {
@@ -80,13 +84,14 @@
             }
 
             function init() {
+                handleRoutingChanges();
                 handleRoutingErrors();
                 updateDocTitle();
             }
 
             function getStates() {
-                var biff = $state.get();
-                return biff;
+                var states = $state.get();
+                return states;
             }
 
             function updateDocTitle() {
