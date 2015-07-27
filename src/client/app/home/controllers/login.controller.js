@@ -3,7 +3,7 @@
 
     angular
         .module('app.home')
-        .controller('LoginController', LoginController);
+        .controller('loginController', LoginController);
 
     LoginController.$inject = ['$location', 'authService', 'logger'];
     /* @ngInject */
@@ -17,6 +17,7 @@
         	useRefreshTokens: false
 		};
 		vm.login = login;
+		vm.goToRegisterPage = goToRegisterPage;
 		
         activate();
 
@@ -31,6 +32,10 @@
 			function(error) {
 				vm.message = error.error_description;
 			});
+		}
+
+		function goToRegisterPage(){
+			$location.path('/register');
 		}
     }	
 })();
