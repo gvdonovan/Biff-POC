@@ -5,7 +5,7 @@
         .module('app.search')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['logger', '$timeout', 'QuickSearchService'];
+    SearchController.$inject = ['logger', '$timeout', 'quickSearchService'];
     /* @ngInject */
     function SearchController(logger, $timeout, quickSearch) {
         var vm = this;

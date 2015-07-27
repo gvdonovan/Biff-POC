@@ -6,12 +6,12 @@ describe('Testing SearchController', function () {
     beforeEach(angular.mock.module('app.search'));
 
     //mock the controller for the same reason and include $rootScope and $controller
-    beforeEach(angular.mock.inject(function ($controller, _QuickSearchService_, $q, _$rootScope_) {
+    beforeEach(angular.mock.inject(function ($controller, _quickSearchService_, $q, _$rootScope_) {
 
         //declare the controller since we are using controller as we do not need scope
         searchController = $controller('SearchController');
         // init the mock
-        mockedSearchService = _QuickSearchService_;
+        mockedSearchService = _quickSearchService_;
         deferred = $q;
         rootScope = _$rootScope_;
 
