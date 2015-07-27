@@ -19,7 +19,7 @@
                 config: {
                     url: '/admin',
                     templateUrl: 'app/admin/views/admin.html',
-                    controller: 'AdminController',
+                    controller: 'adminController',
                     controllerAs: 'vm',
                     title: 'Admin',
                     settings: {

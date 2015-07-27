@@ -28,6 +28,23 @@
                         nav: 2,
                         content: '<i class="fa fa-home"></i> Home'
                     }
+                },
+                
+            },
+            {
+                state: 'login',
+                config: {
+                    url: '/login',
+                    templateUrl: 'app/home/views/login.html',
+                    controller: 'LoginController',
+                    controllerAs: 'vm',
+                    title: 'Login',
+                    settings: {
+                        group: 'home',
+                        top: true,
+                        nav: 99,
+                        content: '<i class="fa fa-key"></i> Login'
+                    }
                 }
             }
         ];

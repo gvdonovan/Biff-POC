@@ -3,7 +3,7 @@
 
     angular
         .module('app.admin')
-        .controller('AdminController', AdminController);
+        .controller('adminController', AdminController);
 
     AdminController.$inject = ['logger','$state', 'routerHelper'];
     /* @ngInject */

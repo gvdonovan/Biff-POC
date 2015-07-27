@@ -28,6 +28,7 @@
     "angular-schema-form": "~0.8.4",
     "angular-scroll": "~0.7.1",
     "underscore": "~1.8.3",
-    "angular-mocks": "~1.4.3"
+    "angular-mocks": "~1.4.3",
+    "angular-local-storage": "~0.2.2"
   }
 }
