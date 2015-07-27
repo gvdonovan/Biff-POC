@@ -6,5 +6,6 @@ node_modules
 packages
 report
 src/client/vendor
+src/client/scripts/vendor
 jspm_packages
 
