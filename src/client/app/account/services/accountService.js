@@ -17,7 +17,10 @@
         function getTransformedAccount(){
             var deferred = $q.defer();
             var data = getAccountInJson();
-            deferred.resolve(data);
+
+            var newAccount = new Account(data);
+
+            deferred.resolve(newAccount);
             return deferred.promise;
         }
 

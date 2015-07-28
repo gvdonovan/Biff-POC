@@ -26,7 +26,7 @@ gulp.task('index', ['vendor-js', 'vendor-css', 'vendor-fonts', 'less', 'es6'], f
               return '<link rel="stylesheet" href="' + 'vendor/css/' + filePath.split('/').pop() + '"/>';
             }}}}}))
     // Wire lib/**.js
-    .pipe(inject(gulp.src(paths.lib + '*.js',{read: false}), { name: 'lib'}))
+    .pipe(inject(gulp.src(paths.lib + '*.js',{read: false}), { name: 'lib', relative: true}))
     // Wire app/**.js
     .pipe(inject(gulp.src(paths.source)
     .pipe(order(['**/app.module.js', '**/*.module.js', '**/*.js']), {read: false, name: 'inject'}), {relative: true}))
@@ -86,6 +86,6 @@ gulp.task('es6', function() {
 gulp.task('lib-js', function(){
    return gulp
      .src(paths.client + 'index.html')
-     .pipe(inject(gulp.src(paths.lib + '*.js',{read: false}), { name: 'lib'}))
+     .pipe(inject(gulp.src(paths.lib + '*.js', {read: false}),  {relative: true, name: 'lib'}))
      .pipe(gulp.dest(paths.client));
 });

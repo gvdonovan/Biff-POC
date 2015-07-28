@@ -17,6 +17,22 @@ var Account = (function () {
     }
 
     _createClass(Account, [{
+        key: 'firstName',
+        set: function set(firstName) {
+            this._firstName = firstName;
+        },
+        get: function get() {
+            return this._firstName;
+        }
+    }, {
+        key: 'lastName',
+        set: function set(lastName) {
+            this._lastName = lastName;
+        },
+        get: function get() {
+            return this._lastName;
+        }
+    }, {
         key: 'fullName',
         get: function get() {
             return this.firstName + ' ' + this.lastName;
