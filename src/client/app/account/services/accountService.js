@@ -18,7 +18,7 @@
             var deferred = $q.defer();
             var data = getAccountInJson();
 
-            var newAccount = new Account(data);
+            var newAccount = new Account(data.firstName, data.lastName);
 
             deferred.resolve(newAccount);
             return deferred.promise;

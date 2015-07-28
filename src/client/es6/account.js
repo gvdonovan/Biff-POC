@@ -12,4 +12,3 @@ class Account {
         return this.firstName + ' ' + this.lastName;
     }
 }
-export {Account}

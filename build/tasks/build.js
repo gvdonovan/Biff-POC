@@ -4,6 +4,7 @@ var inject  = require('gulp-inject');
 var order   = require('gulp-order');
 var less    = require('gulp-less');
 var babel   = require('gulp-babel');
+var plumber = require('gulp-plumber');
 
 var paths   = require('../paths');
 
@@ -79,6 +80,7 @@ gulp.task('less', function(){
 gulp.task('es6', function() {
   return gulp
     .src(paths.es6 + '*.js')
+    .pipe(plumber())
     .pipe(babel())
     .pipe(gulp.dest(paths.lib));
 });
