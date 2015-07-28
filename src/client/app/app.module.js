@@ -6,7 +6,8 @@
         'app.layout',
         'app.home',
         'app.admin',
-        'app.search'        
+        'app.search',
+        'app.account'
     ]);
 
 })();
