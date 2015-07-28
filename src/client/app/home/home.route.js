@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
 
     angular
@@ -21,12 +21,12 @@
                     templateUrl: 'app/home/views/home.html',
                     controller: 'HomeController',
                     controllerAs: 'vm',
-                    title: 'home',
+                    title: 'E-Originations',
                     settings: {
                         group: 'home',
                         top: true,
                         nav: 2,
-                        content: '<i class="fa fa-home"></i> Home'
+                        content: '<i class="fa fa-home"></i> E-Originations'
                     }
                 },
                 

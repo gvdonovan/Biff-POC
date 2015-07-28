@@ -89,3 +89,8 @@
   margin-bottom: 0 !important;
   border-radius: 0 !important;
 }
+.navbar-brand {
+  background: url('../img/logo-r-01.svg') no-repeat;
+  background-position: center;
+  width: 140px;
+}
