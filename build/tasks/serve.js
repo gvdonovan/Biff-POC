@@ -11,18 +11,18 @@ gulp.task('serve', ['index'], function(done) {
     port: 9000,
     server: {
       baseDir: 'src/client/',
-      //index: "index.html",
-      /*
+      index: "index.html",
+
       middleware: function (req, res, next) {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
       }
-      */
-      middleware: [
-        modRewrite([
-          '^([^.]+)$ /index.html [L]'
-        ])
-      ]
+
+      //middleware: [
+      //  modRewrite([
+      //    '^([^.]+)$ /index.html [L]'
+      //  ])
+      //]
     }
   }, done);
 });
