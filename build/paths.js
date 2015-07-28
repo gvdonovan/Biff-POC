@@ -12,5 +12,7 @@ module.exports = {
   source: appRoot + 'client/app/**/*.js',
   html:   appRoot + 'client/**/*.html',
   style:  appRoot + 'client/css/',
-  less:   appRoot + 'client/styles/'
+  less:   appRoot + 'client/styles/',
+  es6:    appRoot + 'client/es6/',
+  lib:    appRoot + 'client/lib/'
 };

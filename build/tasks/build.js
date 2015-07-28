@@ -3,13 +3,14 @@ var wiredep = require('wiredep');
 var inject  = require('gulp-inject');
 var order   = require('gulp-order');
 var less    = require('gulp-less');
+var babel   = require('gulp-babel');
 
 var paths   = require('../paths');
 
 /**
  * Wire Bower dependencies and inject application js
  */
-gulp.task('index', ['vendor-js', 'vendor-css', 'vendor-fonts'], function() {
+gulp.task('index', ['vendor-js', 'vendor-css', 'vendor-fonts', 'less', 'es6', 'lib-js' ], function() {
   return gulp
     .src(paths.client + 'index.html')
     .pipe(wiredep.stream({options: paths.bower,
@@ -68,4 +69,18 @@ gulp.task('less', function(){
       // paths: [ ]
     }))
     .pipe(gulp.dest(paths.style));
+});
+
+gulp.task('es6', function() {
+  return gulp
+    .src(paths.es6 + '*.js')
+    .pipe(babel())
+    .pipe(gulp.dest(paths.lib));
+});
+
+gulp.task('lib-js', function(){
+   return gulp
+     .src(paths.client + 'index.html')
+     .pipe(inject(gulp.src(paths.lib + '*.js',{read: false}), { name: 'lib'}))
+     .pipe(gulp.dest(paths.client));
 });
