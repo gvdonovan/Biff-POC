@@ -10,9 +10,11 @@ var paths   = require('../paths');
 /**
  * Wire Bower dependencies and inject application js
  */
-gulp.task('index', ['vendor-js', 'vendor-css', 'vendor-fonts', 'less', 'es6', 'lib-js' ], function() {
+gulp.task('index', ['vendor-js', 'vendor-css', 'vendor-fonts', 'less', 'es6'], function() {
   return gulp
+    // Source index.html
     .src(paths.client + 'index.html')
+    // Wire bower components
     .pipe(wiredep.stream({options: paths.bower,
         fileTypes: {
         html: {
@@ -22,7 +24,10 @@ gulp.task('index', ['vendor-js', 'vendor-css', 'vendor-fonts', 'less', 'es6', 'l
             },
             css: function(filePath) {
               return '<link rel="stylesheet" href="' + 'vendor/css/' + filePath.split('/').pop() + '"/>';
-            }}}}}))   
+            }}}}}))
+    // Wire lib/**.js
+    .pipe(inject(gulp.src(paths.lib + '*.js',{read: false}), { name: 'lib'}))
+    // Wire app/**.js
     .pipe(inject(gulp.src(paths.source)
     .pipe(order(['**/app.module.js', '**/*.module.js', '**/*.js']), {read: false, name: 'inject'}), {relative: true}))
     .pipe(gulp.dest(paths.client))
