@@ -10,3 +10,5 @@ src/client/scripts/vendor
 jspm_packages
 src/client/app/views
 
+
+src/client/lib
