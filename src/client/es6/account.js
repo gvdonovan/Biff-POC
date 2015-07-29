@@ -22,7 +22,7 @@ class Account {
     get site (){ return this._site }
 
     set address1 (address1){ this._address1 = address1 }
-    get address1 (){ return this._adress1}
+    get address1 (){ return this._address1}
 
     set address2 (address2){ this._address2 = address2}
     get address2 (){ return this._address2}

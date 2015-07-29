@@ -18,7 +18,7 @@
             var deferred = $q.defer();
             var data = getAccountInJson();
 
-            var newAccount = new Account(data.firstName, data.lastName);
+            var newAccount = new Account(data.name, data.phone, data.fax, data.site, data.address1, data.address2, data.city, data.zip);
 
             deferred.resolve(newAccount);
             return deferred.promise;
@@ -26,10 +26,15 @@
 
         function getAccountInJson(){
             var account ={
-                firstName: 'Biff',
-                lastName: 'Tanner',
-                age: '30'
-            }
+                name: 'Biff Tanner',
+                phone: '111.111.1111',
+                fax: '222.222.2222',
+                site: 'BiffTheTanner.com',
+                address1: '101 Biff Street',
+                address2: 'TX',
+                city: 'Future',
+                zip: '77777'
+            };
 
             return account;
         }
