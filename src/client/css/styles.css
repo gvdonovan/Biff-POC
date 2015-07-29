@@ -97,3 +97,9 @@
 body {
   color: #192a54;
 }
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}

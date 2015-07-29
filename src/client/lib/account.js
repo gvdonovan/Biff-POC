@@ -113,7 +113,7 @@ var Account = (function (_EntityBase) {
             this._address1 = address1;
         },
         get: function get() {
-            return this._adress1;
+            return this._address1;
         }
     }, {
         key: 'address2',
