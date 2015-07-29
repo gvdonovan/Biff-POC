@@ -13,16 +13,18 @@ gulp.task('serve', ['index'], function(done) {
       baseDir: 'src/client/',
       index: "index.html",
 
+      /*
       middleware: function (req, res, next) {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
       }
+      */
 
-      //middleware: [
-      //  modRewrite([
-      //    '^([^.]+)$ /index.html [L]'
-      //  ])
-      //]
+      middleware: [
+        modRewrite([
+          '^([^.]+)$ /index.html [L]'
+        ])
+      ]
     }
   }, done);
 });
