@@ -12,7 +12,6 @@ var EntityBase = (function () {
     function EntityBase(validationRules) {
         _classCallCheck(this, EntityBase);
 
-        console.log('in base class');
         this._validationRules = validationRules;
     }
 
@@ -46,7 +45,28 @@ var EntityBase = (function () {
         }
     }, {
         key: 'getMinLength',
-        value: function getMinLength(field) {}
+        value: function getMinLength(field) {
+            var result = this._validationRules.find(function (x) {
+                return x.name === field;
+            });
+            return result.rules.minLength;
+        }
+    }, {
+        key: 'getMaxLength',
+        value: function getMaxLength(field) {
+            var result = this._validationRules.find(function (x) {
+                return x.name === field;
+            });
+            return result.rules.maxLength;
+        }
+    }, {
+        key: 'isRequired',
+        value: function isRequired(field) {
+            var result = this._validationRules.find(function (x) {
+                return x.name === field;
+            });
+            return result.rules.required;
+        }
     }]);
 
     return EntityBase;
@@ -58,7 +78,7 @@ var Account = (function (_EntityBase) {
     function Account(name, phone, fax, site, address1, address2, city, zip) {
         _classCallCheck(this, Account);
 
-        _get(Object.getPrototypeOf(Account.prototype), 'constructor', this).call(this, [{ name: 'name', rules: { required: true, minLength: 2, maxLenght: 100 } }]);
+        _get(Object.getPrototypeOf(Account.prototype), 'constructor', this).call(this, [{ name: 'name', rules: { required: true, minLength: 2, maxLength: 100 } }]);
 
         this.name = name;
         this.phone = phone;
@@ -74,6 +94,21 @@ var Account = (function (_EntityBase) {
         key: 'validate',
         value: function validate() {
             _get(Object.getPrototypeOf(Account.prototype), 'validate', this).call(this);
+        }
+    }, {
+        key: 'getMinLength',
+        value: function getMinLength(field) {
+            return _get(Object.getPrototypeOf(Account.prototype), 'getMinLength', this).call(this, field);
+        }
+    }, {
+        key: 'getMaxLength',
+        value: function getMaxLength(field) {
+            return _get(Object.getPrototypeOf(Account.prototype), 'getMaxLength', this).call(this, field);
+        }
+    }, {
+        key: 'isRequired',
+        value: function isRequired(field) {
+            return _get(Object.getPrototypeOf(Account.prototype), 'isRequired', this).call(this, field);
         }
     }, {
         key: 'name',

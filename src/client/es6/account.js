@@ -1,9 +1,9 @@
 class EntityBase {
 
     constructor(validationRules){
-        console.log('in base class');
         this._validationRules = validationRules;
     }
+
     validate(){
         for (var vr of this._validationRules){
             console.log(`Field: [${vr.name}] Required:${vr.rules.required}`);
@@ -11,13 +11,24 @@ class EntityBase {
     }
 
     getMinLength(field){
+        var result = this._validationRules.find(x => x.name === field);
+        return result.rules.minLength;
+    }
 
+    getMaxLength(field){
+        var result = this._validationRules.find(x => x.name === field);
+        return result.rules.maxLength;
+    }
+
+    isRequired(field){
+        var result = this._validationRules.find(x => x.name === field);
+        return result.rules.required;
     }
 }
 
 class Account extends EntityBase {
     constructor(name, phone, fax, site, address1, address2, city, zip) {
-        super([{name: 'name', rules: {required:true, minLength: 2, maxLenght: 100}}]);
+        super([{name: 'name', rules: {required:true, minLength: 2, maxLength: 100}}]);
 
         this.name = name;
         this.phone = phone;
@@ -54,5 +65,17 @@ class Account extends EntityBase {
 
     validate() {
         super.validate();
+    }
+
+    getMinLength(field) {
+        return super.getMinLength(field);
+    }
+
+    getMaxLength(field) {
+        return super.getMaxLength(field);
+    }
+
+    isRequired(field){
+        return super.isRequired(field);
     }
 }

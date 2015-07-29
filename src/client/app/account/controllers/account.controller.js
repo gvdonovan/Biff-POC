@@ -25,6 +25,10 @@
                     vm.account = data;
                     vm.account.validate();
                     console.warn(data);
+
+                    console.log(vm.account.getMinLength('name'));
+                    console.log(vm.account.getMaxLength('name'));
+                    console.log(vm.account.isRequired('name'));
                 });
             }
         }
