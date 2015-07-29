@@ -9,7 +9,7 @@
         <div class="panel-heading clearfix">
             <h3 class="panel-title col-xs-4">Accounts</h3>
             <div class="btn-group pull-right" role="group">
-                <button type="button" class="btn btn-default btn-sm btn-success" ng-click="vm.createNewAccount()">New Account</button>
+                <button type="button" class="btn btn-default btn-sm" ng-click="vm.createNewAccount()">New Account</button>
             </div>
         </div>
         <div class="panel-body">
@@ -38,7 +38,7 @@
                         <td>{{account.address2}}</td>
                         <td>{{account.city}}</td>
                         <td>{{account.zip}}</td>
-                        <td><i class="fa fa-edit clickable" ng-click="vm.editAccount()"/></td>
+                        <td><i class="fa fa-edit clickable" ng-click="vm.editAccount()" popover="edit" popover-trigger="mouseenter"/></td>
                     </tr>
                     </tbody>
                 </table>

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -6,7 +6,7 @@
         .directive('loadingspinner', loadingspinner);
 
     /* @ngInject */
-    function loadingspinner(){
+    function loadingspinner() {
         var directive = {
             restrict: 'E',
             template: '<div id="loading"><i class="fa fa-cog fa-3x fa-spin vertical-center icon-orange"></i></div>',
@@ -15,15 +15,4 @@
 
         return directive;
     }
-//app.directive('loadingspinner', [function () {
-//
-//    var directive = {
-//        restrict: 'E',
-//        template: '<div id="loading"><i class="fa fa-cog fa-3x fa-spin vertical-center icon-orange"></i></div>',
-//        replace: true
-//    };
-//
-//    return directive;
-//}]);
-
 })();
