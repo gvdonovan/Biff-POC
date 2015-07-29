@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
 
     angular.module('app', [
@@ -7,7 +7,8 @@
         'app.home',
         'app.admin',
         'app.search',
-        'app.account'
+        'app.account',
+        'app.obui'
     ]);
 
 })();
