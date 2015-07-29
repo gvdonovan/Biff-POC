@@ -19,6 +19,7 @@
 
             accountService.getTransformedAccount().then(function(data){
                 vm.account = data;
+                vm.account.validate();
                 console.warn(data);
             })
         }
