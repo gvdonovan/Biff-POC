@@ -67,7 +67,9 @@ gulp.task('vendor-fonts', function() {
     .src(fonts)
     .pipe(gulp.dest(paths.vendor + 'fonts/'));
 });
-
+/**
+ * Less
+ */
 gulp.task('less', function(){
   return gulp
     .src(paths.less + '*.less')
@@ -76,7 +78,9 @@ gulp.task('less', function(){
     }))
     .pipe(gulp.dest(paths.style));
 });
-
+/**
+ * Compile ES6 to ES5
+ */
 gulp.task('es6', function() {
   return gulp
     .src(paths.es6 + '*.js')
@@ -84,7 +88,9 @@ gulp.task('es6', function() {
     .pipe(babel())
     .pipe(gulp.dest(paths.lib));
 });
-
+/**
+ * Inject lib.js
+ */
 gulp.task('lib-js', function(){
    return gulp
      .src(paths.client + 'index.html')
