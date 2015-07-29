@@ -7,7 +7,7 @@
   
     ObuiButtonsController.$inject = [];
       
-    // Alert
+    // Buttons
     /* @ngInject */
     function ObuiButtonsController() {
       
