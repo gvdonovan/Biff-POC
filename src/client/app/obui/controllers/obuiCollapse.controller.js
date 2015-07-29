@@ -4,8 +4,8 @@
     angular
         .module('app.obui')
         .controller('obuiCollapseController', ObuiCollapseController);
-  
-    ObuiCarouselController.$inject = [];
+
+    ObuiCollapseController.$inject = [];
       
     // Collapse
     /* @ngInject */
