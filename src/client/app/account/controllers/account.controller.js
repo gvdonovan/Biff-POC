@@ -5,17 +5,22 @@
         .module('app.account')
         .controller('accountController', AccountController);
 
-    AccountController.$inject = ['logger','$state', 'routerHelper', 'accountService'];
+    AccountController.$inject = ['logger','$stateParams', 'accountService'];
     /* @ngInject */
-    function AccountController(logger, $state, routerHelper, accountService) {
+    function AccountController(logger, $stateParams, accountService) {
         var vm = this;
-        vm.title = 'Account';
+        vm.title = 'Add Account';
         vm.account = {};
+        vm.accountId = $stateParams.id;
 
         activate();
 
         function activate() {
             logger.info('Activated Account View');
+
+            if(vm.accountId){
+                vm.title = 'Edit Account';
+            }
 
             accountService.getTransformedAccount().then(function(data){
                 vm.account = data;
