@@ -1,5 +1,24 @@
-class Account {
+class EntityBase {
+
+    constructor(validationRules){
+        console.log('in base class');
+        this._validationRules = validationRules;
+    }
+    validate(){
+        for (var vr of this._validationRules){
+            console.log(`Field: [${vr.name}] Required:${vr.rules.required}`);
+        }
+    }
+
+    getMinLength(field){
+
+    }
+}
+
+class Account extends EntityBase {
     constructor(name, phone, fax, site, address1, address2, city, zip) {
+        super([{name: 'name', rules: {required:true, minLength: 2, maxLenght: 100}}]);
+
         this.name = name;
         this.phone = phone;
         this.fax = fax;
@@ -33,4 +52,7 @@ class Account {
     set zip (zip){ this._zip = zip }
     get zip (){ return this._zip}
 
+    validate() {
+        super.validate();
+    }
 }
