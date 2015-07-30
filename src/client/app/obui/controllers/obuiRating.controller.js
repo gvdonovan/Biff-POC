@@ -7,7 +7,7 @@
   
     ObuiRatingController.$inject = [];
       
-    // Datepicker
+    // Rating
     /* @ngInject */
     function ObuiRatingController() {
       

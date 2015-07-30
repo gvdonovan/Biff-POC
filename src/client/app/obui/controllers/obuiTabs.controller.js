@@ -7,7 +7,7 @@
   
     ObuiTabsController.$inject = ['$window'];
       
-    // Datepicker
+    // Tabs
     /* @ngInject */
     function ObuiTabsController($window) {
       

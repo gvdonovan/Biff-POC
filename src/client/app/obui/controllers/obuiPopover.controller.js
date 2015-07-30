@@ -7,7 +7,7 @@
   
     ObuiPopoverController.$inject = [];
       
-    // Datepicker
+    // Popover
     /* @ngInject */
     function ObuiPopoverController() {
       

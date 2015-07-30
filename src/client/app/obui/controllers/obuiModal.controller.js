@@ -7,7 +7,7 @@
   
     ObuiModalController.$inject = ['$modal'];
       
-    // Datepicker
+    // Modal
     /* @ngInject */
     function ObuiModalController($modal) {
       

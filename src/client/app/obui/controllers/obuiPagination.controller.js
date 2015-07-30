@@ -7,7 +7,7 @@
   
     ObuiPaginationController.$inject = [];
       
-    // Datepicker
+    // Pagination
     /* @ngInject */
     function ObuiPaginationController() {
       

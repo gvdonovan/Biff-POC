@@ -7,7 +7,7 @@
   
     ObuiDropdownController.$inject = [];
       
-    // Datepicker
+    // Dropdown
     /* @ngInject */
     function ObuiDropdownController() {
       

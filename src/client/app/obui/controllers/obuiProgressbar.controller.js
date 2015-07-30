@@ -7,7 +7,7 @@
   
     ObuiProgressbarController.$inject = [];
       
-    // Datepicker
+    // Progressbar
     /* @ngInject */
     function ObuiProgressbarController() {
       

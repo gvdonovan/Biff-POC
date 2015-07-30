@@ -29,8 +29,8 @@
         vm.items = ['Item 1', 'Item 2', 'Item 3'];
 
         vm.addItem = function() {
-          var newItemNo = $scope.items.length + 1;
-          $scope.items.push('Item ' + newItemNo);
+          var newItemNo = vm.items.length + 1;
+          vm.items.push('Item ' + newItemNo);
         };
 
         vm.status = {

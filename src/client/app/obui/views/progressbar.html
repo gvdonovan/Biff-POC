@@ -13,7 +13,7 @@
 
                 <hr />
                 <h3>Dynamic <button class="btn btn-sm btn-primary" type="button" ng-click="vm.random()">Randomize</button></h3>
-                <progressbar max="max" value="vm.dynamic"><span style="color:black; white-space:nowrap;">{{vm.dynamic}} / {{vm.max}}</span></progressbar>
+                <progressbar max="vm.max" value="vm.dynamic"><span style="color:black; white-space:nowrap;">{{vm.dynamic}} / {{vm.max}}</span></progressbar>
 
                 <small><em>No animation</em></small>
                 <progressbar animate="false" value="vm.dynamic" type="success"><b>{{vm.dynamic}}%</b></progressbar>
