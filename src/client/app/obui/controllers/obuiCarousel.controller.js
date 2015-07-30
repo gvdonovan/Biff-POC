@@ -5,11 +5,11 @@
         .module('app.obui')
         .controller('obuiCarouselController', ObuiCarouselController);
   
-    ObuiCarouselController.$inject = ['$scope'];
+    ObuiCarouselController.$inject = ['$scope', '$animate'];
       
     // Carousel
     /* @ngInject */
-    function ObuiCarouselController($scope) {
+    function ObuiCarouselController($scope, $animate) {
       
       /*
         var vm = this;  
@@ -44,7 +44,15 @@
       for (var i=0; i<4; i++) {
         $scope.addSlide();
       }
+  
+      // This fixes the bug in the carousel but disables all animations in this setion of the site so I'm leaving it commented out for now.
+      
+      // $animate.enabled(false);
       
     }
+  
+    
+  
+    
   
 })();

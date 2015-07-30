@@ -10,5 +10,5 @@
         'app.account',
         'app.obui'
     ]);
-
+  
 })();
