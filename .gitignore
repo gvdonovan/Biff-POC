@@ -9,6 +9,6 @@ src/client/vendor
 src/client/scripts/vendor
 jspm_packages
 src/client/app/views
-
+src/client/styles
 
 src/client/lib
