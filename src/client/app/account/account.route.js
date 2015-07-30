@@ -45,7 +45,7 @@
                         group: 'Accounts',
                         top: true,
                         nav: 5,
-                        content: '<i class="fa fa-list"></i> Account List'
+                        content: '<i class="fa fa-list"></i> Accounts'
                     }
                 }
             }

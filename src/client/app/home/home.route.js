@@ -43,7 +43,7 @@
                         group: 'home',
                         top: true,
                         nav: 99,
-                        content: '<i class="fa fa-key"></i> Login'
+                        content: '<i class="fa fa-sign-in"></i> Login'
                     }
                 }
             },
