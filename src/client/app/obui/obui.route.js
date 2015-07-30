@@ -24,7 +24,7 @@
                     title: 'OBUI',
                     settings: {
                         group: 'Obui',
-                        top: true,
+                        top: false,
                         nav: 4,
                         content: '<i class="fa fa-cogs"></i> OB UI'
                     }
