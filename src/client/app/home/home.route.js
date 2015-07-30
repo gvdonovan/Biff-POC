@@ -41,7 +41,7 @@
                     title: 'Login',
                     settings: {
                         group: 'home',
-                        top: true,
+                        top: false,
                         nav: 99,
                         content: '<i class="fa fa-sign-in"></i> Login'
                     }
