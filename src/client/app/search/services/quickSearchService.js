@@ -110,7 +110,7 @@
                             label: 'Purchase Price',
                             type: 'number',
                             placeholder: '0.00',
-                            addonRight: {
+                            addonLeft: {
                                 text: '$'
                             },
                             required: true
@@ -123,7 +123,7 @@
                             label: 'Down Payment',
                             type: 'number',
                             placeholder: '0.00',
-                            addonRight: {
+                            addonLeft: {
                                 text: '$'
                             },
                             required: true
