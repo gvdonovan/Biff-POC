@@ -1,0 +1,107 @@
+<div class="jumbotron text-center">
+    <h1>{{vm.title}}</h1>
+
+    <p>1003 loans</p>
+</div>
+
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Multi-Page Form</h3>
+        </div>
+        <div class="panel-body" style="position:relative; min-height:500px; overflow-y: auto; overflow-x: hidden">
+            <div id="form-views" ui-view></div>
+        </div>
+        <div class="panel-footer clearfix">
+            <div class="text-center">
+                <ol class="breadcrumb">
+                    <li ui-sref-active="active"><a ui-sref=".page1">Page 1</a></li>
+                    <li ui-sref-active="active"><a ui-sref=".page2">Page 2</a></li>
+                    <li ui-sref-active="active"><a ui-sref=".page3">Page 3</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style type="text/css">
+    #form-views {
+        width: auto;
+    }
+
+    /* basic styling for entering and leaving */
+    /* left and right added to ensure full width */
+    #form-views.ng-enter,
+    #form-views.ng-leave {
+        position: absolute;
+        left: 30px;
+        right: 30px;
+        transition: 0.5s all ease;
+        -moz-transition: 0.5s all ease;
+        -webkit-transition: 0.5s all ease;
+    }
+
+    /* enter animation */
+    #form-views.ng-enter {
+        -webkit-animation: slideInRight 0.5s both ease;
+        -moz-animation: slideInRight 0.5s both ease;
+        animation: slideInRight 0.5s both ease;
+    }
+
+    /* leave animation */
+    #form-views.ng-leave {
+        -webkit-animation: slideOutLeft 0.5s both ease;
+        -moz-animation: slideOutLeft 0.5s both ease;
+        animation: slideOutLeft 0.5s both ease;
+    }
+
+    /* ANIMATIONS
+    ============================================================================= */
+    /* slide out to the left */
+    @keyframes slideOutLeft {
+        to {
+            transform: translateX(-200%);
+        }
+    }
+
+    @-moz-keyframes slideOutLeft {
+        to {
+            -moz-transform: translateX(-200%);
+        }
+    }
+
+    @-webkit-keyframes slideOutLeft {
+        to {
+            -webkit-transform: translateX(-200%);
+        }
+    }
+
+    /* slide in from the right */
+    @keyframes slideInRight {
+        from {
+            transform: translateX(200%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @-moz-keyframes slideInRight {
+        from {
+            -moz-transform: translateX(200%);
+        }
+        to {
+            -moz-transform: translateX(0);
+        }
+    }
+
+    @-webkit-keyframes slideInRight {
+        from {
+            -webkit-transform: translateX(200%);
+        }
+        to {
+            -webkit-transform: translateX(0);
+        }
+    }
+</style>

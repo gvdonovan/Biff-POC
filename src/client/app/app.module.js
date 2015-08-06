@@ -8,7 +8,8 @@
         'app.admin',
         'app.search',
         'app.account',
-        'app.obui'
+        'app.obui',
+        'app.loanApplication'
     ]);
   
 })();
