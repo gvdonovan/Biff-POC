@@ -12,94 +12,141 @@
             getFormConfig: getFormConfig,
             getResults: getResults
         };
-        
+
         return service;
 
         function getFormConfig() {
             var deferred = $q.defer();
             var data = {
-                schema: {
-                    type: "object",
-                    properties: {
-                        occupancy: {
-                            type: "string",
-                            default: "Owner Occupied"
-                        },
-                        propertyType: {
-                            type: "string",
-                            default: "Single Family"
-                        },
-                        loanPurpose: {
-                            type: "string"
-                        },
-                        purchasePrice: {
-                            type: "number"
-                        },
-                        downPayment: {
-                            type: "number"
-                        },
-                        zip: {
-                            type: "string"
-                        },
-                        creditScore: {
-                            type: "string",
-                            default: "740-779"
+                fields: [
+                    {
+                        key: 'occupancy',
+                        type: 'select',
+                        templateOptions: {
+                            label: 'Occupancy',
+                            options: [
+                                {
+                                    label: 'Owner Occupied',
+                                    id: 'owner_occupied',
+                                    val: '1'
+                                },
+                                {
+                                    label: 'Other',
+                                    id: 'other',
+                                    val: '1'
+                                },
+                                {
+                                    label: 'Biff',
+                                    id: 'biff',
+                                    val: '2'
+                                },
+                            ],
+                            "groupProp": 'val',
+                            "valueProp": 'id',
+                            "labelProp": 'label'
                         }
                     },
-                    required: ["occupancy", "purchasePrice", "loanPurpose"]
-                },
-                form: [
                     {
-                        key: "occupancy",
-                        type: "select",
-                        title: "Occupancy",
-                        titleMap: [
-                            {value: "Owner Occupied", name: "Owner Occupied"},
-                            {value: "Other", name: "Other"},
-                            {value: "Biff", name: "Biff"}
-                        ]
+                        key: 'propertyType',
+                        type: 'select',
+                        templateOptions: {
+                            label: 'Property Type',
+                            options: [
+                                {
+                                    label: 'Single Family',
+                                    value: 'single_family'
+                                },
+                                {
+                                    label: 'PUD',
+                                    value: 'pud'
+                                },
+                                {
+                                    label: 'Multi-Family',
+                                    value: 'multi_family'
+                                },
+                                {
+                                    label: 'Manufactured / Single Wide',
+                                    value: 'manufactured_single_wide'
+                                },
+                                {
+                                    label: 'Manufactured / Double Wide',
+                                    value: 'manufactured_double_wide'
+                                },
+                                {
+                                    label: 'Timeshare',
+                                    value: 'timeshare'
+                                },
+                                {
+                                    label: 'Condotel',
+                                    value: 'condotel'
+                                },
+                                {
+                                    label: 'Non-warrantable Condo',
+                                    value: 'non_warrantable_condo'
+                                },
+                                {
+                                    label: 'Modular',
+                                    value: 'modular'
+                                },
+                            ],
+                            valueProp: 'value',
+                            labelProp: 'label',
+                            required: true
+                        }
                     },
                     {
-                        key: "propertyType",
-                        type: "select",
-                        title: "Property Type",
-                        titleMap: [
-                            {value: "Single Family", name: "Single Family"},
-                            {value: "PUD", name: "PUD"},
-                            {value: "Multi-Family", name: "Multi-Family"},
-                            {value: "Manufactured / Single Wide", name: "Manufactured / Single Wide"},
-                            {value: "Manufactured / Double Wide", name: "Manufactured / Double Wide"},
-                            {value: "Timeshare", name: "Timeshare"},
-                            {value: "Condotel", name: "Condotel"},
-                            {value: "Non-warrantable Condo", name: "Non-warrantable Condo"},
-                            {value: "Modular", name: "Modular"},
-                        ]
+                        key: 'loanPurpose',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Loan Purpose',
+                            type: 'text',
+                            required: false
+                        }
                     },
                     {
-                        key: "loanPurpose",
-                        title: "Loan Purpose",
-                        disableSuccessState: true,
-                        feedback: false
+                        key: 'purchasePrice',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Purchase Price',
+                            type: 'number',
+                            placeholder: '0.00',
+                            addonRight: {
+                                text: '$'
+                            },
+                            required: true
+                        }
                     },
                     {
-                        key: "purchasePrice",
-                        title: "Purchase Price",
-                        placeholder: "0.00",
-                        validationMessages: {
-                            'minCheck': 'Bob is not OK! You here me?'
-                        },
-                        $validators: {
-                            minCheck: function (value) {
-                                var bool = true;
-                                if (value < 0) {
-                                    bool = false;
-                                }
-                                return bool;
-                            }
-                        },
-                        feedback: false
+                        key: 'downPayment',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Down Payment',
+                            type: 'number',
+                            placeholder: '0.00',
+                            addonRight: {
+                                text: '$'
+                            },
+                            required: true
+                        }
+                    },
+                    {
+                        key: 'zip',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Zip',
+                            type: 'text',
+                            required: false
+                        }
+                    },
+                    {
+                        key: 'creditScore',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Credit Score',
+                            type: 'text',
+                            required: false
+                        }
                     }
-
                 ]
             };
             deferred.resolve(data);

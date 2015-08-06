@@ -9,7 +9,10 @@
             'blocks.logger',
             'blocks.router',
             'ui.router',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'duScroll',
+            'formly',
+            'formlyBootstrap'
             //, 'ngplus'
         ]);
 })();

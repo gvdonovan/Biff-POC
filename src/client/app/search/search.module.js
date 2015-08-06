@@ -2,9 +2,7 @@
     'use strict';
 
     angular.module('app.search', [
-        'app.core',
-        'schemaForm',
-        'duScroll'
+        'app.core'
     ]);
 
 })();

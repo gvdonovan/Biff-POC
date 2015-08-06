@@ -16,9 +16,8 @@
         vm.json = "";
         vm.searchResults = [];
         vm.underScoreJson = "";
-        vm.schema = [];
-        vm.form = [];
-        vm.criteria = {};
+        vm.formModel = {};
+        vm.formFields = [];
 
         activate();
 
@@ -27,20 +26,15 @@
 
             quickSearch.getFormConfig().then(function (data) {
                 vm.data = data;
-                vm.criteria = {};
-
-                // configurations of the form
-                vm.schema = vm.data.schema;
-                //How form is presented
-                vm.form = vm.data.form;
+                vm.formFields = data.fields;
             });
         }
 
         function submit() {
             vm.isLoading = true;
-            return quickSearch.getResults(vm.criteria).then(function (data) {
+            return quickSearch.getResults(vm.formModel).then(function (data) {
                 vm.searchResults = data;
-                vm.json = JSON.stringify(vm.criteria, null, 4);
+                vm.json = JSON.stringify(vm.formModel, null, 4);
                 vm.showJson = true;
                 vm.underScoreJson = underScoreFilter();
                 $timeout(function () {

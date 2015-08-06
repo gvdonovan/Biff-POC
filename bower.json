@@ -26,11 +26,12 @@
     "angular-ui-router": "~0.2.15",
     "angular-route": "~1.4.3",
     "toastr": "~2.1.0",
-    "angular-schema-form": "~0.8.4",
     "angular-scroll": "~0.7.1",
     "underscore": "~1.8.3",
     "angular-mocks": "~1.4.3",
     "angular-local-storage": "~0.2.2",
-    "es6-shim": "~0.32.3"
+    "es6-shim": "~0.32.3",
+    "angular-formly": "~6.23.0",
+    "angular-formly-templates-bootstrap": "~6.0.0"
   }
 }

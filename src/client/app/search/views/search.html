@@ -32,58 +32,13 @@
     <loadingspinner></loadingspinner>
 </div>
 
-<div class="col-xs-12 col-md-6">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Search</div>
-        <div class="panel-body">
-            <form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>
-        </div>
-        <div class="panel-footer clearfix">
-            <button type="submit" class="btn btn-primary pull-right" ng-click="vm.submit()"
-                    ng-disabled="ngform.$invalid" du-smooth-scroll="searchResults" du-scrollspy>Submit
-            </button>
-        </div>
-    </div>
-</div>
+<ng-include src="'app/search/views/partials/quickSearchForm.html'"></ng-include>
 
-<div id="searchResults" class="col-xs-12 col-md-6" ng-show="vm.searchResults != null"
-     ng-repeat="type in vm.searchResults">
-    <div class="panel panel-info">
-        <div class="panel-heading">{{type.title}}</div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-condensed table-hover">
-                    <thead>
-                    <tr>
-                        <th>Rate</th>
-                        <th>Disc Points</th>
-                        <th>APR</th>
-                        <th>Months Payment</th>
-                        <th>Closing Costs</th>
-                        <th>Rebate</th>
-                        <th>Apply</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="item in type.items">
-                        <td>{{item.rate}}</td>
-                        <td>{{item.discPoints}}</td>
-                        <td>{{item.apr}}</td>
-                        <td>{{item.months}}</td>
-                        <td>{{item.closingCost}}</td>
-                        <td>{{item.rebate}}</td>
-                        <td><a class="clickable" href="">Apply Now</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+<ng-include src="'app/search/views/partials/quickSearchResults.html'"></ng-include>
 
 <div class="col-xs-12 col-md-6" ng-show="vm.showJson">
     <div class="panel panel-success">
-        <div class="panel-heading">Data</div>
+        <div class="panel-heading">Form Captured Data</div>
         <div class="panel-body">{{vm.json}}</div>
     </div>
 </div>
