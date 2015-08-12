@@ -18,20 +18,16 @@
         </div>
         <div class="panel-footer clearfix">
             <div class="pull-right">
-                <button class="btn btn-primary btn-sm" ng-show="!vm.isFirstStep" ng-click="vm.previousStep()"><i
-                        class="fa fa-hand-o-left"></i>&nbsp;Previous
-                </button>
-                <button class="btn btn-primary btn-sm" ng-show="!vm.isLastStep" ng-click="vm.nextStep()"><i
-                        class="fa fa-hand-o-right"></i>&nbsp;Next
-                </button>
+                <button class="btn btn-primary btn-sm" ng-show="!vm.isFirstStep" ng-click="vm.previousStep()"><span class="glyphicon glyphicon-circle-arrow-left"></span>&nbsp; Previous</button>
+                <button class="btn btn-primary btn-sm" ng-show="!vm.isLastStep" ng-click="vm.nextStep()">Next &nbsp;<span class="glyphicon glyphicon-circle-arrow-right"></span></button>
                 <button type="submit" class="btn btn-primary btn-sm" ng-disabled="vm.loanForm.$invalid"
-                        ng-show="vm.isLastStep" ng-click="vm.finish()"><i
-                        class="fa fa-send"></i>&nbsp;Finish
-                </button>
+                        ng-show="vm.isLastStep" ng-click="vm.finish()">Finish &nbsp;<span class="glyphicon glyphicon-send"></span></button>
             </div>
         </div>
     </div>
 </div>
+
+<pre>{{ vm.loanApp }}</pre>
 
 
 <style type="text/css">
