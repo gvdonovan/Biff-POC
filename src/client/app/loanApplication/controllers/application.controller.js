@@ -5,30 +5,33 @@
         .module('app.loanApplication')
         .controller('applicationController', ApplicationController);
 
-    ApplicationController.$inject = ['logger', '$state', '$scope'];
+    ApplicationController.$inject = ['logger', '$state', '$scope', 'loanApplicationService'];
     /* @ngInject */
-    function ApplicationController(logger, $state, $scope) {
+    function ApplicationController(logger, $state, $scope, loanService) {
         var vm = this;
         vm.title = '1003 Loan App';
-        vm.page1 = 'This is Page 1';
-        vm.page2 = 'This is Page 2';
-        vm.page3 = 'This is Page 3';
-        vm.activeState = 'page1';
+        //vm.page1 = 'This is Page 1';
+        //vm.page2 = 'This is Page 2';
+        //vm.page3 = 'This is Page 3';
+        vm.activeStep = '';
 
-        vm.loanApp = {
-            firstName: '',
-            lastName: '',
-            email: '',
-            street: '',
-            city: '',
-            zip: '',
-            state: '',
-            creditScore: 0,
-            loanAmount: 0.00,
-            reason: ''
-        };
+        //vm.loanApp = {
+        //    firstName: '',
+        //    lastName: '',
+        //    email: '',
+        //    street: '',
+        //    city: '',
+        //    zip: '',
+        //    state: '',
+        //    creditScore: 0,
+        //    loanAmount: 0.00,
+        //    reason: ''
+        //};
 
-        vm.steps = ['page1', 'page2', 'page3'];
+        vm.loanFormConfig = {};
+        vm.loanFormModel = {};
+
+        vm.steps = ['start', 'personal', 'property', 'income', 'assets', 'expenses', 'additional', 'select', 'submit'];
         vm.step = 0;
         vm.nextStep = nextStep;
         vm.previousStep = previousStep;
@@ -40,6 +43,10 @@
 
         function activate() {
             logger.info('Activated Application View');
+            loanService.getLoanForm().then(function(data){
+               vm.loanFormConfig = data;
+            });
+            vm.activeStep = getCurrentStep();
             goStep();
         }
 

@@ -31,24 +31,66 @@
                 }
             },
             {
-                state: 'loanApplication.page1',
+                state: 'loanApplication.start',
                 config:{
-                    url:'/page1',
-                    templateUrl:'app/loanApplication/views/partials/page1.html'
+                    url:'/start',
+                    templateUrl:'app/loanApplication/views/partials/gettingStarted.html'
                 }
             },
             {
-                state: 'loanApplication.page2',
+                state: 'loanApplication.personal',
                 config:{
-                    url:'/page2',
-                    templateUrl:'app/loanApplication/views/partials/page2.html'
+                    url:'/personal',
+                    templateUrl:'app/loanApplication/views/partials/personal.html'
                 }
             },
             {
-                state: 'loanApplication.page3',
+                state: 'loanApplication.property',
                 config:{
-                    url:'/page3',
-                    templateUrl:'app/loanApplication/views/partials/page3.html'
+                    url:'/property',
+                    templateUrl:'app/loanApplication/views/partials/property.html'
+                }
+            },
+            {
+                state: 'loanApplication.income',
+                config:{
+                    url:'/income',
+                    templateUrl:'app/loanApplication/views/partials/incomes.html'
+                }
+            },
+            {
+                state: 'loanApplication.assets',
+                config:{
+                    url:'/assets',
+                    templateUrl:'app/loanApplication/views/partials/assets.html'
+                }
+            },
+            {
+                state: 'loanApplication.expenses',
+                config:{
+                    url:'/expenses',
+                    templateUrl:'app/loanApplication/views/partials/expenses.html'
+                }
+            },
+            {
+                state: 'loanApplication.additional',
+                config:{
+                    url:'/additional',
+                    templateUrl:'app/loanApplication/views/partials/additionalInfo.html'
+                }
+            },
+            {
+                state: 'loanApplication.select',
+                config:{
+                    url:'/select',
+                    templateUrl:'app/loanApplication/views/partials/selectLoan.html'
+                }
+            },
+            {
+                state: 'loanApplication.submit',
+                config:{
+                    url:'/submit',
+                    templateUrl:'app/loanApplication/views/partials/submit.html'
                 }
             }
         ];
