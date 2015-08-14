@@ -1,13 +1,13 @@
-﻿(function () {
+(function () {
     'use strict';
 
     angular
         .module('app.search')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['logger', '$timeout', 'quickSearchService'];
+    SearchController.$inject = ['logger', '$timeout', 'quickSearchService', '$window'];
     /* @ngInject */
-    function SearchController(logger, $timeout, quickSearch) {
+    function SearchController(logger, $timeout, quickSearch, $window) {
         var vm = this;
         vm.title = 'Quick Search';
         vm.submit = submit;
@@ -31,16 +31,23 @@
         }
 
         function submit() {
-            vm.isLoading = true;
-            return quickSearch.getResults(vm.formModel).then(function (data) {
-                vm.searchResults = data;
-                vm.json = JSON.stringify(vm.formModel, null, 4);
-                vm.showJson = true;
-                vm.underScoreJson = underScoreFilter();
-                $timeout(function () {
-                    vm.isLoading = false;
-                }, 500);
-            });
+          
+            // Widget example, go to results view in new page
+            if(inIframe) {
+              console.log("iframe args: "+iframeArgs);
+              $window.open("//localhost:3000/results");              
+            } else {
+              vm.isLoading = true;
+              return quickSearch.getResults(vm.formModel).then(function (data) {
+                  vm.searchResults = data;
+                  vm.json = JSON.stringify(vm.formModel, null, 4);
+                  vm.showJson = true;
+                  vm.underScoreJson = underScoreFilter();
+                  $timeout(function () {
+                      vm.isLoading = false;
+                  }, 500);
+              });
+            }
         }
 
         function underScoreFilter() {

@@ -9,7 +9,8 @@
         'app.search',
         'app.account',
         'app.obui',
-        'app.loanApplication'
+        'app.loanApplication',
+        'app.results'
     ]);
   
 })();

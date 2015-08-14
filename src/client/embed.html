@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>  
+  
+  
+</head>
+
+<body>
+
+  <div id="obInclude">
+  <div>Object</div>
+  <object data="http://localhost:9000/" type="text/html" width="800px" height="500px">
+  </object>
+  <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function(event) { 
+        localStorage.setItem('cssUrl', 'http://localhost:9000/external.css');
+      });
+      
+    </script>
+    </div>
+
+</body>
+
+</html>

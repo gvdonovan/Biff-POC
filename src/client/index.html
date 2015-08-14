@@ -16,21 +16,33 @@
    <link rel="stylesheet" href="css/styles.css"/>
   
     <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function(event) {         
+      document.addEventListener("DOMContentLoaded", function(event) { 
+        window.inIframe = false;
         function angAppFunc (event) {
           console.log("Angular app function called from outside, msg: "
-                      +event.data);          
-          createCssLink(event.data);          
+                      +event.data);
+          if(event.data != "OBHandshake"){
+            window.iframeArgs = event.data;
+            createCssLink(iframeArgs.cssUrl);
+            inIframe = true;
+          }
         }        
         function createCssLink(urlStr) {
           var cssLink = document.createElement("link");
           cssLink.href = urlStr; 
-          cssLink .rel = "stylesheet"; 
-          cssLink .type = "text/css"; 
+          cssLink.rel = "stylesheet"; 
+          cssLink.type = "text/css"; 
           document.head.appendChild(cssLink);
         }
-        addEventListener("message", angAppFunc, false);        
-        parent.postMessage("Called from Angular app!", "*");
+                
+        window.parent.postMessage("OBHandshake", "*");
+        
+        var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+        var eventer = window[eventMethod];
+        var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+        
+        eventer(messageEvent, angAppFunc ,false);
+        
       });
     </script>
 </head>
@@ -78,6 +90,7 @@
 <script src="app/layout/layout.module.js"></script>
 <script src="app/loanApplication/loanApplication.module.js"></script>
 <script src="app/obui/obui.module.js"></script>
+<script src="app/results/results.module.js"></script>
 <script src="app/search/search.module.js"></script>
 <script src="app/account/account.route.js"></script>
 <script src="app/account/controllers/account.controller.js"></script>
@@ -106,6 +119,7 @@
 <script src="app/loanApplication/controllers/application.controller.js"></script>
 <script src="app/loanApplication/loanApplication.route.js"></script>
 <script src="app/loanApplication/services/loanApplicationService.js"></script>
+<script src="app/obInclude.js"></script>
 <script src="app/obui/controllers/obui.controller.js"></script>
 <script src="app/obui/controllers/obuiAccordion.controller.js"></script>
 <script src="app/obui/controllers/obuiAlert.controller.js"></script>
@@ -124,6 +138,9 @@
 <script src="app/obui/controllers/obuiTooltip.controller.js"></script>
 <script src="app/obui/controllers/obuiTypeahead.controller.js"></script>
 <script src="app/obui/obui.route.js"></script>
+<script src="app/results/controllers/results.controller.js"></script>
+<script src="app/results/results.route.js"></script>
+<script src="app/results/services/resultsService.js"></script>
 <script src="app/search/controllers/search.controller.js"></script>
 <script src="app/search/search.route.js"></script>
 <script src="app/search/services/quickSearchService.js"></script>
