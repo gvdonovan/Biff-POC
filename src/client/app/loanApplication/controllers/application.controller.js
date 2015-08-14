@@ -10,24 +10,7 @@
     function ApplicationController(logger, $state, $scope, loanService) {
         var vm = this;
         vm.title = '1003 Loan App';
-        //vm.page1 = 'This is Page 1';
-        //vm.page2 = 'This is Page 2';
-        //vm.page3 = 'This is Page 3';
         vm.activeStep = '';
-
-        //vm.loanApp = {
-        //    firstName: '',
-        //    lastName: '',
-        //    email: '',
-        //    street: '',
-        //    city: '',
-        //    zip: '',
-        //    state: '',
-        //    creditScore: 0,
-        //    loanAmount: 0.00,
-        //    reason: ''
-        //};
-
         vm.loanFormConfig = {};
         vm.loanFormModel = {};
 

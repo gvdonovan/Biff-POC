@@ -169,18 +169,16 @@
                                     required: true
                                 }
                             },
-                            //TODO template for datePicker
-                            //{
-                            //    className: "col-xs-3",
-                            //    type: "datepicker",
-                            //    key: "dob",
-                            //    templateOptions: {
-                            //        label: "Date of Birth",
-                            //        type: 'text',
-                            //        datepickerPopup: 'dd-MMMM-yyyy',
-                            //        required: true
-                            //    }
-                            //},
+                            {
+                                className: "col-xs-3",
+                                type: "datepicker",
+                                key: "dob",
+                                templateOptions: {
+                                    label: "Date of Birth",
+                                    type: 'text',
+                                    required: true
+                                }
+                            },
                             {
                                 className: "col-xs-3",
                                 type: "input",

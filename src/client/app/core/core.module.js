@@ -8,11 +8,10 @@
             'blocks.exception',
             'blocks.logger',
             'blocks.router',
+            'blocks.forms',
             'ui.router',
             'ui.bootstrap',
-            'duScroll',
-            'formly',
-            'formlyBootstrap'
+            'duScroll'
             //, 'ngplus'
         ]);
 })();

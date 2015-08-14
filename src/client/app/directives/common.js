@@ -3,7 +3,9 @@
 
     angular
         .module('app')
-        .directive('loadingspinner', loadingspinner);
+        .directive('loadingspinner', loadingspinner)
+
+        .directive('obdatepicker', obDatepicker )
 
     /* @ngInject */
     function loadingspinner() {
@@ -15,4 +17,31 @@
 
         return directive;
     }
+
+    function obDatepicker()
+    {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attrs, ngModelCtrl)
+            {
+                $(function ()
+                {
+                    element.datetimepicker({
+                        timepicker: false,
+                        format: 'm-d-y',
+                        closeOnDateSelect: true,
+                        onSelectDate: function (date)
+                        {
+                            var dateString = moment(date).format("MM-DD-YY");
+                            ngModelCtrl.$setViewValue(dateString);
+                            scope.$apply();
+                        }
+                    });
+                });
+            }
+        }
+    }
+
+
 })();
