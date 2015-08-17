@@ -10,7 +10,8 @@
     /* @ngInject */
     function forms() {
         var service = {
-            datePickerConfig: datePickerConfig
+            datePickerConfig: datePickerConfig,
+            borrowerAliasConfig: borrowerAliasConfig
         };
 
         return service;
@@ -18,7 +19,7 @@
         function datePickerConfig(formlyConfig) {
             formlyConfig.setType({
                 name: 'datepicker',
-                template: '<input class="form-control" ng-model="model[options.key]" obdatepicker />',
+                templateUrl: 'app/blocks/forms/templates/datepicker.html',
                 wrapper: ['bootstrapLabel', 'bootstrapHasError'],
                 defaultOptions: {
                     templateOptions: {
@@ -27,6 +28,13 @@
                         }
                     }
                 }
+            });
+        };
+
+        function borrowerAliasConfig(formlyConfig) {
+            formlyConfig.setType({
+                name: 'alias',
+                templateUrl: 'app/blocks/forms/templates/alias.html',
             });
         };
     }
