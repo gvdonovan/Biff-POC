@@ -298,6 +298,34 @@
                             }
                         ]
                     }
+                ],
+                propertyInfo: [
+                    {
+                        template: "<div><strong>A credit report must be ordered to complete the application. Provide your authorization by answering yes below. (Your credit report will be ordered upon completing this page).<br><br>Credit Report Authorization</strong></div>",
+                    },
+                    {
+                        key: "authorizeCredit",
+                        type: "radio",
+                        defaultValue: "1",
+                        templateOptions: {
+                            label: "Authorize Credit for Borrower",
+                            options: [
+                                {
+                                    name: "Yes",
+                                    value: "1"
+                                },
+                                {
+                                    name: "No",
+                                    value: "2"
+                                }
+                            ],
+                            required: true
+                        }
+                    },
+                    {
+                        template: "<div><strong>IMPORTANT: Once you click Next - your credit report will be ordered. You will NOT be able to go back and change your borrower information or present address information. Click the back button if you want to review before continuing.</strong></div>",
+                    }
+                    
                 ]
             };
             return config;
