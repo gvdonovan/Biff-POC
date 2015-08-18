@@ -27,21 +27,17 @@
                             options: [
                                 {
                                     label: 'Owner Occupied',
-                                    id: 'owner_occupied',
-                                    val: '1'
+                                    id: 'owner_occupied'
                                 },
                                 {
                                     label: 'Other',
-                                    id: 'other',
-                                    val: '1'
+                                    id: 'other'
                                 },
                                 {
                                     label: 'Biff',
-                                    id: 'biff',
-                                    val: '2'
+                                    id: 'biff'
                                 },
                             ],
-                            "groupProp": 'val',
                             "valueProp": 'id',
                             "labelProp": 'label'
                         }
@@ -91,7 +87,7 @@
                             ],
                             valueProp: 'value',
                             labelProp: 'label',
-                            required: true
+                            required: false
                         }
                     },
                     {
@@ -113,7 +109,7 @@
                             addonLeft: {
                                 text: '$'
                             },
-                            required: true
+                            required: false
                         }
                     },
                     {
@@ -126,7 +122,7 @@
                             addonLeft: {
                                 text: '$'
                             },
-                            required: true
+                            required: false
                         }
                     },
                     {
