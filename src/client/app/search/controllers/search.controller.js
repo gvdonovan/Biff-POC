@@ -10,7 +10,13 @@
     function SearchController($rootScope, $stateParams, $q, logger, $timeout, quickSearch, $window) {
 
         var vm = this;
-        $rootScope.hideChrome = $stateParams.embedded;
+        if ($stateParams.embedded === 'true'){
+            $rootScope.hideChrome = true;
+        } else {
+            $rootScope.hideChrome = false;
+        }
+
+        //$rootScope.hideChrome = $stateParams.embedded;
         vm.title = 'Quick Search';
         vm.submit = submit;
         vm.isLoading = false;
