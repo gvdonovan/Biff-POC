@@ -26,10 +26,26 @@
         function activate() {
             logger.info('Activated search View', $stateParams.embedded);
 
-            quickSearch.getFormConfig().then(function (data) {
-                vm.data = data;
-                vm.formFields = data.fields;
-            });
+            if($stateParams.mode == 'results'){
+                $q.all([
+                    quickSearch.getFormConfig(),
+                    quickSearch.getResults(vm.formModel)
+                ]).then(function (data) {
+                    vm.data = data[0];
+                    vm.formFields = data[0].fields;
+
+                    vm.searchResults = data[1];
+                    vm.json = JSON.stringify(vm.formModel, null, 4);
+                    vm.showJson = true;
+                    vm.underScoreJson = underScoreFilter();
+                })
+            }
+            else {
+                quickSearch.getFormConfig().then(function (data) {
+                    vm.data = data;
+                    vm.formFields = data.fields;
+                });
+            }
         }
 
         function submit() {
