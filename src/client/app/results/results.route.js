@@ -17,7 +17,7 @@
             {
                 state: 'results',
                 config: {
-                    url: '/results',
+                    url: '/results?embedded',
                     templateUrl: 'app/results/views/results.html',
                     controller: 'ResultsController',
                     controllerAs: 'vm',

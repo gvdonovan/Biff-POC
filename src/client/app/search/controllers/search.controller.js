@@ -5,10 +5,12 @@
         .module('app.search')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['logger', '$timeout', 'quickSearchService', '$window'];
+    SearchController.$inject = ['$rootScope', '$stateParams', 'logger', '$timeout', 'quickSearchService', '$window'];
     /* @ngInject */
-    function SearchController(logger, $timeout, quickSearch, $window) {
+    function SearchController($rootScope, $stateParams, logger, $timeout, quickSearch, $window) {
+
         var vm = this;
+        $rootScope.hideChrome = $stateParams.embedded;
         vm.title = 'Quick Search';
         vm.submit = submit;
         vm.isLoading = false;
@@ -22,7 +24,7 @@
         activate();
 
         function activate() {
-            logger.info('Activated search View');
+            logger.info('Activated search View', $stateParams.embedded);
 
             quickSearch.getFormConfig().then(function (data) {
                 vm.data = data;
