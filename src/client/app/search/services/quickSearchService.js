@@ -13,139 +13,17 @@
             getResults: getResults
         };
 
+        var quickSearchFormConfig = null;
+
         return service;
 
         function getFormConfig() {
             var deferred = $q.defer();
-            var data = {
-                fields: [
-                    {
-                        key: 'occupancy',
-                        type: 'select',
-                        templateOptions: {
-                            label: 'Occupancy',
-                            options: [
-                                {
-                                    label: 'Owner Occupied',
-                                    id: 'owner_occupied'
-                                },
-                                {
-                                    label: 'Other',
-                                    id: 'other'
-                                },
-                                {
-                                    label: 'Biff',
-                                    id: 'biff'
-                                },
-                            ],
-                            "valueProp": 'id',
-                            "labelProp": 'label'
-                        }
-                    },
-                    {
-                        key: 'propertyType',
-                        type: 'select',
-                        templateOptions: {
-                            label: 'Property Type',
-                            options: [
-                                {
-                                    label: 'Single Family',
-                                    value: 'single_family'
-                                },
-                                {
-                                    label: 'PUD',
-                                    value: 'pud'
-                                },
-                                {
-                                    label: 'Multi-Family',
-                                    value: 'multi_family'
-                                },
-                                {
-                                    label: 'Manufactured / Single Wide',
-                                    value: 'manufactured_single_wide'
-                                },
-                                {
-                                    label: 'Manufactured / Double Wide',
-                                    value: 'manufactured_double_wide'
-                                },
-                                {
-                                    label: 'Timeshare',
-                                    value: 'timeshare'
-                                },
-                                {
-                                    label: 'Condotel',
-                                    value: 'condotel'
-                                },
-                                {
-                                    label: 'Non-warrantable Condo',
-                                    value: 'non_warrantable_condo'
-                                },
-                                {
-                                    label: 'Modular',
-                                    value: 'modular'
-                                },
-                            ],
-                            valueProp: 'value',
-                            labelProp: 'label',
-                            required: false
-                        }
-                    },
-                    {
-                        key: 'loanPurpose',
-                        type: 'input',
-                        templateOptions: {
-                            label: 'Loan Purpose',
-                            type: 'text',
-                            required: false
-                        }
-                    },
-                    {
-                        key: 'purchasePrice',
-                        type: 'input',
-                        templateOptions: {
-                            label: 'Purchase Price',
-                            type: 'number',
-                            placeholder: '0.00',
-                            addonLeft: {
-                                text: '$'
-                            },
-                            required: false
-                        }
-                    },
-                    {
-                        key: 'downPayment',
-                        type: 'input',
-                        templateOptions: {
-                            label: 'Down Payment',
-                            type: 'number',
-                            placeholder: '0.00',
-                            addonLeft: {
-                                text: '$'
-                            },
-                            required: false
-                        }
-                    },
-                    {
-                        key: 'zip',
-                        type: 'input',
-                        templateOptions: {
-                            label: 'Zip',
-                            type: 'text',
-                            required: false
-                        }
-                    },
-                    {
-                        key: 'creditScore',
-                        type: 'input',
-                        templateOptions: {
-                            label: 'Credit Score',
-                            type: 'text',
-                            required: false
-                        }
-                    }
-                ]
-            };
-            deferred.resolve(data);
+            if(quickSearchFormConfig == null)
+            {
+                quickSearchFormConfig = init();
+            }
+            deferred.resolve(quickSearchFormConfig);
             return deferred.promise;
         }
 
@@ -296,6 +174,138 @@
             ];
 
             return results;
+        }
+
+        function init(){
+            var data = {
+                fields: [
+                    {
+                        key: 'occupancy',
+                        type: 'select',
+                        templateOptions: {
+                            label: 'Occupancy',
+                            options: [
+                                {
+                                    label: 'Owner Occupied',
+                                    id: 'owner_occupied'
+                                },
+                                {
+                                    label: 'Other',
+                                    id: 'other'
+                                },
+                                {
+                                    label: 'Biff',
+                                    id: 'biff'
+                                },
+                            ],
+                            "valueProp": 'id',
+                            "labelProp": 'label'
+                        }
+                    },
+                    {
+                        key: 'propertyType',
+                        type: 'select',
+                        templateOptions: {
+                            label: 'Property Type',
+                            options: [
+                                {
+                                    label: 'Single Family',
+                                    value: 'single_family'
+                                },
+                                {
+                                    label: 'PUD',
+                                    value: 'pud'
+                                },
+                                {
+                                    label: 'Multi-Family',
+                                    value: 'multi_family'
+                                },
+                                {
+                                    label: 'Manufactured / Single Wide',
+                                    value: 'manufactured_single_wide'
+                                },
+                                {
+                                    label: 'Manufactured / Double Wide',
+                                    value: 'manufactured_double_wide'
+                                },
+                                {
+                                    label: 'Timeshare',
+                                    value: 'timeshare'
+                                },
+                                {
+                                    label: 'Condotel',
+                                    value: 'condotel'
+                                },
+                                {
+                                    label: 'Non-warrantable Condo',
+                                    value: 'non_warrantable_condo'
+                                },
+                                {
+                                    label: 'Modular',
+                                    value: 'modular'
+                                },
+                            ],
+                            valueProp: 'value',
+                            labelProp: 'label',
+                            required: false
+                        }
+                    },
+                    {
+                        key: 'loanPurpose',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Loan Purpose',
+                            type: 'text',
+                            required: false
+                        }
+                    },
+                    {
+                        key: 'purchasePrice',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Purchase Price',
+                            type: 'number',
+                            placeholder: '0.00',
+                            addonLeft: {
+                                text: '$'
+                            },
+                            required: false
+                        }
+                    },
+                    {
+                        key: 'downPayment',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Down Payment',
+                            type: 'number',
+                            placeholder: '0.00',
+                            addonLeft: {
+                                text: '$'
+                            },
+                            required: false
+                        }
+                    },
+                    {
+                        key: 'zip',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Zip',
+                            type: 'text',
+                            required: false
+                        }
+                    },
+                    {
+                        key: 'creditScore',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Credit Score',
+                            type: 'text',
+                            required: false
+                        }
+                    }
+                ]
+            };
+            return data;
         }
     }
 })();
