@@ -5,10 +5,11 @@
         .module('app.results')
         .controller('ResultsController', ResultsController);
 
-    ResultsController.$inject = ['logger', '$timeout', 'resultsService'];
+    ResultsController.$inject = ['$rootScope', '$stateParams', 'logger', '$timeout', 'resultsService'];
     /* @ngInject */
-    function ResultsController(logger, $timeout, resultsService) {
+    function ResultsController($rootScope, $stateParams,logger, $timeout, resultsService) {
         var vm = this;
+        $rootScope.hideChrome = $stateParams.embedded;
         vm.title = 'Results';
         vm.submit = submit;
         vm.isLoading = false;
