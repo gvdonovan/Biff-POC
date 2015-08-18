@@ -5,9 +5,9 @@
         .module('app.search')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$stateParams', 'logger', '$timeout', 'quickSearchService', '$window'];
+    SearchController.$inject = ['$rootScope', '$stateParams', '$q', 'logger', '$timeout', 'quickSearchService', '$window'];
     /* @ngInject */
-    function SearchController($rootScope, $stateParams, logger, $timeout, quickSearch, $window) {
+    function SearchController($rootScope, $stateParams, $q, logger, $timeout, quickSearch, $window) {
 
         var vm = this;
         $rootScope.hideChrome = $stateParams.embedded;

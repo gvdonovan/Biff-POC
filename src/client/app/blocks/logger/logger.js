@@ -29,7 +29,10 @@
             $log.error('Error: ' + message, data);
         }
 
-        function info(message, data, title) {
+        function info(message, data, title, embedded) {
+
+            if (embedded) return;
+
             toastr.info(message, title);
             $log.info('Info: ' + message, data);
         }

@@ -17,7 +17,7 @@
             {
                 state: 'search',
                 config: {
-                    url: '/search',
+                    url: '/search?embedded&mode',
                     params: {
                         embedded: 'false',
                         mode: 'init'
