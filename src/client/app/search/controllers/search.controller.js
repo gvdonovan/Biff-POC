@@ -34,8 +34,8 @@
           
             // Widget example, go to results view in new page
             if(inIframe) {
-              console.log("iframe args: "+iframeArgs);
-              $window.open("//localhost:3000/results");              
+              console.log("iframe args: "+iframeArgs.quoteUrl);
+              top.location = iframeArgs.quoteUrl;              
             } else {
               vm.isLoading = true;
               return quickSearch.getResults(vm.formModel).then(function (data) {
