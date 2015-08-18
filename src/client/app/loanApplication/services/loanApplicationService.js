@@ -161,6 +161,12 @@
                                 }
                             },
                             {
+                                className: "col-xs-12",
+                                type: "alias",
+                                key: "aliases",
+                                defaultValue: []
+                            },
+                            {
                                 className: "col-xs-3",
                                 type: "input",
                                 key: "social",

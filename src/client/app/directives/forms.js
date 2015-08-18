@@ -7,25 +7,34 @@
 
     function formsAlias() {
         var directive = {
-            restrict: 'E',
-            replace: true,
-            scope:{
+            restrict: 'A',
+            scope: {
                 datasource: '='
             },
-            controller: aliasController,
-            templateUrl: ''
+            templateUrl: 'app/directives/templates/alias.html',
+            controller: aliasController
         };
 
         return directive;
     }
 
-
-    function aliasController($scope){
+    function aliasController($scope) {
         var vm = {
-
+            addAlias: addAlias,
+            removeAlias: removeAlias,
         };
 
         $scope.vm = vm;
 
+        function addAlias() {
+            console.warn($scope);
+            $scope.datasource.push({firstName: '', lastName: ''});
+        }
+
+        function removeAlias(index) {
+            $scope.datasource.splice(index, 1)
+        }
     }
-})();
+
+})
+();
