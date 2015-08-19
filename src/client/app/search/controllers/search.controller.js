@@ -34,8 +34,13 @@
 
             if ($stateParams.mode == 'results') {
 
-                var biffObj = getUrlVars();
-                // TODO GD: This log should work once we append the query string in the API
+                // We are passing in the query string variable object via the injection arguments so no changes necessary on the api controller - DH
+                if(window.iframeArgs.urlVars){
+                  var biffObj = window.iframeArgs.urlVars;
+                } else {
+                  var biffObj = getUrlVars();
+                }
+                
                 console.log("Results query string: " + biffObj.firstName);
                 //TODO JA: update vm.formModel using "biff"
 

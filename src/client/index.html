@@ -22,9 +22,10 @@
         function angAppFunc (event) {
           console.log("Angular app function called from outside, msg: "
                       +event.data);
-          if(event.data != "OBHandshake"){
+          if(event.data != "OBWidgetInit"){
             window.iframeArgs = event.data;
             createCssLink(iframeArgs.cssUrl);
+            
             inIframe = true;
           }
         }        
@@ -36,7 +37,7 @@
           document.head.appendChild(cssLink);
         }
                 
-        window.parent.postMessage("OBHandshake", "*");
+        window.parent.postMessage("OBWidgetInit", "*");
         
         var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
         var eventer = window[eventMethod];
