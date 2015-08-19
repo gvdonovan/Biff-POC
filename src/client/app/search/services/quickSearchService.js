@@ -138,39 +138,40 @@
                             rebate: 875.00
                         }
                     ]
-                },
-                {
-                    title: 'Conforming 3/1 ARM',
-                    items: [
-                        {
-                            rate: 3.875,
-                            discPoints: 1875.00,
-                            apr: 3.996,
-                            months: 360,
-                            payment: 1411.00,
-                            closingCost: 4675.00,
-                            rebate: 0.00
-                        },
-                        {
-                            rate: 4,
-                            discPoints: 1700.00,
-                            apr: 3.999,
-                            months: 360,
-                            payment: 1511.00,
-                            closingCost: 3075.00,
-                            rebate: 10.00
-                        },
-                        {
-                            rate: 4.2,
-                            discPoints: 1500.00,
-                            apr: 4.100,
-                            months: 360,
-                            payment: 1611.00,
-                            closingCost: 500.00,
-                            rebate: 220.00
-                        }
-                    ]
                 }
+                //,
+                //{
+                //    title: 'Conforming 3/1 ARM',
+                //    items: [
+                //        {
+                //            rate: 3.875,
+                //            discPoints: 1875.00,
+                //            apr: 3.996,
+                //            months: 360,
+                //            payment: 1411.00,
+                //            closingCost: 4675.00,
+                //            rebate: 0.00
+                //        },
+                //        {
+                //            rate: 4,
+                //            discPoints: 1700.00,
+                //            apr: 3.999,
+                //            months: 360,
+                //            payment: 1511.00,
+                //            closingCost: 3075.00,
+                //            rebate: 10.00
+                //        },
+                //        {
+                //            rate: 4.2,
+                //            discPoints: 1500.00,
+                //            apr: 4.100,
+                //            months: 360,
+                //            payment: 1611.00,
+                //            closingCost: 500.00,
+                //            rebate: 220.00
+                //        }
+                //    ]
+                //}
             ];
 
             return results;
