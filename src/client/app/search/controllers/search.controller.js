@@ -10,7 +10,7 @@
     function SearchController($rootScope, $stateParams, $q, logger, $timeout, quickSearch, $window) {
 
         var vm = this;
-        if ($stateParams.embedded === 'true'){
+        if ($stateParams.embedded === 'true') {
             $rootScope.hideChrome = true;
         } else {
             $rootScope.hideChrome = false;
@@ -32,7 +32,11 @@
         function activate() {
             logger.info('Activated search View', $stateParams.embedded);
 
-            if($stateParams.mode == 'results'){
+            if ($stateParams.mode == 'results') {
+
+                //TODO DH: extract query string parameters into "biff"
+                //TODO JA: update vm.formModel using "biff"
+
                 $q.all([
                     quickSearch.getFormConfig(),
                     quickSearch.getResults(vm.formModel)
@@ -44,6 +48,9 @@
                     vm.json = JSON.stringify(vm.formModel, null, 4);
                     vm.showJson = true;
                     vm.underScoreJson = underScoreFilter();
+
+                    //TODO JA: Bind variables from "biff"
+
                 })
             }
             else {
@@ -55,22 +62,26 @@
         }
 
         function submit() {
-          
+
             // Widget example, go to results view in new page
-            if(inIframe) {
-              console.log("iframe args: "+iframeArgs.quoteUrl);
-              window.open(iframeArgs.quoteUrl);              
+            if (inIframe) {
+                console.log("iframe args: " + iframeArgs.quoteUrl + "?biff=rox");
+
+                var biff = {firstName: "Biff", lastName: "Tanner"};
+                //TODO:  add biff to quoteUrl
+
+                window.open(iframeArgs.quoteUrl);
             } else {
-              vm.isLoading = true;
-              return quickSearch.getResults(vm.formModel).then(function (data) {
-                  vm.searchResults = data;
-                  vm.json = JSON.stringify(vm.formModel, null, 4);
-                  vm.showJson = true;
-                  vm.underScoreJson = underScoreFilter();
-                  $timeout(function () {
-                      vm.isLoading = false;
-                  }, 500);
-              });
+                vm.isLoading = true;
+                return quickSearch.getResults(vm.formModel).then(function (data) {
+                    vm.searchResults = data;
+                    vm.json = JSON.stringify(vm.formModel, null, 4);
+                    vm.showJson = true;
+                    vm.underScoreJson = underScoreFilter();
+                    $timeout(function () {
+                        vm.isLoading = false;
+                    }, 500);
+                });
             }
         }
 
