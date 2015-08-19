@@ -34,7 +34,9 @@
 
             if ($stateParams.mode == 'results') {
 
-                //TODO DH: extract query string parameters into "biff"
+                var biffObj = getUrlVars();
+                // TODO GD: This log should work once we append the query string in the API
+                console.log("Results query string: " + biffObj.firstName);
                 //TODO JA: update vm.formModel using "biff"
 
                 $q.all([
@@ -69,8 +71,9 @@
 
                 var biff = {firstName: "Biff", lastName: "Tanner"};
                 //TODO:  add biff to quoteUrl
+                var qStr = $.param(biff);
 
-                window.open(iframeArgs.quoteUrl);
+                window.open(iframeArgs.quoteUrl + "?" + qStr);
             } else {
                 vm.isLoading = true;
                 return quickSearch.getResults(vm.formModel).then(function (data) {
@@ -93,5 +96,25 @@
             });
             return x;
         }
+      
+        function getUrlVars() {
+          if (!window.location.search) {
+              return({});   // return empty object
+          }
+          var parms = {};
+          var temp;
+          var items = window.location.search.slice(1).split("&");   // remove leading ? and split
+          for (var i = 0; i < items.length; i++) {
+              temp = items[i].split("=");
+              if (temp[0]) {
+                  if (temp.length < 2) {
+                      temp.push("");
+                  }
+                  parms[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);        
+              }
+          }
+          console.log("API URL for app in iFrame: " + window.location);
+          return(parms);
+      };
     }
 })();
