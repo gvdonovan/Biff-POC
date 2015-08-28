@@ -10,7 +10,8 @@
         'app.account',
         'app.obui',
         'app.loanApplication',
-        'app.results'
+        'app.results',
+        'app.preview'
     ]);
   
 })();

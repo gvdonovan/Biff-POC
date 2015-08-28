@@ -34,6 +34,7 @@
         function activate() {
             logger.info('Activated search View', $stateParams.embedded);
 
+            console.log(window.top.location);
             if ($stateParams.mode == 'results') {
 
                 // We are passing in the query string variable object via the injection arguments so no changes necessary on the api controller - DH
