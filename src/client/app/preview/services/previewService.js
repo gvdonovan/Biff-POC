@@ -202,7 +202,7 @@
                             "valueProp": 'id',
                             "labelProp": 'label'
                         },
-                        hideExpression:'model.visible'
+                        hideExpression:'!model.visible[0]'
                     },
                     {
                         key: 'propertyType',
@@ -251,7 +251,7 @@
                             labelProp: 'label',
                             required: false
                         },
-                        hideExpression:'model.visible'
+                        hideExpression:'!model.visible[1]'
                     },
                     {
                         key: 'loanPurpose',
@@ -261,7 +261,7 @@
                             type: 'text',
                             required: false
                         },
-                        hideExpression:'model.visible'
+                        hideExpression:'!model.visible[2]'
                     },
                     {
                         key: 'purchasePrice',
@@ -275,7 +275,7 @@
                             },
                             required: false
                         },
-                        hideExpression:'model.visible'
+                        hideExpression:'!model.visible[3]'
                     },
                     {
                         key: 'downPayment',
@@ -289,7 +289,7 @@
                             },
                             required: false
                         },
-                        hideExpression:'model.visible'
+                        hideExpression:'!model.visible[4]'
                     },
                     {
                         key: 'zip',
@@ -299,7 +299,7 @@
                             type: 'text',
                             required: false
                         },
-                        hideExpression:'model.visible'
+                        hideExpression:'!model.visible[5]'
                     },
                     {
                         key: 'creditScore',
@@ -309,7 +309,7 @@
                             type: 'text',
                             required: false
                         },
-                        hideExpression:'model.visible'
+                        hideExpression:'!model.visible[6]'
                     }
                 ]
             };

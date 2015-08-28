@@ -14,14 +14,14 @@
             <!--<form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>-->
             <form name="ngform" novalidate>
                 <div ng-repeat="box in vm.configFields track by $index">
-                    <p>                    
+                    <p>
                     <label>
-                        <input type="checkbox" ng-model="box.visible" ng-click="vm.setPreview($index)">&nbsp;{{box.label}}
+                        <input type="checkbox" ng-model="box.visible" ng-click="vm.setPreview($index, box.order)">&nbsp;{{box.label}}
                     </label>
-                    <a ng-click="vm.moveRowUp($index)" class="btn btn-default pull-right"> 
+                    <a ng-click="vm.moveRowUp($index)" class="btn btn-default pull-right">
                         <span class="glyphicon glyphicon-chevron-up"></span>
                     </a>
-                    <a ng-click="vm.moveRowDown($index)" class="btn btn-default pull-right" style="margin-right:15px;"> 
+                    <a ng-click="vm.moveRowDown($index)" class="btn btn-default pull-right" style="margin-right:15px;">
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                     </p>

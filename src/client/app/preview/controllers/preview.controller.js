@@ -40,22 +40,39 @@
 
             preview.getFormConfig().then(function (data) {
                 vm.data = data;
-                vm.formFields = data.fields;
-                for(var item in vm.formFields) {
+                vm.formFields = data.fields;                
+                vm.previewFields = data.fields;
+                var visible = []
+                for(var item in vm.formFields) {                    
                     var index = vm.formFields.indexOf(vm.formFields[item]);
+                    visible.push(true);
                     var formObj = {
                         "index": index,
+                        "key":  vm.formFields[item].key,
                         "label": vm.formFields[item].templateOptions.label,
-                        "visible": true
+                        "visible": true,
+                        "order": index
                     }
                     vm.configFields.push(formObj);
                     console.log(index);
                 }
+                vm.formModel.visible = visible;
             });
         }
         
         function setPreview(index, order) {
-            console.log("Index: "+index+", Order:"+order);
+            var ff = vm.formFields;
+            var fm = vm.formModel;
+            var pf = vm.previewFields;
+            var cf = vm.configFields;
+            var visible = cf[index].visible;
+            console.log("Index: "+index+", State:"+visible);
+            
+            if(visible) {
+                fm.visible[order] = true;
+            } else {
+                fm.visible[order] = false;
+            }
             
         }
         
@@ -70,7 +87,7 @@
                 cf.shift();
                 cf.push(item);
             }
-            updateOrders();
+            updateIndexes();
         }
         
         function moveRowDown(index, order) {
@@ -84,10 +101,10 @@
                 cf.pop();
                 cf.unshift(item);
             }
-            updateOrders();
+            updateIndexes();
         }
         
-        function updateOrders() {
+        function updateIndexes() {
             for(var i=0; i<vm.configFields.length; i++) {
                 vm.configFields[i].index = i;
             }
