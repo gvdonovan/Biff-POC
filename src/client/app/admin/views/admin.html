@@ -1,4 +1,51 @@
 <div class="jumbotron text-center">
     <h1>{{vm.title}}</h1>
+
     <p>Administrators welcome...</p>
+</div>
+
+<div class="widthQuarter">
+    <div id="plainPanel">
+        <div id="heading">List 1</div>
+        <div id="panel-padding">
+            <dl ng-repeat="item in vm.list1">
+                <dt ng-click="vm.selectCategory(item)">{{item.category}}</dt>
+                <dd>
+                    <ul type="none">
+                        <li ng-repeat="biff in item.items" ng-class="biff.selected == true ? 'active' : ''"
+                            ng-click="biff.selected = !biff.selected">{{biff.name}}
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<button ng-click="vm.moveRight()">Move Right</button>
+
+<div class="widthQuarter">
+    <div id="plainPanel">
+        <div id="heading">List 2</div>
+        <div id="panel-padding">
+            <dl ng-repeat="item in vm.list2 track by $index">
+                <dt>
+                    {{item.category}}
+                    <i style="text-align: right;" class="fa fa-remove" ng-click="vm.removeCategory($index)"></i>
+                    <i style="text-align: right;" class="fa fa-arrow-up" ng-show="$index > 0" ng-click="vm.sortCategory($index, -1)"></i>
+                    <i style="text-align: right;" class="fa fa-arrow-down" ng-show="($index + 1) < vm.list2.length" ng-click="vm.sortCategory($index, 1)"></i>
+                </dt>
+                <dd>
+                    <ul type="none">
+                        <li ng-repeat="biff in item.items track by $index">
+                            {{biff.name}}
+                            <i style="text-align: right;" class="fa fa-remove" ng-click="vm.removeItem($index, item, $parent.$index)"></i>
+                            <i style="text-align: right;" class="fa fa-arrow-up" ng-show="$index > 0" ng-click="vm.sortItem($index, -1, item.items)"></i>
+                            <i style="text-align: right;" class="fa fa-arrow-down" ng-show="($index + 1) < item.items.length" ng-click="vm.sortItem($index, 1, item.items)"></i>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>

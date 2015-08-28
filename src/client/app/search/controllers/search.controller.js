@@ -10,8 +10,10 @@
     function SearchController($rootScope, $stateParams, $q, logger, $timeout, quickSearch, $window) {
 
         var vm = this;
+        vm.embedded = false;
         if ($stateParams.embedded === 'true') {
             $rootScope.hideChrome = true;
+            vm.embedded = true;
         } else {
             $rootScope.hideChrome = false;
         }
@@ -78,7 +80,7 @@
                 //TODO:  add biff to quoteUrl
                 var qStr = $.param(biff);
 
-                window.open(iframeArgs.quoteUrl + "?" + qStr);
+                window.top.location.assign(iframeArgs.quoteUrl + "?" + qStr);
             } else {
                 vm.isLoading = true;
                 return quickSearch.getResults(vm.formModel).then(function (data) {
