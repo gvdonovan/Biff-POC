@@ -13,7 +13,9 @@
                 <dd>
                     <ul type="none">
                         <li ng-repeat="biff in item.items" ng-class="biff.selected == true ? 'active' : ''"
-                            ng-click="biff.selected = !biff.selected">{{biff.name}}
+                            ng-click="biff.selected = !biff.selected">
+                            <i style="text-align: left;" ng-show="biff.selected" class="fa fa-check"></i>
+                            {{biff.name}}
                         </li>
                     </ul>
                 </dd>
