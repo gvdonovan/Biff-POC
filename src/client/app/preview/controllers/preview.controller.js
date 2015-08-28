@@ -22,16 +22,75 @@
         vm.underScoreJson = "";
         vm.formModel = {};
         vm.formFields = [];
+        
+        vm.setPreview = setPreview;
+        vm.moveRowUp = moveRowUp;
+        vm.moveRowDown = moveRowDown;
+        
+        vm.configModel = {};
+        vm.configFields = [];
+        
+        vm.previewModel = {};
+        vm.previewFields = [];
 
         activate();
 
         function activate() {
-            logger.info('Activated preview View', $stateParams.embedded);
+            logger.info('Activated preview View');
 
             preview.getFormConfig().then(function (data) {
                 vm.data = data;
                 vm.formFields = data.fields;
+                for(var item in vm.formFields) {
+                    var index = vm.formFields.indexOf(vm.formFields[item]);
+                    var formObj = {
+                        "index": index,
+                        "label": vm.formFields[item].templateOptions.label,
+                        "visible": true
+                    }
+                    vm.configFields.push(formObj);
+                    console.log(index);
+                }
             });
+        }
+        
+        function setPreview(index, order) {
+            console.log("Index: "+index+", Order:"+order);
+            
+        }
+        
+        function moveRowUp(index, order) {
+            console.log("UP: Index: "+index);
+            var cf = vm.configFields;
+            var item = cf.slice(0)[index];
+            if(index != 0) {
+                cf.splice(index, 1);
+                cf.splice(index-1, 0, item);
+            } else {
+                cf.shift();
+                cf.push(item);
+            }
+            updateOrders();
+        }
+        
+        function moveRowDown(index, order) {
+            console.log("DOWN: Index: "+index);
+            var cf = vm.configFields;
+            var item = cf.slice(0)[index];
+            if(index+1 != vm.configFields.length) {
+                cf.splice(index, 1);
+                cf.splice(index+1, 0, item);
+            } else {
+                cf.pop();
+                cf.unshift(item);
+            }
+            updateOrders();
+        }
+        
+        function updateOrders() {
+            for(var i=0; i<vm.configFields.length; i++) {
+                vm.configFields[i].index = i;
+            }
         }
 
         function submit() {

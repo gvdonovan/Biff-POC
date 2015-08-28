@@ -201,7 +201,8 @@
                             ],
                             "valueProp": 'id',
                             "labelProp": 'label'
-                        }
+                        },
+                        hideExpression:'model.visible'
                     },
                     {
                         key: 'propertyType',
@@ -249,7 +250,8 @@
                             valueProp: 'value',
                             labelProp: 'label',
                             required: false
-                        }
+                        },
+                        hideExpression:'model.visible'
                     },
                     {
                         key: 'loanPurpose',
@@ -258,7 +260,8 @@
                             label: 'Loan Purpose',
                             type: 'text',
                             required: false
-                        }
+                        },
+                        hideExpression:'model.visible'
                     },
                     {
                         key: 'purchasePrice',
@@ -271,7 +274,8 @@
                                 text: '$'
                             },
                             required: false
-                        }
+                        },
+                        hideExpression:'model.visible'
                     },
                     {
                         key: 'downPayment',
@@ -284,7 +288,8 @@
                                 text: '$'
                             },
                             required: false
-                        }
+                        },
+                        hideExpression:'model.visible'
                     },
                     {
                         key: 'zip',
@@ -293,7 +298,8 @@
                             label: 'Zip',
                             type: 'text',
                             required: false
-                        }
+                        },
+                        hideExpression:'model.visible'
                     },
                     {
                         key: 'creditScore',
@@ -302,7 +308,8 @@
                             label: 'Credit Score',
                             type: 'text',
                             required: false
-                        }
+                        },
+                        hideExpression:'model.visible'
                     }
                 ]
             };
