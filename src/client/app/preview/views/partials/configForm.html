@@ -12,18 +12,24 @@
         <div class="panel-heading">Quick Search Config</div>
         <div class="panel-body">
             <!--<form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>-->
-            <form name="ngform" novalidate>
-                <div ng-repeat="box in vm.configFields track by $index">
-                    <p>
-                    <label>
-                        <input type="checkbox" ng-model="box.visible" ng-click="vm.setPreview($index, box.order)">&nbsp;{{box.label}}
-                    </label>
-                    <a ng-click="vm.moveRowUp($index)" class="btn btn-default pull-right">
-                        <span class="glyphicon glyphicon-chevron-up"></span>
-                    </a>
-                    <a ng-click="vm.moveRowDown($index)" class="btn btn-default pull-right" style="margin-right:15px;">
-                        <span class="glyphicon glyphicon-chevron-down"></span>
-                    </a>
+            <form name="ngform" novalidate class="container">
+                <div ng-repeat="box in vm.formFields track by $index">
+                    <p class="row">
+                        <div class="col-md-2">
+                            <input type="text" ng-model="box.templateOptions.label" class="form-control">
+                        </div>                    
+                    
+                        <div class="col-md-2">
+                            <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-chevron-up"></span>
+                            </a>
+                            <a ng-click="vm.moveRowDown($index)" class="btn btn-default " style="margin-right:15px;">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <label>
+                                <input type="checkbox" ng-click="vm.setPreview(box.templateOptions.order)" class="form-control.input-md">&nbsp;Hide
+                            </label>
+                        </div>
                     </p>
                 </div>
             </form>
