@@ -38,12 +38,13 @@
                 sortOrder: 3,
                 items: [
                     {id: 7, name: 'item 1', selected: false, sortOrder: 1},
-                    {id: 8, name: 'item 2', selected: false, sortOrder: 2},
+                    {id: 8, name: 'biff 2', selected: false, sortOrder: 2},
                     {id: 9, name: 'item 3', selected: false, sortOrder: 3}
                 ]
             }
         ];
 
+        vm.filterText = '';
         vm.list2 = [];
         vm.moveRight = moveRight;
         vm.selectCategory = selectCategory;
@@ -51,6 +52,8 @@
         vm.removeItem = removeItem;
         vm.sortCategory = sortCategory;
         vm.sortItem = sortItem;
+        vm.filterCategory = filterCategory;
+        vm.filterItems = filterItems;
 
         function moveRight() {
             //var currentCategory;
@@ -130,6 +133,35 @@
             }
         }
 
+        function filterCategory(category) {
+            if (vm.filterText === undefined || vm.filterText.length < 3) {
+                return true;
+            }
+            var found = false;
+            if (category.category.indexOf(vm.filterText) > -1) {
+                found = true;
+            }
+            _.each(category.items, function (item) {
+                if (item.name.indexOf(vm.filterText) > -1) {
+                    found = true;
+                    return null;
+                }
+            });
+
+            return found;
+        }
+
+        function filterItems(item) {
+            if (vm.filterText === undefined || vm.filterText.length < 3) {
+                return true;
+            }
+            var found = false;
+            if (item.name.indexOf(vm.filterText) > -1) {
+                found = true;
+            }
+            return found;
+        }
+
         activate();
 
         function activate() {
@@ -139,5 +171,6 @@
         function getSelectedCategories() {
             return _.pluck(vm.list2, 'category');
         }
+
     }
 })();
