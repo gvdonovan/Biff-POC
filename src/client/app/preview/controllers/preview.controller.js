@@ -26,12 +26,6 @@
         vm.setPreview = setPreview;
         vm.moveRowUp = moveRowUp;
         vm.moveRowDown = moveRowDown;
-        
-        vm.configModel = {};
-        vm.configFields = [];
-        
-        vm.previewModel = {};
-        vm.previewFields = [];
 
         activate();
 
@@ -40,89 +34,72 @@
 
             preview.getFormConfig().then(function (data) {
                 vm.data = data;
-                vm.formFields = data.fields;                
-                vm.previewFields = data.fields;
-                var visible = []
-                for(var item in vm.formFields) {                    
-                    var index = vm.formFields.indexOf(vm.formFields[item]);
-                    visible.push(true);
-                    var formObj = {
-                        "index": index,
-                        "key":  vm.formFields[item].key,
-                        "label": vm.formFields[item].templateOptions.label,
-                        "visible": true,
-                        "order": index
-                    }
-                    vm.configFields.push(formObj);
-                    console.log(index);
+                vm.formFields = data.fields;
+                
+                var visible = [];
+                var order = [];
+                
+                for(var i=0; i<vm.formFields.length; i++) {
+                    visible.push(false);
+                    order[i] = i;
                 }
+                
                 vm.formModel.visible = visible;
+                vm.formModel.order = order;
+                
             });
+            
+            
         }
         
-        function setPreview(index, order) {
-            var ff = vm.formFields;
+        function setPreview(order) {
             var fm = vm.formModel;
-            var pf = vm.previewFields;
-            var cf = vm.configFields;
-            var visible = cf[index].visible;
-            console.log("Index: "+index+", State:"+visible);
-            
-            if(visible) {
-                fm.visible[order] = true;
-            } else {
-                fm.visible[order] = false;
-            }
+            fm.visible[order] = !fm.visible[order];
+            console.log("Order: "+order+", State:"+fm.visible[order]);
+            //ff[index].hideExpression = he.toString();
+            console.log(JSON.stringify(vm.formModel).toString());
             
         }
         
-        function moveRowUp(index, order) {
+        function moveRowUp(index) {
             console.log("UP: Index: "+index);
-            var cf = vm.configFields;
             var ff = vm.formFields;
+            var fo = vm.formModel.order;
             
-            var cItem = cf.slice(0)[index];
             var fItem = ff.slice(0)[index];
+            var oItem = fo.slice(0)[index];
             
             if(index != 0) {
-                cf.splice(index, 1);
-                cf.splice(index-1, 0, cItem);
                 ff.splice(index, 1);
                 ff.splice(index-1, 0, fItem);
+                fo.splice(index, 1);
+                fo.splice(index-1, 0, oItem);
             } else {
-                cf.shift();
-                cf.push(cItem);
                 ff.shift();
                 ff.push(fItem);
+                fo.shift();
+                fo.push(oItem);
             }
-            updateIndexes();
         }
         
-        function moveRowDown(index, order) {
+        function moveRowDown(index) {
             console.log("DOWN: Index: "+index);
-            var cf = vm.configFields;
             var ff = vm.formFields;
+            var fo = vm.formModel.order;
             
-            var cItem = cf.slice(0)[index];
             var fItem = ff.slice(0)[index];
+            var oItem = fo.slice(0)[index];
             
-            if(index+1 != vm.configFields.length) {
-                cf.splice(index, 1);
-                cf.splice(index+1, 0, cItem);
+            if(index+1 != ff.length) {
                 ff.splice(index, 1);
                 ff.splice(index+1, 0, fItem);
+                fo.splice(index, 1);
+                fo.splice(index+1, 0, oItem);
             } else {
-                cf.pop();
-                cf.unshift(cItem);
                 ff.pop();
                 ff.unshift(fItem);
-            }
-            updateIndexes();
-        }
-        
-        function updateIndexes() {
-            for(var i=0; i<vm.configFields.length; i++) {
-                vm.configFields[i].index = i;
+                fo.pop();
+                fo.unshift(oItem);
             }
         }
 

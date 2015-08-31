@@ -200,9 +200,10 @@
                                 },
                             ],
                             "valueProp": 'id',
-                            "labelProp": 'label'
+                            "labelProp": 'label',
+                            order: 0
                         },
-                        hideExpression:'!model.visible[0]'
+                        hideExpression:'model.visible[0]'
                     },
                     {
                         key: 'propertyType',
@@ -249,9 +250,10 @@
                             ],
                             valueProp: 'value',
                             labelProp: 'label',
-                            required: false
+                            required: false,
+                            order: 1
                         },
-                        hideExpression:'!model.visible[1]'
+                        hideExpression:'model.visible[1]'
                     },
                     {
                         key: 'loanPurpose',
@@ -259,9 +261,10 @@
                         templateOptions: {
                             label: 'Loan Purpose',
                             type: 'text',
-                            required: false
+                            required: false,
+                            order: 2
                         },
-                        hideExpression:'!model.visible[2]'
+                        hideExpression:'model.visible[2]'
                     },
                     {
                         key: 'purchasePrice',
@@ -273,9 +276,10 @@
                             addonLeft: {
                                 text: '$'
                             },
-                            required: false
+                            required: false,
+                            order: 3
                         },
-                        hideExpression:'!model.visible[3]'
+                        hideExpression:'model.visible[3]'
                     },
                     {
                         key: 'downPayment',
@@ -287,9 +291,10 @@
                             addonLeft: {
                                 text: '$'
                             },
-                            required: false
+                            required: false,
+                            order: 4
                         },
-                        hideExpression:'!model.visible[4]'
+                        hideExpression:'model.visible[4]'
                     },
                     {
                         key: 'zip',
@@ -297,9 +302,10 @@
                         templateOptions: {
                             label: 'Zip',
                             type: 'text',
-                            required: false
+                            required: false,
+                            order: 5
                         },
-                        hideExpression:'!model.visible[5]'
+                        hideExpression:'model.visible[5]'
                     },
                     {
                         key: 'creditScore',
@@ -307,9 +313,10 @@
                         templateOptions: {
                             label: 'Credit Score',
                             type: 'text',
-                            required: false
+                            required: false,
+                            order: 6
                         },
-                        hideExpression:'!model.visible[6]'
+                        hideExpression:'model.visible[6]'
                     }
                 ]
             };
