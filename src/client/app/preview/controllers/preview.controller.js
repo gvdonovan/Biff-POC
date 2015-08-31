@@ -79,13 +79,21 @@
         function moveRowUp(index, order) {
             console.log("UP: Index: "+index);
             var cf = vm.configFields;
-            var item = cf.slice(0)[index];
+            var ff = vm.formFields;
+            
+            var cItem = cf.slice(0)[index];
+            var fItem = ff.slice(0)[index];
+            
             if(index != 0) {
                 cf.splice(index, 1);
-                cf.splice(index-1, 0, item);
+                cf.splice(index-1, 0, cItem);
+                ff.splice(index, 1);
+                ff.splice(index-1, 0, fItem);
             } else {
                 cf.shift();
-                cf.push(item);
+                cf.push(cItem);
+                ff.shift();
+                ff.push(fItem);
             }
             updateIndexes();
         }
@@ -93,13 +101,21 @@
         function moveRowDown(index, order) {
             console.log("DOWN: Index: "+index);
             var cf = vm.configFields;
-            var item = cf.slice(0)[index];
+            var ff = vm.formFields;
+            
+            var cItem = cf.slice(0)[index];
+            var fItem = ff.slice(0)[index];
+            
             if(index+1 != vm.configFields.length) {
                 cf.splice(index, 1);
-                cf.splice(index+1, 0, item);
+                cf.splice(index+1, 0, cItem);
+                ff.splice(index, 1);
+                ff.splice(index+1, 0, fItem);
             } else {
                 cf.pop();
-                cf.unshift(item);
+                cf.unshift(cItem);
+                ff.pop();
+                ff.unshift(fItem);
             }
             updateIndexes();
         }
