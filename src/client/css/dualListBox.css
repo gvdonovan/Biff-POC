@@ -1,0 +1,39 @@
+/* ===GLOBAL=== */
+.widthFull {
+    width: 100%;
+}
+
+.width98 {
+    width: 98%;
+}
+
+.widthTwoThirds {
+    width: 66%;
+}
+
+.widthQuarter {
+    display: inline-block;
+    width: 24%;
+    vertical-align: top;
+}
+
+/* ===Panel=== */
+#plainPanel {
+    border: 1px solid #F0F0F0;
+}
+
+#plainPanel #heading {
+    padding: .3em;
+    background-color: #F0F0F0;
+}
+
+#panel-padding {
+    padding: 1em;
+}
+
+ul li.active {
+    background: #0000cc;
+    color: white;
+}
+
+
