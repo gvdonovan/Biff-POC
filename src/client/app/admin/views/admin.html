@@ -19,7 +19,7 @@
                         <ul type="none">
                             <li ng-repeat="biff in item.items | filter: vm.filterItems" ng-class="biff.selected == true ? 'active' : ''"
                                 ng-click="biff.selected = !biff.selected">
-                                <i style="text-align: left;" ng-show="biff.selected" class="fa fa-check"></i>
+                                <i style="text-align: left;" ng-show="biff.picked" class="fa fa-check"></i>
                                 {{biff.name}}
                             </li>
                         </ul>
@@ -38,7 +38,7 @@
                 <dl ng-repeat="item in vm.list2 track by $index">
                     <dt>
                         {{item.category}}
-                        <i style="text-align: right;" class="fa fa-remove" ng-click="vm.removeCategory($index)"></i>
+                        <i style="text-align: right;" class="fa fa-remove" ng-click="vm.removeCategory($index, item)"></i>
                         <i style="text-align: right;" class="fa fa-arrow-up" ng-show="$index > 0"
                            ng-click="vm.sortCategory($index, -1)"></i>
                         <i style="text-align: right;" class="fa fa-arrow-down" ng-show="($index + 1) < vm.list2.length"

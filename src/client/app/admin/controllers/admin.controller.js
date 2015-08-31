@@ -17,9 +17,9 @@
                 selected: false,
                 sortOrder: 1,
                 items: [
-                    {id: 1, name: 'item 1', selected: false, sortOrder: 1},
-                    {id: 2, name: 'item 2', selected: false, sortOrder: 2},
-                    {id: 3, name: 'item 3', selected: false, sortOrder: 3}
+                    {id: 1, name: 'item 1', selected: false, picked: false, sortOrder: 1},
+                    {id: 2, name: 'item 2', selected: false, picked: false, sortOrder: 2},
+                    {id: 3, name: 'item 3', selected: false, picked: false, sortOrder: 3}
                 ]
             },
             {
@@ -27,9 +27,9 @@
                 selected: false,
                 sortOrder: 2,
                 items: [
-                    {id: 4, name: 'item 1', selected: false, sortOrder: 1},
-                    {id: 5, name: 'item 2', selected: false, sortOrder: 2},
-                    {id: 6, name: 'item 3', selected: false, sortOrder: 3}
+                    {id: 4, name: 'item 1', selected: false, picked: false, sortOrder: 1},
+                    {id: 5, name: 'item 2', selected: false, picked: false, sortOrder: 2},
+                    {id: 6, name: 'item 3', selected: false, picked: false, sortOrder: 3}
                 ]
             },
             {
@@ -37,9 +37,9 @@
                 selected: false,
                 sortOrder: 3,
                 items: [
-                    {id: 7, name: 'item 1', selected: false, sortOrder: 1},
-                    {id: 8, name: 'biff 2', selected: false, sortOrder: 2},
-                    {id: 9, name: 'item 3', selected: false, sortOrder: 3}
+                    {id: 7, name: 'item 1', selected: false, picked: false, sortOrder: 1},
+                    {id: 8, name: 'biff 2', selected: false, picked: false, sortOrder: 2},
+                    {id: 9, name: 'item 3', selected: false, picked: false, sortOrder: 3}
                 ]
             }
         ];
@@ -89,6 +89,7 @@
                             if (pickedCategory.category == category.category && !_.contains(itemIds, item.id)) {
                                 var newItem = _.clone(item);
                                 newItem.selected = false;
+                                item.picked = true;
                                 pickedCategory.items.push(newItem);
                                 return null;
                             }
@@ -106,16 +107,19 @@
             });
         }
 
-        function removeCategory(index) {
+        function removeCategory(index, category) {
+            unPickItems(category);
             vm.list2.splice(index, 1);
         }
 
         function removeItem(index, category, cIndex) {
             if (category.items.length > 1) {
-                category.items.splice(index, 1)
+                var x = category.items.splice(index, 1);
+                unPickItem(x[0], category);
             }
             else {
                 vm.list2.splice(cIndex, 1);
+                unPickItems(category);
             }
         }
 
@@ -172,5 +176,28 @@
             return _.pluck(vm.list2, 'category');
         }
 
+        function unPickItems(category) {
+            var srcCat = _.findWhere(vm.list1, {category: category.category});
+
+            _.each(category.items, function (item) {
+                _.each(srcCat.items, function (srcItem) {
+                    if (item.id === srcItem.id) {
+                        srcItem.picked = false;
+                        return null;
+                    }
+                });
+            });
+        }
+
+        function unPickItem(item, category) {
+            var srcCat = _.findWhere(vm.list1, {category: category.category});
+
+            _.each(srcCat.items, function (srcItem) {
+                if (item.id === srcItem.id) {
+                    srcItem.picked = false;
+                    return null;
+                }
+            });
+        }
     }
 })();
