@@ -5,9 +5,9 @@
         .module('app.admin')
         .controller('adminController', AdminController);
 
-    AdminController.$inject = ['logger', '$state', 'routerHelper'];
+    AdminController.$inject = ['logger'];
     /* @ngInject */
-    function AdminController(logger, $state, routerHelper) {
+    function AdminController(logger) {
         var vm = this;
         vm.title = 'Admin';
 
@@ -155,15 +155,31 @@
             return found;
         }
 
-        function filterItems(item) {
-            if (vm.filterText === undefined || vm.filterText.length < 3) {
-                return true;
+        function filterItems(cat) {
+            return function (item) {
+                if (vm.filterText === undefined || vm.filterText.length < 3) {
+                    return true;
+                }
+                var found = false;
+                if (item.name.indexOf(vm.filterText) > -1) {
+                    found = true;
+                }
+                var catCheck = false;
+
+                _.forEach(cat.items, function (obj) {
+                    if (catCheck) {
+                        return null;
+                    }
+                    if (obj.name.indexOf(vm.filterText) > -1) {
+                        catCheck = true;
+                    }
+                });
+
+                if (!catCheck) {
+                    found = true;
+                }
+                return found;
             }
-            var found = false;
-            if (item.name.indexOf(vm.filterText) > -1) {
-                found = true;
-            }
-            return found;
         }
 
         activate();
@@ -200,4 +216,5 @@
             });
         }
     }
-})();
+})
+();
