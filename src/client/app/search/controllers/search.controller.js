@@ -73,16 +73,20 @@
 
         function submit() {
 
+            /*
             // Widget example, go to results view in new page
-            if (inIframe) {
-                console.log("iframe args: " + iframeArgs.quoteUrl + "?biff=rox");
+            if (typeof(inIframe) != undefined) {
+                if(inIframe == true) {
+                    console.log("iframe args: " + iframeArgs.quoteUrl + "?biff=rox");
 
-                var biff = {firstName: "Biff", lastName: "Tanner"};
-                //TODO:  add biff to quoteUrl
-                var qStr = $.param(biff);
+                    var biff = {firstName: "Biff", lastName: "Tanner"};
+                    //TODO:  add biff to quoteUrl
+                    var qStr = $.param(biff);
 
-                window.top.location.assign(iframeArgs.quoteUrl + "?" + qStr);
+                    window.top.location.assign(iframeArgs.quoteUrl + "?" + qStr);
+                }
             } else {
+            */
                 vm.isLoading = true;
                 return quickSearch.getResults(vm.formModel).then(function (data) {
                     vm.searchResults = data;
@@ -93,7 +97,7 @@
                         vm.isLoading = false;
                     }, 500);
                 });
-            }
+            //}
         }
 
         function underScoreFilter() {
