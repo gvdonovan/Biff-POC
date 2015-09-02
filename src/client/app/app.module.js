@@ -11,7 +11,8 @@
         'app.obui',
         'app.loanApplication',
         'app.results',
-        'app.preview'
+        'app.preview',
+        'app.general'
     ]);
   
 })();
