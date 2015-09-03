@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.general')
+        .module('app.default')
         .run(appRun);
 
     appRun.$inject = ['routerHelper'];
@@ -15,18 +15,18 @@
 
         var states = [
             {
-                state: 'general',
+                state: 'default',
                 config: {
-                    url: '/general',
-                    templateUrl: 'app/general/views/general.html',
-                    controller: 'GeneralController',
+                    url: '/default',
+                    templateUrl: 'app/default/views/default.html',
+                    controller: 'DefaultController',
                     controllerAs: 'vm',
-                    title: 'General',
+                    title: 'Default',
                     settings: {
-                        group: 'General',
+                        group: 'Default',
                         top: true,
                         nav: 2,
-                        content: '<i class="fa fa-check-square-o"></i> General'
+                        content: '<i class="fa fa-check-square-o"></i> Default'
                     }
                 }
             }

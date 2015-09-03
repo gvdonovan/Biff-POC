@@ -2,18 +2,18 @@
     'use strict';
 
     angular
-        .module('app.general')
-        .controller('GeneralController', GeneralController);
+        .module('app.default')
+        .controller('DefaultController', DefaultController);
 
-    GeneralController.$inject = ['$rootScope', '$stateParams', '$q', 'logger', '$timeout', 'generalService', '$window'];
+    DefaultController.$inject = ['$rootScope', '$stateParams', '$q', 'logger', '$timeout', 'defaultService', '$window'];
     /* @ngInject */
-    function GeneralController($rootScope, $stateParams, $q, logger, $timeout, general, $window) {
+    function DefaultController($rootScope, $stateParams, $q, logger, $timeout, default, $window) {
 
         var vm = this;
         
 
         //$rootScope.hideChrome = $stateParams.embedded;
-        vm.title = 'General';
+        vm.title = 'Default';
         vm.submit = submit;
         vm.isLoading = false;
         vm.showJson = false;
@@ -27,7 +27,7 @@
         activate();
 
         function activate() {
-            logger.info('Activated general View');
+            logger.info('Activated default View');
 
             
             
@@ -35,7 +35,7 @@
         function submit() {
             vm.isLoading = true;
             
-            return general.getResults(vm.formModel).then(function (data) {
+            return default.getResults(vm.formModel).then(function (data) {
                 vm.searchResults = data;
                 vm.json = JSON.stringify(vm.formModel, null, 4);
                 vm.showJson = true;

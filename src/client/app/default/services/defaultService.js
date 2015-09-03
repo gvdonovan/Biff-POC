@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('app.general')
-        .factory('generalService', GeneralService);
+        .module('app.default')
+        .factory('defaultService', DefaultService);
 
-    GeneralService.$inject = ['$q', 'logger'];
+    DefaultService.$inject = ['$q', 'logger'];
 
-    function GeneralService($q, logger) {
+    function DefaultService($q, logger) {
         var service = {
             getFormConfig: getFormConfig,
             getResults: getResults
