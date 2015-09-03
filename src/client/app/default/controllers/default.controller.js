@@ -7,7 +7,7 @@
 
     DefaultController.$inject = ['$rootScope', '$stateParams', '$q', 'logger', '$timeout', 'defaultService', '$window'];
     /* @ngInject */
-    function DefaultController($rootScope, $stateParams, $q, logger, $timeout, default, $window) {
+    function DefaultController($rootScope, $stateParams, $q, logger, $timeout, defaultService, $window) {
 
         var vm = this;
         
@@ -35,7 +35,7 @@
         function submit() {
             vm.isLoading = true;
             
-            return default.getResults(vm.formModel).then(function (data) {
+            return defaultService.getResults(vm.formModel).then(function (data) {
                 vm.searchResults = data;
                 vm.json = JSON.stringify(vm.formModel, null, 4);
                 vm.showJson = true;
