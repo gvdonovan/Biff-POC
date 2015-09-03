@@ -17,38 +17,58 @@
             
                     <p class="row">
                         
-                        <h2 class="col-sm-12">Lien Information</h2>
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse1">Lien Information</a>
+                              </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                              <div class="panel-body">
                         
-                        <div class="col-sm-4 form-group">
-                            <label>First Lien/Base Loan Amount *</label>
-                            <input ng-model="vm.firstLien" type="text" name="firstLien" class="form-control">
-                            <p ng-show="defaultForm.firstLien.$invalid && !defaultForm.firstLien.$pristine" class="help-block">First Lien is required.</p>
+                                <div class="col-sm-4 form-group">
+                                    <label>First Lien/Base Loan Amount *</label>
+                                    <input ng-model="vm.firstLien" type="text" name="firstLien" class="form-control">
+                                    <p ng-show="defaultForm.firstLien.$invalid && !defaultForm.firstLien.$pristine" class="help-block">First Lien is required.</p>
+                                </div>
+
+                                <div class="col-sm-4 form-group">
+                                    <label>Second Lien Amount *</label>
+                                    <input ng-model="vm.secondLien" type="text" name="secondLien" class="form-control">
+                                    <p ng-show="defaultForm.secondLien.$invalid && !defaultForm.secondLien.$pristine" class="help-block">Second Lien is required.</p>
+                                </div>
+
+                                <div class="col-sm-4 form-group">
+                                    <label>HELOC Line Amount *</label>
+                                    <input ng-model="vm.helocLine" type="text" name="helocLine" class="form-control">
+                                    <p ng-show="defaultForm.helocLine.$invalid && !defaultForm.helocLine.$pristine" class="help-block">HELOC Line is required.</p>
+                                </div>
+
+                                <div class="col-sm-4 form-group">
+                                    <label>HELOC Drawn Amount *</label>
+                                    <input ng-model="vm.helocDrawn" type="text" name="helocDrawn" class="form-control">
+                                    <p ng-show="defaultForm.helocDrawn.$invalid && !defaultForm.helocDrawn.$pristine" class="help-block">HELOC Drawn is required.</p>
+                                </div>
+                                
+                              </div>
+                            </div>
+                            </div>
                         </div>
-            
-                        <div class="col-sm-4 form-group">
-                            <label>Second Lien Amount *</label>
-                            <input ng-model="vm.secondLien" type="text" name="secondLien" class="form-control">
-                            <p ng-show="defaultForm.secondLien.$invalid && !defaultForm.secondLien.$pristine" class="help-block">Second Lien is required.</p>
-                        </div>
-            
-                        <div class="col-sm-4 form-group">
-                            <label>HELOC Line Amount *</label>
-                            <input ng-model="vm.helocLine" type="text" name="helocLine" class="form-control">
-                            <p ng-show="defaultForm.helocLine.$invalid && !defaultForm.helocLine.$pristine" class="help-block">HELOC Line is required.</p>
-                        </div>
-            
-                        <div class="col-sm-4 form-group">
-                            <label>HELOC Drawn Amount *</label>
-                            <input ng-model="vm.helocDrawn" type="text" name="helocDrawn" class="form-control">
-                            <p ng-show="defaultForm.helocDrawn.$invalid && !defaultForm.helocDrawn.$pristine" class="help-block">HELOC Drawn is required.</p>
-                        </div>
-                        
                     </p>
         
         
                     <p class="row">
                         
-                        <h2 class="col-sm-12">Loan Information</h2>
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse2">Loan Information</a>
+                              </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse in">
+                              <div class="panel-body">
                         
                         <div class="col-sm-4 form-group">
                             <label>Price/Estimated Value *</label>
@@ -119,13 +139,26 @@
                                 <option value="second">Second</option>
                             </select>
                         </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                         
                     </p>
         
         
                     <p class="row">
                         
-                        <h2 class="col-sm-12">Borrower Information</h2>
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse3">Borrower Information</a>
+                              </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse in">
+                              <div class="panel-body">
                         
                         <div class="col-sm-4 form-group">
                             <label>Representative FICO *</label>
@@ -229,13 +262,26 @@
                                 <option value="once">Once</option>
                             </select>
                         </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                         
                     </p>
     
     
                     <p class="row">
                         
-                        <h2 class="col-sm-12">Property Information</h2>
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse4">Property Information</a>
+                              </h4>
+                            </div>
+                            <div id="collapse4" class="panel-collapse collapse in">
+                              <div class="panel-body">
     
                         <div class="col-sm-4 form-group">
                             <label>Occupancy</label>
@@ -303,14 +349,27 @@
                                 <option value="no">No</option>
                                 <option value="yes">Yes</option>
                             </select>
-                        </div>            
+                        </div>
+                                
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                         
                     </p>
         
         
                     <p class="row">
                         
-                        <h2 class="col-sm-12">First Lien Search Criteria</h2>
+                        <div class="panel-group">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse5">First Lien Search Criteria</a>
+                              </h4>
+                            </div>
+                            <div id="collapse5" class="panel-collapse collapse in">
+                              <div class="panel-body">
                         
                         <div class="col-sm-4 form-group">
                             <label>Interest Only</label>
@@ -351,12 +410,14 @@
                                 <option value="yes">Yes</option>
                             </select>
                         </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                         
                     </p>
 
-                    <p class="row">                        
-                        <h2 class="col-sm-12">Cancel Changes</h2>
-                    </p>
         
         <!--
             
@@ -449,6 +510,7 @@
                     </div>
         
                     <div class="panel-footer clearfix">
+                        <button type="button" class="btn btn-danger pull-left" ng-disabled="userForm.$invalid">Cancel Changes</button>
                         <button type="submit" class="btn btn-primary pull-right" ng-disabled="userForm.$invalid">Submit</button>
                     </div>
                 </div>
