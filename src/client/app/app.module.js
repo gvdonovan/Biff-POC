@@ -7,6 +7,7 @@
         'app.home',
         'app.admin',
         'app.search',
+        'app.quickSearchConfig',
         'app.account',
         'app.obui',
         'app.loanApplication',

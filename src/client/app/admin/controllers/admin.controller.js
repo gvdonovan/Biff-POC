@@ -11,38 +11,70 @@
         var vm = this;
         vm.title = 'Admin';
 
-        vm.list1 = [
-            {
-                category: 'category 1',
-                selected: false,
-                sortOrder: 1,
-                items: [
-                    {id: 1, name: 'item 1', selected: false, picked: false, sortOrder: 1},
-                    {id: 2, name: 'item 2', selected: false, picked: false, sortOrder: 2},
-                    {id: 3, name: 'item 3', selected: false, picked: false, sortOrder: 3}
-                ]
-            },
-            {
-                category: 'category 2',
-                selected: false,
-                sortOrder: 2,
-                items: [
-                    {id: 4, name: 'item 1', selected: false, picked: false, sortOrder: 1},
-                    {id: 5, name: 'item 2', selected: false, picked: false, sortOrder: 2},
-                    {id: 6, name: 'item 3', selected: false, picked: false, sortOrder: 3}
-                ]
-            },
-            {
-                category: 'category 3',
-                selected: false,
-                sortOrder: 3,
-                items: [
-                    {id: 7, name: 'item 1', selected: false, picked: false, sortOrder: 1},
-                    {id: 8, name: 'biff 2', selected: false, picked: false, sortOrder: 2},
-                    {id: 9, name: 'item 3', selected: false, picked: false, sortOrder: 3}
-                ]
+        buildList();
+        function buildList(){
+            var cat = 1;
+            var id = 1;
+            var arr = [];
+
+            for(var x = 0; x < 3; x++){
+                var items = [];
+
+                for(var y = 0; y < 500; y++){
+                    items.push({
+                        id: id,
+                        name: 'item' + id,
+                        selected: false,
+                        picked: false,
+                        sortOrder: 1
+                    });
+                    id = id + 1;
+                }
+
+                arr.push({
+                    category: 'category' + cat,
+                    selected: false,
+                    sortOrder: 0,
+                    items: items
+                });
+                cat = cat + 1;
             }
-        ];
+            return arr;
+        }
+
+        vm.list1 = buildList();
+        //    [
+        //    {
+        //        category: 'category 1',
+        //        selected: false,
+        //        sortOrder: 1,
+        //        items: [
+        //            {id: 1, name: 'item 1', selected: false, picked: false, sortOrder: 1},
+        //            {id: 2, name: 'item 2', selected: false, picked: false, sortOrder: 2},
+        //            {id: 3, name: 'item 3', selected: false, picked: false, sortOrder: 3}
+        //        ]
+        //    },
+        //    {
+        //        category: 'category 2',
+        //        selected: false,
+        //        sortOrder: 2,
+        //        items: [
+        //            {id: 4, name: 'item 1', selected: false, picked: false, sortOrder: 1},
+        //            {id: 5, name: 'item 2', selected: false, picked: false, sortOrder: 2},
+        //            {id: 6, name: 'item 3', selected: false, picked: false, sortOrder: 3}
+        //        ]
+        //    },
+        //    {
+        //        category: 'category 3',
+        //        selected: false,
+        //        sortOrder: 3,
+        //        items: [
+        //            {id: 7, name: 'item 1', selected: false, picked: false, sortOrder: 1},
+        //            {id: 8, name: 'biff 2', selected: false, picked: false, sortOrder: 2},
+        //            {id: 9, name: 'item 3', selected: false, picked: false, sortOrder: 3}
+        //        ]
+        //    }
+        //];
 
         vm.filterText = '';
         vm.list2 = [];
