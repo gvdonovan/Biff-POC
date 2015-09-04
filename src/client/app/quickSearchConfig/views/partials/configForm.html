@@ -2,23 +2,26 @@
     glyphicon-chevron-up:before {
         content: "\e113"
     }
+    
     glyphicon-chevron-down:before {
         content: "\e114"
     }
+
 </style>
 
 <div class="col-xs-6">
     <div class="panel panel-primary">
         <div class="panel-heading">Quick Search Config</div>
-        <div class="panel-body">
-            <!--<form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>-->
-            <form name="ngform" novalidate class="container">
+
+        <!--<form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>-->
+        <form name="ngform" novalidate>
+            <div class="panel-body container">
                 <div ng-repeat="box in vm.formFields track by $index">
                     <p class="row">
                         <div class="col-md-2">
                             <input type="text" ng-model="box.templateOptions.label" class="form-control">
-                        </div>                    
-                    
+                        </div>
+
                         <div class="col-md-2">
                             <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
                                 <span class="glyphicon glyphicon-chevron-up"></span>
@@ -32,7 +35,11 @@
                         </div>
                     </p>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="panel-footer clearfix">
+                <button type="button" class="btn btn-danger pull-left">Reset Form</button>
+            </div>
+        </form>
+
     </div>
 </div>
