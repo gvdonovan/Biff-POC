@@ -2,72 +2,74 @@
     glyphicon-chevron-up:before {
         content: "\e113"
     }
+    
     glyphicon-chevron-down:before {
         content: "\e114"
     }
+
 </style>
 
-<div class="container col-xs-8 col-xs-offset-2">
+<div class="container col-xs-12">
     <form name="defaultForm" novalidate>
-    <div class="panel panel-primary ">
-        <div class="panel-heading">Default Information Form</div>
-        <div class="panel-body ">
-            <!--<form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>-->
-            
-            
-                    <p class="row">
-                        
-                        <div class="panel-group">
-                          <div class="panel panel-default">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">Default Information Form</div>
+            <div class="panel-body ">
+                <!--<form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>-->
+
+
+                <p class="row">
+
+                    <div class="panel-group">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
-                              <h4 class="panel-title">
+                                <h4 class="panel-title">
                                 Lien Information
                                 <a data-toggle="collapse" href="#collapse1">
                                 <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
                                 </a>
                               </h4>
-                                
+
                             </div>
                             <div id="collapse1" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                        
-                                <div class="col-sm-4 form-group">
-                                    <label>First Lien/Base Loan Amount *</label>
-                                    <input ng-model="vm.firstLien" type="text" name="firstLien" class="form-control">
-                                    <p ng-show="defaultForm.firstLien.$invalid && !defaultForm.firstLien.$pristine" class="help-block">First Lien is required.</p>
-                                </div>
+                                <div class="panel-body">
 
-                                <div class="col-sm-4 form-group">
-                                    <label>Second Lien Amount *</label>
-                                    <input ng-model="vm.secondLien" type="text" name="secondLien" class="form-control">
-                                    <p ng-show="defaultForm.secondLien.$invalid && !defaultForm.secondLien.$pristine" class="help-block">Second Lien is required.</p>
-                                </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>First Lien/Base Loan Amount *</label>
+                                        <input ng-model="vm.firstLien" type="text" name="firstLien" class="form-control">
+                                        <p ng-show="defaultForm.firstLien.$invalid && !defaultForm.firstLien.$pristine" class="help-block">First Lien is required.</p>
+                                    </div>
 
-                                <div class="col-sm-4 form-group">
-                                    <label>HELOC Line Amount *</label>
-                                    <input ng-model="vm.helocLine" type="text" name="helocLine" class="form-control">
-                                    <p ng-show="defaultForm.helocLine.$invalid && !defaultForm.helocLine.$pristine" class="help-block">HELOC Line is required.</p>
-                                </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Second Lien Amount *</label>
+                                        <input ng-model="vm.secondLien" type="text" name="secondLien" class="form-control">
+                                        <p ng-show="defaultForm.secondLien.$invalid && !defaultForm.secondLien.$pristine" class="help-block">Second Lien is required.</p>
+                                    </div>
 
-                                <div class="col-sm-4 form-group">
-                                    <label>HELOC Drawn Amount *</label>
-                                    <input ng-model="vm.helocDrawn" type="text" name="helocDrawn" class="form-control">
-                                    <p ng-show="defaultForm.helocDrawn.$invalid && !defaultForm.helocDrawn.$pristine" class="help-block">HELOC Drawn is required.</p>
+                                    <div class="col-sm-4 form-group">
+                                        <label>HELOC Line Amount *</label>
+                                        <input ng-model="vm.helocLine" type="text" name="helocLine" class="form-control">
+                                        <p ng-show="defaultForm.helocLine.$invalid && !defaultForm.helocLine.$pristine" class="help-block">HELOC Line is required.</p>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>HELOC Drawn Amount *</label>
+                                        <input ng-model="vm.helocDrawn" type="text" name="helocDrawn" class="form-control">
+                                        <p ng-show="defaultForm.helocDrawn.$invalid && !defaultForm.helocDrawn.$pristine" class="help-block">HELOC Drawn is required.</p>
+                                    </div>
+
                                 </div>
-                                
-                              </div>
-                            </div>
                             </div>
                         </div>
-                    </p>
-        
-        
-                    <p class="row">
-                        
-                        <div class="panel-group">
-                          <div class="panel panel-default">
+                    </div>
+                </p>
+
+
+                <p class="row">
+
+                    <div class="panel-group">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
-                              <h4 class="panel-title">
+                                <h4 class="panel-title">
                                 Loan Information
                                 <a data-toggle="collapse" href="#collapse2">
                                 <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
@@ -75,92 +77,92 @@
                               </h4>
                             </div>
                             <div id="collapse2" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                        
-                        <div class="col-sm-4 form-group">
-                            <label>Price/Estimated Value *</label>
-                            <input ng-model="vm.peVal" type="text" name="peVal" class="form-control">
-                            <p ng-show="defaultForm.peVal.$invalid && !defaultForm.peVal.$pristine" class="help-block">Price/Estimated Value is required.</p>
-                        </div>
-            
-                        <div class="col-sm-4 form-group">
-                            <label>Appraisal Amount *</label>
-                            <input ng-model="vm.apprAmt" type="text" name="apprAmt" class="form-control">
-                            <p ng-show="defaultForm.apprAmt.$invalid && !defaultForm.apprAmt.$pristine" class="help-block">Appraisal Amount is required.</p>
-                        </div>
-            
-                        <div class="col-sm-4 form-group">
-                            <label>Loan Purpose *</label>
-                            <input ng-model="vm.loanPurp" type="text" name="loanPurp" class="form-control">
-                            <p ng-show="defaultForm.loanPurp.$invalid && !defaultForm.loanPurp.$pristine" class="help-block">Loan Purpose is required.</p>
-                        </div>
-            
-                        <div class="col-sm-4 form-group">
-                            <label>Cash Out Amount *</label>
-                            <input ng-model="vm.cashOut" type="text" name="cashOut" class="form-control">
-                            <p ng-show="defaultForm.cashOut.$invalid && !defaultForm.cashOut.$pristine" class="help-block">Cash Out Amount is required.</p>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>LTV</label>
-                            <input ng-model="vm.ltv" type="text" name="ltv" class="form-control" disabled>                            
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>CLTV</label>
-                            <input ng-model="vm.cltv" type="text" name="cltv" class="form-control" disabled>                            
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>HCLTV Line Amount</label>
-                            <input ng-model="vm.hcltvLineAmt" type="text" name="hcltvLineAmt" class="form-control">
-                            <p ng-show="defaultForm.hcltvLineAmt.$invalid && !defaultForm.hcltvLineAmt.$pristine" class="help-block">HCLTV Line Amount is required.</p>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>HCLTV Drawn Amount</label>
-                            <input ng-model="vm.hcltvDrawnAmt" type="text" name="hcltvDrawnAmt" class="form-control">
-                            <p ng-show="defaultForm.hcltvDrawnAmt.$invalid && !defaultForm.hcltvDrawnAmt.$pristine" class="help-block">HCLTV Drawn Amount is required.</p>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Waive Escrows</label>
-                            <select ng-model="vm.waiveEscrow" class="form-control">
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Current Servicer</label>
-                            <select ng-model="vm.curService" class="form-control">
-                                <option value="Purchase">Purchase</option>
-                                <option value="Rent">Rent</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Lien Position</label>
-                            <select ng-model="vm.lienPos" class="form-control">
-                                <option value="first">First (w/o Sub. Fin.)</option>
-                                <option value="second">Second</option>
-                            </select>
-                        </div>
-                                  
+                                <div class="panel-body">
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Price/Estimated Value *</label>
+                                        <input ng-model="vm.peVal" type="text" name="peVal" class="form-control">
+                                        <p ng-show="defaultForm.peVal.$invalid && !defaultForm.peVal.$pristine" class="help-block">Price/Estimated Value is required.</p>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Appraisal Amount *</label>
+                                        <input ng-model="vm.apprAmt" type="text" name="apprAmt" class="form-control">
+                                        <p ng-show="defaultForm.apprAmt.$invalid && !defaultForm.apprAmt.$pristine" class="help-block">Appraisal Amount is required.</p>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Loan Purpose *</label>
+                                        <input ng-model="vm.loanPurp" type="text" name="loanPurp" class="form-control">
+                                        <p ng-show="defaultForm.loanPurp.$invalid && !defaultForm.loanPurp.$pristine" class="help-block">Loan Purpose is required.</p>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Cash Out Amount *</label>
+                                        <input ng-model="vm.cashOut" type="text" name="cashOut" class="form-control">
+                                        <p ng-show="defaultForm.cashOut.$invalid && !defaultForm.cashOut.$pristine" class="help-block">Cash Out Amount is required.</p>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>LTV</label>
+                                        <input ng-model="vm.ltv" type="text" name="ltv" class="form-control" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>CLTV</label>
+                                        <input ng-model="vm.cltv" type="text" name="cltv" class="form-control" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>HCLTV Line Amount</label>
+                                        <input ng-model="vm.hcltvLineAmt" type="text" name="hcltvLineAmt" class="form-control">
+                                        <p ng-show="defaultForm.hcltvLineAmt.$invalid && !defaultForm.hcltvLineAmt.$pristine" class="help-block">HCLTV Line Amount is required.</p>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>HCLTV Drawn Amount</label>
+                                        <input ng-model="vm.hcltvDrawnAmt" type="text" name="hcltvDrawnAmt" class="form-control">
+                                        <p ng-show="defaultForm.hcltvDrawnAmt.$invalid && !defaultForm.hcltvDrawnAmt.$pristine" class="help-block">HCLTV Drawn Amount is required.</p>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Waive Escrows</label>
+                                        <select ng-model="vm.waiveEscrow" class="form-control">
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Current Servicer</label>
+                                        <select ng-model="vm.curService" class="form-control">
+                                            <option value="Purchase">Purchase</option>
+                                            <option value="Rent">Rent</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Lien Position</label>
+                                        <select ng-model="vm.lienPos" class="form-control">
+                                            <option value="first">First (w/o Sub. Fin.)</option>
+                                            <option value="second">Second</option>
+                                        </select>
+                                    </div>
+
                                 </div>
-                              </div>
                             </div>
                         </div>
-                        
-                    </p>
-        
-        
-                    <p class="row">
-                        
-                        <div class="panel-group">
-                          <div class="panel panel-default">
+                    </div>
+
+                </p>
+
+
+                <p class="row">
+
+                    <div class="panel-group">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
-                              <h4 class="panel-title">
+                                <h4 class="panel-title">
                                 Borrower Information
                                 <a data-toggle="collapse" href="#collapse3">
                                 <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
@@ -168,125 +170,125 @@
                               </h4>
                             </div>
                             <div id="collapse3" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                        
-                        <div class="col-sm-4 form-group">
-                            <label>Representative FICO *</label>
-                            <input ng-model="vm.repFICO" type="text" name="repFICO" class="form-control" disabled>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>DTI Ratio *</label>
-                            <input ng-model="vm.dtiRatio" type="text" name="dtiRatio" class="form-control" disabled>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Citizenship</label>
-                            <select ng-model="vm.citizen" class="form-control">
-                                <option value="US">US Citizen</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>First Time Home Buyer</label>
-                            <select ng-model="vm.firstHome" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Non-Occupant Co-Borrower</label>
-                            <select ng-model="vm.coBorrower" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Self Employed</label>
-                            <select ng-model="vm.selfEmp" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Income Documentation</label>
-                            <select ng-model="vm.incomeDoc" class="form-control">
-                                <option value="verified">Verified</option>
-                                <option value="unverified">Unverified</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Asset Documentation</label>
-                            <select ng-model="vm.assetDoc" class="form-control">
-                                <option value="verified">Verified</option>
-                                <option value="unverified">Unverified</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Employment Documentation</label>
-                            <select ng-model="vm.empDoc" class="form-control">
-                                <option value="verified">Verified</option>
-                                <option value="unverified">Unverified</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Months of Reserve *</label>
-                            <input ng-model="vm.moRsvp" type="text" name="moRsvp" class="form-control" disabled>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Bankruptcy</label>
-                            <select ng-model="vm.bankrupt" class="form-control">
-                                <option value="never">Never</option>
-                                <option value="once">Once</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Bankruptcy Chapter</label>
-                            <select ng-model="vm.bankruptChap" class="form-control">
-                                <option value="chap7">Chapter 7</option>
-                                <option value="chap11">Chapter 11</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Bankruptcy Disposition</label>
-                            <select ng-model="vm.bankruptDisp" class="form-control">
-                                <option value="discharged">Discharged</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-        
-                        <div class="col-sm-4 form-group">
-                            <label>Foreclosure</label>
-                            <select ng-model="vm.foreclosure" class="form-control">
-                                <option value="never">Never</option>
-                                <option value="once">Once</option>
-                            </select>
-                        </div>
-                                  
+                                <div class="panel-body">
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Representative FICO *</label>
+                                        <input ng-model="vm.repFICO" type="text" name="repFICO" class="form-control" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>DTI Ratio *</label>
+                                        <input ng-model="vm.dtiRatio" type="text" name="dtiRatio" class="form-control" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Citizenship</label>
+                                        <select ng-model="vm.citizen" class="form-control">
+                                            <option value="US">US Citizen</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>First Time Home Buyer</label>
+                                        <select ng-model="vm.firstHome" class="form-control">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Non-Occupant Co-Borrower</label>
+                                        <select ng-model="vm.coBorrower" class="form-control">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Self Employed</label>
+                                        <select ng-model="vm.selfEmp" class="form-control">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Income Documentation</label>
+                                        <select ng-model="vm.incomeDoc" class="form-control">
+                                            <option value="verified">Verified</option>
+                                            <option value="unverified">Unverified</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Asset Documentation</label>
+                                        <select ng-model="vm.assetDoc" class="form-control">
+                                            <option value="verified">Verified</option>
+                                            <option value="unverified">Unverified</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Employment Documentation</label>
+                                        <select ng-model="vm.empDoc" class="form-control">
+                                            <option value="verified">Verified</option>
+                                            <option value="unverified">Unverified</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Months of Reserve *</label>
+                                        <input ng-model="vm.moRsvp" type="text" name="moRsvp" class="form-control" disabled>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Bankruptcy</label>
+                                        <select ng-model="vm.bankrupt" class="form-control">
+                                            <option value="never">Never</option>
+                                            <option value="once">Once</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Bankruptcy Chapter</label>
+                                        <select ng-model="vm.bankruptChap" class="form-control">
+                                            <option value="chap7">Chapter 7</option>
+                                            <option value="chap11">Chapter 11</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Bankruptcy Disposition</label>
+                                        <select ng-model="vm.bankruptDisp" class="form-control">
+                                            <option value="discharged">Discharged</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Foreclosure</label>
+                                        <select ng-model="vm.foreclosure" class="form-control">
+                                            <option value="never">Never</option>
+                                            <option value="once">Once</option>
+                                        </select>
+                                    </div>
+
                                 </div>
-                              </div>
                             </div>
                         </div>
-                        
-                    </p>
-    
-    
-                    <p class="row">
-                        
-                        <div class="panel-group">
-                          <div class="panel panel-default">
+                    </div>
+
+                </p>
+
+
+                <p class="row">
+
+                    <div class="panel-group">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
-                              <h4 class="panel-title">
+                                <h4 class="panel-title">
                                 Property Information
                                 <a data-toggle="collapse" href="#collapse4">
                                     <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
@@ -294,90 +296,90 @@
                               </h4>
                             </div>
                             <div id="collapse4" class="panel-collapse collapse in">
-                              <div class="panel-body">
-    
-                        <div class="col-sm-4 form-group">
-                            <label>Occupancy</label>
-                            <select ng-model="vm.occupancy" class="form-control">
-                                <option value="primary">Primary Residence</option>
-                                <option value="secondary">Secondary Residence</option>
-                            </select>
-                        </div>
-    
-                        <div class="col-sm-4 form-group">
-                            <label>Property Type</label>
-                            <select ng-model="vm.propType" class="form-control">
-                                <option value="single">Single Family</option>
-                                <option value="townhome">Townhouse</option>
-                            </select>
-                        </div>
-    
-                        <div class="col-sm-4 form-group">
-                            <label>Number of Units</label>
-                            <select ng-model="vm.numUnits" class="form-control">
-                                <option value="1">1 Unit</option>
-                                <option value="2">2 Units</option>
-                            </select>
-                        </div>
-    
-                        <div class="col-sm-4 form-group">
-                            <label>Number of Stories *</label>
-                            <select ng-model="vm.numStories" class="form-control">
-                                <option value="10under">10 or Under</option>
-                                <option value="2">2 Stories</option>
-                                <option value="1">1 Story</option>
-                            </select>
-                        </div>    
-                        
-                        <div class="col-sm-4 form-group">
-                            <label>Zip Code</label>
-                            <input ng-model="vm.zip" type="text" name="zip" class="form-control">
-                        </div>
-    
-                        <div class="col-sm-4 form-group">
-                            <label>State</label>
-                            <select ng-model="vm.state" class="form-control">
-                                <option value="TX">Texas</option>
-                            </select>
-                        </div>
-    
-                        <div class="col-sm-4 form-group">
-                            <label>County</label>
-                            <select ng-model="vm.county" class="form-control">
-                                <option value="dallas">Dallas</option>
-                            </select>
-                        </div>
-    
-                        <div class="col-sm-4 form-group">
-                            <label>Corporate Relocation</label>
-                            <select ng-model="vm.corpReloc" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
-    
-                        <div class="col-sm-4 form-group">
-                            <label>Construction</label>
-                            <select ng-model="vm.construct" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
-                                
+                                <div class="panel-body">
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Occupancy</label>
+                                        <select ng-model="vm.occupancy" class="form-control">
+                                            <option value="primary">Primary Residence</option>
+                                            <option value="secondary">Secondary Residence</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Property Type</label>
+                                        <select ng-model="vm.propType" class="form-control">
+                                            <option value="single">Single Family</option>
+                                            <option value="townhome">Townhouse</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Number of Units</label>
+                                        <select ng-model="vm.numUnits" class="form-control">
+                                            <option value="1">1 Unit</option>
+                                            <option value="2">2 Units</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Number of Stories *</label>
+                                        <select ng-model="vm.numStories" class="form-control">
+                                            <option value="10under">10 or Under</option>
+                                            <option value="2">2 Stories</option>
+                                            <option value="1">1 Story</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Zip Code</label>
+                                        <input ng-model="vm.zip" type="text" name="zip" class="form-control">
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>State</label>
+                                        <select ng-model="vm.state" class="form-control">
+                                            <option value="TX">Texas</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>County</label>
+                                        <select ng-model="vm.county" class="form-control">
+                                            <option value="dallas">Dallas</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Corporate Relocation</label>
+                                        <select ng-model="vm.corpReloc" class="form-control">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Construction</label>
+                                        <select ng-model="vm.construct" class="form-control">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+
                                 </div>
-                              </div>
                             </div>
                         </div>
-                        
-                    </p>
-        
-        
-                    <p class="row">
-                        
-                        <div class="panel-group">
-                          <div class="panel panel-default">
+                    </div>
+
+                </p>
+
+
+                <p class="row">
+
+                    <div class="panel-group">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
-                              <h4 class="panel-title">
+                                <h4 class="panel-title">
                                 First Lien Search Criteria
                                 <a data-toggle="collapse" href="#collapse5">
                                 <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
@@ -385,57 +387,57 @@
                               </h4>
                             </div>
                             <div id="collapse5" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                        
-                        <div class="col-sm-4 form-group">
-                            <label>Interest Only</label>
-                            <select ng-model="vm.intOnly" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
+                                <div class="panel-body">
 
-                        <div class="col-sm-4 form-group">
-                            <label>Buydown</label>
-                            <select ng-model="vm.buydown" class="form-control">
-                                <option value="none">None</option>
-                                <option value="20">20 Percent</option>
-                            </select>
-                        </div>
-                        
-                        <div class="col-sm-4 form-group">
-                            <label>Borrower Pays MI (If Required)</label>
-                            <select ng-model="vm.borMI" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Interest Only</label>
+                                        <select ng-model="vm.intOnly" class="form-control">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
 
-                        <div class="col-sm-4 form-group">
-                            <label>Automated U/W System</label>
-                            <select ng-model="vm.autoUW" class="form-control">
-                                <option value="noSpec">Not Specified</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Buydown</label>
+                                        <select ng-model="vm.buydown" class="form-control">
+                                            <option value="none">None</option>
+                                            <option value="20">20 Percent</option>
+                                        </select>
+                                    </div>
 
-                        <div class="col-sm-4 form-group">
-                            <label>Prepayment Penalty</label>
-                            <select ng-model="vm.prepayPen" class="form-control">
-                                <option value="none">None</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
-                                  
+                                    <div class="col-sm-4 form-group">
+                                        <label>Borrower Pays MI (If Required)</label>
+                                        <select ng-model="vm.borMI" class="form-control">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Automated U/W System</label>
+                                        <select ng-model="vm.autoUW" class="form-control">
+                                            <option value="noSpec">Not Specified</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4 form-group">
+                                        <label>Prepayment Penalty</label>
+                                        <select ng-model="vm.prepayPen" class="form-control">
+                                            <option value="none">None</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+
                                 </div>
-                              </div>
                             </div>
                         </div>
-                        
-                    </p>
+                    </div>
 
-        
-        <!--
+                </p>
+
+
+                <!--
             
                     <p class="row">
                         
@@ -523,17 +525,17 @@
                         </div>
             
             -->
-                    </div>
-        
-                    <div class="panel-footer clearfix">
-                        <button type="button" class="btn btn-danger pull-left" ng-disabled="userForm.$invalid">Cancel Changes</button>
-                        
-                        <div class="pull-right">
-                            <ng-include src="'app/quickSearchConfig/views/partials/wizardButtons.html'"></ng-include>
-                        </div>
-                    </div>
+            </div>
+
+            <div class="panel-footer clearfix">
+                <button type="button" class="btn btn-danger pull-left" ng-disabled="userForm.$invalid">Cancel Changes</button>
+
+                <div class="pull-right">
+                    <ng-include src="'app/quickSearchConfig/views/partials/wizardButtons.html'"></ng-include>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
+</div>
+</div>
 </div>
