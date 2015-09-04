@@ -42,3 +42,32 @@ body {
 .clickable {
   cursor: pointer;
 }
+/* numbered buttons */
+#status-buttons {
+  display: inline-block;
+}
+#status-buttons a {
+  color: #000000;
+  display: inline-block;
+  font-size: 12px;
+  margin-right: 25px;
+  text-align: center;
+  text-transform: uppercase;
+}
+#status-buttons a:hover {
+  text-decoration: none;
+}
+/* we will style the span as the circled number */
+#status-buttons span {
+  background: #337AC8;
+  display: block;
+  height: 10px;
+  margin: 0 auto 5px;
+  padding-top: 2px;
+  width: 10px;
+  border-radius: 50%;
+}
+/* active buttons turn orange*/
+#status-buttons a.active span {
+  background: #FF8C00;
+}

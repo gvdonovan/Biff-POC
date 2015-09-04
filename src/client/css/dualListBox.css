@@ -31,7 +31,7 @@
     padding: 1em;
 }
 
-ul li.active {
+ul.dualListBox li.active {
     background: #0000cc;
     color: white;
 }
