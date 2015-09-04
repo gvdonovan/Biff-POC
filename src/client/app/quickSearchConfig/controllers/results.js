@@ -1,23 +1,24 @@
 //TODO: DH
 (function () {
-        'use strict';
+    'use strict';
 
-        angular
-            .module('app.quickSearchConfig')
-            .controller('ResultsController', ResultsController);
+    angular
+        .module('app.quickSearchConfig')
+        .controller('QSConfigResultsController', QSConfigResultsController);
 
-        ResultsController.$inject = ['logger', '$stateParams', '$state'];
-        /* @ngInject */
-        function ResultsController(logger, $stateParams, $state) {
-            var vm = this;
-            vm.next = next;
-            vm.previous = previous;
+    QSConfigResultsController.$inject = ['logger', '$stateParams', '$state'];
+    /* @ngInject */
+    function QSConfigResultsController(logger, $stateParams, $state) {
+        var vm = this;
+        vm.next = next;
+        vm.previous = previous;
 
-            function next() {
-            }
-
-            function previous() {
-                $state.go('quickSearchConfigLoanOfficers', {editMode: $stateParams.editMode});
-            }
+        function next() {
+            return null;
         }
-    })();
+
+        function previous() {
+            $state.go('quickSearchConfigLoanOfficers', {editMode: $stateParams.editMode});
+        }
+    }
+})();

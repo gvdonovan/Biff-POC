@@ -91,7 +91,7 @@
                         editMode: false
                     },
                     templateUrl: 'app/quickSearchConfig/views/results.html',
-                    controller: 'ResultsController',
+                    controller: 'QSConfigResultsController',
                     controllerAs: 'vm',
                     title: 'Form Results'
                 }
