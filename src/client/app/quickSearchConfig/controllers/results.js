@@ -12,6 +12,7 @@
         var vm = this;
         vm.next = next;
         vm.previous = previous;
+        vm.isLastStep = true;
 
         function next() {
             return null;
