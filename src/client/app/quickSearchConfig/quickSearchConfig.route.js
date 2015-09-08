@@ -34,9 +34,10 @@
             {
                 state: 'quickSearchConfigInputs',
                 config: {
-                    url: '/quickSearchConfig/inputs',
+                    url: '/quickSearchConfig/inputs/:formId/:editMode',
                     params: {
-                        editMode: false
+                        editMode: 'false',
+                        formId: null
                     },
                     templateUrl: 'app/quickSearchConfig/views/inputs.html',
                     controller: 'InputsController',
@@ -49,7 +50,8 @@
                 config: {
                     url: '/quickSearchConfig/defaults',
                     params: {
-                        editMode: false
+                        editMode: 'false',
+                        formId: null
                     },
                     templateUrl: 'app/quickSearchConfig/views/defaults.html',
                     controller: 'DefaultsController',
@@ -62,7 +64,8 @@
                 config: {
                     url: '/quickSearchConfig/products',
                     params: {
-                        editMode: false
+                        editMode: 'false',
+                        formId: null
                     },
                     templateUrl: 'app/quickSearchConfig/views/products.html',
                     controller: 'ProductsController',
@@ -75,7 +78,8 @@
                 config: {
                     url: '/quickSearchConfig/loanOfficers',
                     params: {
-                        editMode: false
+                        editMode: 'false',
+                        formId: null
                     },
                     templateUrl: 'app/quickSearchConfig/views/loanOfficers.html',
                     controller: 'LoanOfficersController',
@@ -88,7 +92,8 @@
                 config: {
                     url: '/quickSearchConfig/results',
                     params: {
-                        editMode: false
+                        editMode: 'false',
+                        formId: null
                     },
                     templateUrl: 'app/quickSearchConfig/views/results.html',
                     controller: 'QSConfigResultsController',

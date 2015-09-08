@@ -1,23 +1,32 @@
 (function () {
-        'use strict';
+    'use strict';
 
-        angular
-            .module('app.quickSearchConfig')
-            .controller('ProductsController', ProductsController);
+    angular
+        .module('app.quickSearchConfig')
+        .controller('ProductsController', ProductsController);
 
-        ProductsController.$inject = ['logger', '$stateParams', '$state'];
-        /* @ngInject */
-        function ProductsController(logger, $stateParams, $state) {
-            var vm = this;
-            vm.next = next;
-            vm.previous = previous;
+    ProductsController.$inject = ['logger', '$stateParams', '$state'];
+    /* @ngInject */
+    function ProductsController(logger, $stateParams, $state) {
+        var vm = this;
+        vm.editMode = false;
+        vm.formId = null;
+        vm.next = next;
+        vm.previous = previous;
 
-            function next() {
-                $state.go('quickSearchConfigLoanOfficers', {editMode: $stateParams.editMode});
-            }
+        activate();
 
-            function previous() {
-                $state.go('quickSearchConfigDefaults', {editMode: $stateParams.editMode});
-            }
+        function activate() {
+            vm.editMode = $stateParams.editMode;
+            vm.formId = $stateParams.formId;
         }
-    })();
+
+        function next() {
+            $state.go('quickSearchConfigLoanOfficers', {editMode: vm.editMode, formId: vm.formId});
+        }
+
+        function previous() {
+            $state.go('quickSearchConfigDefaults', {editMode: vm.editMode, formId: vm.formId});
+        }
+    }
+})();

@@ -10,6 +10,8 @@
         /* @ngInject */
         function InputsController(logger, $stateParams, $state, inputs) {
             var vm = this;
+            vm.editMode = false;
+            vm.formId = null;
             vm.next = next;
             vm.previous = previous;
             
@@ -31,6 +33,9 @@
 
             function activate() {
                 logger.info('Activated Inputs View');
+
+                vm.editMode = $stateParams.editMode;
+                vm.formId = $stateParams.formId;
 
                 inputs.getFormConfig().then(function (data) {
                     vm.data = data;
@@ -124,7 +129,7 @@
             }
 
             function next() {
-                $state.go('quickSearchConfigDefaults', {editMode: $stateParams.editMode});
+                $state.go('quickSearchConfigDefaults', {editMode: vm.editMode, formId: vm.formId});
             }
 
             function previous() {

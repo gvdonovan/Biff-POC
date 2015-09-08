@@ -10,6 +10,7 @@
     function FormListController(logger, $stateParams, $state) {
         var vm = this;
         vm.add = add;
+        vm.edit = edit;
         vm.forms = [
             {
                 id: 1,
@@ -31,6 +32,11 @@
         function add() {
             //Request then next page
             $state.go('quickSearchConfigInputs', {});
+        }
+
+        function edit(id) {
+            //Request then next page
+            $state.go('quickSearchConfigInputs', {editMode: true, formId: id});
         }
 
     }
