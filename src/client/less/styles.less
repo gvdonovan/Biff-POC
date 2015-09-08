@@ -1,8 +1,6 @@
 @ob-blue: #192a54;
 @0b-orange: #ee7421;
-
 // bootstrap variables
-
 @off-white: #ecf0f1;
 @light-grey: #bdc3c7;
 @blue: #3498db;
@@ -17,9 +15,7 @@
 @red2: #c0392b;
 @dark-blue: #2c3e50;
 @white: #fff;
-
 @padding: 1em;
-
 //.round-corners (@radius: 4px) {
 //  -moz-border-radius: @radius;
 //  -ms-border-radius: @radius;
@@ -104,89 +100,229 @@
 //  background-color: @red2;
 //  border-color: @red;
 //}
-
-[ui-view].ng-enter, [ui-view].ng-leave {
-  position: absolute;
-  left: 0;
-  right: 0;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
-}
-
-[ui-view].ng-enter {
-  opacity: 0;
-}
-
-[ui-view].ng-enter-active {
-  opacity: 1;
-}
-
+[ui-view].ng-enter,
 [ui-view].ng-leave {
-  opacity: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
-
+[ui-view].ng-enter {
+    opacity: 0;
+}
+[ui-view].ng-enter-active {
+    opacity: 1;
+}
+[ui-view].ng-leave {
+    opacity: 1;
+}
 [ui-view].ng-leave-active {
-  opacity: 0;
+    opacity: 0;
 }
 
 /*
     remove gap from navbar and remove rounded corners
 */
+
 .navbar {
-  margin-bottom: 0 !important;
-  border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
 }
-
 .navbar-brand {
-  background: url('../img/logo-r-01.svg') no-repeat;
-  background-position: center;
-  width: 140px;
+    background: url('../img/logo-r-01.svg') no-repeat;
+    background-position: center;
+    width: 140px;
 }
-
 body {
-  color: @ob-blue;
+    color: @ob-blue;
 }
-
 // Specific fixes for Bootstrap UI for empty href issues with Angular JS
-
-.nav, .pagination, .carousel, .panel-title a {
-  cursor: pointer;
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+    cursor: pointer;
 }
-
 .clickable {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 /* numbered buttons */
+
 #status-buttons {
-  display: inline-block;
+    display: inline-block;
 }
-
 #status-buttons a {
-  color: #000000;
-  display: inline-block;
-  font-size: 12px;
-  margin-right: 25px;
-  text-align: center;
-  text-transform: uppercase;
+    color: #000000;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 25px;
+    text-align: center;
+    text-transform: uppercase;
 }
-
 #status-buttons a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 /* we will style the span as the circled number */
+
 #status-buttons span {
-  background: #337AC8;
-  display: block;
-  height: 10px;
-  margin: 0 auto 5px;
-  padding-top: 2px;
-  width: 10px;
-  border-radius: 50%;
+    background: #337AC8;
+    display: block;
+    height: 10px;
+    margin: 0 auto 5px;
+    padding-top: 2px;
+    width: 10px;
+    border-radius: 50%;
 }
 
 /* active buttons turn orange*/
+
 #status-buttons a.active span {
-  background: #FF8C00;
+    background: #FF8C00;
+}
+// Quick Search Config top nav
+.nav-wizard > li {
+    float: left;
+}
+.nav-wizard > li > a {
+    position: relative;
+    background-color: #d5d5d5;
+}
+.nav-wizard > li > a:focus {
+    position: relative;
+    background-color: #d5d5d5;
+}
+.nav-wizard > li > a .badge {
+    margin-left: 3px;
+    color: #eeeeee;
+    background-color: #428bca;
+}
+.nav-wizard > li:not(:first-child) > a {
+    padding-left: 34px;
+}
+.nav-wizard > li:not(:first-child) > a:before {
+    width: 0px;
+    height: 0px;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 20px solid #f5f5f5;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+}
+.nav-wizard > li:not(:last-child) > a {
+    margin-right: 6px;
+}
+.nav-wizard > li:not(:last-child) > a:after {
+    width: 0px;
+    height: 0px;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 20px solid #d5d5d5;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -20px;
+    z-index: 2;
+}
+.nav-wizard > li:first-child > a {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.nav-wizard > li:last-child > a {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.nav-wizard > li.done:hover > a,
+.nav-wizard > li:hover > a {
+    background-color: #ee7421;
+    color: #fff;
+}
+.nav-wizard > li.done:hover > a:before,
+.nav-wizard > li:hover > a:before {
+    border-right-color: #ee7421;
+    color: #fff;
+}
+.nav-wizard > li.done:hover > a:after,
+.nav-wizard > li:hover > a:after {
+    border-left-color: #ee7421;
+    color: #fff;
+}
+.nav-wizard > li.done > a {
+    background-color: #d5d5d5;
+}
+.nav-wizard > li.done > a:before {
+    border-right-color: #d5d5d5;
+}
+.nav-wizard > li.done > a:after {
+    border-left-color: #d5d5d5;
+}
+.nav-wizard > li.active > a,
+.nav-wizard > li.active > a:hover,
+.nav-wizard > li.active > a:focus {
+    color: #ffffff;
+    background-color: #337ab7;
+}
+.nav-wizard > li.active > a:after {
+    border-left-color: #337ab7;
+}
+.nav-wizard > li.active > a .badge {
+    color: #337ab7;
+    background-color: #ffffff;
+}
+.nav-wizard > li.disabled > a {
+    color: #777777;
+}
+.nav-wizard > li.disabled > a:hover,
+.nav-wizard > li.disabled > a:focus {
+    color: #777777;
+    text-decoration: none;
+    background-color: #d5d5d5;
+    cursor: default;
+}
+.nav-wizard > li.disabled > a:before {
+    border-right-color: #d5d5d5;
+}
+.nav-wizard > li.disabled > a:after {
+    border-left-color: #d5d5d5;
+}
+.nav-wizard.nav-justified > li {
+    float: none;
+}
+.nav-wizard.nav-justified > li > a {
+    padding: 10px 15px;
+}
+@media (max-width: 768px) {
+    .nav-wizard.nav-justified > li > a {
+        border-radius: 4px;
+        margin-right: 0;
+    }
+    .nav-wizard.nav-justified > li > a:before,
+    .nav-wizard.nav-justified > li > a:after {
+        border: none !important;
+    }
+}
+.qsSteps {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+.qsCrumbs {
+    border: none;
+    margin-bottom: 0;
+}
+.well {
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+}
+
+// Inputs config form arrows
+
+glyphicon-chevron-up:before {
+    content: "\e113"
+}
+glyphicon-chevron-down:before {
+    content: "\e114"
 }

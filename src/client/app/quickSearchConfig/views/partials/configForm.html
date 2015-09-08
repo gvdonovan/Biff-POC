@@ -1,15 +1,3 @@
-<style type="text/css">
-    glyphicon-chevron-up:before {
-        content: "\e113"
-    }
-    
-    glyphicon-chevron-down:before {
-        content: "\e114"
-    }
-
-</style>
-
-
 <div class="panel panel-primary">
     <div class="panel-heading">Quick Search Config</div>
 
@@ -17,12 +5,14 @@
     <form name="ngform" novalidate>
         <div class="panel-body">
 
-            <div class="form-group col-md-12">
-                <input type="text" placeholder="Header" class="form-control col-md-6">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <input type="text" placeholder="Header" class="form-control col-md-6">
+                </div>
             </div>
 
             <div ng-repeat="box in vm.formFields track by $index">
-                <div>
+                <div class="row">
                     <div class="form-group col-sm-6">
                         <input type="text" ng-model="box.templateOptions.label" class="form-control">
                     </div>
@@ -42,10 +32,11 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-6">
-                <input type="text" placeholder="Footer" class="form-control">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <input type="text" placeholder="Footer" class="form-control">
+                </div>
             </div>
-            <div class="form-group col-md-6"></div>
 
         </div>
         <div class="panel-footer clearfix">
