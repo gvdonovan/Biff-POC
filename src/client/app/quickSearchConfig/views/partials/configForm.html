@@ -9,38 +9,37 @@
 
 </style>
 
-<div class="col-xs-8">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Quick Search Config</div>
 
-        <!--<form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>-->
-        <form name="ngform" novalidate>
-            <div class="panel-body container">
-                <div ng-repeat="box in vm.formFields track by $index">
-                    <div>
-                        <div class="form-group col-md-6">
-                            <input type="text" ng-model="box.templateOptions.label" class="form-control">
-                        </div>
+<div class="panel panel-primary">
+    <div class="panel-heading">Quick Search Config</div>
 
-                        <div class="form-group col-md-6">
-                            <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
-                                <span class="glyphicon glyphicon-chevron-up"></span>
-                            </a>
-                            <a ng-click="vm.moveRowDown($index)" class="btn btn-default " style="margin-right:15px;">
-                                <span class="glyphicon glyphicon-chevron-down"></span>
-                            </a>
-                            <label>
-                                <input type="checkbox" ng-click="vm.setPreview(box.templateOptions.order)" class="form-control.input-md">&nbsp;Hide
-                            </label>
-                        </div>
-
+    <!--<form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>-->
+    <form name="ngform" novalidate>
+        <div class="panel-body">
+            <div ng-repeat="box in vm.formFields track by $index">
+                <div>
+                    <div class="form-group col-sm-6">
+                        <input type="text" ng-model="box.templateOptions.label" class="form-control">
                     </div>
+
+                    <div class="form-group col-sm-6">
+                        <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                        </a>
+                        <a ng-click="vm.moveRowDown($index)" class="btn btn-default " style="margin-right:15px;">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <label>
+                            <input type="checkbox" ng-click="vm.setPreview(box.templateOptions.order)" class="form-control.input-md">&nbsp;Hide
+                        </label>
+                    </div>
+
                 </div>
             </div>
-            <div class="panel-footer clearfix">
-                <button type="button" class="btn btn-default pull-left">Reset Form</button>
-            </div>
-        </form>
+        </div>
+        <div class="panel-footer clearfix">
+            <button type="button" class="btn btn-default pull-left">Reset Form</button>
+        </div>
+    </form>
 
-    </div>
 </div>
