@@ -11,7 +11,8 @@
             'blocks.forms',
             'ui.router',
             'ui.bootstrap',
-            'duScroll'
+            'duScroll',
+            'frapontillo.bootstrap-switch'
             //, 'ngplus'
         ]);
 })();
