@@ -12,8 +12,10 @@
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
+        vm.go = go;
         vm.next = next;
         vm.previous = previous;
+        vm.state = '';
 
         vm.title = 'Inputs';
         vm.header = "Quick Search";
@@ -129,6 +131,12 @@
                 return item.rebate >= 500;
             });
             return x;
+        }
+
+        function go(state) {
+            if (vm.editMode.toLowerCase() == 'true') {
+                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+            }
         }
 
         function next() {

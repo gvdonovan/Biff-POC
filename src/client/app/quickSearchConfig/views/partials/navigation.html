@@ -1,16 +1,14 @@
 <div>
 
     <div class="col-lg-9 visible-lg">
-
         <ul class="nav nav-wizard">
             <li><a href="#">General Info</a></li>
-            <li ng-class="vm.state === 'quickSearchConfigInputs' ? 'active' : ''"><a href="#">Inputs</a></li>
-            <li ng-class="vm.state === 'quickSearchConfigDefaults' ? 'active' : ''"><a href="#">Defaults</a></li>
-            <li><a href="#">Filters</a></li>
-            <li><a href="#">Loan Officers</a></li>
-            <li><a href="#">Results</a></li>
+            <li ng-click="vm.go('quickSearchConfigInputs')" ng-class="vm.state === 'quickSearchConfigInputs' ? 'active' : ''"><a>Inputs</a></li>
+            <li ng-click="vm.go('quickSearchConfigDefaults')" ng-class="vm.state === 'quickSearchConfigDefaults' ? 'active' : ''"><a href="#">Defaults</a></li>
+            <li ng-click="vm.go('quickSearchConfigProducts')" ng-class="vm.state === 'quickSearchConfigProducts' ? 'active' : ''"><a href="#">Filters</a></li>
+            <li ng-click="vm.go('quickSearchConfigLoanOfficers')" ng-class="vm.state === 'quickSearchConfigLoanOfficers' ? 'active' : ''"><a href="#">Loan Officers</a></li>
+            <li ng-click="vm.go('quickSearchConfigResults')" ng-class="vm.state === 'quickSearchConfigResults' ? 'active' : ''"><a href="#">Results</a></li>
         </ul>
-
     </div>
 
     <div class="col-xs-3 visible-lg">
@@ -20,12 +18,11 @@
     <div class="col-xs-8 hidden-lg">
         <ol class="breadcrumb qsCrumbs">
             <li><a ui-sref="#">General Info</a></li>
-            <li ng-class="vm.state === 'quickSearchConfigInputs' ? 'active' : ''">Inputs</li>
-            <!--<li ng-class="1 == 1 ? 'active' : ''">Inputs</li>-->
-            <li ng-class="vm.state === 'quickSearchConfigDefaults' ? 'active' : ''">Defaults</li>
-            <li><a ui-sref="products">Filters</a></li>
-            <li><a ui-sref="#">Loan Officers</a></li>
-            <li><a ui-sref="#">Results</a></li>
+            <li ng-click="vm.go('quickSearchConfigInputs')" ng-class="vm.state === 'quickSearchConfigInputs' ? 'active' : ''">Inputs</li>
+            <li ng-click="vm.go('quickSearchConfigDefaults')" ng-class="vm.state === 'quickSearchConfigDefaults' ? 'active' : ''"><a>Defaults</a></li>
+            <li ng-click="vm.go('quickSearchConfigProducts')" ng-class="vm.state === 'quickSearchConfigProducts' ? 'active' : ''"><a>Filters</a></li>
+            <li ng-click="vm.go('quickSearchConfigLoanOfficers')" ng-class="vm.state === 'quickSearchConfigLoanOfficers' ? 'active' : ''"><a>Loan Officers</a></li>
+            <li ng-click="vm.go('quickSearchConfigResults')" ng-class="vm.state === 'quickSearchConfigResults' ? 'active' : ''"><a>Results</a></li>
         </ol>
     </div>
 
