@@ -43,7 +43,7 @@
                     title: 'Accounts',
                     settings: {
                         group: 'Accounts',
-                        top: true,
+                        top: false,
                         nav: 5,
                         content: '<i class="fa fa-list"></i> Accounts'
                     }

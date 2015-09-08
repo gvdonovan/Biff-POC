@@ -26,8 +26,8 @@
                     settings: {
                         group: 'QuickSearchConfig',
                         top: true,
-                        nav: 9,
-                        content: '<i class="fa fa-search"></i> Quick Search Config'
+                        nav: 1,
+                        content: '<i class="fa fa-search"></i> Quick Search'
                     }
                 }
             },

@@ -28,7 +28,7 @@
                     title: 'Search',
                     settings: {
                         group: 'Search',
-                        top: true,
+                        top: false,
                         nav: 2,
                         content: '<i class="fa fa-search"></i> Search'
                     }

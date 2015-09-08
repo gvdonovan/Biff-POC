@@ -24,7 +24,7 @@
                     title: 'E-Originations',
                     settings: {
                         group: 'home',
-                        top: true,
+                        top: false,
                         nav: 2,
                         content: '<i class="fa fa-home"></i> E-Originations'
                     }

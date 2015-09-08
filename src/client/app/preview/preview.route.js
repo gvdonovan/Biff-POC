@@ -24,7 +24,7 @@
                     title: 'Preview',
                     settings: {
                         group: 'Preview',
-                        top: true,
+                        top: false,
                         nav: 2,
                         content: '<i class="fa fa-check-square-o"></i> Preview'
                     }

@@ -26,7 +26,7 @@
                         group: 'loanApplication',
                         top: true,
                         nav: 8,
-                        content: '<i class="fa fa-file-text"></i> Loan Application'
+                        content: '<i class="fa fa-file-text"></i> 1003'
                     }
                 }
             },
