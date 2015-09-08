@@ -38,6 +38,7 @@
 
             vm.editMode = $stateParams.editMode;
             vm.formId = $stateParams.formId;
+            vm.state = $state.current.name;
 
             inputs.getFormConfig().then(function (data) {
                 vm.data = data;
