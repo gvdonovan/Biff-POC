@@ -9,6 +9,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title col-xs-4">Forms</h3>
+
             <div class="pull-right">
                 <a class="btn btn-default btn-sm" ng-click="vm.add()"><i class="fa fa-plus-circle"/>&nbsp; Form</a>
             </div>
@@ -21,6 +22,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,12 +34,10 @@
                             <button class="btn btn-default" ng-click="vm.edit(form.id)">Edit</button>
                         </div>
                         &nbsp;
-                        <div class="btn-group">
-                            <label class="btn btn-default" ng-model="form.active" btn-radio="true"
-                                   tooltip="Activate">On</label>
-                            <label class="btn btn-default" ng-model="form.active" btn-radio="false"
-                                   tooltip="Deactivate">Off</label>
-                        </div>
+                        <input bs-switch ng-model="form.active" type="checkbox" switch-on-text="Active" switch-off-text="Inactive"/>
+                    </td>
+                    <td>
+                        <pre>{{form}}</pre>
                     </td>
                 </tr>
                 </tbody>
