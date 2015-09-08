@@ -20,6 +20,7 @@
             function activate(){
                 vm.editMode = $stateParams.editMode;
                 vm.formId = $stateParams.formId;
+                vm.state = $state.current.name;
             }
 
             function next() {

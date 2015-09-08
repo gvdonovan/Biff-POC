@@ -1,5 +1,5 @@
 @ob-blue: #192a54;
-@0b-orange: #ee7421;
+@ob-orange: #ee7421;
 // bootstrap variables
 @off-white: #ecf0f1;
 @light-grey: #bdc3c7;
@@ -16,6 +16,10 @@
 @dark-blue: #2c3e50;
 @white: #fff;
 @padding: 1em;
+.form-control:focus {
+    border-color: @ob-orange;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(238, 116, 33, .6)
+}
 //.round-corners (@radius: 4px) {
 //  -moz-border-radius: @radius;
 //  -ms-border-radius: @radius;
@@ -330,4 +334,11 @@ glyphicon-chevron-down:before {
 }
 .navBtns .btn-group .btn {
     width: 120px;
+}
+//default section icons
+glyphicon-chevron-up:before {
+    content: "\e113"
+}
+glyphicon-chevron-down:before {
+    content: "\e114"
 }
