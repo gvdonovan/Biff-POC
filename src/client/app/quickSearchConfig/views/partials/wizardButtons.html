@@ -9,17 +9,17 @@
     <div ng-if="vm.editMode == 'false'">
         <div class="btn-group">
             <button type="button" class="btn btn-default btn-primary" ng-click="vm.previous()">
-                <span><i class="fa fa-arrow-circle-left"></i></span> Previous
+                <span><i class="fa fa-arrow-circle-left"></i></span>&nbsp; Previous
             </button>
         </div>
         <div ng-show="!vm.isLastStep" class="btn-group">
             <button type="button" class="btn btn-default btn-primary" ng-click="vm.next()">
-                Next
+                Next &nbsp;
                 <span><i class="fa fa-arrow-circle-right"></i></span>
             </button>
         </div>
         <div ng-show="vm.isLastStep" class="btn-group">
-            <button type="button" class="btn btn-default btn-primary" ng-click="">Finish</button>
+            <button type="button" class="btn btn-default btn-primary" ng-click="">Finish &nbsp;</button>
         </div>
     </div>
     <div ng-if="vm.editMode == 'true'">
