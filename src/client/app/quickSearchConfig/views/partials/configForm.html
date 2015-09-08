@@ -9,7 +9,7 @@
 
 </style>
 
-<div class="col-xs-6">
+<div class="col-xs-8">
     <div class="panel panel-primary">
         <div class="panel-heading">Quick Search Config</div>
 
@@ -17,12 +17,12 @@
         <form name="ngform" novalidate>
             <div class="panel-body container">
                 <div ng-repeat="box in vm.formFields track by $index">
-                    <p class="row">
-                        <div class="col-md-3">
+                    <div>
+                        <div class="form-group col-md-6">
                             <input type="text" ng-model="box.templateOptions.label" class="form-control">
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="form-group col-md-6">
                             <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
                                 <span class="glyphicon glyphicon-chevron-up"></span>
                             </a>
@@ -33,7 +33,8 @@
                                 <input type="checkbox" ng-click="vm.setPreview(box.templateOptions.order)" class="form-control.input-md">&nbsp;Hide
                             </label>
                         </div>
-                    </p>
+
+                    </div>
                 </div>
             </div>
             <div class="panel-footer clearfix">
