@@ -48,7 +48,7 @@
             {
                 state: 'quickSearchConfigDefaults',
                 config: {
-                    url: '/quickSearchConfig/defaults',
+                    url: '/quickSearchConfig/defaults/:formId/:editMode',
                     params: {
                         editMode: 'false',
                         formId: null
@@ -62,7 +62,7 @@
             {
                 state: 'quickSearchConfigProducts',
                 config: {
-                    url: '/quickSearchConfig/products',
+                    url: '/quickSearchConfig/products/:formId/:editMode',
                     params: {
                         editMode: 'false',
                         formId: null
@@ -76,7 +76,7 @@
             {
                 state: 'quickSearchConfigLoanOfficers',
                 config: {
-                    url: '/quickSearchConfig/loanOfficers',
+                    url: '/quickSearchConfig/loanOfficers/:formId/:editMode',
                     params: {
                         editMode: 'false',
                         formId: null
@@ -90,7 +90,7 @@
             {
                 state: 'quickSearchConfigResults',
                 config: {
-                    url: '/quickSearchConfig/results',
+                    url: '/quickSearchConfig/results/:formId/:editMode',
                     params: {
                         editMode: 'false',
                         formId: null
