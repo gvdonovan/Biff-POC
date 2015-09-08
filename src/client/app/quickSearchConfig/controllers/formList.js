@@ -30,8 +30,8 @@
         ];
 
         function add() {
-            //Request then next page
-            $state.go('quickSearchConfigInputs', {});
+            //TODO create form then pass id
+            $state.go('quickSearchConfigInputs', {formId: 1});
         }
 
         function edit(id) {

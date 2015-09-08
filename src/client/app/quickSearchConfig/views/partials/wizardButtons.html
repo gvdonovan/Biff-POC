@@ -1,4 +1,4 @@
-<div ng-if="!vm.editMode">
+<div ng-if="vm.editMode == 'false'">
     <div class="btn-group">
         <button type="button" class="btn btn-default btn-primary" ng-click="vm.previous()">
             <span><i class="fa fa-arrow-circle-left"></i></span>
@@ -15,7 +15,7 @@
         <button type="button" class="btn btn-default btn-primary" ng-click="">Finish</button>
     </div>
 </div>
-<div ng-if="vm.editMode">
+<div ng-if="vm.editMode == 'true'">
     <div class="btn-group">
         <button type="button" class="btn btn-default btn-danger" ng-click="vm.cancel()">Cancel</button>
     </div>
