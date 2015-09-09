@@ -28,12 +28,15 @@
         vm.underScoreJson = "";
         vm.formModel = {};
         vm.formFields = [];
+        vm.previewModel = {};
+        vm.previewFields = [];
         vm.optionsVisible = [];
 
         vm.setPreview = setPreview;
         vm.moveRowUp = moveRowUp;
         vm.moveRowDown = moveRowDown;
         vm.toggleOptions = toggleOptions;
+        vm.updatePreview = updatePreview;
 
         activate();
 
@@ -46,7 +49,9 @@
 
             inputs.getFormConfig().then(function (data) {
                 vm.data = data;
-                vm.formFields = data.fields;
+                vm.formFields = jQuery.extend(true, [], data.fields);
+
+                vm.updatePreview();
 
                 var visible = [];
                 var order = [];
@@ -55,68 +60,103 @@
                     visible.push(false);
                     order[i] = i;
                     vm.optionsVisible[i] = false;
-                    if (vm.formFields[i].templateOptions.options) {
-                        for (var k = 0; k < vm.formFields[i].templateOptions.options.length; k++) {
-                            vm.formFields[i].templateOptions.options[k].visible = true;
-                        }
-                    }
                 }
 
                 vm.formModel.visible = visible;
                 vm.formModel.order = order;
+
 
             });
 
 
         }
 
-        function setPreview(order) {
-            var fm = vm.formModel;
-            fm.visible[order] = !fm.visible[order];
-            console.log("Order: " + order + ", State:" + fm.visible[order]);
-            console.log(JSON.stringify(vm.formModel).toString());
+        function setPreview(index) {
+            vm.formFields[index].templateOptions.visible = !vm.formFields[index].templateOptions.visible;
+            console.log("Index: " + index + ", visible:" + vm.formFields[index].templateOptions.visible);
+            vm.updatePreview();
         }
 
         function moveRowUp(index) {
             console.log("UP: Index: " + index);
             var ff = vm.formFields;
-            var fo = vm.formModel.order;
+            var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
-            var oItem = fo.slice(0)[index];
+            var pItem = pf.slice(0)[index];
 
             if (index != 0) {
                 ff.splice(index, 1);
                 ff.splice(index - 1, 0, fItem);
-                fo.splice(index, 1);
-                fo.splice(index - 1, 0, oItem);
+                pf.splice(index, 1);
+                pf.splice(index - 1, 0, pItem);
             } else {
                 ff.shift();
                 ff.push(fItem);
-                fo.shift();
-                fo.push(oItem);
+                pf.shift();
+                pf.push(pItem);
             }
+            for (var i = 0; i < ff.length; i++) {
+                ff[i].templateOptions.order = i;
+            }
+            vm.updatePreview();
         }
 
         function moveRowDown(index) {
             console.log("DOWN: Index: " + index);
             var ff = vm.formFields;
-            var fo = vm.formModel.order;
+            var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
-            var oItem = fo.slice(0)[index];
+            var pItem = pf.slice(0)[index];
 
             if (index + 1 != ff.length) {
                 ff.splice(index, 1);
                 ff.splice(index + 1, 0, fItem);
-                fo.splice(index, 1);
-                fo.splice(index + 1, 0, oItem);
+                pf.splice(index, 1);
+                pf.splice(index + 1, 0, pItem);
             } else {
                 ff.pop();
                 ff.unshift(fItem);
-                fo.pop();
-                fo.unshift(oItem);
+                pf.pop();
+                pf.unshift(pItem);
             }
+            for (var i = 0; i < ff.length; i++) {
+                ff[i].templateOptions.order = i;
+            }
+            vm.updatePreview();
+        }
+
+        function updatePreview() {
+            var ff = vm.formFields;
+            var pf = vm.previewFields = [];
+
+            for (var i = 0; i < ff.length; i++) {
+                var pItem = {};
+                angular.copy(ff[i], pItem);
+                if (pItem.templateOptions.visible == true) {
+                    if (pItem.templateOptions.options) {
+
+                        var options = _.clone(pItem.templateOptions.options);
+
+                        var newOptions = [];
+                        for (var j = 0; j < options.length; j++) {
+
+                            var optionsItem = _.clone(options[j]);
+                            if (optionsItem.visible == true) {
+                                newOptions.push(optionsItem);
+                            }
+                        }
+
+                        pItem.templateOptions.options = newOptions;
+                        console.log(ff[0].templateOptions.options);
+                    }
+                    pf.push(pItem);
+                }
+            }
+
+            console.log(ff[0].templateOptions.options);
+            console.log(pf.length);
         }
 
         function toggleOptions(index) {
