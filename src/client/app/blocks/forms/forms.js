@@ -11,7 +11,8 @@
     function forms() {
         var service = {
             datePickerConfig: datePickerConfig,
-            borrowerAliasConfig: borrowerAliasConfig
+            borrowerAliasConfig: borrowerAliasConfig,
+            panelWrapper: panelWrapper
         };
 
         return service;
@@ -29,13 +30,27 @@
                     }
                 }
             });
-        };
+        }
 
         function borrowerAliasConfig(formlyConfig) {
             formlyConfig.setType({
                 name: 'alias',
-                templateUrl: 'app/blocks/forms/templates/alias.html',
+                templateUrl: 'app/blocks/forms/templates/alias.html'
             });
-        };
+        }
+
+        function panelWrapper(formlyConfig){
+
+            formlyConfig.setType({
+                name: 'nested',
+                template: '<formly-form model="model[options.key]" fields="options.data.fields"></formly-form>'
+            });
+
+            formlyConfig.setWrapper({
+                name: 'panel',
+                types: ['nested'],
+                templateUrl: 'app/blocks/forms/templates/panelWrapper.html'
+            });
+        }
     }
 })();

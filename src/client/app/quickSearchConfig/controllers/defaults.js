@@ -17,6 +17,63 @@
         vm.next = next;
         vm.previous = previous;
 
+        vm.model = {};
+
+        vm.fields = [
+            {
+                key: 'searchCriteria',
+                type: 'nested',
+                templateOptions: {
+                    label: 'First Lien Search Criteria',
+                    open: true
+                },
+                data: {
+                    fields: [
+                        {
+                            className: "col-xs-3",
+                            key: 'interest',
+                            type: 'select',
+                            templateOptions: {
+                                type: 'select',
+                                label: 'Interest Only',
+                                options:[
+                                    {
+                                        label: 'Yes',
+                                        value: 1
+                                    },
+                                    {
+                                        label: 'No',
+                                        value: 0
+                                    }
+
+                                ]
+                            }
+                        },
+                        {
+                            className: "col-xs-3",
+                            key: 'buydown',
+                            type: 'select',
+                            templateOptions: {
+                                type: 'select',
+                                label: 'Buydown',
+                                options:[
+                                    {
+                                        label: 'None',
+                                        value: 0
+                                    },
+                                    {
+                                        label: '20 Percent',
+                                        value: 1
+                                    }
+
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ];
+
         activate();
 
         function activate() {
