@@ -1,10 +1,10 @@
 <accordion>
     <accordion-group is-open="to.open">
         <accordion-heading>
-            <div class="panel-title" ng-if="to.label">
+            <span ng-if="to.label">
                 {{to.label}}
-                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': to.open, 'glyphicon-chevron-right': !to.open}"></i>
-            </div>
+            </span>
+            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': to.open, 'glyphicon-chevron-right': !to.open}"></i>
         </accordion-heading>
         <formly-transclude></formly-transclude>
     </accordion-group>
