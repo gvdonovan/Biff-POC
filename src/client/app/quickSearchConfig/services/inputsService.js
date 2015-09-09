@@ -19,8 +19,7 @@
 
         function getFormConfig() {
             var deferred = $q.defer();
-            if(inputsFormConfig == null)
-            {
+            if (inputsFormConfig == null) {
                 inputsFormConfig = init();
             }
             deferred.resolve(inputsFormConfig);
@@ -32,8 +31,7 @@
             if (criteria !== null) {
                 var data = getMockedResults();
                 deferred.resolve(data);
-            }
-            else {
+            } else {
                 deferred.resolve();
             }
             return deferred.promise;
@@ -177,7 +175,7 @@
             return results;
         }
 
-        function init(){
+        function init() {
             var data = {
                 fields: [
                     {
@@ -203,7 +201,7 @@
                             "labelProp": 'label',
                             order: 0
                         },
-                        hideExpression:'model.visible[0]'
+                        hideExpression: 'model.visible[0]'
                     },
                     {
                         key: 'propertyType',
@@ -253,7 +251,7 @@
                             required: false,
                             order: 1
                         },
-                        hideExpression:'model.visible[1]'
+                        hideExpression: 'model.visible[1]'
                     },
                     {
                         key: 'loanPurpose',
@@ -264,7 +262,7 @@
                             required: false,
                             order: 2
                         },
-                        hideExpression:'model.visible[2]'
+                        hideExpression: 'model.visible[2]'
                     },
                     {
                         key: 'purchasePrice',
@@ -279,7 +277,7 @@
                             required: false,
                             order: 3
                         },
-                        hideExpression:'model.visible[3]'
+                        hideExpression: 'model.visible[3]'
                     },
                     {
                         key: 'downPayment',
@@ -294,7 +292,7 @@
                             required: false,
                             order: 4
                         },
-                        hideExpression:'model.visible[4]'
+                        hideExpression: 'model.visible[4]'
                     },
                     {
                         key: 'zip',
@@ -305,7 +303,7 @@
                             required: false,
                             order: 5
                         },
-                        hideExpression:'model.visible[5]'
+                        hideExpression: 'model.visible[5]'
                     },
                     {
                         key: 'creditScore',
@@ -316,7 +314,7 @@
                             required: false,
                             order: 6
                         },
-                        hideExpression:'model.visible[6]'
+                        hideExpression: 'model.visible[6]'
                     }
                 ]
             };

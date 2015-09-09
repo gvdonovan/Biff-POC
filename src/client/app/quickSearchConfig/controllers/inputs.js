@@ -28,10 +28,12 @@
         vm.underScoreJson = "";
         vm.formModel = {};
         vm.formFields = [];
+        vm.optionsVisible = [];
 
         vm.setPreview = setPreview;
         vm.moveRowUp = moveRowUp;
         vm.moveRowDown = moveRowDown;
+        vm.toggleOptions = toggleOptions;
 
         activate();
 
@@ -52,6 +54,12 @@
                 for (var i = 0; i < vm.formFields.length; i++) {
                     visible.push(false);
                     order[i] = i;
+                    vm.optionsVisible[i] = false;
+                    if (vm.formFields[i].templateOptions.options) {
+                        for (var k = 0; k < vm.formFields[i].templateOptions.options.length; k++) {
+                            vm.formFields[i].templateOptions.options[k].visible = true;
+                        }
+                    }
                 }
 
                 vm.formModel.visible = visible;
@@ -111,6 +119,10 @@
             }
         }
 
+        function toggleOptions(index) {
+            vm.optionsVisible[index] = !vm.optionsVisible[index];
+        }
+
         function submit() {
             vm.isLoading = true;
             return preview.getResults(vm.formModel).then(function (data) {
@@ -135,7 +147,10 @@
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+                $state.go(state, {
+                    editMode: vm.editMode,
+                    formId: vm.formId
+                });
             }
         }
 
