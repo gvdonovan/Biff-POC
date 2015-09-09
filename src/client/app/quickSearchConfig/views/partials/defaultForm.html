@@ -1,8 +1,18 @@
 <script type="text/javascript">
-
     $(document).ready(function() {
         $('#allToggle').click(function(e) {
             $('.collapse').collapse('hide');
+        });
+
+        $('.collapse').each(function(index) {
+            var i = index + 1;
+            $('#collapse' + i).on('hidden.bs.collapse', function() {
+                $("#icon" + i).addClass('glyphicon-plus').removeClass('glyphicon-minus');
+            });
+            $('#collapse' + i).on('shown.bs.collapse', function() {
+                $("#icon" + i).addClass('glyphicon-minus').removeClass('glyphicon-plus');
+            });
+
         });
     });
 
@@ -14,8 +24,11 @@
             <div class="panel panel-primary ">
 
                 <div class="panel-heading">Default Information Form
-                    <button type="button" class="btn btn-default btn-xs pull-right clearfix" id="allToggle">Collapse All
-                    </button>
+                    <!--
+                    <button type="button" class="btn btn-default btn-xs pull-right clearfix" id="allToggle">Collapse All</button>
+                    -->
+                    <a class="clickable pull-right" id="allToggle" style="color: #FFFFFF">Collapse All</a>
+
                 </div>
 
                 <div class="panel-body ">
@@ -26,7 +39,7 @@
                                 <h4 class="panel-title">
                                     Lien Information
                                     <a data-toggle="collapse" href="#collapse1">
-                                        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+                                        <span id="icon1" class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span>
                                     </a>
                                 </h4>
 
@@ -86,7 +99,7 @@
                                     <h4 class="panel-title">
                                     Loan Information
                                     <a data-toggle="collapse" href="#collapse2">
-                                        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+                                        <span id="icon2" class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span>
                                     </a>
                                 </h4>
                                 </div>
@@ -198,7 +211,7 @@
                                     <h4 class="panel-title">
                                     Borrower Information
                                     <a data-toggle="collapse" href="#collapse3">
-                                        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+                                        <span id="icon3" class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span>
                                     </a>
                                 </h4>
                                 </div>
@@ -321,7 +334,7 @@
                                     <h4 class="panel-title">
                                     Property Information
                                     <a data-toggle="collapse" href="#collapse4">
-                                        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+                                        <span id="icon4" class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span>
                                     </a>
                                 </h4>
                                 </div>
@@ -409,7 +422,7 @@
                                     <h4 class="panel-title">
                                     First Lien Search Criteria
                                     <a data-toggle="collapse" href="#collapse5">
-                                        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+                                        <span id="icon5" class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span>
                                     </a>
                                 </h4>
                                 </div>
