@@ -34,7 +34,7 @@
                         </a>
                         <span class="padLeftRight">
                             <label>
-                                <input type="checkbox" ng-click="vm.setPreview(box.templateOptions.order)" class="form-control.input-md ">&nbsp;Hide
+                                <input type="checkbox" ng-click="vm.setPreview($index)" class="form-control.input-md ">&nbsp;Hide
                             </label>
                         </span>
                         <span ng-hide="!box.templateOptions.options">
@@ -47,7 +47,7 @@
                         <div ng-repeat="option in box.templateOptions.options track by $index">
                             <span class="padLeftRight">
                                 <label>
-                                    <input type="checkbox" ng-model="vm.formFields[$parent.$index].templateOptions.options[$index].visible" class="form-control.input-md ">&nbsp;{{option.label}}
+                                    <input type="checkbox" ng-model="vm.formFields[$parent.$index].templateOptions.options[$index].visible" ng-click="vm.updatePreview()" class="form-control.input-md ">&nbsp;{{option.label}}
                                 </label>
                             </span>
                         </div>

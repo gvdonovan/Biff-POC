@@ -186,22 +186,25 @@
                             options: [
                                 {
                                     label: 'Owner Occupied',
-                                    id: 'owner_occupied'
+                                    id: 'owner_occupied',
+                                    visible: true
                                 },
                                 {
                                     label: 'Other',
-                                    id: 'other'
+                                    id: 'other',
+                                    visible: false
                                 },
                                 {
                                     label: 'Biff',
-                                    id: 'biff'
+                                    id: 'biff',
+                                    visible: true
                                 },
                             ],
                             "valueProp": 'id',
                             "labelProp": 'label',
-                            order: 0
-                        },
-                        hideExpression: 'model.visible[0]'
+                            order: 0,
+                            visible: true
+                        }
                     },
                     {
                         key: 'propertyType',
@@ -211,47 +214,56 @@
                             options: [
                                 {
                                     label: 'Single Family',
-                                    value: 'single_family'
+                                    value: 'single_family',
+                                    visible: true
                                 },
                                 {
                                     label: 'PUD',
-                                    value: 'pud'
+                                    value: 'pud',
+                                    visible: true
                                 },
                                 {
                                     label: 'Multi-Family',
-                                    value: 'multi_family'
+                                    value: 'multi_family',
+                                    visible: true
                                 },
                                 {
                                     label: 'Manufactured / Single Wide',
-                                    value: 'manufactured_single_wide'
+                                    value: 'manufactured_single_wide',
+                                    visible: true
                                 },
                                 {
                                     label: 'Manufactured / Double Wide',
-                                    value: 'manufactured_double_wide'
+                                    value: 'manufactured_double_wide',
+                                    visible: true
                                 },
                                 {
                                     label: 'Timeshare',
-                                    value: 'timeshare'
+                                    value: 'timeshare',
+                                    visible: true
                                 },
                                 {
                                     label: 'Condotel',
-                                    value: 'condotel'
+                                    value: 'condotel',
+                                    visible: true
                                 },
                                 {
                                     label: 'Non-warrantable Condo',
-                                    value: 'non_warrantable_condo'
+                                    value: 'non_warrantable_condo',
+                                    visible: true
                                 },
                                 {
                                     label: 'Modular',
-                                    value: 'modular'
+                                    value: 'modular',
+                                    visible: true
                                 },
                             ],
                             valueProp: 'value',
                             labelProp: 'label',
                             required: false,
-                            order: 1
-                        },
-                        hideExpression: 'model.visible[1]'
+                            order: 1,
+                            visible: true
+                        }
                     },
                     {
                         key: 'loanPurpose',
@@ -260,9 +272,9 @@
                             label: 'Loan Purpose',
                             type: 'text',
                             required: false,
-                            order: 2
-                        },
-                        hideExpression: 'model.visible[2]'
+                            order: 2,
+                            visible: true
+                        }
                     },
                     {
                         key: 'purchasePrice',
@@ -275,9 +287,9 @@
                                 text: '$'
                             },
                             required: false,
-                            order: 3
-                        },
-                        hideExpression: 'model.visible[3]'
+                            order: 3,
+                            visible: true
+                        }
                     },
                     {
                         key: 'downPayment',
@@ -290,9 +302,9 @@
                                 text: '$'
                             },
                             required: false,
-                            order: 4
-                        },
-                        hideExpression: 'model.visible[4]'
+                            order: 4,
+                            visible: true
+                        }
                     },
                     {
                         key: 'zip',
@@ -301,9 +313,9 @@
                             label: 'Zip',
                             type: 'text',
                             required: false,
-                            order: 5
-                        },
-                        hideExpression: 'model.visible[5]'
+                            order: 5,
+                            visible: true
+                        }
                     },
                     {
                         key: 'creditScore',
@@ -312,9 +324,9 @@
                             label: 'Credit Score',
                             type: 'text',
                             required: false,
-                            order: 6
-                        },
-                        hideExpression: 'model.visible[6]'
+                            order: 6,
+                            visible: true
+                        }
                     }
                 ]
             };
