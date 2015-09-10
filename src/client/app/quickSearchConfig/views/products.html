@@ -15,7 +15,7 @@
     <div class="col-xs-12 row">
         <div class="col-xs-5">
             <div class="panel panel-primary">
-                <div class="panel-heading">List 1</div>
+                <div class="panel-heading">Products</div>
                 <div class="panel-body panel-height style-3">
                     <div class="">
                         <div class="" ng-repeat="cat in vm.list1 | filter: vm.filterCategory">
@@ -35,18 +35,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-2" style="margin-top: 20em;">
-            <button class="btn btn-primary btn-sm col-xs-12" ng-click="vm.moveRight()">
+        <div class="col-xs-2 center-block" style="margin-top: 20em;">
+            <button class="btn btn-primary col-xs-6 col-xs-offset-3" ng-click="vm.moveRight()">
                 <span>
-                    <i class="fa fa-angle-right"></i>
-                    <i class="fa fa-angle-right"></i>
+                    <i class="glyphicon glyphicon-chevron-right"></i>
                 </span>
             </button>
         </div>
-
         <div class="col-xs-5">
             <div class="panel panel-primary">
-                <div class="panel-heading">List 2</div>
+                <div class="panel-heading">Selected Products</div>
                 <div class="panel-body panel-height">
                     <div class="">
                         <div class="" ng-repeat="cat in vm.list2 track by $index">
