@@ -3,21 +3,24 @@
 describe('Testing PreviewController', function () {
     var previewController, mockedPreviewService, deferred, rootScope, $httpBackend;
     //mock Application to allow us to inject our own dependencies
-    beforeEach(angular.mock.module('app.preview'));
+    beforeEach(module('app.preview'));
 
     //mock the controller for the same reason and include $rootScope and $controller
-    beforeEach(angular.mock.inject(function ($controller, _previewService_, $q, _$rootScope_, $httpBackend) {
+    beforeEach(function() {
+        // use bard.js library to make dep. injection easy for unit tests
+        bard.inject(function ($controller, previewService, $q, $rootScope, $templateCache) {
 
-        //declare the controller since we are using controller as we do not need scope
-        previewController = $controller('PreviewController');
-        // init the mock
-        mockedPreviewService = _previewService_;
-        deferred = $q;
-        rootScope = _$rootScope_;
-        
-        // set up expected http requests
-        $httpBackend.whenGET('app/core/404.html').respond(404);
-    }));
+            //declare the controller since we are using controller as we do not need scope
+            previewController = $controller('PreviewController');
+            // init the mock
+            mockedPreviewService = previewService;
+            deferred = $q;
+            rootScope = $rootScope;
+
+            // preload the templates so that ui-router will work when it looks for template from state
+            $templateCache.put('app/core/404.html','<div>blank or whatever</div>');
+        })
+    });
     // tests start here
     it('should have a title of Preview', function () {
         //create a watcher on the getResults method of the service and call through the promise

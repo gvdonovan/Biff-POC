@@ -7,11 +7,13 @@
 
     /* @ngInject */
     function appRun(routerHelper, forms, formlyConfig) {
+/*
         var otherwise = '/404';
         routerHelper.configureStates(getStates(), otherwise);
         forms.datePickerConfig(formlyConfig);
         forms.borrowerAliasConfig(formlyConfig);
         forms.panelWrapper(formlyConfig);
+*/
     }
 
     function getStates() {
