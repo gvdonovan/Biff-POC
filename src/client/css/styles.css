@@ -209,10 +209,10 @@ body {
   margin-bottom: 0 !important;
   border-radius: 0 !important;
 }
-glyphicon-chevron-up:before {
+.glyphicon-chevron-up:before {
   content: "\e113";
 }
-glyphicon-chevron-down:before {
+.glyphicon-chevron-down:before {
   content: "\e114";
 }
 .navBtns .btn-group {
@@ -221,9 +221,13 @@ glyphicon-chevron-down:before {
 .navBtns .btn-group .btn {
   width: 120px;
 }
-glyphicon-chevron-up:before {
-  content: "\e113";
+.panel-height {
+  height: 500px;
+  overflow-y: auto;
 }
-glyphicon-chevron-down:before {
-  content: "\e114";
+.filterItem {
+  padding: 4px 15px;
+}
+.filterItem i {
+  padding: 0 0 0 10px;
 }
