@@ -66,7 +66,7 @@ gulp.task('karmaInject', function(){
               }
           }
       }))
-      .pipe(inject(gulp.src(['./src/client/app/**/*.js'], {read: false}),
+      .pipe(inject(gulp.src(['./src/client/app/**/*.module.js', './src/client/app/**/*.js'], {read: false}),
         {
             starttag: '// inject:js',
             endtag: '// endinject',
