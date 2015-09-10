@@ -5,7 +5,8 @@ var appRoot = './src/';
 module.exports = {
   bower: {
  	  directory: './bower_components/',
-    bowerJson: require('../bower.json' )
+    bowerJson: require('../bower.json' ),
+    ignorePath: '../..'
   },
   client: appRoot + 'client/',
   vendor: appRoot + 'client/vendor/',
@@ -14,5 +15,6 @@ module.exports = {
   style:  appRoot + 'client/css/',
   less:   appRoot + 'client/less/',
   es6:    appRoot + 'client/es6/',
-  lib:    appRoot + 'client/lib/'
+  lib:    appRoot + 'client/lib/',
+  karma: './'
 };
