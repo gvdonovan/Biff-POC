@@ -206,38 +206,10 @@
             var data = {
                 fields: [
                     {
-                        key: 'occupancy',
-                        type: 'select',
-                        templateOptions: {
-                            label: 'Occupancy',
-                            options: [
-                                {
-                                    label: 'Owner Occupied',
-                                    id: 'owner_occupied',
-                                    visible: true
-                                },
-                                {
-                                    label: 'Other',
-                                    id: 'other',
-                                    visible: false
-                                },
-                                {
-                                    label: 'Biff',
-                                    id: 'biff',
-                                    visible: true
-                                },
-                            ],
-                            "valueProp": 'id',
-                            "labelProp": 'label',
-                            order: 0,
-                            visible: true
-                        }
-                    },
-                    {
                         key: 'propertyType',
                         type: 'select',
                         templateOptions: {
-                            label: 'Property Type',
+                            label: 'Rate',
                             options: [
                                 {
                                     label: 'Single Family',
@@ -296,7 +268,7 @@
                         key: 'loanPurpose',
                         type: 'input',
                         templateOptions: {
-                            label: 'Loan Purpose',
+                            label: 'Discount Points',
                             type: 'text',
                             required: false,
                             order: 2,
@@ -307,7 +279,7 @@
                         key: 'purchasePrice',
                         type: 'input',
                         templateOptions: {
-                            label: 'Purchase Price',
+                            label: 'APR',
                             type: 'number',
                             placeholder: '0.00',
                             addonLeft: {
@@ -322,7 +294,7 @@
                         key: 'downPayment',
                         type: 'input',
                         templateOptions: {
-                            label: 'Down Payment',
+                            label: 'Months',
                             type: 'number',
                             placeholder: '0.00',
                             addonLeft: {
@@ -337,7 +309,7 @@
                         key: 'zip',
                         type: 'input',
                         templateOptions: {
-                            label: 'Zip',
+                            label: 'Payment',
                             type: 'text',
                             required: false,
                             order: 5,
@@ -348,7 +320,18 @@
                         key: 'creditScore',
                         type: 'input',
                         templateOptions: {
-                            label: 'Credit Score',
+                            label: 'Closing Costs',
+                            type: 'text',
+                            required: false,
+                            order: 6,
+                            visible: true
+                        }
+                    },
+                    {
+                        key: 'creditScore',
+                        type: 'input',
+                        templateOptions: {
+                            label: 'Rebate',
                             type: 'text',
                             required: false,
                             order: 6,

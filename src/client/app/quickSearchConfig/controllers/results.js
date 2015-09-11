@@ -18,8 +18,10 @@
         vm.previous = previous;
         vm.isLastStep = true;
 
+        vm.setPreview = setPreview;
         vm.updatePreview = updatePreview;
         vm.searchResults = {};
+
 
         activate();
 
@@ -40,6 +42,10 @@
                 vm.searchResults = data;
                 console.log(vm.searchResults);
             });
+        }
+
+        function setPreview(index) {
+            vm.formFields[index].visible = !vm.formFields[index].visible;
         }
 
         function updatePreview() {
