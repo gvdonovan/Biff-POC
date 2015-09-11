@@ -231,3 +231,6 @@ body {
 .filterItem i {
   padding: 0 0 0 10px;
 }
+.dualListBox h4 {
+  background-color: #f5f5f5;
+}

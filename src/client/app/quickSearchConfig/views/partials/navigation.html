@@ -2,7 +2,7 @@
 
     <div class="col-lg-9 visible-lg">
         <ul class="nav nav-wizard">
-            <li><a href="#">General Info</a></li>
+            <li ng-click="vm.go('quickSearchConfigGeneral')" ng-class="vm.state === 'quickSearchConfigGeneral' ? 'active' : ''"><a href="#">General Info</a></li>
             <li ng-click="vm.go('quickSearchConfigInputs')" ng-class="vm.state === 'quickSearchConfigInputs' ? 'active' : ''"><a>Inputs</a></li>
             <li ng-click="vm.go('quickSearchConfigDefaults')" ng-class="vm.state === 'quickSearchConfigDefaults' ? 'active' : ''"><a href="#">Defaults</a></li>
             <li ng-click="vm.go('quickSearchConfigProducts')" ng-class="vm.state === 'quickSearchConfigProducts' ? 'active' : ''"><a href="#">Filters</a></li>
