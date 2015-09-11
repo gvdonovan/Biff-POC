@@ -22,7 +22,7 @@
         vm.footer = "";
         vm.isLoading = false;
         vm.formModel = {};
-        vm.formFields = [];
+        //vm.formFields = [];
         vm.previewModel = {};
         vm.previewFields = [];
         vm.optionsVisible = [];
@@ -44,14 +44,14 @@
 
             quickSearchConfigService.getInputs().then(function (data) {
                 vm.data = data;
-                vm.formFields = data.fields;
+                //vm.formFields = data.fields;
 
                 vm.updatePreview();
 
                 var visible = [];
                 var order = [];
 
-                for (var i = 0; i < vm.formFields.length; i++) {
+                for (var i = 0; i < vm.data.fields.length; i++) {
                     visible.push(false);
                     order[i] = i;
                     vm.optionsVisible[i] = false;
@@ -67,14 +67,14 @@
         }
 
         function setPreview(index) {
-            vm.formFields[index].templateOptions.visible = !vm.formFields[index].templateOptions.visible;
-            console.log("Index: " + index + ", visible:" + vm.formFields[index].templateOptions.visible);
+            vm.data.fields[index].templateOptions.visible = !vm.data.fields[index].templateOptions.visible;
+            console.log("Index: " + index + ", visible:" + vm.data.fields[index].templateOptions.visible);
             vm.updatePreview();
         }
 
         function moveRowUp(index) {
             console.log("UP: Index: " + index);
-            var ff = vm.formFields;
+            var ff = vm.data.fields;
             var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
@@ -99,7 +99,7 @@
 
         function moveRowDown(index) {
             console.log("DOWN: Index: " + index);
-            var ff = vm.formFields;
+            var ff = vm.data.fields;
             var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
@@ -123,7 +123,7 @@
         }
 
         function updatePreview() {
-            var ff = vm.formFields;
+            var ff = vm.data.fields;
             var pf = vm.previewFields = [];
 
             for (var i = 0; i < ff.length; i++) {
