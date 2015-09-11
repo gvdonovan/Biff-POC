@@ -1,16 +1,12 @@
 <form name="ngform" novalidate>
     <div class="panel panel-primary">
 
-        <div class="panel-heading">{{vm.header}}</div>
+        <div class="panel-heading">{{vm.data.header}}</div>
         <div class="panel-body">
-            <!--<form name="ngform" sf-model="vm.criteria" sf-form="vm.form" sf-schema="vm.schema"></form>-->
-
             <formly-form model="vm.previewModel" fields="vm.previewFields"></formly-form>
-
-
         </div>
         <div class="panel-footer clearfix">
-            <div class="pull-left">{{vm.footer}}</div>
+            <div class="pull-left">{{vm.data.footer}}</div>
             <button type="button" class="btn btn-primary pull-right">Submit</button>
         </div>
     </div>

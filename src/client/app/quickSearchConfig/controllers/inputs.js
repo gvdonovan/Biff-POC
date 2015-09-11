@@ -18,16 +18,11 @@
         vm.state = '';
 
         vm.title = 'Inputs';
-        vm.header = "Quick Search";
+        vm.header = "";
         vm.footer = "";
-        vm.submit = submit;
         vm.isLoading = false;
-        vm.showJson = false;
-        vm.json = "";
-        vm.searchResults = [];
-        vm.underScoreJson = "";
         vm.formModel = {};
-        vm.formFields = [];
+        //vm.formFields = [];
         vm.previewModel = {};
         vm.previewFields = [];
         vm.optionsVisible = [];
@@ -49,14 +44,14 @@
 
             quickSearchConfigService.getInputs().then(function (data) {
                 vm.data = data;
-                vm.formFields = jQuery.extend(true, [], data.fields);
+                //vm.formFields = data.fields;
 
                 vm.updatePreview();
 
                 var visible = [];
                 var order = [];
 
-                for (var i = 0; i < vm.formFields.length; i++) {
+                for (var i = 0; i < vm.data.fields.length; i++) {
                     visible.push(false);
                     order[i] = i;
                     vm.optionsVisible[i] = false;
@@ -72,14 +67,14 @@
         }
 
         function setPreview(index) {
-            vm.formFields[index].templateOptions.visible = !vm.formFields[index].templateOptions.visible;
-            console.log("Index: " + index + ", visible:" + vm.formFields[index].templateOptions.visible);
+            vm.data.fields[index].templateOptions.visible = !vm.data.fields[index].templateOptions.visible;
+            console.log("Index: " + index + ", visible:" + vm.data.fields[index].templateOptions.visible);
             vm.updatePreview();
         }
 
         function moveRowUp(index) {
             console.log("UP: Index: " + index);
-            var ff = vm.formFields;
+            var ff = vm.data.fields;
             var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
@@ -104,7 +99,7 @@
 
         function moveRowDown(index) {
             console.log("DOWN: Index: " + index);
-            var ff = vm.formFields;
+            var ff = vm.data.fields;
             var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
@@ -128,7 +123,7 @@
         }
 
         function updatePreview() {
-            var ff = vm.formFields;
+            var ff = vm.data.fields;
             var pf = vm.previewFields = [];
 
             for (var i = 0; i < ff.length; i++) {
@@ -161,28 +156,6 @@
 
         function toggleOptions(index) {
             vm.optionsVisible[index] = !vm.optionsVisible[index];
-        }
-
-        function submit() {
-            vm.isLoading = true;
-            return preview.getResults(vm.formModel).then(function (data) {
-                vm.searchResults = data;
-                vm.json = JSON.stringify(vm.formModel, null, 4);
-                vm.showJson = true;
-                vm.underScoreJson = underScoreFilter();
-                $timeout(function () {
-                    vm.isLoading = false;
-                }, 500);
-            });
-        }
-
-        function underScoreFilter() {
-            var biff = _.pluck(vm.searchResults, 'items');
-            var flat = _.flatten(biff);
-            var x = _.filter(flat, function (item) {
-                return item.rebate >= 500;
-            });
-            return x;
         }
 
         function go(state) {
