@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .factory('inputsService', InputsService);
 
-    InputsService.$inject = ['$q', 'logger'];
+    InputsService.$inject = ['$http', '$q', 'API', 'logger'];
 
-    function InputsService($q, logger) {
+    function InputsService($http, $q, API, logger) {
         var service = {
             getFormConfig: getFormConfig,
             getResults: getResults
