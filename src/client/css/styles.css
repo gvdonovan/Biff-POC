@@ -222,7 +222,7 @@ body {
   width: 120px;
 }
 .panel-height {
-  height: 500px;
+  height: 400px;
   overflow-y: auto;
 }
 .filterItem {

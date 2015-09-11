@@ -186,7 +186,7 @@
         }
 
         function go(state) {
-            if (vm.editMode.toLowerCase() == 'true') {
+            if (vm.editMode) {
                 $state.go(state, {
                     editMode: vm.editMode,
                     formId: vm.formId

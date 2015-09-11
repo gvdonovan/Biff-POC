@@ -3,6 +3,11 @@
 
     angular
         .module('app.quickSearchConfig')
+        .run(['$rootScope', '$state',
+            function ($rootScope, $state) {
+                $rootScope.$state = $state;
+            }
+        ])
         .controller('FormListController', FormListController);
 
     FormListController.$inject = ['logger', '$stateParams', '$state'];

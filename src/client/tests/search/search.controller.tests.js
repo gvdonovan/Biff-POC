@@ -3,21 +3,25 @@
 describe('Testing SearchController', function () {
     var searchController, mockedSearchService, deferred, rootScope, $httpBackend;
     //mock Application to allow us to inject our own dependencies
-    beforeEach(angular.mock.module('app.search'));
+    beforeEach(module('app.search'));
 
     //mock the controller for the same reason and include $rootScope and $controller
-    beforeEach(angular.mock.inject(function ($controller, _quickSearchService_, $q, _$rootScope_, $httpBackend) {
+    beforeEach(function(){
+        // use bard.js library to make dep. injection easy for unit tests
+        bard.inject(function ($controller, quickSearchService, $q, $rootScope, $templateCache) {
 
-        //declare the controller since we are using controller as we do not need scope
-        searchController = $controller('SearchController');
-        // init the mock
-        mockedSearchService = _quickSearchService_;
-        deferred = $q;
-        rootScope = _$rootScope_;
+            //declare the controller since we are using controller as we do not need scope
+            searchController = $controller('SearchController');
+            // init the mock
+            mockedSearchService = quickSearchService;
+            deferred = $q;
+            rootScope = $rootScope;
 
-        // set up expected http requests
-        $httpBackend.whenGET('app/core/404.html').respond(404);
-    }));
+            // preload the templates so that ui-router will work when it looks for template from state
+            $templateCache.put('app/core/404.html','<div>blank or whatever</div>');
+
+        })
+    });
     // tests start here
     it('should have a title of Quick Search', function () {
         //create a watcher on the getResults method of the service and call through the promise
