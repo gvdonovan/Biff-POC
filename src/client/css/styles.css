@@ -222,7 +222,7 @@ body {
   width: 120px;
 }
 .panel-height {
-  height: 500px;
+  height: 400px;
   overflow-y: auto;
 }
 .filterItem {
@@ -230,4 +230,7 @@ body {
 }
 .filterItem i {
   padding: 0 0 0 10px;
+}
+.dualListBox h4 {
+  background-color: #f5f5f5;
 }

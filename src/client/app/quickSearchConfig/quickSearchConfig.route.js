@@ -32,6 +32,19 @@
                 }
             },
             {
+                state: 'quickSearchConfigGeneral',
+                config: {
+                    url: '/quickSearchConfig/general/:formId/:editMode',
+                    params: {
+                        editMode: 'false'
+                    },
+                    templateUrl: 'app/quickSearchConfig/views/general.html',
+                    controller: 'QSConfigGeneralController',
+                    controllerAs: 'vm',
+                    title: 'Form General'
+                }
+            },
+            {
                 state: 'quickSearchConfigInputs',
                 config: {
                     url: '/quickSearchConfig/inputs/:formId/:editMode',

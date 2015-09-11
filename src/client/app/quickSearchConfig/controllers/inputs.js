@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('InputsController', InputsController);
 
-    InputsController.$inject = ['logger', '$stateParams', '$state', 'inputsService'];
+    InputsController.$inject = ['logger', '$stateParams', '$state', 'quickSearchConfigService'];
     /* @ngInject */
-    function InputsController(logger, $stateParams, $state, inputs) {
+    function InputsController(logger, $stateParams, $state, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -47,7 +47,7 @@
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
 
-            inputs.getFormConfig().then(function (data) {
+            quickSearchConfigService.getInputs().then(function (data) {
                 vm.data = data;
                 vm.formFields = jQuery.extend(true, [], data.fields);
 
@@ -186,7 +186,7 @@
         }
 
         function go(state) {
-            if (vm.editMode.toLowerCase() == 'true') {
+            if (vm.editMode) {
                 $state.go(state, {
                     editMode: vm.editMode,
                     formId: vm.formId

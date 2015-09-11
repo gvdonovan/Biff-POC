@@ -1,0 +1,36 @@
+<!--TODO: DH-->
+<div>
+    <div class="well qsSteps col-xs-10 col-xs-offset-1">
+        <ng-include src="'app/quickSearchConfig/views/partials/navigation.html'"></ng-include>
+    </div>
+</div>
+
+<div class="well col-xs-10 col-xs-offset-1">
+    <form name="generalForm" novalidate>
+        <div class="panel panel-primary ">
+
+            <div class="panel-heading">General Information Form</div>
+
+            <div class="panel-body ">
+                <div class="col-md-3 form-group">
+                    <label>Name *</label>
+
+                    <div class="input-group">
+                        <input ng-model="vm.qsName" type="text" name="qsName" class="form-control">
+                    </div>
+                    <p ng-show="generalForm.qsName.$invalid && !generalForm.qsName.$pristine" class="help-block">Name is required.</p>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label></label>
+                    <div class="input-group">
+                        <label>
+                            <input type="checkbox" name="cLayout" ng-model="vm.cLayout" class="form-control.input-md"> Custom Layout
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
