@@ -11,10 +11,16 @@ describe('Testing NavController', function () {
         // use bard.js library to make dep. injection easy for unit tests
         bard.inject(function ($controller, $q, $rootScope, $state, $location, $templateCache, routerHelper) {
 
+            // stub routerHelper.getStates before controller is instantiated
+            var stub = sinon.stub(routerHelper);
+            stub.getStates.returns(mockData.getStates());
+
             //declare the controller since we are using controller as we do not need scope
             controller = $controller('NavController');
             deferred = $q;
             rootScope = $rootScope;
+
+
 
         })
     });
@@ -29,32 +35,13 @@ describe('Testing NavController', function () {
     // tests start here
 
     it('should set vm.navRoutes when the controller loads (activate func called)', function () {
-        console.log('controller is ', controller);
         $rootScope.$apply();
         expect(controller.navRoutes).to.be.an('array');
     });
 
-/*
-    it('should build URL from parameters passed to $state', function () {
-        var newState = 'quickSearchConfigInputs';
-        expect($state.href(newState, {formId: 5})).to.equal('/quickSearchConfig/inputs/5/false');
+    it('should filter states by nav and top properties in getNavRoutes and sort by the nav property', function () {
+        // we are stubbing out navRoutes in the beforeEach with sinon.stub on routerHelper
+        expect(controller.navRoutes).to.deep.equal(mockData.expectedGetStates());
     });
-
-    it('should change state to quickSearchConfigs when add function is called', function () {
-        controller.add();
-        $rootScope.$apply();
-        expect($state.current.name).to.equal('quickSearchConfigInputs');
-
-    });
-
-    it('should change state to quickSearchConfigInputs when edit function is called and url to ' +
-        'include parameter passed', function () {
-        controller.edit(5);
-        $rootScope.$apply();
-        expect($state.current.name).to.equal('quickSearchConfigInputs');
-        expect($location.path()).to.equal('/quickSearchConfig/inputs/5/true');
-
-    });
-*/
 
 });

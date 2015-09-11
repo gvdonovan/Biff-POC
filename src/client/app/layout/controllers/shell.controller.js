@@ -1,6 +1,9 @@
 (function() {
     'use strict';
 
+    //TODO: is this controller necessary or is it just to show John Papa created this?
+    // consider removign this controller
+
     angular
         .module('app.layout')
         .controller('ShellController', ShellController);
