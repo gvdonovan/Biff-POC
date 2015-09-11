@@ -1,0 +1,33 @@
+<div class="panel panel-info">
+    <div class="panel-heading">Results Preview</div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in vm.searchResults[0].items">
+                        <td>{{item.rate}}</td>
+                        <td>{{item.discPoints}}</td>
+                        <td>{{item.apr}}</td>
+                        <td>{{item.months}}</td>
+                        <td>{{item.closingCost}}</td>
+                        <td>{{item.rebate}}</td>
+                        <td><a class="clickable" href="">Apply Now</a></td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
