@@ -45,14 +45,4 @@ describe('Testing DefaultController', function () {
     });
 
 
-/*
-    it('should have submit function', function () {
-        // stub defaultService.getResults
-         var stub = sinon.stub(defaultService);
-         stub.getResults.returns(mockData.defaultGetResults());
-
-        expect(controller.sbumit).to.be.defined;
-    });
-*/
-
 });
