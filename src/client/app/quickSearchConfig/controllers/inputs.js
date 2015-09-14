@@ -38,6 +38,7 @@
         vm.toggleOptions = toggleOptions;
         vm.updatePreview = updatePreview;
         vm.updateOptionDefault = updateOptionDefault;
+        vm.closeOptions = closeOptions;
 
         activate();
 
@@ -98,6 +99,7 @@
                 ff[i].templateOptions.order = i;
             }
             vm.updatePreview();
+            closeOptions();
             vm.isDirty = true;
         }
 
@@ -124,6 +126,7 @@
                 ff[i].templateOptions.order = i;
             }
             vm.updatePreview();
+            closeOptions();
             vm.isDirty = true;
         }
 
@@ -134,7 +137,7 @@
             for (var i = 0; i < ff.length; i++) {
                 var pItem = {};
                 angular.copy(ff[i], pItem);
-                vm.optionsVisible[i] = false;
+
                 if (pItem.templateOptions.visible == true) {
                     if (pItem.templateOptions.options) {
                         var options = _.clone(pItem.templateOptions.options);
@@ -159,6 +162,13 @@
             console.log(pf.length);
         }
 
+        function closeOptions() {
+            var ff = vm.data.fields;
+            for (var i = 0; i < ff.length; i++) {
+                vm.optionsVisible[i] = false;
+            }
+        }
+
         function toggleOptions(index, e) {
 
             var onOff = vm.optionsVisible[index];
@@ -177,7 +187,13 @@
 
         function updateOptionDefault(parentIndex, index, e) {
             var ff = vm.data.fields[parentIndex];
-            ff.templateOptions.defaultValue = ff.templateOptions.options[index].value;
+            var checked = $(e.target).prop("checked");
+            console.log($(e.target).prop("checked"));
+            if (checked == true) {
+                ff.templateOptions.defaultValue = ff.templateOptions.options[index].value;
+            } else {
+                ff.templateOptions.defaultValue = '';
+            }
             $(e.target).closest("div").parent().find("input")
                 .not(e.target).attr("checked", false);
             console.log(parentIndex + ", " + index + ", " + ff.templateOptions.defaultValue);
