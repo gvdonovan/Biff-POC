@@ -106,8 +106,44 @@ describe('Testing DefaultController', function () {
         controller.sortItem(0, 1, list);
         expect(list[1].id).to.equal(1);
     });
+    
+    describe('filterCategory method', function(){
+        it('should return true if category name or sub-item contains search text', function () {
+            controller.filterText = 'category';
+            var category = mockAdminData.selectCategoryData;
+            // move item at index 0 down 1 position, item has id=1
+            var result = controller.filterCategory(category);
+            expect(result).to.be.true;
+        });
+
+        it('should return false if category name or sub-item contains search text', function () {
+            controller.filterText = 'jumpin';
+            var category = mockAdminData.selectCategoryData;
+            // move item at index 0 down 1 position, item has id=1
+            var result = controller.filterCategory(category);
+            expect(result).to.be.false;
+        });
+
+    });
 
 
+    describe('filterItems method', function(){
+    
+        it('filterItems should return true if category contains sub-item from search text', function () {
+            controller.filterText = 'item1';
+            var category = mockAdminData.selectCategoryData;
+            // move item at index 0 down 1 position, item has id=1
+            var result = controller.filterCategory(category);
+            expect(result).to.be.true;
+        });
 
+        it('filterItems should return false if category does nto contain sub-item from search text', function () {
+            controller.filterText = 'item3';
+            var category = mockAdminData.selectCategoryData;
+            // move item at index 0 down 1 position, item has id=1
+            var result = controller.filterCategory(category);
+            expect(result).to.be.false;
+        });
 
+    });
 });
