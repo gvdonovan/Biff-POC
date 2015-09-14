@@ -133,9 +133,9 @@
             for (var i = 0; i < ff.length; i++) {
                 var pItem = {};
                 angular.copy(ff[i], pItem);
+                vm.optionsVisible[i] = false;
                 if (pItem.templateOptions.visible == true) {
                     if (pItem.templateOptions.options) {
-
                         var options = _.clone(pItem.templateOptions.options);
 
                         var newOptions = [];
@@ -158,8 +158,20 @@
             console.log(pf.length);
         }
 
-        function toggleOptions(index) {
-            vm.optionsVisible[index] = !vm.optionsVisible[index];
+        function toggleOptions(index, e) {
+
+            var onOff = vm.optionsVisible[index];
+            vm.optionsVisible[index] = !onOff;
+            var target = $(e.target);
+            if (target.is("button")) {
+                target = target.find("i");
+            }
+            console.log(target.is('i'));
+            if (onOff == true) {
+                target.removeClass("fa-angle-double-up").addClass("fa-angle-double-down");
+            } else {
+                target.removeClass("fa-angle-double-down").addClass("fa-angle-double-up");
+            }
         }
 
         function go(state) {

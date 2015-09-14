@@ -1,0 +1,99 @@
+<style type="text/css">
+    .padLeftRight {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .qsConfig label {
+        font-weight: normal !important;
+    }
+
+</style>
+
+<div class="panel panel-primary qsConfig">
+    <div class="panel-heading">Quick Search Config</div>
+
+    <div class="panel-body">
+        <form name="vm.formState.inputsForm" novalidate>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <input type="text" placeholder="Header" class="form-control col-md-6" ng-model="vm.data.header">
+                </div>
+            </div>
+
+            <div ng-repeat="box in vm.data.fields track by $index">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div ng-hide="!box.templateOptions.options" class="input-group">
+                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()" class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="vm.toggleOptions($index, $event)">
+                                    <i class="fa fa-angle-double-down fa-lg"></i>
+                                </button>
+                          </span>
+                        </div>
+                        <div ng-hide="box.templateOptions.options" class="form-group">
+                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()" class="form-control">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <span class="padLeftRight">
+                            <label>
+                                <input type="checkbox" ng-click="vm.setPreview($index)" class="form-control.input-md ">&nbsp;Hide
+                            </label>
+                        </span>
+                        <span class="padLeftRight">
+                            <label>
+                                <input type="checkbox" ng-click="vm.setPreview($index)" class="form-control.input-md ">&nbsp;Required
+                            </label>
+                        </span>
+                        <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                        </a>
+                        <a ng-click="vm.moveRowDown($index)" class="btn btn-default " style="margin-right:15px;">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                    </div>
+
+                    <div class="form-group col-sm-12" ng-hide="!vm.optionsVisible[$index]">
+                        <div class="col-xs-1">
+                            <label>Default</label>
+                            <div ng-repeat="option in box.templateOptions.options">
+                                <span class="padLeftRight">
+                                <label>
+                                    <input type="checkbox" ng-model="option.default" ng-click="vm.updatePreview()" class="form-control.input-md "/>
+                                </label>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="col-xs-5">
+                            <label>Include</label>
+                            <div ng-repeat="option in box.templateOptions.options">
+                                <span class="padLeftRight">
+                                <label>
+                                    <input type="checkbox" ng-model="option.visible" ng-click="vm.updatePreview()"
+                                           class="form-control.input-md "/>
+                                    &nbsp;{{option.name}}
+                                </label>
+                            </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <input type="text" placeholder="Footer" class="form-control" ng-model="vm.data.footer">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <button type="button" class="btn btn-default pull-left">Reset Form</button>
+    </div>
+
+</div>
