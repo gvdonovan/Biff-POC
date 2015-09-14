@@ -64,18 +64,6 @@
                 //vm.formFields = data.fields;
 
                 vm.updatePreview();
-
-                var visible = [];
-                var order = [];
-
-                for (var i = 0; i < vm.data.fields.length; i++) {
-                    visible.push(false);
-                    order[i] = i;
-                    vm.optionsVisible[i] = false;
-                }
-
-                vm.formModel.visible = visible;
-                vm.formModel.order = order;
             });
         }
 
@@ -200,7 +188,7 @@
             vm.isDirty = false;
         }
 
-        function save(){
+        function save() {
             //TODO post vm.data
             vm.formState.inputsForm.$setPristine(true);
             vm.isDirty = false;
