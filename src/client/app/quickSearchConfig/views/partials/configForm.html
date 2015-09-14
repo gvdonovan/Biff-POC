@@ -9,9 +9,8 @@
 <div class="panel panel-primary">
     <div class="panel-heading">Quick Search Config</div>
 
-    <form name="ngform" novalidate>
-        <div class="panel-body">
-
+    <div class="panel-body">
+        <form name="vm.formState.inputsForm" novalidate>
             <div class="row">
                 <div class="form-group col-md-6">
                     <input type="text" placeholder="Header" class="form-control col-md-6" ng-model="vm.data.header">
@@ -21,7 +20,8 @@
             <div ng-repeat="box in vm.data.fields track by $index">
                 <div class="row">
                     <div class="form-group col-sm-6">
-                        <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()" class="form-control">
+                        <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()"
+                               class="form-control">
                     </div>
 
                     <div class="form-group col-sm-6">
@@ -37,7 +37,8 @@
                             </label>
                         </span>
                         <span ng-hide="!box.templateOptions.options">
-                            <button type="button" class="btn btn-default" ng-click="vm.toggleOptions($index)">Options</button>
+                            <button type="button" class="btn btn-default" ng-click="vm.toggleOptions($index)">Options
+                            </button>
                         </span>
                     </div>
 
@@ -45,7 +46,8 @@
                         <div ng-repeat="option in box.templateOptions.options">
                             <span class="padLeftRight">
                                 <label>
-                                    <input type="checkbox" ng-model="option.visible" ng-click="vm.updatePreview()" class="form-control.input-md "/>
+                                    <input type="checkbox" ng-model="option.visible" ng-click="vm.updatePreview()"
+                                           class="form-control.input-md "/>
                                     &nbsp;{{option.name}}
                                 </label>
                             </span>
@@ -59,11 +61,10 @@
                     <input type="text" placeholder="Footer" class="form-control" ng-model="vm.data.footer">
                 </div>
             </div>
-
-        </div>
-        <div class="panel-footer clearfix">
-            <button type="button" class="btn btn-default pull-left">Reset Form</button>
-        </div>
-    </form>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <button type="button" class="btn btn-default pull-left">Reset Form</button>
+    </div>
 
 </div>

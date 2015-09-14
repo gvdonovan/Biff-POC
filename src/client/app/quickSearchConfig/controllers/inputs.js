@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('InputsController', InputsController);
 
-    InputsController.$inject = ['logger', '$stateParams', '$state', 'quickSearchConfigService'];
+    InputsController.$inject = ['logger', '$scope', '$stateParams', '$state', 'quickSearchConfigService'];
     /* @ngInject */
-    function InputsController(logger, $stateParams, $state, quickSearchConfigService) {
+    function InputsController(logger, $scope, $stateParams, $state, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -16,13 +16,18 @@
         vm.next = next;
         vm.previous = previous;
         vm.state = '';
+        vm.cancel = cancel;
+        vm.save = save;
 
         vm.title = 'Inputs';
         vm.header = "";
         vm.footer = "";
         vm.isLoading = false;
+        vm.isDirty = false;
+        vm.formState = {
+            inputsForm: {}
+        };
         vm.formModel = {};
-        //vm.formFields = [];
         vm.previewModel = {};
         vm.previewFields = [];
         vm.optionsVisible = [];
@@ -35,6 +40,14 @@
 
         activate();
 
+        $scope.$watch('vm.formState.inputsForm.$dirty', function (newVal, oldVal) {
+            if (!_.isUndefined(newVal)) {
+                if (newVal) {
+                    vm.isDirty = true;
+                }
+            }
+        });
+
         function activate() {
             logger.info('Activated Inputs View');
 
@@ -42,6 +55,10 @@
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
 
+            initialize();
+        }
+
+        function initialize() {
             quickSearchConfigService.getInputs().then(function (data) {
                 vm.data = data;
                 //vm.formFields = data.fields;
@@ -59,17 +76,14 @@
 
                 vm.formModel.visible = visible;
                 vm.formModel.order = order;
-
-
             });
-
-
         }
 
         function setPreview(index) {
             vm.data.fields[index].templateOptions.visible = !vm.data.fields[index].templateOptions.visible;
             console.log("Index: " + index + ", visible:" + vm.data.fields[index].templateOptions.visible);
             vm.updatePreview();
+            vm.isDirty = true;
         }
 
         function moveRowUp(index) {
@@ -95,6 +109,7 @@
                 ff[i].templateOptions.order = i;
             }
             vm.updatePreview();
+            vm.isDirty = true;
         }
 
         function moveRowDown(index) {
@@ -120,6 +135,7 @@
                 ff[i].templateOptions.order = i;
             }
             vm.updatePreview();
+            vm.isDirty = true;
         }
 
         function updatePreview() {
@@ -176,6 +192,18 @@
 
         function previous() {
             $state.go('quickSearchConfig');
+        }
+
+        function cancel() {
+            initialize();
+            vm.formState.inputsForm.$setPristine(true);
+            vm.isDirty = false;
+        }
+
+        function save(){
+            //TODO post vm.data
+            vm.formState.inputsForm.$setPristine(true);
+            vm.isDirty = false;
         }
     }
 })();
