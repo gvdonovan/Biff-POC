@@ -63,7 +63,7 @@
                             <div ng-repeat="option in box.templateOptions.options">
                                 <span class="padLeftRight">
                                 <label>
-                                    <input type="checkbox" ng-model="option.default" ng-click="vm.updatePreview()" class="form-control.input-md "/>
+                                    <input type="checkbox" ng-click="vm.updateOptionDefault($parent.$index, $index, $event)" class="form-control.input-md "/>
                                 </label>
                             </span>
                             </div>

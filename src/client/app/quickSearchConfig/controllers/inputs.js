@@ -37,6 +37,7 @@
         vm.moveRowDown = moveRowDown;
         vm.toggleOptions = toggleOptions;
         vm.updatePreview = updatePreview;
+        vm.updateOptionDefault = updateOptionDefault;
 
         activate();
 
@@ -172,6 +173,14 @@
             } else {
                 target.removeClass("fa-angle-double-down").addClass("fa-angle-double-up");
             }
+        }
+
+        function updateOptionDefault(parentIndex, index, e) {
+            var ff = vm.data.fields[parentIndex];
+            ff.templateOptions.defaultValue = ff.templateOptions.options[index].value;
+            $(e.target).closest("div").parent().find("input")
+                .not(e.target).attr("checked", false);
+            console.log(parentIndex + ", " + index + ", " + ff.templateOptions.defaultValue);
         }
 
         function go(state) {
