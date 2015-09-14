@@ -9,10 +9,10 @@
             'blocks.logger',
             'blocks.router',
             'blocks.forms',
+            'blocks.modal',
             'ui.router',
-            'ui.bootstrap',
             'duScroll',
-            'frapontillo.bootstrap-switch'
+            'toggle-switch'
             //, 'ngplus'
         ]);
 })();
