@@ -11,10 +11,22 @@
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
+
         vm.state = '';
         vm.go = go;
         vm.next = next;
         vm.previous = previous;
+
+        vm.pricingFilter = {
+            filterType: 'price',
+            prices: [1, 2, 3],
+            belowPar: 2,
+            abovePar: 2
+        };
+
+        vm.addPrice = addPrice;
+        vm.removePrice = removePrice;
+
         vm.filterText = '';
         vm.list1 = buildList();
         vm.list2 = [];
@@ -67,6 +79,16 @@
             }
             return arr;
         }
+
+        function addPrice(){
+            if(vm.pricingFilter.prices.length < 10) {
+                vm.pricingFilter.prices.push(0);
+            }
+        }
+
+        function removePrice(index){
+            vm.pricingFilter.prices.splice(index, 1);
+        };
 
         //    [
         //    {
