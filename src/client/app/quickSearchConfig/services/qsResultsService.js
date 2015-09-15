@@ -206,66 +206,18 @@
             var data = {
                 fields: [
                     {
-                        key: 'propertyType',
-                        type: 'select',
+                        key: 'rate',
+                        type: 'input',
                         templateOptions: {
                             label: 'Rate',
-                            options: [
-                                {
-                                    label: 'Single Family',
-                                    value: 'single_family',
-                                    visible: true
-                                },
-                                {
-                                    label: 'PUD',
-                                    value: 'pud',
-                                    visible: true
-                                },
-                                {
-                                    label: 'Multi-Family',
-                                    value: 'multi_family',
-                                    visible: true
-                                },
-                                {
-                                    label: 'Manufactured / Single Wide',
-                                    value: 'manufactured_single_wide',
-                                    visible: true
-                                },
-                                {
-                                    label: 'Manufactured / Double Wide',
-                                    value: 'manufactured_double_wide',
-                                    visible: true
-                                },
-                                {
-                                    label: 'Timeshare',
-                                    value: 'timeshare',
-                                    visible: true
-                                },
-                                {
-                                    label: 'Condotel',
-                                    value: 'condotel',
-                                    visible: true
-                                },
-                                {
-                                    label: 'Non-warrantable Condo',
-                                    value: 'non_warrantable_condo',
-                                    visible: true
-                                },
-                                {
-                                    label: 'Modular',
-                                    value: 'modular',
-                                    visible: true
-                                },
-                            ],
-                            valueProp: 'value',
-                            labelProp: 'label',
+                            type: 'text',
                             required: false,
-                            order: 1,
+                            order: 2,
                             visible: true
                         }
                     },
                     {
-                        key: 'loanPurpose',
+                        key: 'discPoints',
                         type: 'input',
                         templateOptions: {
                             label: 'Discount Points',
@@ -276,7 +228,7 @@
                         }
                     },
                     {
-                        key: 'purchasePrice',
+                        key: 'apr',
                         type: 'input',
                         templateOptions: {
                             label: 'APR',
@@ -291,7 +243,7 @@
                         }
                     },
                     {
-                        key: 'downPayment',
+                        key: 'months',
                         type: 'input',
                         templateOptions: {
                             label: 'Months',
@@ -306,7 +258,7 @@
                         }
                     },
                     {
-                        key: 'zip',
+                        key: 'payment',
                         type: 'input',
                         templateOptions: {
                             label: 'Payment',
@@ -317,7 +269,7 @@
                         }
                     },
                     {
-                        key: 'creditScore',
+                        key: 'closingCost',
                         type: 'input',
                         templateOptions: {
                             label: 'Closing Costs',
@@ -328,7 +280,7 @@
                         }
                     },
                     {
-                        key: 'creditScore',
+                        key: 'rebate',
                         type: 'input',
                         templateOptions: {
                             label: 'Rebate',

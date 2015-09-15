@@ -5,19 +5,16 @@
             <table class="table table-bordered table-hover table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th ng-repeat="field in vm.formFields" ng-if="!field.visible">{{field.templateOptions.label}}</th>
+                        <label>{{vm.searchResults[0].title}}</label>
+                    </tr>
+                    <tr>
+                        <th ng-repeat="field in vm.formFields" ng-hide="field.visible">{{field.templateOptions.label}}</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr ng-repeat="item in vm.searchResults[0].items">
-                        <td ng-hide="vm.formFields[0].visible">{{item.rate}}</td>
-                        <td ng-hide="vm.formFields[1].visible">{{item.discPoints}}</td>
-                        <td ng-hide="vm.formFields[2].visible">{{item.apr}}</td>
-                        <td ng-hide="vm.formFields[3].visible">{{item.months}}</td>
-                        <td ng-hide="vm.formFields[4].visible">{{item.payment}}</td>
-                        <td ng-hide="vm.formFields[5].visible">{{item.closingCost}}</td>
-                        <td ng-hide="vm.formFields[6].visible">{{item.rebate}}</td>
+                        <td ng-repeat="field in vm.formFields track by $index" ng-hide="field.visible">{{item[field.key]}}</td>
                     </tr>
                 </tbody>
 
