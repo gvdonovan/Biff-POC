@@ -106,7 +106,7 @@ describe('Testing DefaultController', function () {
         controller.sortItem(0, 1, list);
         expect(list[1].id).to.equal(1);
     });
-    
+
     describe('filterCategory method', function(){
         it('should return true if category name or sub-item contains search text', function () {
             controller.filterText = 'category';

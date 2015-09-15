@@ -16,23 +16,21 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th></th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="form in vm.forms">
-                    <td>{{form.id}}</td>
-                    <td>{{form.name}}</td>
-                    <td>
+                <tr ng-repeat="form in vm.forms track by $index">
+                    <td class="table-text-middle">{{form.id}}</td>
+                    <td class="table-text-middle">{{form.name}}</td>
+                    <td class="table-text-middle">
+                        <toggle-switch ng-model="form.isActive" on-label="Active" off-label="Inactive" on-change="vm.toggle($index)"></toggle-switch>
+                        &nbsp;
                         <div class="btn-group">
                             <button class="btn btn-default" ng-click="vm.edit(form.id)">Edit</button>
                         </div>
-                        &nbsp;
-                        <input ng-model="form.isActive" type="checkbox" bs-switch switch-on-text="Active"
-                               switch-off-text="Inactive"/>
-                    </td>
-                    <td>
-                        <pre>{{form}}</pre>
+                        <div class="btn-group">
+                            <button class="btn btn-default" ng-click="vm.clone(form.id)">Clone</button>
+                        </div>
                     </td>
                 </tr>
                 </tbody>

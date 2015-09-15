@@ -51,7 +51,7 @@ describe('Testing InputsController', function () {
     it('should initially set title to Inputs', function () {
         expect(controller.title).to.equal('Inputs');
     });
-		
+    
 		it('should initially set header to Empty String', function () {
         expect(controller.header).to.equal('');
     });
@@ -75,7 +75,7 @@ describe('Testing InputsController', function () {
     it('should initially set formModel to an empty object', function () {
         expect(controller.formModel).to.be.an('object');
     });
-    
+
     xit('should initially set formFields to an array', function () {
         expect(controller.formFields).to.be.an('array');
     });
@@ -104,7 +104,7 @@ describe('Testing InputsController', function () {
         expect($state.current.name).to.equal('quickSearchConfigDefaults');
 
     });
-    
+
     xit('should not change state when go function is called and editMode is false', function () {
         var spy = sinon.spy($state, 'go');
         controller.editMode = false;

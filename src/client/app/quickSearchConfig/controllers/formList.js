@@ -10,30 +10,15 @@
         ])
         .controller('FormListController', FormListController);
 
-    FormListController.$inject = ['$state', 'quickSearchConfigService'];
+    FormListController.$inject = ['$state', 'modalService', 'quickSearchConfigService'];
     /* @ngInject */
-    function FormListController($state, quickSearchConfigService) {
+    function FormListController($state, modalService, quickSearchConfigService) {
         var vm = this;
         vm.add = add;
+        vm.clone = clone;
         vm.edit = edit;
         vm.forms = [];
-        //    [
-        //    {
-        //        id: 1,
-        //        name: 'form1',
-        //        active: true
-        //    },
-        //    {
-        //        id: 2,
-        //        name: 'form2',
-        //        active: false
-        //    },
-        //    {
-        //        id: 3,
-        //        name: 'form3',
-        //        active: false
-        //    }
-        //];
+        vm.toggle = toggle;
 
         activate();
 
@@ -52,9 +37,31 @@
             $state.go('quickSearchConfigInputs', {formId: 1});
         }
 
+        function clone(id){
+            //TODO call clone
+        }
+
         function edit(id) {
             //Request then next page
             $state.go('quickSearchConfigInputs', {editMode: true, formId: id});
+        }
+
+        function toggle(index) {
+            var form = vm.forms[index];
+
+            var m = form.isActive ? 'Activate ' : 'Deactivate ';
+
+            var template = 'app/quickSearchConfig/views/dialogs/confirmFormActivate.html';
+            var controller = 'confirmFormActivateController';
+            var title = 'Confirm';
+            var message = 'Do you wish to ' + m + form.name + '?';
+
+            modalService.openConfirmModal(template, controller, null, title, message, null)
+                .then(function (isConfirmed) {
+                    if (!isConfirmed) {
+                        vm.forms[index].isActive = !form.isActive;
+                    }
+                });
         }
 
     }
