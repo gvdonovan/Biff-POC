@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('DefaultsController', DefaultsController);
 
-    DefaultsController.$inject = ['logger', '$stateParams', '$state'];
+    DefaultsController.$inject = ['$scope', '$stateParams', '$state', 'quickSearchConfigService'];
     /* @ngInject */
-    function DefaultsController(logger, $stateParams, $state) {
+    function DefaultsController($scope, $stateParams, $state, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -16,70 +16,39 @@
         vm.go = go;
         vm.next = next;
         vm.previous = previous;
+        vm.save = save;
+        vm.cancel = cancel;
+        vm.isLoading = false;
+        vm.isDirty = false;
+        vm.formState = {
+            defaultsForm: {}
+        };
 
         vm.model = {};
 
-        vm.fields = [
-            {
-                key: 'searchCriteria',
-                type: 'nested',
-                templateOptions: {
-                    label: 'First Lien Search Criteria',
-                    open: true
-                },
-                data: {
-                    fields: [
-                        {
-                            className: "col-xs-3",
-                            key: 'interest',
-                            type: 'select',
-                            templateOptions: {
-                                type: 'select',
-                                label: 'Interest Only',
-                                options:[
-                                    {
-                                        label: 'Yes',
-                                        value: 1
-                                    },
-                                    {
-                                        label: 'No',
-                                        value: 0
-                                    }
-
-                                ]
-                            }
-                        },
-                        {
-                            className: "col-xs-3",
-                            key: 'buydown',
-                            type: 'select',
-                            templateOptions: {
-                                type: 'select',
-                                label: 'Buydown',
-                                options:[
-                                    {
-                                        label: 'None',
-                                        value: 0
-                                    },
-                                    {
-                                        label: '20 Percent',
-                                        value: 1
-                                    }
-
-                                ]
-                            }
-                        }
-                    ]
-                }
-            }
-        ];
+        vm.fields = [];
 
         activate();
+
+        $scope.$watch('vm.formState.defaultsForm.$dirty', function (newVal, oldVal) {
+            if (!_.isUndefined(newVal)) {
+                if (newVal) {
+                    vm.isDirty = true;
+                }
+            }
+        });
 
         function activate() {
             vm.editMode = $stateParams.editMode;
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
+            initialize();
+        }
+
+        function initialize(){
+            quickSearchConfigService.getDefaults().then(function(data){
+               vm.fields = data.fields;
+            });
         }
 
         function go(state) {
@@ -94,6 +63,18 @@
 
         function previous() {
             $state.go('quickSearchConfigInputs', {editMode: vm.editMode, formId: vm.formId});
+        }
+
+        function cancel() {
+            initialize();
+            vm.formState.defaultsForm.$setPristine(true);
+            vm.isDirty = false;
+        }
+
+        function save() {
+            //TODO post vm.data
+            vm.formState.defaultsForm.$setPristine(true);
+            vm.isDirty = false;
         }
     }
 })();
