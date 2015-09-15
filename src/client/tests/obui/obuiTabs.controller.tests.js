@@ -27,11 +27,13 @@ describe('Testing obuiTabsController', function () {
 
     it('invoking vm.alertMe should open an alert window', function () {
         // since there is a setTimeout in alertMe, we need to wait before we make assertion
+        //override window.alert
+        $window.alert = function(){};
         spy = sinon.spy($window, 'alert');
         controller.alertMe();
         // flush the timeout to make the $timeout synchrounous for our test purposes
         $timeout.flush();
-        spy.should.have.been.calledOnce;
+        expect(spy).to.have.been.calledOnce;
 
 
 
