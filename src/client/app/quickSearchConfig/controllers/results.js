@@ -22,7 +22,6 @@
         vm.updatePreview = updatePreview;
         vm.searchResults = {};
 
-
         activate();
 
         function activate() {
