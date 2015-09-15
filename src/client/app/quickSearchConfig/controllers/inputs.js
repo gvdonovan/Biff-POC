@@ -18,7 +18,7 @@
         vm.state = '';
         vm.cancel = cancel;
         vm.save = save;
-
+        vm.resetForm = resetForm;
         vm.title = 'Inputs';
         vm.header = "";
         vm.footer = "";
@@ -217,6 +217,18 @@
 
         function previous() {
             $state.go('quickSearchConfig');
+        }
+
+        function resetForm() {
+            _.each(vm.data.fields, function (item) {
+                item.templateOptions.label = item.templateOptions.defaultLabel;
+                item.templateOptions.order = item.templateOptions.defaultOrder;
+            });
+
+            vm.data.fields = _.sortBy(vm.data.fields, 'templateOptions.order');
+
+            vm.isDirty = true;
+            vm.updatePreview();
         }
 
         function cancel() {

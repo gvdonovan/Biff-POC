@@ -16,6 +16,9 @@
         vm.go = go;
         vm.next = next;
         vm.previous = previous;
+        vm.cancel = cancel;
+        vm.save = save;
+        vm.isDirty = false;
 
         vm.pricingFilter = {
             filterType: 'price',
@@ -84,11 +87,13 @@
             if (vm.pricingFilter.prices.length < 10) {
                 vm.pricingFilter.prices.push({value: 0});
             }
+            vm.isDirty = true;
         }
 
         function removePrice(index) {
             vm.pricingFilter.prices.splice(index, 1);
-        };
+            vm.isDirty = true;
+        }
 
         //    [
         //    {
@@ -165,7 +170,7 @@
                     }
                 });
             });
-
+            vm.isDirty = true;
         }
 
         function selectCategory(category) {
@@ -178,6 +183,7 @@
         function removeCategory(index, category) {
             unPickItems(category);
             vm.list2.splice(index, 1);
+            vm.isDirty = true;
         }
 
         function removeItem(index, category, cIndex) {
@@ -188,12 +194,14 @@
                 vm.list2.splice(cIndex, 1);
                 unPickItems(category);
             }
+            vm.isDirty = true;
         }
 
         function sortCategory(index, increment) {
             var num = index + increment;
             if ((num <= vm.list2.length - 1) && num >= 0) {
                 vm.list2[index] = vm.list2.splice(num, 1, vm.list2[index])[0];
+                vm.isDirty = true;
             }
         }
 
@@ -201,6 +209,7 @@
             var num = index + increment;
             if ((num <= list.length - 1) && num >= 0) {
                 list[index] = list.splice(num, 1, list[index])[0];
+                vm.isDirty = true;
             }
         }
 
@@ -302,6 +311,15 @@
                 editMode: vm.editMode,
                 formId: vm.formId
             });
+        }
+
+        function cancel() {
+            vm.isDirty = false;
+        }
+
+        function save() {
+            //TODO post vm.data
+            vm.isDirty = false;
         }
     }
 })();

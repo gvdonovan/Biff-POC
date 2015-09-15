@@ -11,10 +11,15 @@
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
+
         vm.state = '';
         vm.go = go;
         vm.next = next;
         vm.previous = previous;
+        vm.cancel = cancel;
+        vm.save = save;
+        vm.isDirty = false;
+
         vm.filterText = '';
         vm.list1 = buildList();
         vm.list2 = [];
@@ -30,6 +35,7 @@
         activate();
 
         function activate() {
+            //TODO call initialize and make some http call
             vm.editMode = $stateParams.editMode;
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
@@ -67,39 +73,6 @@
             }
             return arr;
         }
-
-        //    [
-        //    {
-        //        category: 'category 1',
-        //        selected: false,
-        //        sortOrder: 1,
-        //        items: [
-        //            {id: 1, name: 'item 1', selected: false, picked: false, sortOrder: 1},
-        //            {id: 2, name: 'item 2', selected: false, picked: false, sortOrder: 2},
-        //            {id: 3, name: 'item 3', selected: false, picked: false, sortOrder: 3}
-        //        ]
-        //    },
-        //    {
-        //        category: 'category 2',
-        //        selected: false,
-        //        sortOrder: 2,
-        //        items: [
-        //            {id: 4, name: 'item 1', selected: false, picked: false, sortOrder: 1},
-        //            {id: 5, name: 'item 2', selected: false, picked: false, sortOrder: 2},
-        //            {id: 6, name: 'item 3', selected: false, picked: false, sortOrder: 3}
-        //        ]
-        //    },
-        //    {
-        //        category: 'category 3',
-        //        selected: false,
-        //        sortOrder: 3,
-        //        items: [
-        //            {id: 7, name: 'item 1', selected: false, picked: false, sortOrder: 1},
-        //            {id: 8, name: 'biff 2', selected: false, picked: false, sortOrder: 2},
-        //            {id: 9, name: 'item 3', selected: false, picked: false, sortOrder: 3}
-        //        ]
-        //    }
-        //];
 
         function moveRight() {
             //var currentCategory;
@@ -143,7 +116,7 @@
                     }
                 });
             });
-
+            vm.isDirty = true;
         }
 
         function selectCategory(category) {
@@ -156,6 +129,7 @@
         function removeCategory(index, category) {
             unPickItems(category);
             vm.list2.splice(index, 1);
+            vm.isDirty = true;
         }
 
         function removeItem(index, category, cIndex) {
@@ -166,6 +140,7 @@
                 vm.list2.splice(cIndex, 1);
                 unPickItems(category);
             }
+            vm.isDirty = true;
         }
 
         function sortCategory(index, increment) {
@@ -173,6 +148,7 @@
             if ((num <= vm.list2.length - 1) && num >= 0) {
                 vm.list2[index] = vm.list2.splice(num, 1, vm.list2[index])[0];
             }
+            vm.isDirty = true;
         }
 
         function sortItem(index, increment, list) {
@@ -180,6 +156,7 @@
             if ((num <= list.length - 1) && num >= 0) {
                 list[index] = list.splice(num, 1, list[index])[0];
             }
+            vm.isDirty = true;
         }
 
         function filterCategory(category) {
@@ -280,6 +257,15 @@
                 editMode: vm.editMode,
                 formId: vm.formId
             });
+        }
+
+        function cancel() {
+            vm.isDirty = false;
+        }
+
+        function save() {
+            //TODO post vm.data
+            vm.isDirty = false;
         }
     }
 })();
