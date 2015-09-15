@@ -225,7 +225,9 @@
                 item.templateOptions.order = item.templateOptions.defaultOrder;
             });
 
-            vm.data.fields = _.sortBy(vm.data.fields, 'templateOptions.order');
+            vm.data.fields = vm.data.fields.sort(function(obj1, obj2){
+                return obj1.templateOptions.order - obj2.templateOptions.order;
+            });
 
             vm.isDirty = true;
             vm.updatePreview();
