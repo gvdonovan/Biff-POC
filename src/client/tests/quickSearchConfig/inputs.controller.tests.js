@@ -9,10 +9,11 @@ describe('Testing InputsController', function () {
     //mock the controller for the same reason and include $rootScope and $controller
     beforeEach(function () {
         // use bard.js library to make dep. injection easy for unit tests
-        bard.inject(function ($controller, $q, $rootScope, $state, $location, $templateCache, $stateParams) {
+        bard.inject(function ($controller, $q, $rootScope, $state, $location, $templateCache, $stateParams, $httpBackend) {
 
             //declare the controller since we are using controller as we do not need scope
-            controller = $controller('InputsController');
+            var scope = $rootScope.$new();
+            controller = $controller('InputsController', {$scope: scope});
             deferred = $q;
             rootScope = $rootScope;
 
@@ -24,6 +25,8 @@ describe('Testing InputsController', function () {
         $templateCache.put('app/quickSearchConfig/views/inputs.html', '<div>blank or whatever</div>');
         $templateCache.put('app/quickSearchConfig/views/formList.html', '<div>blank or whatever</div>');
         $templateCache.put('app/quickSearchConfig/views/defaults.html', '<div>blank or whatever</div>');
+        $httpBackend.whenGET('//localhost:63312/api/config/search/Inputs/1/2').respond(200);
+        $httpBackend.whenGET('app/core/404.html').respond(200);
 
     });
 
@@ -97,7 +100,7 @@ describe('Testing InputsController', function () {
         expect(controller.go).to.be.defined;
     });
 
-    xit('should change state to quickSearchConfigs when go function is called and editMode is true', function () {
+    it('should change state to quickSearchConfigs when go function is called and editMode is true', function () {
         controller.editMode = true;
         controller.go('quickSearchConfigDefaults');
         $rootScope.$apply();
@@ -105,7 +108,7 @@ describe('Testing InputsController', function () {
 
     });
 
-    xit('should not change state when go function is called and editMode is false', function () {
+    it('should not change state when go function is called and editMode is false', function () {
         var spy = sinon.spy($state, 'go');
         controller.editMode = false;
         controller.go('quickSearchConfigDefaults');

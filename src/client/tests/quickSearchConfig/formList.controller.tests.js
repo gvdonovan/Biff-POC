@@ -9,7 +9,7 @@ describe('Testing FormListController', function () {
     //mock the controller for the same reason and include $rootScope and $controller
     beforeEach(function(){
         // use bard.js library to make dep. injection easy for unit tests
-        bard.inject(function ($controller, $q, $rootScope, $state, $location, $templateCache) {
+        bard.inject(function ($controller, $q, $rootScope, $state, $location, $templateCache, $httpBackend) {
 
             //declare the controller since we are using controller as we do not need scope
             controller = $controller('FormListController');
@@ -23,6 +23,7 @@ describe('Testing FormListController', function () {
         // preload the templates so that ui-router will work when it looks for template from state
         $templateCache.put('app/quickSearchConfig/views/inputs.html','<div>blank or whatever</div>');
         $templateCache.put('app/quickSearchConfig/views/formList.html','<div>blank or whatever</div>');
+        $httpBackend.whenGET('//localhost:63312/api/config/search/Forms/1').respond(200);
 
     });
 
