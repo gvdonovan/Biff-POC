@@ -12,7 +12,8 @@
             'blocks.modal',
             'ui.router',
             'duScroll',
-            'toggle-switch'
+            'toggle-switch',
+            'ui-rangeSlider'
             //, 'ngplus'
         ]);
 })();

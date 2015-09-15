@@ -27,6 +27,7 @@
     "angular-formly-templates-bootstrap": "~6.0.0",
     "angular-local-storage": "~0.2.2",
     "angular-mocks": "~1.4.3",
+    "angular-rangeslider": "~0.0.14",
     "angular-route": "~1.4.3",
     "angular-sanitize": "~1.4.3",
     "angular-scroll": "~0.7.1",

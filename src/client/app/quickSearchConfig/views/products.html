@@ -18,17 +18,29 @@
                     <label class="radio-inline"><input type="radio" name="pricingRadios" ng-value="'par'"
                                                        ng-model="vm.pricingFilter.filterType"/> Range From Par</label>
                 </div>
-                <div class="col-xs-12 row">
-                    <div class="col-xs-2 form-group" ng-repeat="price in vm.pricingFilter.prices track by $index">
-                        <div class="input-group">
-                            <input type="number" class="form-control" ng-model="price">
-                            <span class="input-group-addon clickable" ng-click="vm.removePrice($index)"><i class="glyphicon glyphicon-remove"></i></span>
+                <div ng-show="vm.pricingFilter.filterType === 'price'">
+                    <div class="col-xs-12 row">
+                        <div class="col-xs-2 form-group" ng-repeat="price in vm.pricingFilter.prices track by $index">
+                            <div class="input-group">
+                                <input type="number" class="form-control" ng-model="price.value">
+                                <span class="input-group-addon clickable" ng-click="vm.removePrice($index)"><i
+                                        class="glyphicon glyphicon-remove"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 row">
+                        <div class="btn-group col-xs-2">
+                            <button ng-click="vm.addPrice()" class="btn btn-default"
+                                    ng-disabled="vm.pricingFilter.prices.length >= 10">Add
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 row">
-                    <div class="btn-group col-xs-2">
-                        <button ng-click="vm.addPrice()" class="pull-right btn btn-default" ng-disabled="vm.pricingFilter.prices.length >= 10">Add</button>
+                <div ng-show="vm.pricingFilter.filterType === 'par'">
+                    <div class="col-xs-4 form-group">
+                        <div range-slider min="-5" max="5" model-min="vm.pricingFilter.belowPar"
+                             model-max="vm.pricingFilter.abovePar" step="1" data-show-values="true"
+                             attach-handle-values="true" prevent-equal-min-max="true"></div>
                     </div>
                 </div>
             </div>
@@ -70,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-2 center-block" style="margin-top: 20em;">
+                    <div class="col-xs-2 center-block" style="margin-top: 10em;">
                         <button class="btn btn-primary col-xs-6 col-xs-offset-3" ng-click="vm.moveRight()">
                     <span>
                     <i class="glyphicon glyphicon-chevron-right"></i>
