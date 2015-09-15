@@ -5,6 +5,9 @@
             <table class="table table-bordered table-hover table-condensed table-striped">
                 <thead>
                     <tr>
+                        <label>{{vm.searchResults[0].title}}</label>
+                    </tr>
+                    <tr>
                         <th ng-repeat="field in vm.formFields" ng-hide="field.visible">{{field.templateOptions.label}}</th>
                     </tr>
                 </thead>
