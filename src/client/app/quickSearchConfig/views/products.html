@@ -12,11 +12,11 @@
             </div>
             <div class="panel-body">
                 <div class="col-xs-12 form-group">
-                    <label class="radio-inline"><input type="radio" name="pricingRadios" ng-value="'price'"
-                                                       ng-model="vm.pricingFilter.filterType"/> Price</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="pricingRadios" ng-value="'price'" ng-model="vm.pricingFilter.filterType" /> Price</label>
                     &nbsp;
-                    <label class="radio-inline"><input type="radio" name="pricingRadios" ng-value="'par'"
-                                                       ng-model="vm.pricingFilter.filterType"/> Range From Par</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="pricingRadios" ng-value="'par'" ng-model="vm.pricingFilter.filterType" /> Range From Par</label>
                 </div>
                 <div ng-show="vm.pricingFilter.filterType === 'price'">
                     <div class="col-xs-12 row">
@@ -30,17 +30,14 @@
                     </div>
                     <div class="col-xs-12 row">
                         <div class="btn-group col-xs-2">
-                            <button ng-click="vm.addPrice()" class="btn btn-default"
-                                    ng-disabled="vm.pricingFilter.prices.length >= 10">Add
+                            <button ng-click="vm.addPrice()" class="btn btn-default" ng-disabled="vm.pricingFilter.prices.length >= 10">Add
                             </button>
                         </div>
                     </div>
                 </div>
                 <div ng-show="vm.pricingFilter.filterType === 'par'">
                     <div class="col-xs-4 form-group">
-                        <div range-slider min="-5" max="5" model-min="vm.pricingFilter.belowPar"
-                             model-max="vm.pricingFilter.abovePar" step="1" data-show-values="true"
-                             attach-handle-values="true" prevent-equal-min-max="true"></div>
+                        <div range-slider min="-5" max="5" model-min="vm.pricingFilter.belowPar" model-max="vm.pricingFilter.abovePar" step="1" data-show-values="true" attach-handle-values="true" prevent-equal-min-max="true"></div>
                     </div>
                 </div>
             </div>
@@ -55,7 +52,7 @@
             <div class="panel-body">
                 <div class="col-xs-12 form-group">
                     <div class="input-group col-xs-3">
-                        <input class="form-control" type="text" placeholder="filter" ng-model="vm.filterText"/>
+                        <input class="form-control" type="text" placeholder="filter" ng-model="vm.filterText" />
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                     </div>
                 </div>
@@ -70,10 +67,7 @@
                                         <div class="dualListBox list-group">
                                             <h4 class="list-group-item clickable" ng-click="vm.selectCategory(cat)">
                                                 {{cat.category}}</h4>
-                                            <a type="none" ng-repeat="item in cat.items | filter: vm.filterItems(cat)"
-                                               ng-class="item.selected == true ? 'list-group-item-info' : ''"
-                                               ng-click="item.selected = !item.selected"
-                                               class="filterItem clickable list-group-item">
+                                            <a type="none" ng-repeat="item in cat.items | filter: vm.filterItems(cat)" ng-class="item.selected == true ? 'list-group-item-info' : ''" ng-click="item.selected = !item.selected" class="filterItem clickable list-group-item">
                                                 <i ng-show="item.picked" class="fa fa-check"></i> {{item.name}}
                                             </a>
                                         </div>
@@ -84,7 +78,7 @@
                     </div>
                     <div class="col-xs-2 center-block" style="margin-top: 10em;">
                         <button class="btn btn-primary col-xs-6 col-xs-offset-3" ng-click="vm.moveRight()">
-                    <span>
+                            <span>
                     <i class="glyphicon glyphicon-chevron-right"></i>
                 </span>
                         </button>
@@ -107,10 +101,9 @@
                                     </span>
                                             </h4>
 
-                                            <div class="filterItem list-group-item" type="none"
-                                                 ng-repeat="item in cat.items">
+                                            <div class="filterItem list-group-item" type="none" ng-repeat="item in cat.items">
                                                 {{item.name}}
-                                        <span class="pull-right">
+                                                <span class="pull-right">
                                         <i class="fa fa-remove clickable"
                                            ng-click="vm.removeItem($index, cat, $parent.$index)"></i>
                                         <i class="fa fa-arrow-up clickable" ng-show="$index > 0"
