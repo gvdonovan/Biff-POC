@@ -21,11 +21,7 @@
             filterType: 'price',
             prices: [{value: 1}, {value: 2}, {value: 3}],
             belowPar: -2,
-            abovePar: 2,
-            floor: -5,
-            ceiling: 5,
-            step: 1,
-            precision: 1
+            abovePar: 2
         };
 
         vm.addPrice = addPrice;
@@ -84,8 +80,8 @@
             return arr;
         }
 
-        function addPrice(){
-            if(vm.pricingFilter.prices.length < 10) {
+        function addPrice() {
+            if (vm.pricingFilter.prices.length < 10) {
                 vm.pricingFilter.prices.push({value: 0});
             }
         }
