@@ -18,12 +18,20 @@
         vm.previous = previous;
         vm.isLastStep = true;
 
+        vm.checkEdit = checkEdit;
+
         activate();
 
         function activate() {
             vm.editMode = $stateParams.editMode;
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
+        }
+
+        function checkEdit(state) {
+            if (vm.editMode == true) {
+                vm.go(state);
+            }
         }
 
         function go(state) {

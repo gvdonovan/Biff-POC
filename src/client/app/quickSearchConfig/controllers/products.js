@@ -80,13 +80,13 @@
             return arr;
         }
 
-        function addPrice(){
-            if(vm.pricingFilter.prices.length < 10) {
+        function addPrice() {
+            if (vm.pricingFilter.prices.length < 10) {
                 vm.pricingFilter.prices.push(0);
             }
         }
 
-        function removePrice(index){
+        function removePrice(index) {
             vm.pricingFilter.prices.splice(index, 1);
         };
 
@@ -184,8 +184,7 @@
             if (category.items.length > 1) {
                 var x = category.items.splice(index, 1);
                 unPickItem(x[0], category);
-            }
-            else {
+            } else {
                 vm.list2.splice(cIndex, 1);
                 unPickItems(category);
             }
@@ -255,7 +254,9 @@
         }
 
         function unPickItems(category) {
-            var srcCat = _.findWhere(vm.list1, {category: category.category});
+            var srcCat = _.findWhere(vm.list1, {
+                category: category.category
+            });
 
             _.each(category.items, function (item) {
                 _.each(srcCat.items, function (srcItem) {
@@ -268,7 +269,9 @@
         }
 
         function unPickItem(item, category) {
-            var srcCat = _.findWhere(vm.list1, {category: category.category});
+            var srcCat = _.findWhere(vm.list1, {
+                category: category.category
+            });
 
             _.each(srcCat.items, function (srcItem) {
                 if (item.id === srcItem.id) {
@@ -280,16 +283,25 @@
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+                $state.go(state, {
+                    editMode: vm.editMode,
+                    formId: vm.formId
+                });
             }
         }
 
         function next() {
-            $state.go('quickSearchConfigLoanOfficers', {editMode: vm.editMode, formId: vm.formId});
+            $state.go('quickSearchConfigLoanOfficers', {
+                editMode: vm.editMode,
+                formId: vm.formId
+            });
         }
 
         function previous() {
-            $state.go('quickSearchConfigDefaults', {editMode: vm.editMode, formId: vm.formId});
+            $state.go('quickSearchConfigDefaults', {
+                editMode: vm.editMode,
+                formId: vm.formId
+            });
         }
     }
 })();
