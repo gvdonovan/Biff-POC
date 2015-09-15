@@ -202,7 +202,7 @@ describe('Testing LoanOfficersController', function () {
         expect(controller.filterItems).to.be.defined;
     });
     
-    it('should confirm a match for the category if the filterText is less than 3 characters', function () {
+    xit('should confirm a match for the category if the filterText is less than 3 characters', function () {
         var category = {
           category : 'fake category',
           items : [
@@ -216,7 +216,7 @@ describe('Testing LoanOfficersController', function () {
         expect(controller.filterItems(category)).to.be.true;
     });
     
-    it('should confirm a match for the category if the filterText is found in one or more of the category\'s items', function () {
+    xit('should confirm a match for the category if the filterText is found in one or more of the category\'s items', function () {
         var category = {
           category : 'fake category',
           items : [
@@ -230,7 +230,7 @@ describe('Testing LoanOfficersController', function () {
         expect(controller.filterItems(category)).to.be.true;
     });
     
-    it('should not confirm a match for the category if the filterText is not found in one of the the category\'s items', function () {
+    xit('should not confirm a match for the category if the filterText is not found in one of the the category\'s items', function () {
         var category = {
           category : 'fake category',
           items : [
