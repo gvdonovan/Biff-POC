@@ -185,18 +185,27 @@
             }
         }
 
-        function updateOptionDefault(parentIndex, index, e) {
-            var ff = vm.data.fields[parentIndex];
-            var checked = $(e.target).prop("checked");
-            console.log($(e.target).prop("checked"));
-            if (checked == true) {
-                ff.templateOptions.defaultValue = ff.templateOptions.options[index].value;
-            } else {
-                ff.templateOptions.defaultValue = '';
-            }
-            $(e.target).closest("div").parent().find("input")
-                .not(e.target).attr("checked", false);
-            console.log(parentIndex + ", " + index + ", " + ff.templateOptions.defaultValue);
+        function updateOptionDefault(field, option) {
+            _.each(field.templateOptions.options, function(item){
+                if(item == option){
+                    field.defaultValue = option.value;
+                    vm.previewModel[field.key] = option.value;
+                }else{
+                    item.selected = false;
+                }
+            });
+            vm.updatePreview();
+            //var ff = vm.data.fields[parentIndex];
+            //var checked = $(e.target).prop("checked");
+            //console.log($(e.target).prop("checked"));
+            //if (checked == true) {
+            //    ff.templateOptions.defaultValue = ff.templateOptions.options[index].value;
+            //} else {
+            //    ff.templateOptions.defaultValue = '';
+            //}
+            //$(e.target).closest("div").parent().find("input")
+            //    .not(e.target).attr("checked", false);
+            //console.log(parentIndex + ", " + index + ", " + ff.templateOptions.defaultValue);
         }
 
         function go(state) {
