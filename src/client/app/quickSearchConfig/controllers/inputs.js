@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('InputsController', InputsController);
 
-    InputsController.$inject = ['logger', '$scope', '$stateParams', '$state', 'modalService', 'quickSearchConfigService'];
+    InputsController.$inject = ['logger', '$scope', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService'];
     /* @ngInject */
-    function InputsController(logger, $scope, $stateParams, $state, modalService, quickSearchConfigService) {
+    function InputsController(logger, $scope, $stateParams, $state, $rootScope, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -23,7 +23,7 @@
         vm.header = "";
         vm.footer = "";
         vm.isLoading = false;
-        vm.isDirty = false;
+        $rootScope.isDirty = false;
         vm.formState = {
             inputsForm: {}
         };
@@ -45,7 +45,7 @@
         $scope.$watch('vm.formState.inputsForm.$dirty', function (newVal, oldVal) {
             if (!_.isUndefined(newVal)) {
                 if (newVal) {
-                    vm.isDirty = true;
+                    $rootScope.isDirty = true;
                 }
             }
         });
@@ -73,7 +73,7 @@
             vm.data.fields[index].templateOptions.visible = !vm.data.fields[index].templateOptions.visible;
             console.log("Index: " + index + ", visible:" + vm.data.fields[index].templateOptions.visible);
             vm.updatePreview();
-            vm.isDirty = true;
+            $rootScope.isDirty = true;
         }
 
         function moveRowUp(index) {
@@ -100,7 +100,7 @@
             }
             vm.updatePreview();
             closeOptions();
-            vm.isDirty = true;
+            $rootScope.isDirty = true;
         }
 
         function moveRowDown(index) {
@@ -127,7 +127,7 @@
             }
             vm.updatePreview();
             closeOptions();
-            vm.isDirty = true;
+            $rootScope.isDirty = true;
         }
 
         function updatePreview() {
@@ -201,21 +201,7 @@
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                if (vm.isDirty) {
-                    var template = 'app/blocks/modal/templates/confirm.html';
-                    var controller = 'confirmModalController';
-                    var title = 'Confirm';
-                    var message = 'Navigating away from this page will discard your current changes. Do you wish to proceed?';
-
-                    modalService.openConfirmModal(template, controller, null, title, message, null)
-                        .then(function (isConfirmed) {
-                            if (isConfirmed) {
-                                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
-                            }
-                        });
-                } else {
-                    $state.go(state, {editMode: vm.editMode, formId: vm.formId});
-                }
+                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
             }
         }
 
@@ -240,20 +226,20 @@
                 return obj1.templateOptions.order - obj2.templateOptions.order;
             });
 
-            vm.isDirty = true;
+            $rootScope.isDirty = true;
             vm.updatePreview();
         }
 
         function cancel() {
             initialize();
             vm.formState.inputsForm.$setPristine(true);
-            vm.isDirty = false;
+            $rootScope.isDirty = false;
         }
 
         function save() {
             //TODO post vm.data
             vm.formState.inputsForm.$setPristine(true);
-            vm.isDirty = false;
+            $rootScope.isDirty = false;
         }
     }
 })();

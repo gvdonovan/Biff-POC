@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['logger', '$stateParams', '$state', 'modalService'];
+    ProductsController.$inject = ['logger', '$stateParams', '$state', '$rootScope'];
     /* @ngInject */
-    function ProductsController(logger, $stateParams, $state, modalService) {
+    function ProductsController(logger, $stateParams, $state, $rootScope) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -18,7 +18,7 @@
         vm.previous = previous;
         vm.cancel = cancel;
         vm.save = save;
-        vm.isDirty = false;
+        $rootScope.isDirty = false;
 
         vm.pricingFilter = {
             filterType: 'price',
@@ -87,12 +87,12 @@
             if (vm.pricingFilter.prices.length < 10) {
                 vm.pricingFilter.prices.push({value: 0});
             }
-            vm.isDirty = true;
+            $rootScope.isDirty = true;
         }
 
         function removePrice(index) {
             vm.pricingFilter.prices.splice(index, 1);
-            vm.isDirty = true;
+            $rootScope.isDirty = true;
         }
 
         //    [
@@ -170,7 +170,7 @@
                     }
                 });
             });
-            vm.isDirty = true;
+            $rootScope.isDirty = true;
         }
 
         function selectCategory(category) {
@@ -183,7 +183,7 @@
         function removeCategory(index, category) {
             unPickItems(category);
             vm.list2.splice(index, 1);
-            vm.isDirty = true;
+            $rootScope.isDirty = true;
         }
 
         function removeItem(index, category, cIndex) {
@@ -194,14 +194,14 @@
                 vm.list2.splice(cIndex, 1);
                 unPickItems(category);
             }
-            vm.isDirty = true;
+            $rootScope.isDirty = true;
         }
 
         function sortCategory(index, increment) {
             var num = index + increment;
             if ((num <= vm.list2.length - 1) && num >= 0) {
                 vm.list2[index] = vm.list2.splice(num, 1, vm.list2[index])[0];
-                vm.isDirty = true;
+                $rootScope.isDirty = true;
             }
         }
 
@@ -209,7 +209,7 @@
             var num = index + increment;
             if ((num <= list.length - 1) && num >= 0) {
                 list[index] = list.splice(num, 1, list[index])[0];
-                vm.isDirty = true;
+                $rootScope.isDirty = true;
             }
         }
 
@@ -292,21 +292,7 @@
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                if (vm.isDirty) {
-                    var template = 'app/blocks/modal/templates/confirm.html';
-                    var controller = 'confirmModalController';
-                    var title = 'Confirm';
-                    var message = 'Navigating away from this page will discard your current changes. Do you wish to proceed?';
-
-                    modalService.openConfirmModal(template, controller, null, title, message, null)
-                        .then(function (isConfirmed) {
-                            if (isConfirmed) {
-                                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
-                            }
-                        });
-                } else {
-                    $state.go(state, {editMode: vm.editMode, formId: vm.formId});
-                }
+                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
             }
         }
 
@@ -325,12 +311,12 @@
         }
 
         function cancel() {
-            vm.isDirty = false;
+            $rootScope.isDirty = false;
         }
 
         function save() {
             //TODO post vm.data
-            vm.isDirty = false;
+            $rootScope.isDirty = false;
         }
     }
 })();

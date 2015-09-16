@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('QSConfigGeneralController', QSConfigGeneralController);
 
-    QSConfigGeneralController.$inject = ['logger', '$stateParams', '$state', 'modalService'];
+    QSConfigGeneralController.$inject = ['logger', '$stateParams', '$state', '$rootScope'];
     /* @ngInject */
-    function QSConfigGeneralController(logger, $stateParams, $state, modalService) {
+    function QSConfigGeneralController(logger, $stateParams, $state, $rootScope) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -30,21 +30,7 @@
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                if (vm.isDirty) {
-                    var template = 'app/blocks/modal/templates/confirm.html';
-                    var controller = 'confirmModalController';
-                    var title = 'Confirm';
-                    var message = 'Navigating away from this page will discard your current changes. Do you wish to proceed?';
-
-                    modalService.openConfirmModal(template, controller, null, title, message, null)
-                        .then(function (isConfirmed) {
-                            if (isConfirmed) {
-                                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
-                            }
-                        });
-                } else {
-                    $state.go(state, {editMode: vm.editMode, formId: vm.formId});
-                }
+                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
             }
         }
 

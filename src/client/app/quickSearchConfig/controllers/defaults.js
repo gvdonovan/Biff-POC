@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('DefaultsController', DefaultsController);
 
-    DefaultsController.$inject = ['$scope', '$stateParams', '$state', 'modalService', 'quickSearchConfigService'];
+    DefaultsController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'quickSearchConfigService'];
     /* @ngInject */
-    function DefaultsController($scope, $stateParams, $state, modalService, quickSearchConfigService) {
+    function DefaultsController($scope, $rootScope, $stateParams, $state, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -19,7 +19,7 @@
         vm.save = save;
         vm.cancel = cancel;
         vm.isLoading = false;
-        vm.isDirty = false;
+        $rootScope.isDirty = false;
         vm.formState = {
             defaultsForm: {}
         };
@@ -36,7 +36,7 @@
         $scope.$watch('vm.formState.defaultsForm.$dirty', function (newVal, oldVal) {
             if (!_.isUndefined(newVal)) {
                 if (newVal) {
-                    vm.isDirty = true;
+                    $rootScope.isDirty = true;
                 }
             }
         });
@@ -63,21 +63,7 @@
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                if (vm.isDirty) {
-                    var template = 'app/blocks/modal/templates/confirm.html';
-                    var controller = 'confirmModalController';
-                    var title = 'Confirm';
-                    var message = 'Navigating away from this page will discard your current changes. Do you wish to proceed?';
-
-                    modalService.openConfirmModal(template, controller, null, title, message, null)
-                        .then(function (isConfirmed) {
-                            if (isConfirmed) {
-                                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
-                            }
-                        });
-                } else {
-                    $state.go(state, {editMode: vm.editMode, formId: vm.formId});
-                }
+                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
             }
         }
 
@@ -92,13 +78,13 @@
         function cancel() {
             initialize();
             vm.formState.defaultsForm.$setPristine(true);
-            vm.isDirty = false;
+            $rootScope.isDirty = false;
         }
 
         function save() {
             //TODO post vm.data
             vm.formState.defaultsForm.$setPristine(true);
-            vm.isDirty = false;
+            $rootScope.isDirty = false;
         }
     }
 })();
