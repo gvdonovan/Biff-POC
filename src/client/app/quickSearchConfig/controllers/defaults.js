@@ -24,6 +24,9 @@
             defaultsForm: {}
         };
 
+        vm.toggleSections = toggleSections;
+        vm.sectionsOpen = false;
+
         vm.model = {};
 
         vm.fields = [];
@@ -48,6 +51,13 @@
         function initialize(){
             quickSearchConfigService.getDefaults().then(function(data){
                vm.fields = data.fields;
+            });
+        }
+
+        function toggleSections(){
+            vm.sectionsOpen = !vm.sectionsOpen;
+            _.each(vm.fields, function(field){
+                field.templateOptions.open = vm.sectionsOpen;
             });
         }
 
