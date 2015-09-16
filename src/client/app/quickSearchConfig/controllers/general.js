@@ -16,9 +16,8 @@
         vm.go = go;
         vm.next = next;
         vm.previous = previous;
-        vm.isLastStep = true;
-
-        vm.checkEdit = checkEdit;
+        vm.cancel = cancel;
+        vm.save = save;
 
         activate();
 
@@ -46,6 +45,15 @@
                 editMode: vm.editMode,
                 formId: vm.formId
             });
+        }
+
+        function cancel() {
+            $rootScope.isDirty = false;
+        }
+
+        function save() {
+            //TODO post vm.data
+            $rootScope.isDirty = false;
         }
     }
 })();

@@ -13,7 +13,7 @@
                 <div class="col-md-2 form-group">
                     <label>Name *</label>
                     <div class="input-group">
-                        <input ng-model="vm.qsName" type="text" name="qsName" class="form-control">
+                        <input ng-model="vm.qsName" type="text" name="qsName" class="form-control" ng-change="$root.isDirty = true;">
                     </div>
                     <p ng-show="generalForm.qsName.$invalid && !generalForm.qsName.$pristine" class="help-block">Name is required.</p>
                 </div>
@@ -21,7 +21,7 @@
                     <label></label>
                     <div class="input-group">
                         <label>
-                            <input type="checkbox" name="cLayout" ng-model="vm.cLayout" class="form-control.input-md"> Custom Layout
+                            <input type="checkbox" name="cLayout" ng-model="vm.cLayout" class="form-control.input-md" ng-change="$root.isDirty = true;"> Custom Layout
                         </label>
                     </div>
                 </div>
