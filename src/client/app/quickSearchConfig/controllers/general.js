@@ -28,12 +28,6 @@
             vm.state = $state.current.name;
         }
 
-        function checkEdit(state) {
-            if (vm.editMode == true) {
-                vm.go(state);
-            }
-        }
-
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
                 $state.go(state, {
