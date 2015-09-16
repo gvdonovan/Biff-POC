@@ -164,13 +164,13 @@
                                 newItem.selected = false;
                                 item.picked = true;
                                 pickedCategory.items.push(newItem);
+                                $rootScope.isDirty = true;
                                 return null;
                             }
                         });
                     }
                 });
             });
-            $rootScope.isDirty = true;
         }
 
         function selectCategory(category) {
