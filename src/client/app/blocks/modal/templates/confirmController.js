@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('app.quickSearchConfig')
-        .controller('confirmFormActivateController', ConfirmFormActivateController);
+        .module('blocks.modal')
+        .controller('confirmModalController', ConfirmModalController);
 
-    ConfirmFormActivateController.$inject = ['logger', '$modalInstance', 'items'];
+    ConfirmModalController.$inject = ['logger', '$modalInstance', 'items'];
     /* @ngInject */
-    function ConfirmFormActivateController(logger, $modalInstance, items) {
+    function ConfirmModalController(logger, $modalInstance, items) {
         var vm = this;
         vm.title = '';
         vm.message = '';

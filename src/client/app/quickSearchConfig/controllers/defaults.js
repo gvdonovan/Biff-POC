@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('DefaultsController', DefaultsController);
 
-    DefaultsController.$inject = ['$scope', '$stateParams', '$state', 'quickSearchConfigService'];
+    DefaultsController.$inject = ['$scope', '$stateParams', '$state', 'modalService', 'quickSearchConfigService'];
     /* @ngInject */
-    function DefaultsController($scope, $stateParams, $state, quickSearchConfigService) {
+    function DefaultsController($scope, $stateParams, $state, modalService, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -48,22 +48,36 @@
             initialize();
         }
 
-        function initialize(){
-            quickSearchConfigService.getDefaults().then(function(data){
-               vm.fields = data.fields;
+        function initialize() {
+            quickSearchConfigService.getDefaults().then(function (data) {
+                vm.fields = data.fields;
             });
         }
 
-        function toggleSections(){
+        function toggleSections() {
             vm.sectionsOpen = !vm.sectionsOpen;
-            _.each(vm.fields, function(field){
+            _.each(vm.fields, function (field) {
                 field.templateOptions.open = vm.sectionsOpen;
             });
         }
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+                if (vm.isDirty) {
+                    var template = 'app/blocks/modal/templates/confirm.html';
+                    var controller = 'confirmModalController';
+                    var title = 'Confirm';
+                    var message = 'Navigating away from this page will discard your current changes. Do you wish to proceed?';
+
+                    modalService.openConfirmModal(template, controller, null, title, message, null)
+                        .then(function (isConfirmed) {
+                            if (isConfirmed) {
+                                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+                            }
+                        });
+                } else {
+                    $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+                }
             }
         }
 

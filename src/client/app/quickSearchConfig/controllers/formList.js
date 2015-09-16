@@ -51,10 +51,10 @@
 
             var m = form.isActive ? 'Activate ' : 'Deactivate ';
 
-            var template = 'app/quickSearchConfig/views/dialogs/confirmFormActivate.html';
-            var controller = 'confirmFormActivateController';
+            var template = 'app/blocks/modal/templates/confirm.html';
+            var controller = 'confirmModalController';
             var title = 'Confirm';
-            var message = 'Do you wish to ' + m + form.name + '?';
+            var message = 'Do you wish to ' + m + '[' + form.name + ']' + '?';
 
             modalService.openConfirmModal(template, controller, null, title, message, null)
                 .then(function (isConfirmed) {

@@ -9,14 +9,15 @@
         <form name="vm.formState.defaultsForm" novalidate>
             <div class="panel panel-primary">
                 <div class="panel-heading clearfix">
-                <div class="col-xs-10">
-                    <h3 class="panel-title">Default Information Form</h3>
-                </div>
-                <div class="col-xs-2 text-right">
-                    <a class="clickable" ng-click="vm.toggleSections()" style="color: #FFFFFF">Toggle All
-                        <i class="glyphicon" ng-class="{'glyphicon-chevron-down': vm.sectionsOpen, 'glyphicon-chevron-right': !vm.sectionsOpen}"></i>
-                    </a>
-                </div>
+                    <div class="col-xs-10">
+                        <h3 class="panel-title">Default Information Form</h3>
+                    </div>
+                    <div class="col-xs-2 text-right">
+                        <a class="clickable" ng-click="vm.toggleSections()" style="color: #FFFFFF">Toggle All
+                            <i class="glyphicon"
+                               ng-class="{'glyphicon-chevron-down': vm.sectionsOpen, 'glyphicon-chevron-right': !vm.sectionsOpen}"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <formly-form model="vm.model" fields="vm.fields"></formly-form>
@@ -27,6 +28,4 @@
             </div>
         </form>
     </div>
-
-
 </div>
