@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('QSConfigResultsController', QSConfigResultsController);
 
-    QSConfigResultsController.$inject = ['logger', '$stateParams', '$state', 'qsResultsService'];
+    QSConfigResultsController.$inject = ['logger', '$scope', '$stateParams', '$state', 'qsResultsService'];
     /* @ngInject */
-    function QSConfigResultsController(logger, $stateParams, $state, qsResultsService) {
+    function QSConfigResultsController(logger, $scope, $stateParams, $state, qsResultsService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -18,11 +18,27 @@
         vm.previous = previous;
         vm.isLastStep = true;
 
+
         vm.setPreview = setPreview;
         vm.updatePreview = updatePreview;
         vm.searchResults = {};
 
+        vm.formState = {
+            inputsForm: {}
+        };
+
+        vm.cancel = cancel;
+        vm.save = save;
+
         activate();
+
+        $scope.$watch('vm.formState.resultsForm.$dirty', function (newVal, oldVal) {
+            if (!_.isUndefined(newVal)) {
+                if (newVal) {
+                    vm.isDirty = true;
+                }
+            }
+        });
 
         function activate() {
             vm.editMode = $stateParams.editMode;
@@ -69,6 +85,18 @@
                 editMode: vm.editMode,
                 formId: vm.formId
             });
+        }
+
+        function cancel() {
+            initialize();
+            vm.formState.inputsForm.$setPristine(true);
+            vm.isDirty = false;
+        }
+
+        function save() {
+            //TODO post vm.data
+            vm.formState.inputsForm.$setPristine(true);
+            vm.isDirty = false;
         }
     }
 })();
