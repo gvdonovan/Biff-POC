@@ -32,12 +32,10 @@
 
         vm.previewModel = {};
         vm.previewFields = [];
-        vm.optionsVisible = [];
 
         vm.setPreview = setPreview;
         vm.moveRowUp = moveRowUp;
         vm.moveRowDown = moveRowDown;
-        vm.toggleOptions = toggleOptions;
         vm.updatePreview = updatePreview;
         vm.updateOptionDefault = updateOptionDefault;
         vm.closeOptions = closeOptions;
@@ -170,22 +168,6 @@
             }
         }
 
-        function toggleOptions(index, e) {
-
-            var onOff = vm.optionsVisible[index];
-            vm.optionsVisible[index] = !onOff;
-            var target = $(e.target);
-            if (target.is("button")) {
-                target = target.find("i");
-            }
-            console.log(target.is('i'));
-            if (onOff == true) {
-                target.removeClass("fa-angle-double-up").addClass("fa-angle-double-down");
-            } else {
-                target.removeClass("fa-angle-double-down").addClass("fa-angle-double-up");
-            }
-        }
-
         function updateOptionDefault(field, option) {
             _.each(field.templateOptions.options, function(item){
                 if(item == option){
@@ -196,17 +178,6 @@
                 }
             });
             vm.updatePreview();
-            //var ff = vm.data.fields[parentIndex];
-            //var checked = $(e.target).prop("checked");
-            //console.log($(e.target).prop("checked"));
-            //if (checked == true) {
-            //    ff.templateOptions.defaultValue = ff.templateOptions.options[index].value;
-            //} else {
-            //    ff.templateOptions.defaultValue = '';
-            //}
-            //$(e.target).closest("div").parent().find("input")
-            //    .not(e.target).attr("checked", false);
-            //console.log(parentIndex + ", " + index + ", " + ff.templateOptions.defaultValue);
         }
 
         function go(state) {
