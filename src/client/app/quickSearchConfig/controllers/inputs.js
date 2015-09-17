@@ -12,6 +12,7 @@
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
+
         vm.go = go;
         vm.next = next;
         vm.previous = previous;
@@ -19,6 +20,7 @@
         vm.cancel = cancel;
         vm.save = save;
         vm.resetForm = resetForm;
+
         vm.title = 'Inputs';
         vm.header = "";
         vm.footer = "";
@@ -27,7 +29,7 @@
         vm.formState = {
             inputsForm: {}
         };
-        vm.formModel = {};
+
         vm.previewModel = {};
         vm.previewFields = [];
         vm.optionsVisible = [];
@@ -64,7 +66,6 @@
             quickSearchConfigService.getInputs().then(function (data) {
                 vm.data = data;
                 //vm.formFields = data.fields;
-
                 vm.updatePreview();
             });
         }
