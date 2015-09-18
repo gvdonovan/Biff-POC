@@ -15,17 +15,16 @@
     <div class="panel-heading">Results Config</div>
     <form name="vm.formState.resultsForm" novalidate>
         <div class="panel-body">
-
-            <div ng-repeat="box in vm.formFields track by $index">
+            <div ng-repeat="box in vm.formFields">
                 <div class="row">
                     <div class="form-group col-sm-6">
-                        <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()" class="form-control">
+                        <input type="text" ng-model="box.templateOptions.label" ng-change="$root.isDirty = true" class="form-control">
                     </div>
 
                     <div class="hidePadding form-group col-sm-6">
                         <span class="">
                             <label>
-                                <input type="checkbox" ng-click="vm.setPreview($index)" class="form-control.input-md ">&nbsp;Hide
+                                <input type="checkbox" ng-model="box.visible" class="form-control.input-md" ng-change="$root.isDirty = true">&nbsp;Hide
                             </label>
                         </span>
 
@@ -35,7 +34,7 @@
 
         </div>
         <div class="panel-footer clearfix">
-            <button type="button" class="btn btn-default pull-left">Reset Form</button>
+            <button type="button" class="btn btn-default" ng-click="vm.resetForm()">Reset Form</button>
         </div>
     </form>
 

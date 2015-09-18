@@ -6,65 +6,46 @@
         .module('app.quickSearchConfig')
         .controller('QSConfigResultsController', QSConfigResultsController);
 
-    QSConfigResultsController.$inject = ['logger', '$scope', '$stateParams', '$state', '$rootScope', 'qsResultsService'];
+    QSConfigResultsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService'];
     /* @ngInject */
-    function QSConfigResultsController(logger, $scope, $stateParams, $state, $rootScope, qsResultsService) {
+    function QSConfigResultsController(logger, $stateParams, $state, $rootScope, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
         vm.state = '';
+        vm.resetForm = resetForm;
         vm.go = go;
         vm.next = next;
         vm.previous = previous;
         vm.isLastStep = true;
-
-
-        vm.setPreview = setPreview;
-        vm.updatePreview = updatePreview;
         vm.searchResults = {};
-
-        vm.formState = {
-            inputsForm: {}
-        };
 
         vm.cancel = cancel;
         vm.save = save;
 
         activate();
 
-        $scope.$watch('vm.formState.resultsForm.$dirty', function (newVal, oldVal) {
-            if (!_.isUndefined(newVal)) {
-                if (newVal) {
-                    $rootScope.isDirty = true;
-                }
-            }
-        });
-
         function activate() {
             vm.editMode = $stateParams.editMode;
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
 
+            initialize();
+        }
 
-            qsResultsService.getFormConfig().then(function (data) {
-                vm.data = data;
-                vm.formFields = jQuery.extend(true, [], data.fields);
-
-                vm.updatePreview();
-            });
-
-            qsResultsService.getResults(true).then(function (data) {
-                vm.searchResults = data;
-                console.log(vm.searchResults);
+        function initialize() {
+            quickSearchConfigService.getResults().then(function (data) {
+                vm.formFields = data.fields;
             });
         }
 
-        function setPreview(index) {
-            vm.formFields[index].visible = !vm.formFields[index].visible;
-        }
+        function resetForm() {
+            _.each(vm.formFields, function (item) {
+                item.templateOptions.label = item.templateOptions.defaultLabel;
+                item.templateOptions.visible = true;
+            });
 
-        function updatePreview() {
-
+            $rootScope.isDirty = true;
         }
 
         function go(state) {
@@ -86,13 +67,11 @@
 
         function cancel() {
             initialize();
-            vm.formState.inputsForm.$setPristine(true);
             $rootScope.isDirty = false;
         }
 
         function save() {
             //TODO post vm.data
-            vm.formState.inputsForm.$setPristine(true);
             $rootScope.isDirty = false;
         }
     }

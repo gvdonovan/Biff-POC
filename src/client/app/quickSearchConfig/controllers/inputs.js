@@ -169,11 +169,11 @@
         }
 
         function updateOptionDefault(field, option) {
-            _.each(field.templateOptions.options, function(item){
-                if(item == option){
+            _.each(field.templateOptions.options, function (item) {
+                if (item == option) {
                     field.defaultValue = option.value;
                     vm.previewModel[field.key] = option.value;
-                }else{
+                } else {
                     item.selected = false;
                 }
             });
@@ -203,7 +203,7 @@
                 item.templateOptions.order = item.templateOptions.defaultOrder;
             });
 
-            vm.data.fields = vm.data.fields.sort(function(obj1, obj2){
+            vm.data.fields = vm.data.fields.sort(function (obj1, obj2) {
                 return obj1.templateOptions.order - obj2.templateOptions.order;
             });
 
@@ -218,9 +218,10 @@
         }
 
         function save() {
-            //TODO post vm.data
-            vm.formState.inputsForm.$setPristine(true);
-            $rootScope.isDirty = false;
+            quickSearchConfigService.postInputs(vm.data).then(function (data) {
+                vm.formState.inputsForm.$setPristine(true);
+                $rootScope.isDirty = false;
+            });
         }
     }
 })();
