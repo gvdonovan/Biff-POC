@@ -1,24 +1,50 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" id="resultsPanel">
     <div class="panel-heading">Results Preview</div>
     <div class="panel-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-condensed table-striped">
-                <thead>
-                    <tr>
-                        <label>{{vm.searchResults[0].title}}</label>
-                    </tr>
-                    <tr>
-                        <th ng-repeat="field in vm.formFields" ng-hide="field.visible">{{field.templateOptions.label}}</th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    <tr ng-repeat="item in vm.searchResults[0].items">
-                        <td ng-repeat="field in vm.formFields track by $index" ng-hide="field.visible">{{item[field.key]}}</td>
-                    </tr>
-                </tbody>
+        <accordion close-others="true" class="col-xs-12">
+            <accordion-group ng-repeat="type in vm.searchResults" is-open="type.status.open">
+                <accordion-heading>
+                    {{type.title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': type.status.open, 'glyphicon-chevron-right': !type.status.open}"></i>
+                </accordion-heading>
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th ng-repeat="field in vm.formFields" ng-hide="field.visible">{{field.templateOptions.label}}</th>
+                                <!--
+                                <th>Rate</th>
+                                <th>Disc Points</th>
+                                <th>APR</th>
+                                <th>Months Payment</th>
+                                <th>Closing Costs</th>
+                                <th>Rebate</th>
+                                <th>Apply</th>
+                                -->
+                            </tr>
+                        </thead>
+                        <tbody>
 
-            </table>
-        </div>
+                            <tr ng-repeat="item in type.items">
+                                <td ng-repeat="field in vm.formFields track by $index" ng-hide="field.visible">{{item[field.key]}}</td>
+                            </tr>
+                            <!--
+                            <tr ng-repeat="item in type.items">
+                                <td>{{item.rate}}</td>
+                                <td>{{item.discPoints}}</td>
+                                <td>{{item.apr}}</td>
+                                <td>{{item.months}}</td>
+                                <td>{{item.closingCost}}</td>
+                                <td>{{item.rebate}}</td>
+                                <td><a class="clickable" href="">Apply Now</a></td>
+                            </tr>
+                            -->
+                        </tbody>
+                    </table>
+                </div>
+            </accordion-group>
+        </accordion>
+
+
     </div>
 </div>
