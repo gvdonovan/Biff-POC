@@ -46,57 +46,57 @@
                     items: [
                         {
                             rate: 3.875,
-                            discPoints: 1875.00,
-                            apr: 3.996,
+                            discounts: 1875.00,
+                            aPR: 3.996,
                             months: 360,
-                            payment: 1411.00,
-                            closingCost: 4675.00,
-                            rebate: 0.00
+                            monthlyPayments: 1411.00,
+                            closingCosts: 4675.00,
+                            apply: 0.00
                         },
                         {
                             rate: 4,
-                            discPoints: 1700.00,
-                            apr: 3.999,
+                            discounts: 1700.00,
+                            aPR: 3.999,
                             months: 360,
-                            payment: 1511.00,
-                            closingCost: 3075.00,
-                            rebate: 10.00
+                            monthlyPayments: 1511.00,
+                            closingCosts: 3075.00,
+                            apply: 10.00
                         },
                         {
                             rate: 4.2,
-                            discPoints: 1500.00,
-                            apr: 4.100,
+                            discounts: 1500.00,
+                            aPR: 4.100,
                             months: 360,
-                            payment: 1611.00,
-                            closingCost: 500.00,
-                            rebate: 500.00
+                            monthlyPayments: 1611.00,
+                            closingCosts: 500.00,
+                            apply: 500.00
                         },
                         {
                             rate: 3.875,
-                            discPoints: 1875.00,
-                            apr: 3.996,
+                            discounts: 1875.00,
+                            aPR: 3.996,
                             months: 360,
-                            payment: 1411.00,
-                            closingCost: 4675.00,
-                            rebate: 90.00
+                            monthlyPayments: 1411.00,
+                            closingCosts: 4675.00,
+                            apply: 90.00
                         },
                         {
                             rate: 4,
-                            discPoints: 1700.00,
-                            apr: 3.999,
+                            discounts: 1700.00,
+                            aPR: 3.999,
                             months: 360,
-                            payment: 1511.00,
-                            closingCost: 3075.00,
-                            rebate: 620.00
+                            monthlyPayments: 1511.00,
+                            closingCosts: 3075.00,
+                            apply: 620.00
                         },
                         {
                             rate: 4.2,
-                            discPoints: 1500.00,
-                            apr: 4.100,
+                            discounts: 1500.00,
+                            aPR: 4.100,
                             months: 360,
-                            payment: 1611.00,
-                            closingCost: 500.00,
-                            rebate: 750.00
+                            monthlyPayments: 1611.00,
+                            closingCosts: 500.00,
+                            apply: 750.00
                         }
                     ]
                 },
@@ -105,30 +105,30 @@
                     items: [
                         {
                             rate: 3.875,
-                            discPoints: 1875.00,
-                            apr: 3.996,
+                            discounts: 1875.00,
+                            aPR: 3.996,
                             months: 360,
-                            payment: 1411.00,
-                            closingCost: 4675.00,
-                            rebate: 90.00
+                            monthlyPayments: 1411.00,
+                            closingCosts: 4675.00,
+                            apply: 90.00
                         },
                         {
                             rate: 4,
-                            discPoints: 1700.00,
-                            apr: 3.999,
+                            discounts: 1700.00,
+                            aPR: 3.999,
                             months: 360,
-                            payment: 1511.00,
-                            closingCost: 3075.00,
-                            rebate: 620.00
+                            monthlyPayments: 1511.00,
+                            closingCosts: 3075.00,
+                            apply: 620.00
                         },
                         {
                             rate: 4.2,
-                            discPoints: 1500.00,
-                            apr: 4.100,
+                            discounts: 1500.00,
+                            aPR: 4.100,
                             months: 360,
-                            payment: 1611.00,
-                            closingCost: 500.00,
-                            rebate: 750.00
+                            monthlyPayments: 1611.00,
+                            closingCosts: 500.00,
+                            apply: 750.00
                         }
                     ]
                 },
@@ -137,30 +137,30 @@
                     items: [
                         {
                             rate: 3.875,
-                            discPoints: 1875.00,
-                            apr: 3.996,
+                            discounts: 1875.00,
+                            aPR: 3.996,
                             months: 360,
-                            payment: 1411.00,
-                            closingCost: 4675.00,
-                            rebate: 0.00
+                            monthlyPayments: 1411.00,
+                            closingCosts: 4675.00,
+                            apply: 0.00
                         },
                         {
                             rate: 4,
-                            discPoints: 1700.00,
-                            apr: 3.999,
+                            discounts: 1700.00,
+                            aPR: 3.999,
                             months: 360,
-                            payment: 1511.00,
-                            closingCost: 3075.00,
-                            rebate: 10.00
+                            monthlyPayments: 1511.00,
+                            closingCosts: 3075.00,
+                            apply: 10.00
                         },
                         {
                             rate: 4.2,
-                            discPoints: 1500.00,
-                            apr: 4.100,
+                            discounts: 1500.00,
+                            aPR: 4.100,
                             months: 360,
-                            payment: 1611.00,
-                            closingCost: 500.00,
-                            rebate: 875.00
+                            monthlyPayments: 1611.00,
+                            closingCosts: 500.00,
+                            apply: 875.00
                         }
                     ]
                 }
