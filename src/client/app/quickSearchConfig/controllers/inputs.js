@@ -40,6 +40,7 @@
         vm.updatePreview = updatePreview;
         vm.updateOptionDefault = updateOptionDefault;
         vm.closeOptions = closeOptions;
+        vm.removeOption = removeOption;
 
         activate();
 
@@ -180,9 +181,17 @@
             vm.updatePreview();
         }
 
+        function removeOption(field, index) {
+            field.templateOptions.options.$values.splice(index, 1);
+            vm.updatePreview();
+        }
+
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+                $state.go(state, {
+                    editMode: vm.editMode,
+                    formId: vm.formId
+                });
             }
         }
 
