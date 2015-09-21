@@ -32,6 +32,7 @@
 
         vm.previewModel = {};
         vm.previewFields = [];
+        vm.optionsVisible = [];
 
         vm.setPreview = setPreview;
         vm.moveRowUp = moveRowUp;
@@ -69,15 +70,15 @@
         }
 
         function setPreview(index) {
-            vm.data.fields[index].templateOptions.visible = !vm.data.fields[index].templateOptions.visible;
-            console.log("Index: " + index + ", visible:" + vm.data.fields[index].templateOptions.visible);
+            vm.data.fields.$values[index].templateOptions.visible = !vm.data.fields.$values[index].templateOptions.visible;
+            console.log("Index: " + index + ", visible:" + vm.data.fields.$values[index].templateOptions.visible);
             vm.updatePreview();
             $rootScope.isDirty = true;
         }
 
         function moveRowUp(index) {
             console.log("UP: Index: " + index);
-            var ff = vm.data.fields;
+            var ff = vm.data.fields.$values;
             var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
@@ -104,7 +105,7 @@
 
         function moveRowDown(index) {
             console.log("DOWN: Index: " + index);
-            var ff = vm.data.fields;
+            var ff = vm.data.fields.$values;
             var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
@@ -130,8 +131,8 @@
         }
 
         function updatePreview() {
-            var ff = vm.data.fields;
-            var pf = vm.previewFields = [];
+            var ff = vm.data.fields.$values;
+            vm.previewFields = [];
 
             for (var i = 0; i < ff.length; i++) {
                 var pItem = {};
@@ -139,7 +140,7 @@
 
                 if (pItem.templateOptions.visible == true) {
                     if (pItem.templateOptions.options) {
-                        var options = _.clone(pItem.templateOptions.options);
+                        var options = _.clone(pItem.templateOptions.options.$values);
 
                         var newOptions = [];
                         for (var j = 0; j < options.length; j++) {
@@ -151,25 +152,24 @@
                         }
 
                         pItem.templateOptions.options = newOptions;
-                        console.log(ff[0].templateOptions.options);
                     }
-                    pf.push(pItem);
+                    vm.previewFields.push(pItem);
                 }
             }
 
-            console.log(ff[0].templateOptions.options);
-            console.log(pf.length);
+            console.log(ff[0].templateOptions.options.$values);
+            console.log(vm.previewFields.length);
         }
 
         function closeOptions() {
-            var ff = vm.data.fields;
+            var ff = vm.data.fields.$values;
             for (var i = 0; i < ff.length; i++) {
                 vm.optionsVisible[i] = false;
             }
         }
 
         function updateOptionDefault(field, option) {
-            _.each(field.templateOptions.options, function (item) {
+            _.each(field.templateOptions.options.$values, function (item) {
                 if (item == option) {
                     field.defaultValue = option.value;
                     vm.previewModel[field.key] = option.value;
@@ -198,12 +198,12 @@
         }
 
         function resetForm() {
-            _.each(vm.data.fields, function (item) {
+            _.each(vm.data.fields.$values, function (item) {
                 item.templateOptions.label = item.templateOptions.defaultLabel;
                 item.templateOptions.order = item.templateOptions.defaultOrder;
             });
 
-            vm.data.fields = vm.data.fields.sort(function (obj1, obj2) {
+            vm.data.fields.$values = vm.data.fields.$values.sort(function (obj1, obj2) {
                 return obj1.templateOptions.order - obj2.templateOptions.order;
             });
 

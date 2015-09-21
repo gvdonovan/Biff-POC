@@ -12,7 +12,8 @@
         forms.datePickerConfig(formlyConfig);
         forms.borrowerAliasConfig(formlyConfig);
         forms.panelWrapper(formlyConfig);
-        formlyConfig.disableWarnings = true
+        formlyConfig.disableWarnings = true;
+        apiCheck.globalConfig.disabled = true;
     }
 
     function getStates() {

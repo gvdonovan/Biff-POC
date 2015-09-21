@@ -28,7 +28,8 @@
 
         function initialize() {
             quickSearchConfigService.getForms().then(function (data) {
-                vm.forms = data;
+                vm.data = data;
+                vm.forms = data.$values;
             });
         }
 

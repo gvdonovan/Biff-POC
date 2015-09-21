@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div ng-repeat="box in vm.data.fields track by $index">
+            <div ng-repeat="box in vm.data.fields.$values track by $index">
                 <div class="row">
                     <div class="col-sm-6">
                         <div ng-hide="!box.templateOptions.options" class="input-group">
@@ -41,12 +41,12 @@
                     <div class="form-group col-sm-6">
                         <span class="padLeftRight">
                             <label>
-                                <input type="checkbox" ng-click="vm.setPreview($index)" class="form-control.input-md ">&nbsp;Hide
+                                <input type="checkbox" ng-model="box.templateOptions.visible" ng-change="vm.updatePreview()" class="form-control.input-md ">&nbsp;Visible
                             </label>
                         </span>
                         <span class="padLeftRight">
                             <label>
-                                <input type="checkbox" ng-click="vm.setPreview($index)" class="form-control.input-md ">&nbsp;Required
+                                <input type="checkbox" ng-model="box.templateOptions.required" ng-change="vm.updatePreview()" class="form-control.input-md ">&nbsp;Required
                             </label>
                         </span>
                         <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
@@ -60,7 +60,7 @@
                     <div class="form-group col-sm-12" ng-hide="!box.templateOptions.showOptions">
                         <div class="col-xs-1">
                             <label>Default</label>
-                            <div ng-repeat="option in box.templateOptions.options">
+                            <div ng-repeat="option in box.templateOptions.options.$values">
                                 <span class="padLeftRight">
                                 <label>
                                     <input type="checkbox" ng-model="option.selected" ng-click="vm.updateOptionDefault(box, option)" class="form-control.input-md"/>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-xs-5">
                             <label>Include</label>
-                            <div ng-repeat="option in box.templateOptions.options">
+                            <div ng-repeat="option in box.templateOptions.options.$values">
                                 <span class="padLeftRight">
                                 <label>
                                     <input type="checkbox" ng-model="option.visible" ng-click="vm.updatePreview()"
