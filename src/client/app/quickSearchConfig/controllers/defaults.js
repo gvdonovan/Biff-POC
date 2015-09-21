@@ -49,8 +49,17 @@
         }
 
         function initialize() {
+            vm.model = {};
             quickSearchConfigService.getDefaults().then(function (data) {
-                vm.fields = data.fields;
+                vm.fields = data.fields.$values;
+                _.each(vm.fields, function(field){
+                   field.data.fields = field.data.fields.$values;
+                    _.each(field.data.fields, function(item){
+                        if(item.type === 'select'){
+                            item.templateOptions.options = item.templateOptions.options.$values;
+                        }
+                    });
+                });
             });
         }
 
