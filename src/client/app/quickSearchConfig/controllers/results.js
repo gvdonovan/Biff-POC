@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('QSConfigResultsController', QSConfigResultsController);
 
-    QSConfigResultsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService'];
+    QSConfigResultsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService', 'qsResultsService'];
     /* @ngInject */
-    function QSConfigResultsController(logger, $stateParams, $state, $rootScope, quickSearchConfigService) {
+    function QSConfigResultsController(logger, $stateParams, $state, $rootScope, quickSearchConfigService, qsResultsService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -36,6 +36,11 @@
         function initialize() {
             quickSearchConfigService.getResults().then(function (data) {
                 vm.formFields = data.fields;
+            });
+
+            qsResultsService.getResults(true).then(function (data) {
+                vm.searchResults = data;
+                console.log(vm.searchResults);
             });
         }
 
