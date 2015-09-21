@@ -1,12 +1,13 @@
 <style type="text/css">
-.padLeftRight {
-padding-left: 10px;
-padding-right: 10px;
-}
+    .padLeftRight {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .qsInputsConfig label {
+        font-weight: normal !important;
+    }
 
-.qsInputsConfig label {
-font-weight: normal !important;
-}
 </style>
 
 <div class="panel panel-primary qsInputsConfig">
@@ -24,8 +25,7 @@ font-weight: normal !important;
                 <div class="row">
                     <div class="col-sm-6">
                         <div ng-hide="!box.templateOptions.options" class="input-group">
-                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()"
-                                   class="form-control">
+                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()" class="form-control">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button"
                                         ng-click="box.templateOptions.showOptions = !box.templateOptions.showOptions">
@@ -35,8 +35,7 @@ font-weight: normal !important;
                           </span>
                         </div>
                         <div ng-hide="box.templateOptions.options" class="form-group">
-                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()"
-                                   class="form-control">
+                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()" class="form-control">
 
                         </div>
                     </div>
@@ -78,36 +77,30 @@ font-weight: normal !important;
                                 <div class="col-xs-12 row">
                                     <div class="col-xs-2" ng-class="box.key === 'creditScore' ? 'checkbox' : ''">
                                         <label>
-                                            <input type="checkbox" ng-model="option.selected"
-                                                   ng-change="vm.updateOptionDefault(box, option)"
-                                                   class="form-control.input-md"/>
+                                            <input type="checkbox" ng-model="option.selected" ng-change="vm.updateOptionDefault(box, option)" class="form-control.input-md" />
                                         </label>
                                     </div>
                                     <div class="col-xs-10" ng-if="box.key != 'creditScore'">
                                         <label>
-                                            <input type="checkbox" ng-model="option.visible"
-                                                   ng-change="vm.updatePreview()"
-                                                   class="form-control.input-md "> {{option.name}}
+                                            <input type="checkbox" ng-model="option.visible" ng-change="vm.updatePreview()" class="form-control.input-md "> {{option.name}}
                                         </label>
                                     </div>
                                     <div ng-if="box.key === 'creditScore'">
                                         <div class="col-xs-3">
                                             <div class="form-group">
                                                 <label class="sr-only">biff</label>
-                                                <input type="text" ng-model="option.value" class="form-control"
-                                                       ng-change="vm.updatePreview()">
+                                                <input type="text" ng-model="option.value" class="form-control" ng-change="vm.updatePreview()">
                                                 </input>
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="form-group">
                                                 <label class="sr-only">biff</label>
-                                                <input type="text" ng-model="option.name" class="form-control"
-                                                       ng-change="vm.updatePreview()"/>
+                                                <input type="text" ng-model="option.name" class="form-control" ng-change="vm.updatePreview()" />
                                             </div>
                                         </div>
                                         <div class="col-xs-1">
-                                            <a class="btn btn-default " style="margin-right:15px;">
+                                            <a class="btn btn-default" style="margin-right:15px;" ng-click="vm.removeOption(box, $index)">
                                                 <span class="glyphicon glyphicon-remove"></span>
                                             </a>
                                         </div>
