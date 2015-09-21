@@ -36,6 +36,7 @@
         function initialize() {
             quickSearchConfigService.getResults().then(function (data) {
                 vm.formFields = data.fields;
+                console.log(vm.formFields);
             });
 
             qsResultsService.getResults(true).then(function (data) {
@@ -55,7 +56,10 @@
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+                $state.go(state, {
+                    editMode: vm.editMode,
+                    formId: vm.formId
+                });
             }
         }
 
