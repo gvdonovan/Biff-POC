@@ -95,7 +95,7 @@
             var url = '//localhost:63312/api/config/search/results/' + entityId + '/' + formId;
             return $http.get(url)
                 .then(function (response) {
-                    return response.data.pages[0];
+                    return response.data.pages.$values[0];
                 }, function (response) {
                     console.warn('error' + response);
                 });

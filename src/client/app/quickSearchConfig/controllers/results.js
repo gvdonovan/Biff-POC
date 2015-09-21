@@ -35,8 +35,12 @@
 
         function initialize() {
             quickSearchConfigService.getResults().then(function (data) {
-                vm.formFields = data.fields;
-                console.log(vm.formFields);
+                vm.formFields = data.fields.$values;
+                _.each(vm.formFields, function(field){
+                    if(field.type === 'select'){
+                        field.templateOptions.options = field.templateOptions.options.$values;
+                    }
+                });
             });
 
             qsResultsService.getResults(true).then(function (data) {
