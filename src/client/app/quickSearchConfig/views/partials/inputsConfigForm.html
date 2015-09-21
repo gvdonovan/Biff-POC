@@ -7,6 +7,16 @@
     .qsInputsConfig label {
         font-weight: normal !important;
     }
+    
+    .padTopBot {
+        padding-top: 2px;
+        padding-bottom: 8px;
+    }
+    
+    .padTopBotCheck {
+        padding-top: 2px;
+        padding-bottom: 15px;
+    }
 
 </style>
 
@@ -58,17 +68,18 @@
                     </div>
 
                     <div class="form-group col-sm-12" ng-hide="!box.templateOptions.showOptions">
-                        <div class="col-xs-1">
+                        <div class=" col-xs-1">
                             <label>Default</label>
-                            <div ng-repeat="option in box.templateOptions.options">
+                            <div ng-class="box.key == 'creditScore' ? 'padTopBotCheck' : ''" ng-repeat="option in box.templateOptions.options">
                                 <span class="padLeftRight">
-                                <label>
-                                    <input type="checkbox" ng-model="option.selected" ng-click="vm.updateOptionDefault(box, option)" class="form-control.input-md"/>
-                                </label>
-                            </span>
+                                    <label>
+                                        <input type="checkbox" ng-model="option.selected" ng-click="vm.updateOptionDefault(box, option)" class="form-control.input-md"/>
+                                    </label>
+                                </span>
                             </div>
                         </div>
-                        <div class="col-xs-5">
+
+                        <div ng-if="box.key != 'creditScore'" class="col-xs-5">
                             <label>Include</label>
                             <div ng-repeat="option in box.templateOptions.options">
                                 <span class="padLeftRight">
@@ -78,6 +89,22 @@
                                     &nbsp;{{option.name}}
                                 </label>
                             </span>
+                            </div>
+                        </div>
+
+                        <div ng-if="box.key == 'creditScore'" class="col-xs-5">
+                            <label style="padding-left:15px">Value</label>
+                            <label style="padding-left:50px">Label</label>
+                            <div class="" ng-repeat="option in box.templateOptions.options">
+                                <span class="padLeftRight">
+                                <div class="col-xs-4 padTopBot">
+                                    <input type="text" ng-model="option.value" class="form-control" ng-change="vm.updatePreview()">
+                                    </div>
+                                    <div class="col-xs-7 padTopBot">
+                                    <input type="text" ng-model="option.name" class="form-control" ng-change="vm.updatePreview()">
+                                    </div>
+                            </span>
+
                             </div>
                         </div>
 
