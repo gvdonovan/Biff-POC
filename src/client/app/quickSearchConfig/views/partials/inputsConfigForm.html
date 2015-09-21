@@ -1,23 +1,12 @@
 <style type="text/css">
-    .padLeftRight {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-    
-    .qsInputsConfig label {
-        font-weight: normal !important;
-    }
-    
-    .padTopBot {
-        padding-top: 2px;
-        padding-bottom: 8px;
-    }
-    
-    .padTopBotCheck {
-        padding-top: 2px;
-        padding-bottom: 15px;
-    }
+.padLeftRight {
+padding-left: 10px;
+padding-right: 10px;
+}
 
+.qsInputsConfig label {
+font-weight: normal !important;
+}
 </style>
 
 <div class="panel panel-primary qsInputsConfig">
@@ -35,15 +24,19 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div ng-hide="!box.templateOptions.options" class="input-group">
-                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()" class="form-control">
+                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()"
+                                   class="form-control">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" ng-click="box.templateOptions.showOptions = !box.templateOptions.showOptions">
-                                    <i class="fa fa-lg" ng-class="box.templateOptions.showOptions ? 'fa-angle-double-up' : 'fa-angle-double-down'"></i>
+                                <button class="btn btn-default" type="button"
+                                        ng-click="box.templateOptions.showOptions = !box.templateOptions.showOptions">
+                                    <i class="fa fa-lg"
+                                       ng-class="box.templateOptions.showOptions ? 'fa-angle-double-up' : 'fa-angle-double-down'"></i>
                                 </button>
                           </span>
                         </div>
                         <div ng-hide="box.templateOptions.options" class="form-group">
-                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()" class="form-control">
+                            <input type="text" ng-model="box.templateOptions.label" ng-change="vm.updatePreview()"
+                                   class="form-control">
 
                         </div>
                     </div>
@@ -51,12 +44,14 @@
                     <div class="form-group col-sm-6">
                         <span class="padLeftRight">
                             <label>
-                                <input type="checkbox" ng-model="box.templateOptions.visible" ng-change="vm.updatePreview()" class="form-control.input-md ">&nbsp;Visible
+                                <input type="checkbox" ng-model="box.templateOptions.visible"
+                                       ng-change="vm.updatePreview()" class="form-control.input-md ">&nbsp;Visible
                             </label>
                         </span>
                         <span class="padLeftRight">
                             <label>
-                                <input type="checkbox" ng-model="box.templateOptions.required" ng-change="vm.updatePreview()" class="form-control.input-md ">&nbsp;Required
+                                <input type="checkbox" ng-model="box.templateOptions.required"
+                                       ng-change="vm.updatePreview()" class="form-control.input-md ">&nbsp;Required
                             </label>
                         </span>
                         <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
@@ -66,52 +61,58 @@
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </a>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 col-lg-6" ng-hide="!box.templateOptions.showOptions">
+                            <div class="col-xs-12 row">
+                                <label class="col-xs-2">Default</label>
 
-                    <div class="form-group col-sm-12" ng-hide="!box.templateOptions.showOptions">
-                        <div class=" col-xs-1">
-                            <label>Default</label>
-                            <div ng-class="box.key == 'creditScore' ? 'padTopBotCheck' : ''" ng-repeat="option in box.templateOptions.options.$values">
-                                <span class="padLeftRight">
-                                    <label>
-                                        <input type="checkbox" ng-model="option.selected" ng-click="vm.updateOptionDefault(box, option)" class="form-control.input-md"/>
-                                    </label>
-                                </span>
+                                <div ng-if="box.key != 'creditScore'">
+                                    <label class="col-xs-10">Include</label>
+                                </div>
+                                <div ng-if="box.key === 'creditScore'">
+                                    <label class="col-xs-4">Value</label>
+                                    <label class="col-xs-6">Label</label>
+                                </div>
                             </div>
-                        </div>
-
-                        <div ng-if="box.key != 'creditScore'" class="col-xs-5">
-                            <label>Include</label>
                             <div ng-repeat="option in box.templateOptions.options.$values">
-                                <span class="padLeftRight">
-                                <label>
-                                    <input type="checkbox" ng-model="option.visible" ng-click="vm.updatePreview()"
-                                           class="form-control.input-md "/>
-                                    &nbsp;{{option.name}}
-                                </label>
-                            </span>
+                                <div class="col-xs-12 row">
+                                    <div class="col-xs-2" ng-class="box.key === 'creditScore' ? 'checkbox' : ''">
+                                        <label>
+                                            <input type="checkbox" ng-model="option.selected"
+                                                   ng-change="vm.updateOptionDefault(box, option)"
+                                                   class="form-control.input-md"/>
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-10" ng-if="box.key != 'creditScore'">
+                                        <label>
+                                            <input type="checkbox" ng-model="option.visible"
+                                                   ng-change="vm.updatePreview()"
+                                                   class="form-control.input-md "> {{option.name}}
+                                        </label>
+                                    </div>
+                                    <div ng-if="box.key === 'creditScore'">
+                                        <div class="col-xs-4">
+                                            <div class="form-group">
+                                                <label class="sr-only">biff</label>
+                                                <input type="text" ng-model="option.value" class="form-control"
+                                                       ng-change="vm.updatePreview()">
+                                                </input>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label class="sr-only">biff</label>
+                                                <input type="text" ng-model="option.name" class="form-control"
+                                                       ng-change="vm.updatePreview()"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div ng-if="box.key == 'creditScore'" class="col-xs-5">
-                            <label style="padding-left:15px">Value</label>
-                            <label style="padding-left:50px">Label</label>
-                            <div class="" ng-repeat="option in box.templateOptions.options">
-                                <span class="padLeftRight">
-                                <div class="col-xs-4 padTopBot">
-                                    <input type="text" ng-model="option.value" class="form-control" ng-change="vm.updatePreview()">
-                                    </div>
-                                    <div class="col-xs-7 padTopBot">
-                                    <input type="text" ng-model="option.name" class="form-control" ng-change="vm.updatePreview()">
-                                    </div>
-                            </span>
-
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group col-md-6">
                     <input type="text" placeholder="Footer" class="form-control" ng-model="vm.data.footer">
