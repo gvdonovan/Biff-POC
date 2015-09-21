@@ -13,7 +13,9 @@
             getInputs: getInputs,
             postInputs: postInputs,
             getDefaults: getDefaults,
-            getResults: getResults
+            getResults: getResults,
+            getFilters: getFilters,
+            getLoanOfficers: getLoanOfficers
         };
         return service;
 
@@ -83,6 +85,32 @@
             return $http.get(url)
                 .then(function (response) {
                     return response.data.pages.$values[0];
+                }, function (response) {
+                    console.warn('error' + response);
+                });
+        }
+
+        function getFilters(){
+            var entityId = 1;
+            var formId = 1;
+
+            var url = '//localhost:63312/api/config/search/filters/' + entityId + '/' + formId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                }, function (response) {
+                    console.warn('error' + response);
+                });
+        }
+
+        function getLoanOfficers(){
+            var entityId = 1;
+            var formId = 1;
+
+            var url = '//localhost:63312/api/config/search/loanOfficers/' + entityId + '/' + formId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
                 }, function (response) {
                     console.warn('error' + response);
                 });
