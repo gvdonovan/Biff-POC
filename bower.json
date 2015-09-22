@@ -23,6 +23,7 @@
     "angular": "~1.4.3",
     "angular-animate": "~1.4.3",
     "angular-bootstrap": "~0.13.1",
+    "angular-fcsa-number": "~1.5.3",
     "angular-formly": "~6.23.0",
     "angular-formly-templates-bootstrap": "~6.0.0",
     "angular-local-storage": "~0.2.2",

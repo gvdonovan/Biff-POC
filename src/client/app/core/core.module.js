@@ -13,7 +13,8 @@
             'ui.router',
             'duScroll',
             'toggle-switch',
-            'ui-rangeSlider'
+            'ui-rangeSlider',
+            'fcsa-number'
             //, 'ngplus'
         ]);
 })();
