@@ -41,6 +41,8 @@
         vm.updateOptionDefault = updateOptionDefault;
         vm.closeOptions = closeOptions;
         vm.removeOption = removeOption;
+        vm.moveOptionUp = moveOptionUp;
+        vm.moveOptionDown = moveOptionDown;
 
         activate();
 
@@ -184,6 +186,40 @@
         function removeOption(field, index) {
             field.templateOptions.options.$values.splice(index, 1);
             vm.updatePreview();
+        }
+
+        function moveOptionUp(field, index) {
+            console.log("Option UP: Index: " + index);
+            var of = field.templateOptions.options.$values;
+
+            var fItem = of.slice(0)[index];
+
+            if (index != 0) {
+                of.splice(index, 1);
+                of.splice(index - 1, 0, fItem);
+            } else {
+                of.shift();
+                of.push(fItem);
+            }
+            vm.updatePreview();
+            $rootScope.isDirty = true;
+        }
+
+        function moveOptionDown(field, index) {
+            console.log("Option DOWN: Index: " + index);
+            var of = field.templateOptions.options.$values;
+
+            var fItem = of.slice(0)[index];
+
+            if (index + 1 != of.length) {
+                of.splice(index, 1);
+                of.splice(index + 1, 0, fItem);
+            } else {
+                of.pop();
+                of.unshift(fItem);
+            }
+            vm.updatePreview();
+            $rootScope.isDirty = true;
         }
 
         function go(state) {
