@@ -108,6 +108,19 @@
                     controllerAs: 'vm',
                     title: 'Form Results'
                 }
+            },
+            {
+                state: 'quickSearchPreview',
+                config: {
+                    url: '/quickSearchConfig/preview/:formId/:editMode',
+                    params: {
+                        editMode: 'false'
+                    },
+                    templateUrl: 'app/quickSearchConfig/views/preview.html',
+                    controller: 'QuickSearchPreviewController',
+                    controllerAs: 'vm',
+                    title: 'Preview'
+                }
             }
         ];
         return states;
