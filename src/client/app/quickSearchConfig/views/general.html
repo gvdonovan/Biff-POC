@@ -6,34 +6,30 @@
 </div>
 
 <div class="well col-xs-10 col-xs-offset-1">
-    <form name="generalForm" class="col-xs-12" novalidate>
-        <div class="panel panel-primary">
-            <div class="panel-heading">General Information Form</div>
-            <div class="panel-body ">
-                <div class="col-md-2 form-group">
-                    <label>Name *</label>
-                    <div class="input-group">
-                        <input ng-model="vm.qsName" type="text" name="qsName" class="form-control" ng-change="$root.isDirty = true;">
-                    </div>
-                    <p ng-show="generalForm.qsName.$invalid && !generalForm.qsName.$pristine" class="help-block">Name is required.</p>
-                </div>
-                <div class="col-md-2 form-group">
-                    <label></label>
-                    <div class="input-group">
-                        <label>
-                            <input type="checkbox" name="cLayout" ng-model="vm.cLayout" class="form-control.input-md" ng-change="$root.isDirty = true;"> Custom Layout
-                        </label>
+    <div class="panel panel-primary">
+        <div class="panel-heading">General Information Form</div>
+        <div class="panel-body ">
+            <form name="generalForm" class="form-inline" novalidate>
+                <div class="form-group">
+                    <label class="sr-only">Name *</label>
+                    <input ng-model="vm.qsName" type="text" placeholder="Name" class="form-control"
+                           ng-change="$root.isDirty = true;">
 
-                    </div>
-
+                    <p ng-show="generalForm.qsName.$invalid && !generalForm.qsName.$pristine" class="help-block">Name is
+                        required.</p>
                 </div>
-                <div class="col-md-2 form-group">
-                    <div class="input-group">
-                        <label>Number format</label>
-                        <input type="text" ng-model="vm.numberFormat" name="numberFormat" class="form-control" format="number">
-                    </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="cLayout" ng-model="vm.cLayout" class="form-control.input-md"
+                               ng-change="$root.isDirty = true;"> Custom Layout
+                    </label>
                 </div>
-            </div>
+                <div class="form-group">
+                        <label class="sr-only">Number format</label>
+                        <input type="text" ng-model="vm.numberFormat" placeholder="NumberFormatExample" class="form-control"
+                               format="number">
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
