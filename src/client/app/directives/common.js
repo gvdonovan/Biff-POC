@@ -5,7 +5,9 @@
         .module('app')
         .directive('loadingspinner', loadingspinner)
 
-        .directive('obdatepicker', obDatepicker )
+    .directive('obdatepicker', obDatepicker)
+
+    .directive('format', formatNumber);
 
     /* @ngInject */
     function loadingspinner() {
@@ -18,21 +20,17 @@
         return directive;
     }
 
-    function obDatepicker()
-    {
+    function obDatepicker() {
         return {
             restrict: 'A',
             require: 'ngModel',
-            link: function (scope, element, attrs, ngModelCtrl)
-            {
-                $(function ()
-                {
+            link: function (scope, element, attrs, ngModelCtrl) {
+                $(function () {
                     element.datetimepicker({
                         timepicker: false,
                         format: 'm-d-y',
                         closeOnDateSelect: true,
-                        onSelectDate: function (date)
-                        {
+                        onSelectDate: function (date) {
                             var dateString = moment(date).format("MM-DD-YY");
                             ngModelCtrl.$setViewValue(dateString);
                             scope.$apply();
@@ -41,6 +39,27 @@
                 });
             }
         }
+    }
+
+    function formatNumber($filter) {
+        return {
+            require: '?ngModel',
+            link: function (scope, elem, attrs, ctrl) {
+                if (!ctrl) return;
+
+                var symbol = "°"; // dummy usage
+
+                ctrl.$formatters.unshift(function (a) {
+                    return $filter(attrs.format)(ctrl.$modelValue);
+                });
+
+                ctrl.$parsers.unshift(function (viewValue) {
+                    var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
+                    elem.val($filter('number')(plainNumber));
+                    return plainNumber;
+                });
+            }
+        };
     }
 
 
