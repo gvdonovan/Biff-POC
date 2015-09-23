@@ -91,9 +91,10 @@
         }
 
         function save() {
-            //TODO post vm.data
-            vm.formState.defaultsForm.$setPristine(true);
-            $rootScope.isDirty = false;
+            quickSearchConfigService.postDefaults(vm.model).then(function (data) {
+                vm.formState.defaultsForm.$setPristine(true);
+                $rootScope.isDirty = false;
+            });
         }
     }
 })();
