@@ -22,7 +22,7 @@
 
         vm.pricingFilter = {
             filterType: 'price',
-            prices: [{value: 1}, {value: 2}, {value: 3}],
+            prices: [{value: 99}, {value: 100}, {value: 101}],
             belowPar: -2,
             abovePar: 2
         };
