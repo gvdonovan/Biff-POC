@@ -33,11 +33,14 @@
         vm.filterText = '';
         vm.list1 = buildList();
         vm.list2 = [];
-        vm.moveRight = moveRight;
-        vm.selectCategory = selectCategory;
+
+        //vm.moveRight = moveRight;
+        //vm.selectCategory = selectCategory;
+        vm.moveItem = moveItem;
+        vm.moveCategory = moveCategory;
         vm.removeCategory = removeCategory;
         vm.removeItem = removeItem;
-        vm.sortCategory = sortCategory;
+        //vm.sortCategory = sortCategory;
         vm.sortItem = sortItem;
         vm.filterCategory = filterCategory;
         vm.filterItems = filterItems;
@@ -49,9 +52,6 @@
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
         }
-
-        var vm = this;
-        vm.title = 'Admin';
 
         function buildList() {
             var cat = 1;
@@ -90,43 +90,58 @@
             $rootScope.isDirty = true;
         }
 
+        function moveCategory(cat) {
+            var categories = getSelectedCategories();
+            if (!_.contains(categories, cat.category)) {
+
+                _.each(cat.items, function (item) {
+                    item.picked = true;
+                });
+                var newCategory = _.clone(cat);
+                newCategory.selected = false;
+                vm.list2.push(newCategory);
+                $rootScope.isDirty = true;
+            }
+            else {
+                var pickedCategory = _.findWhere(vm.list2, {category: cat.category});
+                var itemIds = _.pluck(pickedCategory.items, 'id');
+                _.each(cat.items, function (item) {
+                    if (!_.contains(itemIds, item.id)) {
+                        var newItem = _.clone(item);
+                        newItem.selected = false;
+                        item.picked = true;
+                        pickedCategory.items.push(newItem);
+                        $rootScope.isDirty = true;
+                    }
+                });
+            }
+        }
+
+        function moveItem(item, cat) {
+            var categories = getSelectedCategories();
+            if (!_.contains(categories, cat.category)) {
+                var newCategory = _.clone(cat);
+                newCategory.items = [];
+                newCategory.selected = false;
+                vm.list2.push(newCategory);
+                $rootScope.isDirty = true;
+            }
+
+            var pickedCategory = _.findWhere(vm.list2, {category: cat.category});
+            var itemIds = _.pluck(pickedCategory.items, 'id');
+            if (!_.contains(itemIds, item.id)) {
+                var newItem = _.clone(item);
+                newItem.selected = false;
+                item.picked = true;
+                pickedCategory.items.push(newItem);
+                $rootScope.isDirty = true;
+            }
+        }
+
         function removePrice(index) {
             vm.pricingFilter.prices.splice(index, 1);
             $rootScope.isDirty = true;
         }
-
-        //    [
-        //    {
-        //        category: 'category 1',
-        //        selected: false,
-        //        sortOrder: 1,
-        //        items: [
-        //            {id: 1, name: 'item 1', selected: false, picked: false, sortOrder: 1},
-        //            {id: 2, name: 'item 2', selected: false, picked: false, sortOrder: 2},
-        //            {id: 3, name: 'item 3', selected: false, picked: false, sortOrder: 3}
-        //        ]
-        //    },
-        //    {
-        //        category: 'category 2',
-        //        selected: false,
-        //        sortOrder: 2,
-        //        items: [
-        //            {id: 4, name: 'item 1', selected: false, picked: false, sortOrder: 1},
-        //            {id: 5, name: 'item 2', selected: false, picked: false, sortOrder: 2},
-        //            {id: 6, name: 'item 3', selected: false, picked: false, sortOrder: 3}
-        //        ]
-        //    },
-        //    {
-        //        category: 'category 3',
-        //        selected: false,
-        //        sortOrder: 3,
-        //        items: [
-        //            {id: 7, name: 'item 1', selected: false, picked: false, sortOrder: 1},
-        //            {id: 8, name: 'biff 2', selected: false, picked: false, sortOrder: 2},
-        //            {id: 9, name: 'item 3', selected: false, picked: false, sortOrder: 3}
-        //        ]
-        //    }
-        //];
 
         function moveRight() {
             //var currentCategory;

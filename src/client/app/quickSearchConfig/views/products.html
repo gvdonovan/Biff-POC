@@ -9,8 +9,9 @@
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
                 Pricing
-                <a ng-show="vm.pricingFilter.filterType === 'price'" ng-click="vm.addPrice()" class="pull-right clickable" style="color: white"
-                        ng-disabled="vm.pricingFilter.prices.length >= 10">Add
+                <a ng-show="vm.pricingFilter.filterType === 'price'" ng-click="vm.addPrice()"
+                   class="pull-right clickable" style="color: white"
+                   ng-disabled="vm.pricingFilter.prices.length >= 10">Add
                 </a>
             </div>
             <div class="panel-body panel-height">
@@ -63,23 +64,24 @@
                     </div>
                 </div>
                 <div class="col-xs-5">
-                    <select multiple class="list-height">
-                        <optgroup ng-repeat="cat in vm.list1 | filter: vm.filterCategory" label="{{cat.category}}"
-                                  ng-click="vm.selectCategory(cat)" class="clickable">
-                            <option ng-repeat="item in cat.items | filter: vm.filterItems(cat)"
-                                    ng-click="item.selected = !item.selected">
-                                {{item.name}}
-                            </option>
-                        </optgroup>
-                    </select>
+                    <div class="select-list list-height">
+                        <div ng-repeat="cat in vm.list1 | filter: vm.filterCategory">
+                            <div class="select-label clickable" ng-click="vm.moveCategory(cat)">{{cat.category}}</div>
+                            <div ng-repeat="item in cat.items | filter: vm.filterItems(cat)">
+                                <div class="select-option clickable" ng-click="vm.moveItem(item, cat)">{{item.name}}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xs-5">
-                    <select multiple class="list-height">
-                        <option ng-repeat="item in vm.list2"
-                                ng-click="item.selected = !item.selected">
-                            {{item.name}}
-                        </option>
-                    </select>
+                    <div class="select-list list-height">
+                        <div ng-repeat="cat in vm.list2">
+                            <div class="select-label">{{cat.category}}</div>
+                            <div ng-repeat="item in cat.items">
+                                <div class="select-option">{{item.name}}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xs-2 row">
                     <button type="button" class="btn btn-default btn-block"><span
@@ -98,6 +100,16 @@
                 Preview
             </div>
             <div class="panel-body panel-height">
+                <div class="select-list list-height">
+                    <div class="select-label">
+                        asfsf
+                    </div>
+                    <div class="select-option">
+                        asfsf
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
