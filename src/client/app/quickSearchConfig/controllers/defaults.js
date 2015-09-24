@@ -51,7 +51,10 @@
         function initialize() {
             vm.model = {};
             quickSearchConfigService.getDefaults().then(function (data) {
-                vm.fields = data.fields.$values;
+                vm.clientId = data.clientId;
+                vm.formId = data.formId;
+                vm.model = data.data;
+                vm.fields = data.form.pages.$values[0].fields.$values;
                 _.each(vm.fields, function(field){
                    field.data.fields = field.data.fields.$values;
                     _.each(field.data.fields, function(item){
@@ -91,7 +94,7 @@
         }
 
         function save() {
-            quickSearchConfigService.postDefaults(vm.model).then(function (data) {
+            quickSearchConfigService.postDefaults(vm.clientId, vm.formId, vm.model).then(function (data) {
                 vm.formState.defaultsForm.$setPristine(true);
                 $rootScope.isDirty = false;
             });

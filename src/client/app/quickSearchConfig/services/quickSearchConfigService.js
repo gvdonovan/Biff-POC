@@ -86,17 +86,15 @@
             var url = '//localhost:63312/api/config/search/defaults/' + entityId + '/' + formId;
             return $http.get(url)
                 .then(function (response) {
-                    return response.data.pages.$values[0];
+                    return response.data;
                 }, function (response) {
                     console.warn('error' + response);
                 });
         }
 
-        function postDefaults(data) {
-            var entityId = 31;
-            var formId = 31;
+        function postDefaults(clientId, formId, data) {
             var url = '//localhost:63312/api/config/search/defaults/save';// + entityId + '/' + formId;
-            return $http.post(url, angular.toJson(data))
+            return $http.post(url, angular.toJson({clientId: clientId, formId: formId, data: data}))
                 .then(function (response) {
                     return response;
                 }, function (response) {
