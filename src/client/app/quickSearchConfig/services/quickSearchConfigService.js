@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .factory('quickSearchConfigService', QuickSearchConfigService);
 
-    QuickSearchConfigService.$inject = ['$q', 'logger', '$http'];
+    QuickSearchConfigService.$inject = ['logger', '$http'];
 
-    function QuickSearchConfigService($q, logger, $http) {
+    function QuickSearchConfigService(logger, $http) {
         var service = {
             getForms: getForms,
             getInputs: getInputs,
@@ -42,19 +42,19 @@
                 .then(function (response) {
 
                     //if purchase
-                    var purchasePrice = _.findWhere(response.data.fields.$values, {key: 'purchasePrice'});
+                    var purchasePrice = _.findWhere(response.data.form.fields.$values, {key: 'purchasePrice'});
                     purchasePrice['hideExpression'] = "model.loanPurpose === '2' || model.loanPurpose === '3'";
-                    var downPayment = _.findWhere(response.data.fields.$values, {key: 'downPayment'});
+                    var downPayment = _.findWhere(response.data.form.fields.$values, {key: 'downPayment'});
                     downPayment['hideExpression'] = "model.loanPurpose === '2' || model.loanPurpose === '3'";
 
                     //if not purchase
-                    var loanAmount = _.findWhere(response.data.fields.$values, {key: 'loanAmount'});
+                    var loanAmount = _.findWhere(response.data.form.fields.$values, {key: 'loanAmount'});
                     loanAmount['expressionProperties'] = {
                         'hide': function ($viewValue, $modelValue, scope) {
                             return scope.model.loanPurpose === '1' || !scope.model.loanPurpose
                         }
                     };
-                    var estimatedValue = _.findWhere(response.data.fields.$values, {key: 'estimatedValue'});
+                    var estimatedValue = _.findWhere(response.data.form.fields.$values, {key: 'estimatedValue'});
                     estimatedValue['expressionProperties'] = {
                         'hide': function ($viewValue, $modelValue, scope) {
                             return scope.model.loanPurpose === '1' || !scope.model.loanPurpose
