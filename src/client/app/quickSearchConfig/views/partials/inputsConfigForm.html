@@ -102,41 +102,28 @@
                                             <input type="text" ng-model="option.name" class="form-control" ng-change="vm.updatePreview(); vm.optionChanged(option); vm.fieldChanged(box.templateOptions);" />
                                         </div>
                                     </div>
-<<<<<<< HEAD
-                                    <div class="col-xs-6 col-md-4 col-lg-3">
-                                        <a ng-click="vm.moveOptionUp(box, $index)" class="btn btn-default ">
+                                    <div class="col-xs-6 col-md-4 col-lg-3 form-group">
+                                        <a ng-click="vm.moveOptionUp(box, $index)" class="btn btn-default">
                                             <span class="glyphicon glyphicon-chevron-up"></span>
                                         </a>
-                                        <a ng-click="vm.moveOptionDown(box,$index)" class="btn btn-default " style="margin-right:15px;">
+                                        <a ng-click="vm.moveOptionDown(box,$index)" class="btn btn-default" style="margin-right:15px;">
                                             <span class="glyphicon glyphicon-chevron-down"></span>
                                         </a>
                                     </div>
-=======
-                                </div>
-                                <div class="col-xs-2 form-group">
-                                    <a ng-click="vm.moveOptionUp(box, $index)" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-chevron-up"></span>
-                                    </a>
-                                    <a ng-click="vm.moveOptionDown(box,$index)" class="btn btn-default"
-                                       style="margin-right:15px;">
-                                        <span class="glyphicon glyphicon-chevron-down"></span>
-                                    </a>
->>>>>>> 521789531417fa381f546d4abb3293f6f5b06f25
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <input type="text" placeholder="Footer" class="form-control" ng-model="vm.data.footer" ng-change="$root.isDirty = true">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" placeholder="Footer" class="form-control" ng-model="vm.data.footer" ng-change="$root.isDirty = true">
+                    </div>
                 </div>
-            </div>
         </form>
-    </div>
-    <div class="panel-footer">
-        <button ng-click="vm.resetForm()" type="button" class="btn btn-default">Reset Form</button>
-    </div>
+        </div>
+        <div class="panel-footer">
+            <button ng-click="vm.resetForm()" type="button" class="btn btn-default">Reset Form</button>
+        </div>
 
-</div>
+    </div>
