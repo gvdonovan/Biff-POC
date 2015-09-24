@@ -1,1 +1,50 @@
-boo
+<!--TODO: DH-->
+<style type="text/css">
+    .withInputs {
+        line-height: 32px;
+    }
+
+</style>
+<div>
+    <div class="well qsSteps col-xs-10 col-xs-offset-1">
+        <ng-include src="'app/quickSearchConfig/views/partials/navigation.html'"></ng-include>
+    </div>
+</div>
+
+<div class="well col-xs-10 col-xs-offset-1">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span class="withInputs">Preview Panel</span>
+            <div class="input-group pull-right col-xs-2">
+                <input type="text" ng-model="box.templateOptions.label" class="form-control">
+                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-lg"
+                                       ng-class="box.templateOptions.showOptions ? 'fa-angle-double-up' : 'fa-angle-double-down'"></i>
+                                </button>
+                          </span>
+            </div>
+            <div class="pull-right col-xs-1">
+                <button class="btn btn-default pull-right">New</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body ">
+            <form name="generalForm" class="form-inline" novalidate>
+                <div class="form-group">
+                    <label class="sr-only">Name *</label>
+                    <input ng-model="vm.qsName" type="text" placeholder="Name" class="form-control" ng-change="$root.isDirty = true;" required>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="cLayout" ng-model="vm.cLayout" class="form-control.input-md" ng-change="$root.isDirty = true;"> Custom Layout
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Number format</label>
+                    <input type="text" ng-model="vm.numberFormat" placeholder="NumberFormatExample" class="form-control" format="number">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
