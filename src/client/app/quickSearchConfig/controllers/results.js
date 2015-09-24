@@ -34,7 +34,7 @@
         function initialize() {
             quickSearchConfigService.getResults().then(function (data) {
                 vm.data = data;
-                vm.formFields = data.fields.$values;
+                vm.formFields = data.form.pages.$values[0].fields.$values;
                 _.each(vm.formFields, function (field) {
                     if (field.type === 'select') {
                         field.templateOptions.options = field.templateOptions.options.$values;
