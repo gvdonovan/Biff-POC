@@ -54,7 +54,7 @@
                             <label>
                                 <input type="checkbox" ng-model="box.templateOptions.required"
                                        ng-change="vm.updatePreview(); vm.fieldChanged(box.templateOptions);"
-                                       class="form-control.input-md ">&nbsp;Required
+                                       class="form-control.input-md" ng-disabled="!box.templateOptions.visible">&nbsp;Required
                             </label>
                         </span>
                         <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
