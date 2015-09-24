@@ -195,7 +195,7 @@
                 of[i].order = i;
                 optionChanged(of[i]);
             }
-            fieldChanged(field);
+            fieldChanged(field.templateOptions);
             vm.updatePreview();
             $rootScope.isDirty = true;
         }
@@ -217,7 +217,7 @@
                 of[i].order = i;
                 optionChanged(of[i]);
             }
-            fieldChanged(field);
+            fieldChanged(field.templateOptions);
             vm.updatePreview();
             $rootScope.isDirty = true;
         }
