@@ -94,10 +94,23 @@
         }
 
         function save() {
-            quickSearchConfigService.postDefaults(vm.clientId, vm.formId, vm.model).then(function (data) {
+            var flatData = {};
+            flatData = flatten(vm.model, {}, false);
+            quickSearchConfigService.postDefaults(vm.clientId, vm.formId, flatData).then(function (data) {
                 vm.formState.defaultsForm.$setPristine(true);
                 $rootScope.isDirty = false;
             });
+        }
+
+        function flatten(x, result, prefix) {
+            if(_.isObject(x)) {
+                _.each(x, function(v, k) {
+                    flatten(v, result, k)
+                })
+            } else {
+                result[prefix] = x
+            }
+            return result
         }
     }
 })();
