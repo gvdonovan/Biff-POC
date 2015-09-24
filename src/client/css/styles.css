@@ -274,3 +274,7 @@ table tr td.table-text-middle {
 .ngrs-join {
   background-image: linear-gradient(#f29f65, #ee7421) !important;
 }
+.slider-font {
+  font-size: 12px;
+  color: #999;
+}

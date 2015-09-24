@@ -26,7 +26,7 @@
                         <input type="radio" name="pricingRadios" ng-value="'par'"
                                ng-model="vm.pricingFilter.filterType"
                                ng-change="$root.isDirty = true; vm.buildPreview();"/>
-                        Range From Par</label>
+                        Range From Par (Including Par)</label>
                 </div>
                 <div ng-show="vm.pricingFilter.filterType === 'price'">
                     <div class="col-xs-12">
@@ -41,9 +41,9 @@
                     </div>
                 </div>
                 <div ng-show="vm.pricingFilter.filterType === 'par'">
-                    <div class="col-xs-4 text-left">-5</div>
-                    <div class="col-xs-4 text-center">0</div>
-                    <div class="col-xs-4 text-right">5</div>
+                    <div class="col-xs-4 text-left slider-font">-5</div>
+                    <div class="col-xs-4 text-center slider-font">0</div>
+                    <div class="col-xs-4 text-right slider-font">5</div>
                     <div class="col-xs-12 form-group">
                         <div range-slider min="-5" max="5" model-min="vm.pricingFilter.belowPar"
                              model-max="vm.pricingFilter.abovePar" step="1" data-show-values="true"
