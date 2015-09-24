@@ -14,21 +14,19 @@
 
         vm.state = '';
         vm.go = go;
-        vm.next = next;
-        vm.previous = previous;
         vm.cancel = cancel;
         vm.save = save;
         $rootScope.isDirty = false;
 
         vm.filterText = '';
         vm.list1 = buildList();
-        vm.list2 = [];
-        vm.moveRight = moveRight;
-        vm.selectCategory = selectCategory;
-        vm.removeCategory = removeCategory;
+        vm.pickedItems = [];
+
+        vm.moveCategory = moveCategory;
+        vm.moveItem = moveItem;
+        vm.selectItem = selectItem;
         vm.removeItem = removeItem;
-        vm.sortCategory = sortCategory;
-        vm.sortItem = sortItem;
+        vm.refreshPicked = refreshPicked;
         vm.filterCategory = filterCategory;
         vm.filterItems = filterItems;
 
@@ -40,9 +38,6 @@
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
         }
-
-        var vm = this;
-        vm.title = 'Admin';
 
         function buildList() {
             var cat = 1;
@@ -74,89 +69,54 @@
             return arr;
         }
 
-        function moveRight() {
-            //var currentCategory;
-            //var itemsToMove = [];
-            if (!_.isEmpty(vm.list2)) {
-                var selectedCategories = getSelectedCategories();
-            }
-            //var biff = _.flatten(_.pluck(vm.list1, 'items'));
-            //_.each(biff, function (item) {
-            //    if (item.selected == true && !_.contains(pickedIds, item.id)) {
-            //        var newItem = _.clone(item);
-            //        newItem.selected = false;
-            //        itemsToMove.push(newItem);
-            //    }
-            //});
-            //vm.list2 = _.union(vm.list2, itemsToMove);
-
-            _.each(vm.list1, function (category) {
-                //currentCategory = category;
-                _.each(category.items, function (item) {
-                    if (item.selected == true) {
-                        //if category does not exist add it
-                        if (!_.contains(selectedCategories, category.category)) {
-                            var newCategory = _.clone(category);
-                            newCategory.items = [];
-                            newCategory.selected = false;
-                            vm.list2.push(newCategory);
-                            selectedCategories = getSelectedCategories();
-                        }
-                        //add selected items to correct category
-                        _.each(vm.list2, function (pickedCategory) {
-                            var itemIds = _.pluck(pickedCategory.items, 'id');
-                            if (pickedCategory.category == category.category && !_.contains(itemIds, item.id)) {
-                                var newItem = _.clone(item);
-                                newItem.selected = false;
-                                item.picked = true;
-                                pickedCategory.items.push(newItem);
-                                $rootScope.isDirty = true;
-                                return null;
-                            }
-                        });
-                    }
-                });
-            });
-            $rootScope.isDirty = true;
-        }
-
-        function selectCategory(category) {
-            category.selected = !category.selected;
-            _.each(category.items, function (item) {
-                item.selected = category.selected;
+        function moveCategory(cat) {
+            var itemIds = _.pluck(vm.pickedItems, 'id');
+            _.each(cat.items, function (item) {
+                if (!_.contains(itemIds, item.id)) {
+                    move(item);
+                }
             });
         }
 
-        function removeCategory(index, category) {
-            unPickItems(category);
-            vm.list2.splice(index, 1);
+        function moveItem(item) {
+            var itemIds = _.pluck(vm.pickedItems, 'id');
+            if (!_.contains(itemIds, item.id)) {
+                move(item);
+            }
+        }
+
+        function move(item) {
+            var newItem = _.clone(item);
+            newItem.selected = false;
+            item.picked = true;
+            vm.pickedItems.push(newItem);
             $rootScope.isDirty = true;
         }
 
-        function removeItem(index, category, cIndex) {
-            if (category.items.length > 1) {
-                var x = category.items.splice(index, 1);
-                unPickItem(x[0], category);
-            } else {
-                vm.list2.splice(cIndex, 1);
-                unPickItems(category);
-            }
-            $rootScope.isDirty = true;
+        function selectItem(item) {
+            _.each(vm.pickedItems, function (x) {
+                x.selected = false;
+            });
+            item.selected = true;
         }
 
-        function sortCategory(index, increment) {
-            var num = index + increment;
-            if ((num <= vm.list2.length - 1) && num >= 0) {
-                vm.list2[index] = vm.list2.splice(num, 1, vm.list2[index])[0];
+        function removeItem() {
+            for (var i = 0; i < vm.pickedItems.length; i++) {
+                if (vm.pickedItems[i].selected) {
+                    var x = vm.pickedItems.splice(i, 1);
+                    unPickItem(x[0]);
+                    $rootScope.isDirty = true;
+                }
             }
-            $rootScope.isDirty = true;
+            vm.selectedIndex = null;
         }
 
-        function sortItem(index, increment, list) {
-            var num = index + increment;
-            if ((num <= list.length - 1) && num >= 0) {
-                list[index] = list.splice(num, 1, list[index])[0];
-            }
+        function refreshPicked() {
+            vm.pickedItems = [];
+            var items = _.flatten(_.pluck(vm.list1, 'items'));
+            _.each(items, function (x) {
+                x.picked = false;
+            });
             $rootScope.isDirty = true;
         }
 
@@ -205,34 +165,12 @@
             }
         }
 
-        function getSelectedCategories() {
-            return _.pluck(vm.list2, 'category');
-        }
-
-        function unPickItems(category) {
-            var srcCat = _.findWhere(vm.list1, {
-                category: category.category
-            });
-
-            _.each(category.items, function (item) {
-                _.each(srcCat.items, function (srcItem) {
-                    if (item.id === srcItem.id) {
-                        srcItem.picked = false;
-                        return null;
-                    }
-                });
-            });
-        }
-
-        function unPickItem(item, category) {
-            var srcCat = _.findWhere(vm.list1, {
-                category: category.category
-            });
-
-            _.each(srcCat.items, function (srcItem) {
-                if (item.id === srcItem.id) {
-                    srcItem.picked = false;
-                    return null;
+        function unPickItem(item) {
+            var items = _.flatten(_.pluck(vm.list1, 'items'));
+            _.each(items, function (x) {
+                if (x.id === item.id) {
+                    x.picked = false;
+                    return true;
                 }
             });
         }
@@ -241,20 +179,6 @@
             if (vm.editMode.toLowerCase() == 'true') {
                 $state.go(state, {editMode: vm.editMode, formId: vm.formId});
             }
-        }
-
-        function next() {
-            $state.go('quickSearchConfigResults', {
-                editMode: vm.editMode,
-                formId: vm.formId
-            });
-        }
-
-        function previous() {
-            $state.go('quickSearchConfigProducts', {
-                editMode: vm.editMode,
-                formId: vm.formId
-            });
         }
 
         function cancel() {
