@@ -15,6 +15,7 @@
             getDefaults: getDefaults,
             postDefaults: postDefaults,
             getResults: getResults,
+            postResults: postResults,
             getFilters: getFilters,
             getLoanOfficers: getLoanOfficers
         };
@@ -137,6 +138,18 @@
             return $http.get(url)
                 .then(function (response) {
                     return response.data.pages.$values[0];
+                }, function (response) {
+                    console.warn('error' + response);
+                });
+        }
+
+        function postResults(data){
+            var entityId = 31;
+            var formId = 31;
+            var url = '//localhost:63312/api/config/search/results/save';// + entityId + '/' + formId;
+            return $http.post(url, angular.toJson(data))
+                .then(function (response) {
+                    return response;
                 }, function (response) {
                     console.warn('error' + response);
                 });

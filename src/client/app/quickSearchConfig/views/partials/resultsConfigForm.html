@@ -18,13 +18,13 @@
             <div ng-repeat="box in vm.formFields">
                 <div class="row">
                     <div class="form-group col-sm-6">
-                        <input type="text" ng-model="box.templateOptions.label" ng-change="$root.isDirty = true" class="form-control">
+                        <input type="text" ng-model="box.templateOptions.label" ng-change="$root.isDirty = true; box.templateOptions.isDirty = true;" class="form-control">
                     </div>
 
                     <div class="hidePadding form-group col-sm-6">
                         <span class="">
                             <label>
-                                <input type="checkbox" ng-model="box.visible" class="form-control.input-md" ng-change="$root.isDirty = true">&nbsp;Hide
+                                <input type="checkbox" ng-model="box.visible" class="form-control.input-md" ng-change="$root.isDirty = true; box.templateOptions.isDirty = true;">&nbsp;Hide
                             </label>
                         </span>
 
