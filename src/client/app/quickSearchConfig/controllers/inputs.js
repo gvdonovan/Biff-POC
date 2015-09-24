@@ -69,15 +69,15 @@
         }
 
         function setPreview(index) {
-            vm.data.fields.$values[index].templateOptions.visible = !vm.data.fields.$values[index].templateOptions.visible;
-            console.log("Index: " + index + ", visible:" + vm.data.fields.$values[index].templateOptions.visible);
+            vm.data.form.fields.$values[index].templateOptions.visible = !vm.data.form.fields.$values[index].templateOptions.visible;
+            console.log("Index: " + index + ", visible:" + vm.data.form.fields.$values[index].templateOptions.visible);
             vm.updatePreview();
             $rootScope.isDirty = true;
         }
 
         function moveRowUp(index) {
             console.log("UP: Index: " + index);
-            var ff = vm.data.fields.$values;
+            var ff = vm.data.form.fields.$values;
             var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
@@ -104,7 +104,7 @@
 
         function moveRowDown(index) {
             console.log("DOWN: Index: " + index);
-            var ff = vm.data.fields.$values;
+            var ff = vm.data.form.fields.$values;
             var pf = vm.previewFields;
 
             var fItem = ff.slice(0)[index];
@@ -130,7 +130,7 @@
         }
 
         function updatePreview() {
-            var ff = vm.data.fields.$values;
+            var ff = vm.data.form.fields.$values;
             vm.previewFields = [];
 
             for (var i = 0; i < ff.length; i++) {
@@ -158,7 +158,7 @@
         }
 
         function closeOptions() {
-            var ff = vm.data.fields.$values;
+            var ff = vm.data.form.fields.$values;
             for (var i = 0; i < ff.length; i++) {
                 vm.optionsVisible[i] = false;
             }
@@ -232,7 +232,7 @@
         }
 
         function resetForm() {
-            _.each(vm.data.fields.$values, function (item) {
+            _.each(vm.data.form.fields.$values, function (item) {
                 item.templateOptions.label = item.templateOptions.defaultLabel;
                 item.templateOptions.order = item.templateOptions.defaultOrder;
                 item.templateOptions.visible = true;
@@ -248,7 +248,7 @@
                 }
             });
 
-            vm.data.fields.$values = vm.data.fields.$values.sort(function (obj1, obj2) {
+            vm.data.form.fields.$values = vm.data.form.fields.$values.sort(function (obj1, obj2) {
                 return obj1.templateOptions.order - obj2.templateOptions.order;
             });
 

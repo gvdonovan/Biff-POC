@@ -15,8 +15,6 @@
         vm.state = '';
         vm.resetForm = resetForm;
         vm.go = go;
-        vm.next = next;
-        vm.previous = previous;
         vm.isLastStep = true;
         vm.searchResults = {};
 
@@ -35,9 +33,10 @@
 
         function initialize() {
             quickSearchConfigService.getResults().then(function (data) {
-                vm.formFields = data.fields.$values;
-                _.each(vm.formFields, function(field){
-                    if(field.type === 'select'){
+                vm.data = data;
+                vm.formFields = data.form.pages.$values[0].fields.$values;
+                _.each(vm.formFields, function (field) {
+                    if (field.type === 'select') {
                         field.templateOptions.options = field.templateOptions.options.$values;
                     }
                 });
@@ -53,8 +52,8 @@
             _.each(vm.formFields, function (item) {
                 item.templateOptions.label = item.templateOptions.defaultLabel;
                 item.templateOptions.visible = true;
+                item.templateOptions.isDirty = true;
             });
-
             $rootScope.isDirty = true;
         }
 
@@ -67,25 +66,15 @@
             }
         }
 
-        function next() {
-            return null;
-        }
-
-        function previous() {
-            $state.go('quickSearchConfigLoanOfficers', {
-                editMode: vm.editMode,
-                formId: vm.formId
-            });
-        }
-
         function cancel() {
             initialize();
             $rootScope.isDirty = false;
         }
 
         function save() {
-            //TODO post vm.data
-            $rootScope.isDirty = false;
+            quickSearchConfigService.postResults(vm.data).then(function (data) {
+                $rootScope.isDirty = false;
+            });
         }
     }
 })();

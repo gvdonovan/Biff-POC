@@ -1,1 +1,81 @@
-boo
+<div>
+    <div class="well qsSteps col-xs-10 col-xs-offset-1">
+        <ng-include src="'app/quickSearchConfig/views/partials/navigation.html'"></ng-include>
+    </div>
+</div>
+
+<div class="well col-xs-10 col-xs-offset-1">
+
+    <div class="col-xs-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span class="">Loan Officer</span>
+            </div>
+            <div class="panel-body ">
+                <form name="generalForm" class="form-inline" novalidate>
+                    <div class="form-group ">
+                        <select class="form-control col-xs-12" ng-model="vm.selectedOfficer">
+                            <option value="">---Please select---</option>
+                            <option ng-repeat="option in vm.loanOfficers" value="{{option.id}}">{{option.name}}</option>
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="min-height: 20px;">{{vm.data.header}}</div>
+            <div class="panel-body ">
+                <formly-form model="vm.formModel" fields="vm.formFields"></formly-form>
+            </div>
+            <div class="panel-footer clearfix">
+                <div class="pull-left">{{vm.data.footer}}</div>
+                <button type="button" class="btn btn-primary pull-right">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span class="">Results</span>
+            </div>
+            <div class="panel-body ">
+                <accordion close-others="true" class="col-xs-12">
+                    <accordion-group ng-repeat="type in vm.searchResults" is-open="type.status.open">
+                        <accordion-heading>
+                            {{type.title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': type.status.open, 'glyphicon-chevron-right': !type.status.open}"></i>
+                        </accordion-heading>
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Rate</th>
+                                        <th>Disc Points</th>
+                                        <th>APR</th>
+                                        <th>Months</th>
+                                        <th>Payment</th>
+                                        <th>Closing Costs</th>
+                                        <th>Apply</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr ng-repeat="item in type.items">
+                                        <td>{{item.rate}}</td>
+                                        <td>{{item.discounts}}</td>
+                                        <td>{{item.aPR}}</td>
+                                        <td>{{item.months}}</td>
+                                        <td>{{item.monthlyPayments}}</td>
+                                        <td>{{item.closingCosts}}</td>
+                                        <td><a class="clickable" href="">Apply Now</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .factory('quickSearchConfigService', QuickSearchConfigService);
 
-    QuickSearchConfigService.$inject = ['$q', 'logger', '$http'];
+    QuickSearchConfigService.$inject = ['logger', '$http'];
 
-    function QuickSearchConfigService($q, logger, $http) {
+    function QuickSearchConfigService(logger, $http) {
         var service = {
             getForms: getForms,
             getInputs: getInputs,
@@ -15,6 +15,7 @@
             getDefaults: getDefaults,
             postDefaults: postDefaults,
             getResults: getResults,
+            postResults: postResults,
             getFilters: getFilters,
             getLoanOfficers: getLoanOfficers
         };
@@ -41,19 +42,19 @@
                 .then(function (response) {
 
                     //if purchase
-                    var purchasePrice = _.findWhere(response.data.fields.$values, {key: 'purchasePrice'});
+                    var purchasePrice = _.findWhere(response.data.form.fields.$values, {key: 'purchasePrice'});
                     purchasePrice['hideExpression'] = "model.loanPurpose === '2' || model.loanPurpose === '3'";
-                    var downPayment = _.findWhere(response.data.fields.$values, {key: 'downPayment'});
+                    var downPayment = _.findWhere(response.data.form.fields.$values, {key: 'downPayment'});
                     downPayment['hideExpression'] = "model.loanPurpose === '2' || model.loanPurpose === '3'";
 
                     //if not purchase
-                    var loanAmount = _.findWhere(response.data.fields.$values, {key: 'loanAmount'});
+                    var loanAmount = _.findWhere(response.data.form.fields.$values, {key: 'loanAmount'});
                     loanAmount['expressionProperties'] = {
                         'hide': function ($viewValue, $modelValue, scope) {
                             return scope.model.loanPurpose === '1' || !scope.model.loanPurpose
                         }
                     };
-                    var estimatedValue = _.findWhere(response.data.fields.$values, {key: 'estimatedValue'});
+                    var estimatedValue = _.findWhere(response.data.form.fields.$values, {key: 'estimatedValue'});
                     estimatedValue['expressionProperties'] = {
                         'hide': function ($viewValue, $modelValue, scope) {
                             return scope.model.loanPurpose === '1' || !scope.model.loanPurpose
@@ -85,17 +86,15 @@
             var url = '//localhost:63312/api/config/search/defaults/' + entityId + '/' + formId;
             return $http.get(url)
                 .then(function (response) {
-                    return response.data.pages.$values[0];
+                    return response.data;
                 }, function (response) {
                     console.warn('error' + response);
                 });
         }
 
-        function postDefaults(data) {
-            var entityId = 31;
-            var formId = 31;
+        function postDefaults(clientId, formId, data) {
             var url = '//localhost:63312/api/config/search/defaults/save';// + entityId + '/' + formId;
-            return $http.post(url, angular.toJson(data))
+            return $http.post(url, angular.toJson({clientId: clientId, formId: formId, data: data}))
                 .then(function (response) {
                     return response;
                 }, function (response) {
@@ -136,7 +135,19 @@
             var url = '//localhost:63312/api/config/search/results/' + entityId + '/' + formId;
             return $http.get(url)
                 .then(function (response) {
-                    return response.data.pages.$values[0];
+                    return response.data;
+                }, function (response) {
+                    console.warn('error' + response);
+                });
+        }
+
+        function postResults(data){
+            var entityId = 31;
+            var formId = 31;
+            var url = '//localhost:63312/api/config/search/results/save';// + entityId + '/' + formId;
+            return $http.post(url, angular.toJson(data))
+                .then(function (response) {
+                    return response;
                 }, function (response) {
                     console.warn('error' + response);
                 });

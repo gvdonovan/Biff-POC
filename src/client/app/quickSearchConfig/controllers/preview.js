@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('QuickSearchPreviewController', QuickSearchPreviewController);
 
-    QuickSearchPreviewController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService', 'qsResultsService'];
+    QuickSearchPreviewController.$inject = ['logger', '$stateParams', '$q', '$state', '$rootScope', 'quickSearchConfigService', 'qsResultsService'];
     /* @ngInject */
-    function QuickSearchPreviewController(logger, $stateParams, $state, $rootScope, quickSearchConfigService, qsResultsService) {
+    function QuickSearchPreviewController(logger, $stateParams, $q, $state, $rootScope, quickSearchConfigService, qsResultsService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -22,6 +22,24 @@
 
         vm.cancel = cancel;
         vm.save = save;
+        vm.selectedOfficer = null;
+        vm.loanOfficers = [
+            {
+                id: '1',
+                name: 'Officer A'
+            },
+            {
+                id: '2',
+                name: 'Officer B'
+            },
+            {
+                id: '3',
+                name: 'Officer C'
+            }
+        ];
+
+        vm.formFields;
+        vm.formModel;
 
         activate();
 
@@ -34,11 +52,25 @@
         }
 
         function initialize() {
-        
+
+            $q.all([
+                    qsResultsService.getFormConfig()
+                ]).then(function (data) {
+                vm.data = data[0];
+                vm.formFields = data[0].fields;
+
+            })
+
+            qsResultsService.getResults(true).then(function (data) {
+                vm.searchResults = data;
+                console.log(vm.searchResults);
+            });
+
+
         }
 
         function resetForm() {
-        
+
         }
 
         function go(state) {
