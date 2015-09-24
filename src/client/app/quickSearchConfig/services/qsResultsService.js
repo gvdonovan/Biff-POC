@@ -204,6 +204,8 @@
 
         function init() {
             var data = {
+                header: 'Quick Search',
+                footer: 'Quick Search Footer',
                 fields: [
                     {
                         key: 'rate',
