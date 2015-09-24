@@ -41,6 +41,9 @@
                     </div>
                 </div>
                 <div ng-show="vm.pricingFilter.filterType === 'par'">
+                    <div class="col-xs-4 text-left">-5</div>
+                    <div class="col-xs-4 text-center">0</div>
+                    <div class="col-xs-4 text-right">5</div>
                     <div class="col-xs-12 form-group">
                         <div range-slider min="-5" max="5" model-min="vm.pricingFilter.belowPar"
                              model-max="vm.pricingFilter.abovePar" step="1" data-show-values="true"
@@ -68,18 +71,16 @@
                         <div ng-repeat="cat in vm.list1 | filter: vm.filterCategory">
                             <div class="select-label clickable" ng-click="vm.moveCategory(cat)">{{cat.category}}</div>
                             <div ng-repeat="item in cat.items | filter: vm.filterItems(cat)">
-                                <div class="select-option clickable" ng-click="vm.moveItem(item, cat)">{{item.name}}</div>
+                                <div class="select-option clickable" ng-click="vm.moveItem(item, cat)">{{item.name}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-5">
                     <div class="select-list list-height">
-                        <div ng-repeat="cat in vm.list2">
-                            <div class="select-label">{{cat.category}}</div>
-                            <div ng-repeat="item in cat.items">
-                                <div class="select-option">{{item.name}}</div>
-                            </div>
+                        <div ng-repeat="item in vm.pickedItems">
+                            <div class="select-option-only" ng-click="vm.selectItem(item)" ng-class="{'selected': item.selected}">{{item.name}}</div>
                         </div>
                     </div>
                 </div>
@@ -100,15 +101,6 @@
                 Preview
             </div>
             <div class="panel-body panel-height">
-                <div class="select-list list-height">
-                    <div class="select-label">
-                        asfsf
-                    </div>
-                    <div class="select-option">
-                        asfsf
-                    </div>
-                </div>
-
 
             </div>
         </div>

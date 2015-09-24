@@ -173,6 +173,8 @@
                     item.selected = false;
                 }
             });
+            optionChanged(option);
+            fieldChanged(field);
             vm.updatePreview();
         }
 
@@ -193,6 +195,7 @@
                 of[i].order = i;
                 optionChanged(of[i]);
             }
+            fieldChanged(field);
             vm.updatePreview();
             $rootScope.isDirty = true;
         }
@@ -214,6 +217,7 @@
                 of[i].order = i;
                 optionChanged(of[i]);
             }
+            fieldChanged(field);
             vm.updatePreview();
             $rootScope.isDirty = true;
         }
