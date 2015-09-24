@@ -19,21 +19,21 @@
                     <label class="radio-inline">
                         <input type="radio" name="pricingRadios" ng-value="'price'"
                                ng-model="vm.pricingFilter.filterType"
-                               ng-change="$root.isDirty = true"/>
+                               ng-change="$root.isDirty = true; vm.buildPreview();"/>
                         Price</label>
                     &nbsp;
                     <label class="radio-inline">
                         <input type="radio" name="pricingRadios" ng-value="'par'"
                                ng-model="vm.pricingFilter.filterType"
-                               ng-change="$root.isDirty = true"/>
-                        Range From Par</label>
+                               ng-change="$root.isDirty = true; vm.buildPreview();"/>
+                        Range From Par (Including Par)</label>
                 </div>
                 <div ng-show="vm.pricingFilter.filterType === 'price'">
                     <div class="col-xs-12">
                         <div class="form-group" ng-repeat="price in vm.pricingFilter.prices track by $index">
                             <div class="input-group">
                                 <input type="number" class="form-control" ng-model="price.value"
-                                       ng-change="$root.isDirty = true">
+                                       ng-change="$root.isDirty = true; vm.buildPreview();">
                                 <span class="input-group-addon clickable" ng-click="vm.removePrice($index)"><i
                                         class="glyphicon glyphicon-remove"></i></span>
                             </div>
@@ -41,9 +41,9 @@
                     </div>
                 </div>
                 <div ng-show="vm.pricingFilter.filterType === 'par'">
-                    <div class="col-xs-4 text-left">-5</div>
-                    <div class="col-xs-4 text-center">0</div>
-                    <div class="col-xs-4 text-right">5</div>
+                    <div class="col-xs-4 text-left slider-font">-5</div>
+                    <div class="col-xs-4 text-center slider-font">0</div>
+                    <div class="col-xs-4 text-right slider-font">5</div>
                     <div class="col-xs-12 form-group">
                         <div range-slider min="-5" max="5" model-min="vm.pricingFilter.belowPar"
                              model-max="vm.pricingFilter.abovePar" step="1" data-show-values="true"
@@ -71,7 +71,8 @@
                         <div ng-repeat="cat in vm.list1 | filter: vm.filterCategory">
                             <div class="select-label clickable" ng-click="vm.moveCategory(cat)">{{cat.category}}</div>
                             <div ng-repeat="item in cat.items | filter: vm.filterItems(cat)">
-                                <div class="select-option clickable" ng-click="vm.moveItem(item, cat)">{{item.name}}
+                                <div class="select-option clickable" ng-click="vm.moveItem(item, cat)">
+                                    <span ng-show="item.picked"><i class="glyphicon glyphicon-ok"></i></span> {{item.name}}
                                 </div>
                             </div>
                         </div>
@@ -80,17 +81,25 @@
                 <div class="col-xs-5">
                     <div class="select-list list-height">
                         <div ng-repeat="item in vm.pickedItems">
-                            <div class="select-option-only" ng-click="vm.selectItem(item)" ng-class="{'selected': item.selected}">{{item.name}}</div>
+                            <div class="select-option-only" ng-click="vm.selectItem(item)"
+                                 ng-class="{'selected': item.selected}">{{item.name}}
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-2 row">
-                    <button type="button" class="btn btn-default btn-block"><span
+                    <button type="button" class="btn btn-default btn-block" ng-click="vm.itemUp()"
+                            ng-disabled="!vm.selectedIndex > 0 || vm.pickedItems.length < 2"><span
                             class="glyphicon glyphicon-arrow-up"></span></button>
-                    <button type="button" class="btn btn-default btn-block"><span
+                    <button type="button" class="btn btn-default btn-block" ng-click="vm.itemDown()"
+                            ng-disabled="(vm.selectedIndex >= vm.pickedItems.length - 1) || vm.selectedIndex == null || vm.pickedItems.length < 2"><span
                             class="glyphicon glyphicon-arrow-down"></span></button>
-                    <button type="button" class="btn btn-default btn-block" ng-click="vm.removeItem()"><span
+                    <button type="button" class="btn btn-default btn-block" ng-click="vm.removeItem()"
+                            ng-disabled="vm.pickedItems.length === 0"><span
                             class="glyphicon glyphicon-remove"></span></button>
+                    <button type="button" class="btn btn-default btn-block" ng-click="vm.refreshPicked()"
+                            ng-disabled="vm.pickedItems.length === 0"><span
+                            class="glyphicon glyphicon-refresh"></span></button>
                 </div>
             </div>
         </div>
@@ -101,7 +110,28 @@
                 Preview
             </div>
             <div class="panel-body panel-height">
-
+                <accordion close-others="true" class="col-xs-12">
+                    <accordion-group ng-repeat="item in vm.preview" is-open="item.open">
+                        <accordion-heading>
+                            {{item.name}} <i class="pull-right glyphicon"
+                                             ng-class="{'glyphicon-chevron-down': item.open, 'glyphicon-chevron-right': !item.open}"></i>
+                        </accordion-heading>
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="price in item.products">
+                                    <td>{{price.value}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </accordion-group>
+                </accordion>
             </div>
         </div>
     </div>

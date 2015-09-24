@@ -12,15 +12,6 @@
                         <thead>
                             <tr>
                                 <th ng-repeat="field in vm.formFields" ng-hide="field.visible">{{field.templateOptions.label}}</th>
-                                <!--
-                                <th>Rate</th>
-                                <th>Disc Points</th>
-                                <th>APR</th>
-                                <th>Months Payment</th>
-                                <th>Closing Costs</th>
-                                <th>Rebate</th>
-                                <th>Apply</th>
-                                -->
                             </tr>
                         </thead>
                         <tbody>
@@ -28,17 +19,6 @@
                             <tr ng-repeat="item in type.items">
                                 <td ng-repeat="field in vm.formFields track by $index" ng-hide="field.visible">{{item[field.key]}}</td>
                             </tr>
-                            <!--
-                            <tr ng-repeat="item in type.items">
-                                <td>{{item.rate}}</td>
-                                <td>{{item.discPoints}}</td>
-                                <td>{{item.apr}}</td>
-                                <td>{{item.months}}</td>
-                                <td>{{item.closingCost}}</td>
-                                <td>{{item.rebate}}</td>
-                                <td><a class="clickable" href="">Apply Now</a></td>
-                            </tr>
-                            -->
                         </tbody>
                     </table>
                 </div>

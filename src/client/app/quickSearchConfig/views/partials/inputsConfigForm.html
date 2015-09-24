@@ -43,14 +43,14 @@
                             <label>
                                 <input type="checkbox" ng-model="box.templateOptions.visible"
                                        ng-change="vm.updatePreview(); vm.fieldChanged(box.templateOptions);"
-                                       class="form-control.input-md ">&nbsp;Include
+                                       class="form-control.input-md" ng-disabled="box.templateOptions.required">&nbsp;Include
                             </label>
                         </span>
                         <span class="padLeftRight">
                             <label>
                                 <input type="checkbox" ng-model="box.templateOptions.required"
                                        ng-change="vm.updatePreview(); vm.fieldChanged(box.templateOptions);"
-                                       class="form-control.input-md ">&nbsp;Required
+                                       class="form-control.input-md" ng-disabled="!box.templateOptions.visible">&nbsp;Required
                             </label>
                         </span>
                         <a ng-click="vm.moveRowUp($index)" class="btn btn-default ">
@@ -102,6 +102,7 @@
                                             <input type="text" ng-model="option.name" class="form-control" ng-change="vm.updatePreview(); vm.optionChanged(option); vm.fieldChanged(box.templateOptions);" />
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     <div class="col-xs-6 col-md-4 col-lg-3">
                                         <a ng-click="vm.moveOptionUp(box, $index)" class="btn btn-default ">
                                             <span class="glyphicon glyphicon-chevron-up"></span>
@@ -110,6 +111,17 @@
                                             <span class="glyphicon glyphicon-chevron-down"></span>
                                         </a>
                                     </div>
+=======
+                                </div>
+                                <div class="col-xs-2 form-group">
+                                    <a ng-click="vm.moveOptionUp(box, $index)" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-chevron-up"></span>
+                                    </a>
+                                    <a ng-click="vm.moveOptionDown(box,$index)" class="btn btn-default"
+                                       style="margin-right:15px;">
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                    </a>
+>>>>>>> 521789531417fa381f546d4abb3293f6f5b06f25
                                 </div>
                             </div>
                         </div>
