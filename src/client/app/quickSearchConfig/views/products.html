@@ -71,7 +71,8 @@
                         <div ng-repeat="cat in vm.list1 | filter: vm.filterCategory">
                             <div class="select-label clickable" ng-click="vm.moveCategory(cat)">{{cat.category}}</div>
                             <div ng-repeat="item in cat.items | filter: vm.filterItems(cat)">
-                                <div class="select-option clickable" ng-click="vm.moveItem(item, cat)">{{item.name}}
+                                <div class="select-option clickable" ng-click="vm.moveItem(item, cat)">
+                                    <span ng-show="item.picked"><i class="glyphicon glyphicon-ok"></i></span> {{item.name}}
                                 </div>
                             </div>
                         </div>
@@ -123,7 +124,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
                                 <tr ng-repeat="price in item.products">
                                     <td>{{price.value}}</td>
                                 </tr>
