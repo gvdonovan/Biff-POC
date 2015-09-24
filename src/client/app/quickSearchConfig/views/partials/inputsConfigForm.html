@@ -47,7 +47,7 @@
                             <label>
                                 <input type="checkbox" ng-model="box.templateOptions.visible"
                                        ng-change="vm.updatePreview(); vm.fieldChanged(box.templateOptions);"
-                                       class="form-control.input-md ">&nbsp;Include
+                                       class="form-control.input-md" ng-disabled="box.templateOptions.required">&nbsp;Include
                             </label>
                         </span>
                         <span class="padLeftRight">
