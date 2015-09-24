@@ -174,7 +174,7 @@
                 }
             });
             optionChanged(option);
-            fieldChanged(field);
+            fieldChanged(field.templateOptions);
             vm.updatePreview();
         }
 
