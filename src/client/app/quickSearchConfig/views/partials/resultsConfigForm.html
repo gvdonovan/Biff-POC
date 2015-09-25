@@ -1,12 +1,4 @@
-<style type="text/css">
-    .hidePadding {
-        padding-top: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-</style>
-
-<div class="panel panel-primary qsResultsConfig">
+<div class="panel panel-primary results-height">
     <div class="panel-heading">Results Config</div>
     <form name="vm.formState.resultsForm" novalidate>
         <div class="panel-body">
@@ -17,8 +9,8 @@
                     </div>
 
                     <div class="hidePadding form-group col-sm-6">
-                        <span class="">
-                            <label>
+                        <span>
+                            <label class="label-soft">
                                 <input type="checkbox" ng-model="box.visible" class="form-control.input-md" ng-change="$root.isDirty = true; box.templateOptions.isDirty = true;">&nbsp;Hide
                             </label>
                         </span>
