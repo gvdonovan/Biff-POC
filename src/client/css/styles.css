@@ -278,3 +278,6 @@ table tr td.table-text-middle {
   font-size: 12px;
   color: #999;
 }
+.withInputs {
+  line-height: 32px;
+}

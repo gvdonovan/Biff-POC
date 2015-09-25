@@ -29,7 +29,7 @@
         function initialize() {
             quickSearchConfigService.getForms().then(function (data) {
                 vm.data = data;
-                vm.forms = data.$values;
+                vm.forms = data.forms.$values;
             });
         }
 
