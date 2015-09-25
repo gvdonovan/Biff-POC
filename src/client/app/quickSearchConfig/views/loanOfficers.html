@@ -19,13 +19,13 @@
                     </div>
                     <div class="col-xs-5">
                         <div class="select-list list-height">
-                            <div ng-repeat="cat in vm.list1 | filter: vm.filterCategory">
-                                <div class="select-label clickable" ng-click="vm.moveCategory(cat)">{{cat.category}}
+                            <div ng-repeat="cat in vm.availableOfficers | filter: vm.filterCategory">
+                                <div class="select-label clickable" ng-click="vm.moveCategory(cat)">{{cat.name}}
                                 </div>
-                                <div ng-repeat="item in cat.items | filter: vm.filterItems(cat)">
+                                <div ng-repeat="item in cat.loanOfficers.$values | filter: vm.filterItems(cat)">
                                     <div class="select-option clickable" ng-click="vm.moveItem(item, cat)">
                                         <span ng-show="item.picked"><i class="glyphicon glyphicon-ok"></i></span>
-                                        {{item.name}}
+                                        {{item.fullName}}
                                     </div>
                                 </div>
                             </div>
@@ -33,9 +33,9 @@
                     </div>
                     <div class="col-xs-5">
                         <div class="select-list list-height">
-                            <div ng-repeat="item in vm.pickedItems">
+                            <div ng-repeat="item in vm.pickedOfficers">
                                 <div class="select-option-only" ng-click="vm.selectItem(item)"
-                                     ng-class="{'selected': item.selected}">{{item.name}}
+                                     ng-class="{'selected': item.selected}">{{item.loanOfficerName}}
                                 </div>
                             </div>
                         </div>
