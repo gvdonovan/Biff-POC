@@ -53,12 +53,12 @@
             quickSearchConfigService.getDefaults().then(function (data) {
                 vm.clientId = data.clientId;
                 vm.formId = data.formId;
-                vm.model = data.data;
                 vm.fields = data.form.pages.$values[0].fields.$values;
-                _.each(vm.fields, function(field){
-                   field.data.fields = field.data.fields.$values;
-                    _.each(field.data.fields, function(item){
-                        if(item.type === 'select'){
+                vm.model = nest(data.data, vm.fields);
+                _.each(vm.fields, function (field) {
+                    field.data.fields = field.data.fields.$values;
+                    _.each(field.data.fields, function (item) {
+                        if (item.type === 'select') {
                             item.templateOptions.options = item.templateOptions.options.$values;
                         }
                     });
@@ -103,14 +103,31 @@
         }
 
         function flatten(x, result, prefix) {
-            if(_.isObject(x)) {
-                _.each(x, function(v, k) {
+            if (_.isObject(x)) {
+                _.each(x, function (v, k) {
                     flatten(v, result, k)
                 })
             } else {
                 result[prefix] = x
             }
             return result
+        }
+
+        function nest(model, fields) {
+            var nestedModel = {};
+            _.each(fields, function (x) {
+                if (x.type == 'nested') {
+                    _.each(x.data.fields.$values, function (nest) {
+                        if (!nestedModel.hasOwnProperty(x.key)) {
+                            nestedModel[x.key] = {};
+                        }
+                        if (model.hasOwnProperty(nest.key)) {
+                            nestedModel[x.key][nest.key] = model[nest.key];
+                        }
+                    });
+                }
+            });
+            return nestedModel;
         }
     }
 })();
