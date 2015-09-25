@@ -44,6 +44,7 @@
         function initialize() {
             quickSearchConfigService.getLoanOfficers(31, vm.formId).then(function (data) {
                 vm.clientId = data.clientId;
+                vm.data = data;
                 vm.availableOfficers = data.data.availableLoanOfficers.$values;
                 vm.pickedOfficers = data.data.assignedLoanOfficers.$values;
 
@@ -172,7 +173,10 @@
         }
 
         function save() {
-            quickSearchConfigService.postLoanOfficers(vm.clientId, vm.formId, vm.pickedOfficers).then(function (data) {
+            vm.data.data.availableLoanOfficers.$values = vm.availableOfficers;
+            vm.data.data.assignedLoanOfficers.$values = vm.pickedOfficers;
+
+            quickSearchConfigService.postLoanOfficers(vm.data).then(function (data) {
                 $rootScope.isDirty = false;
             });
         }
