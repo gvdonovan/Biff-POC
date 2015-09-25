@@ -127,6 +127,12 @@
                     });
                 }
             });
+            for(var p in model){
+                if(!nestedModel.hasOwnProperty(p)){
+                    nestedModel[p] = model[p];
+                }
+            }
+
             return nestedModel;
         }
     }
