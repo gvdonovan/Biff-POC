@@ -172,7 +172,7 @@
         }
 
         function save() {
-            quickSearchConfigService.postLoanOfficers(vm.clientId, vm.formId, vm.formId).then(function (data) {
+            quickSearchConfigService.postLoanOfficers(vm.clientId, vm.formId, vm.pickedOfficers).then(function (data) {
                 $rootScope.isDirty = false;
             });
         }
