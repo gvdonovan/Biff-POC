@@ -115,11 +115,11 @@
                 });
         }
 
-        function getLoanOfficers() {
-            var entityId = 31;
-            var formId = 31;
+        function getLoanOfficers(clientId, formId) {
+            clientId = 31;
+            formId = 31;
 
-            var url = '//localhost:63312/api/config/search/loanOfficers/' + entityId + '/' + formId;
+            var url = '//localhost:63312/api/config/search/loanOfficers/' + clientId + '/' + formId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

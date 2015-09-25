@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .controller('LoanOfficersController', LoanOfficersController);
 
-    LoanOfficersController.$inject = ['logger', '$stateParams', '$state', '$rootScope'];
+    LoanOfficersController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService'];
     /* @ngInject */
-    function LoanOfficersController(logger, $stateParams, $state, $rootScope) {
+    function LoanOfficersController(logger, $stateParams, $state, $rootScope, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -19,8 +19,8 @@
         $rootScope.isDirty = false;
 
         vm.filterText = '';
-        vm.list1 = buildList();
-        vm.pickedItems = [];
+        vm.availableOfficers = [];
+        vm.pickedOfficers = [];
 
         vm.moveCategory = moveCategory;
         vm.moveItem = moveItem;
@@ -37,40 +37,24 @@
             vm.editMode = $stateParams.editMode;
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
+            initialize();
         }
 
-        function buildList() {
-            var cat = 1;
-            var id = 1;
-            var arr = [];
+        function initialize() {
+            quickSearchConfigService.getLoanOfficers(31, vm.formId).then(function (data) {
+                vm.availableOfficers = data.data.availableLoanOfficers.$values;
+                vm.pickedOfficers = data.data.assignedLoanOfficers.$values;
 
-            for (var x = 0; x < 3; x++) {
-                var items = [];
-
-                for (var y = 0; y < 20; y++) {
-                    items.push({
-                        id: id,
-                        name: 'Person ' + id,
-                        selected: false,
-                        picked: false,
-                        sortOrder: 1
+                _.each(vm.availableOfficers, function (cat) {
+                    _.each(cat.loanOfficers.$values, function(person) {
+                        person['fullName'] = person.firstName + ' ' + person.lastName;
                     });
-                    id = id + 1;
-                }
-
-                arr.push({
-                    category: 'Location ' + cat,
-                    selected: false,
-                    sortOrder: 0,
-                    items: items
                 });
-                cat = cat + 1;
-            }
-            return arr;
+            });
         }
 
         function moveCategory(cat) {
-            var itemIds = _.pluck(vm.pickedItems, 'id');
+            var itemIds = _.pluck(vm.pickedOfficers, 'id');
             _.each(cat.items, function (item) {
                 if (!_.contains(itemIds, item.id)) {
                     move(item);
@@ -79,7 +63,7 @@
         }
 
         function moveItem(item) {
-            var itemIds = _.pluck(vm.pickedItems, 'id');
+            var itemIds = _.pluck(vm.pickedOfficers, 'id');
             if (!_.contains(itemIds, item.id)) {
                 move(item);
             }
@@ -89,21 +73,21 @@
             var newItem = _.clone(item);
             newItem.selected = false;
             item.picked = true;
-            vm.pickedItems.push(newItem);
+            vm.pickedOfficers.push(newItem);
             $rootScope.isDirty = true;
         }
 
         function selectItem(item) {
-            _.each(vm.pickedItems, function (x) {
+            _.each(vm.pickedOfficers, function (x) {
                 x.selected = false;
             });
             item.selected = true;
         }
 
         function removeItem() {
-            for (var i = 0; i < vm.pickedItems.length; i++) {
-                if (vm.pickedItems[i].selected) {
-                    var x = vm.pickedItems.splice(i, 1);
+            for (var i = 0; i < vm.pickedOfficers.length; i++) {
+                if (vm.pickedOfficers[i].selected) {
+                    var x = vm.pickedOfficers.splice(i, 1);
                     unPickItem(x[0]);
                     $rootScope.isDirty = true;
                 }
@@ -112,8 +96,8 @@
         }
 
         function refreshPicked() {
-            vm.pickedItems = [];
-            var items = _.flatten(_.pluck(vm.list1, 'items'));
+            vm.pickedOfficers = [];
+            var items = _.flatten(_.pluck(_.pluck(vm.availableOfficers, 'loanOfficers'), '$values'));
             _.each(items, function (x) {
                 x.picked = false;
             });
@@ -125,10 +109,10 @@
                 return true;
             }
             var found = false;
-            if (category.category.indexOf(vm.filterText) > -1) {
+            if (category.name.indexOf(vm.filterText) > -1) {
                 found = true;
             }
-            _.each(category.items, function (item) {
+            _.each(category.loanOfficers.$values, function (item) {
                 if (item.name.indexOf(vm.filterText) > -1) {
                     found = true;
                     return null;
@@ -149,7 +133,7 @@
                 }
                 var catCheck = false;
 
-                _.forEach(cat.items, function (obj) {
+                _.forEach(cat.loanOfficers.$values, function (obj) {
                     if (catCheck) {
                         return null;
                     }
@@ -166,7 +150,7 @@
         }
 
         function unPickItem(item) {
-            var items = _.flatten(_.pluck(vm.list1, 'items'));
+            var items = _.flatten(_.pluck(_.pluck(vm.availableOfficers, 'loanOfficers'), '$values'));
             _.each(items, function (x) {
                 if (x.id === item.id) {
                     x.picked = false;
