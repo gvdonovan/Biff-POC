@@ -115,6 +115,7 @@
 
         function nest(model, fields) {
             var nestedModel = {};
+            var keysAdded = [];
             _.each(fields, function (x) {
                 if (x.type == 'nested') {
                     _.each(x.data.fields.$values, function (nest) {
@@ -123,12 +124,13 @@
                         }
                         if (model.hasOwnProperty(nest.key)) {
                             nestedModel[x.key][nest.key] = model[nest.key];
+                            keysAdded.push(nest.key);
                         }
                     });
                 }
             });
             for(var p in model){
-                if(!nestedModel.hasOwnProperty(p)){
+                if(!nestedModel.hasOwnProperty(p) && !_.contains(keysAdded, p)){
                     nestedModel[p] = model[p];
                 }
             }
