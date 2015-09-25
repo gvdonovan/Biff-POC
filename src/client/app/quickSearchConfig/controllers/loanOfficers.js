@@ -11,6 +11,7 @@
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
+        vm.clientId = null;
 
         vm.state = '';
         vm.go = go;
@@ -42,6 +43,7 @@
 
         function initialize() {
             quickSearchConfigService.getLoanOfficers(31, vm.formId).then(function (data) {
+                vm.clientId = data.clientId;
                 vm.availableOfficers = data.data.availableLoanOfficers.$values;
                 vm.pickedOfficers = data.data.assignedLoanOfficers.$values;
 
@@ -170,8 +172,9 @@
         }
 
         function save() {
-            //TODO post vm.data
-            $rootScope.isDirty = false;
+            quickSearchConfigService.postLoanOfficers(vm.clientId, vm.formId, vm.formId).then(function (data) {
+                $rootScope.isDirty = false;
+            });
         }
     }
 })();
