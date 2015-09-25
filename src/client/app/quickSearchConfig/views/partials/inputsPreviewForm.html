@@ -1,12 +1,12 @@
 <form name="ngform" novalidate>
     <div class="panel panel-primary">
 
-        <div class="panel-heading" style="min-height: 20px;">{{vm.data.pages.$values[0].form.header}}</div>
+        <div class="panel-heading" style="min-height: 20px;">{{vm.data.form.header}}</div>
         <div class="panel-body">
             <formly-form model="vm.previewModel" fields="vm.previewFields"></formly-form>
         </div>
         <div class="panel-footer clearfix">
-            <div class="pull-left">{{vm.data.pages.$values[0].form.footer}}</div>
+            <div class="pull-left">{{vm.data.form.footer}}</div>
             <button type="button" class="btn btn-primary pull-right">Submit</button>
         </div>
     </div>
