@@ -129,9 +129,9 @@
                 });
         }
 
-        function postLoanOfficers(clientId, formId, data) {
+        function postLoanOfficers(data) {
             var url = '//localhost:63312/api/config/search/loanOfficers/save';// + entityId + '/' + formId;
-            return $http.post(url, angular.toJson({clientId: clientId, formId: formId, data: data}))
+            return $http.post(url, angular.toJson(data))
                 .then(function (response) {
                     return response;
                 }, function (response) {
