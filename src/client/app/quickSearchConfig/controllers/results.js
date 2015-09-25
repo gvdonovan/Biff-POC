@@ -12,6 +12,7 @@
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
+
         vm.state = '';
         vm.resetForm = resetForm;
         vm.go = go;

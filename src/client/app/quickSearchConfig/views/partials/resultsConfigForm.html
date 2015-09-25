@@ -4,11 +4,6 @@
         padding-left: 10px;
         padding-right: 10px;
     }
-    
-    .qsResultsConfig label {
-        font-weight: normal !important;
-    }
-
 </style>
 
 <div class="panel panel-primary qsResultsConfig">
@@ -31,7 +26,18 @@
                     </div>
                 </div>
             </div>
-
+            <div class="form-group col-xs-12 row">
+                <label>Apply Now Text</label>
+                <input type="text" ng-model="vm.data.form.applyNowText" ng-change="$root.isDirty = true;" class="form-control">
+            </div>
+            <div class="form-group col-xs-12 row">
+                <label>Apply Now URL</label>
+                <input type="text" ng-model="vm.data.form.applyNowUrl" ng-change="$root.isDirty = true;" class="form-control">
+            </div>
+            <div class="form-group col-xs-12 row">
+                <label>Apply Now Disclaimer</label>
+                <textarea ng-model="vm.data.form.disclaimerText" ng-change="$root.isDirty = true;" class="form-control" rows="3"></textarea>
+            </div>
         </div>
         <div class="panel-footer clearfix">
             <button type="button" class="btn btn-default" ng-click="vm.resetForm()">Reset Form</button>
