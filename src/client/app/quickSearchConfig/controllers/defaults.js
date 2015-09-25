@@ -134,7 +134,6 @@
                     nestedModel[p] = model[p];
                 }
             }
-
             return nestedModel;
         }
     }
