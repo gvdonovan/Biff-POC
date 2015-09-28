@@ -35,11 +35,9 @@
                         <input type="checkbox" name="cLayout" ng-model="vm.cLayout" class="form-control.input-md" ng-change="$root.isDirty = true;"> Custom Layout
                     </label>
                 </div>
-                <div class="form-group">
-                    <label class="sr-only">Number format</label>
-                    <input type="text" ng-model="vm.numberFormat" placeholder="NumberFormatExample" class="form-control" format="number">
-                </div>
             </form>
+            <formly-form model="vm.model" fields="vm.fields"></formly-form>
+            <pre>{{vm.model}}</pre>
         </div>
     </div>
 </div>

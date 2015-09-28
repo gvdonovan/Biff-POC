@@ -7,7 +7,7 @@
 
     .directive('obdatepicker', obDatepicker)
 
-    .directive('format', formatNumber);
+    .directive('formatNumber', formatNumber);
 
     /* @ngInject */
     function loadingspinner() {
@@ -47,10 +47,8 @@
             link: function (scope, elem, attrs, ctrl) {
                 if (!ctrl) return;
 
-                var symbol = "°"; // dummy usage
-
                 ctrl.$formatters.unshift(function (a) {
-                    return $filter(attrs.format)(ctrl.$modelValue);
+                    return $filter('number')(ctrl.$modelValue);
                 });
 
                 ctrl.$parsers.unshift(function (viewValue) {

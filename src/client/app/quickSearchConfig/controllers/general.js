@@ -19,6 +19,23 @@
         vm.cancel = cancel;
         vm.save = save;
 
+        vm.fields = [
+            {
+                key: 'formattedNumber',
+                type: 'input',
+                ngModelAttrs: {
+                    myCustomValue: {
+                        attribute: 'format-number'
+                    }
+                },
+                templateOptions: {
+                    label: 'Commas',
+                    myCustomValue: null
+                }
+            }
+        ];
+        vm.model = {};
+
         activate();
 
         function activate() {
