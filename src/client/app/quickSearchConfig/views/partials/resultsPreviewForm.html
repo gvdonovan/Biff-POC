@@ -11,13 +11,13 @@
                     <table class="table table-condensed table-hover">
                         <thead>
                             <tr>
-                                <th ng-repeat="field in vm.formFields" ng-hide="field.visible">{{field.templateOptions.label}}</th>
+                                <th ng-repeat="field in vm.formFields" ng-hide="!field.templateOptions.visible">{{field.templateOptions.label}}</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <tr ng-repeat="item in type.items">
-                                <td ng-repeat="field in vm.formFields track by $index" ng-hide="field.visible">{{item[field.key]}}</td>
+                                <td ng-repeat="field in vm.formFields track by $index" ng-hide="!field.templateOptions.visible">{{item[field.key]}}</td>
                             </tr>
                         </tbody>
                     </table>
