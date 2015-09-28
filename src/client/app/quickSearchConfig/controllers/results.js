@@ -6,14 +6,15 @@
         .module('app.quickSearchConfig')
         .controller('QSConfigResultsController', QSConfigResultsController);
 
-    QSConfigResultsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService', 'qsResultsService'];
+    QSConfigResultsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', '$q', 'quickSearchConfigService', 'qsResultsService'];
     /* @ngInject */
-    function QSConfigResultsController(logger, $stateParams, $state, $rootScope, quickSearchConfigService, qsResultsService) {
+    function QSConfigResultsController(logger, $stateParams, $state, $rootScope, $q, quickSearchConfigService, qsResultsService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
 
         vm.state = '';
+        vm.updateApplyNow = updateApplyNow;
         vm.resetForm = resetForm;
         vm.go = go;
         vm.isLastStep = true;
@@ -33,19 +34,44 @@
         }
 
         function initialize() {
-            quickSearchConfigService.getResults().then(function (data) {
-                vm.data = data;
-                vm.formFields = data.form.pages.$values[0].fields.$values;
+            var promises = [
+                quickSearchConfigService.getResults(),
+                qsResultsService.getResults(true)
+            ];
+
+            $q.all(promises).then(function(data){
+                vm.data = data[0];
+                vm.formFields = data[0].form.pages.$values[0].fields.$values;
                 _.each(vm.formFields, function (field) {
                     if (field.type === 'select') {
                         field.templateOptions.options = field.templateOptions.options.$values;
                     }
                 });
+                vm.searchResults = data[1];
+                updateApplyNow();
             });
 
-            qsResultsService.getResults(true).then(function (data) {
-                vm.searchResults = data;
-                console.log(vm.searchResults);
+            //quickSearchConfigService.getResults().then(function (data) {
+            //    vm.data = data;
+            //    vm.formFields = data.form.pages.$values[0].fields.$values;
+            //    _.each(vm.formFields, function (field) {
+            //        if (field.type === 'select') {
+            //            field.templateOptions.options = field.templateOptions.options.$values;
+            //        }
+            //    });
+            //});
+            //
+            //qsResultsService.getResults(true).then(function (data) {
+            //    vm.searchResults = data;
+            //    updateApplyNow();
+            //});
+        }
+
+        function updateApplyNow(){
+            _.each(vm.searchResults, function(result){
+                _.each(result.items, function(item){
+                    item.apply = vm.data.form.applyNowText;
+                });
             });
         }
 
