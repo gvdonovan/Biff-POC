@@ -34,7 +34,6 @@
         activate();
 
         function activate() {
-            //TODO call initialize and make some http call
             vm.editMode = $stateParams.editMode;
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
@@ -49,25 +48,32 @@
                 vm.pickedOfficers = data.data.assignedLoanOfficers.$values;
 
                 _.each(vm.availableOfficers, function (cat) {
-                    _.each(cat.loanOfficers.$values, function(person) {
+                    _.each(cat.loanOfficers.$values, function (person) {
                         person['fullName'] = person.firstName + ' ' + person.lastName;
+                        if (_.where(vm.pickedOfficers, {loanOfficerId: person.loanOfficerId}).length > 0) {
+                            person.picked = true;
+                        }
                     });
+                });
+
+                _.each(vm.pickedOfficers, function (person) {
+                    person['fullName'] = person.loanOfficerFirstName + ' ' + person.loanOfficerLastName;
                 });
             });
         }
 
         function moveCategory(cat) {
-            var itemIds = _.pluck(vm.pickedOfficers, 'id');
-            _.each(cat.items, function (item) {
-                if (!_.contains(itemIds, item.id)) {
+            var itemIds = _.pluck(vm.pickedOfficers, 'loanOfficerId');
+            _.each(cat.loanOfficers.$values, function (item) {
+                if (!_.contains(itemIds, item.loanOfficerId)) {
                     move(item);
                 }
             });
         }
 
         function moveItem(item) {
-            var itemIds = _.pluck(vm.pickedOfficers, 'id');
-            if (!_.contains(itemIds, item.id)) {
+            var itemIds = _.pluck(vm.pickedOfficers, 'loanOfficerId');
+            if (!_.contains(itemIds, item.loanOfficerId)) {
                 move(item);
             }
         }
@@ -75,6 +81,8 @@
         function move(item) {
             var newItem = _.clone(item);
             newItem.selected = false;
+            newItem.loanOfficerFirstName = item.firstName;
+            newItem.loanOfficerLastName = item.lastName;
             item.picked = true;
             vm.pickedOfficers.push(newItem);
             $rootScope.isDirty = true;
@@ -112,11 +120,13 @@
                 return true;
             }
             var found = false;
-            if (category.name.indexOf(vm.filterText) > -1) {
+            var catName = category.name.toLowerCase();
+            if (catName.indexOf(vm.filterText.toLowerCase()) > -1) {
                 found = true;
             }
             _.each(category.loanOfficers.$values, function (item) {
-                if (item.name.indexOf(vm.filterText) > -1) {
+                var fullName = item.fullName.toLowerCase();
+                if (fullName.indexOf(vm.filterText.toLowerCase()) > -1) {
                     found = true;
                     return null;
                 }
@@ -131,21 +141,12 @@
                     return true;
                 }
                 var found = false;
-                if (item.name.indexOf(vm.filterText) > -1) {
+                var fullName = item.fullName.toLowerCase();
+                if (fullName.indexOf(vm.filterText.toLowerCase()) > -1) {
                     found = true;
                 }
-                var catCheck = false;
-
-                _.forEach(cat.loanOfficers.$values, function (obj) {
-                    if (catCheck) {
-                        return null;
-                    }
-                    if (obj.name.indexOf(vm.filterText) > -1) {
-                        catCheck = true;
-                    }
-                });
-
-                if (!catCheck) {
+                var catName = cat.name.toLowerCase();
+                if (catName.indexOf(vm.filterText.toLowerCase()) > -1) {
                     found = true;
                 }
                 return found;
@@ -155,7 +156,7 @@
         function unPickItem(item) {
             var items = _.flatten(_.pluck(_.pluck(vm.availableOfficers, 'loanOfficers'), '$values'));
             _.each(items, function (x) {
-                if (x.id === item.id) {
+                if (x.loanOfficerId === item.loanOfficerId) {
                     x.picked = false;
                     return true;
                 }
@@ -169,6 +170,7 @@
         }
 
         function cancel() {
+            initialize();
             $rootScope.isDirty = false;
         }
 
