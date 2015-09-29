@@ -49,7 +49,7 @@
 
                 _.each(vm.availableOfficers, function (cat) {
                     _.each(cat.loanOfficers.$values, function (person) {
-                        person['fullName'] = person.firstName + ' ' + person.lastName;
+                        person['fullName'] = person.loanOfficerFirstName + ' ' + person.loanOfficerLastName;
                         if (_.where(vm.pickedOfficers, {loanOfficerId: person.loanOfficerId}).length > 0) {
                             person.picked = true;
                         }
@@ -81,8 +81,6 @@
         function move(item) {
             var newItem = _.clone(item);
             newItem.selected = false;
-            newItem.loanOfficerFirstName = item.firstName;
-            newItem.loanOfficerLastName = item.lastName;
             item.picked = true;
             vm.pickedOfficers.push(newItem);
             $rootScope.isDirty = true;
