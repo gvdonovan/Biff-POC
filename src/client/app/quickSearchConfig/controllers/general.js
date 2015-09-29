@@ -30,7 +30,7 @@
                 },
                 templateOptions: {
                     label: 'Commas',
-                    myCustomValue: null
+                    myCustomValue: 1
                 }
             }
         ];

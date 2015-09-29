@@ -5,9 +5,9 @@
         .module('app')
         .directive('loadingspinner', loadingspinner)
 
-    .directive('obdatepicker', obDatepicker)
+        .directive('obdatepicker', obDatepicker)
 
-    .directive('formatNumber', formatNumber);
+        .directive('formatNumber', formatNumber);
 
     /* @ngInject */
     function loadingspinner() {
@@ -47,18 +47,31 @@
             link: function (scope, elem, attrs, ctrl) {
                 if (!ctrl) return;
 
-                ctrl.$formatters.unshift(function (a) {
-                    return $filter('number')(ctrl.$modelValue);
-                });
-
                 ctrl.$parsers.unshift(function (viewValue) {
-                    var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
-                    elem.val($filter('number')(plainNumber));
+                    var plainNumber = viewValue.replace(/[^0-9.]/g, "");
+                    var places = decimalPlaces(plainNumber);
+                    if(places > attrs.formatNumber){
+                        places = attrs.formatNumber;
+                    }
+                    if(!(plainNumber.slice(-1) === '.')) {
+                        elem.val($filter('number')(plainNumber, places));
+                        plainNumber = $filter('number')(plainNumber, places);
+                        plainNumber = plainNumber.replace(/[^0-9.]/g, "");
+                    }
                     return plainNumber;
                 });
+
+                function decimalPlaces(num) {
+                    var match = (''+num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+                    if (!match) { return 0; }
+                    return Math.max(
+                        0,
+                        // Number of digits right of decimal point.
+                        (match[1] ? match[1].length : 0)
+                            // Adjust for scientific notation.
+                        - (match[2] ? +match[2] : 0));
+                }
             }
         };
     }
-
-
 })();
