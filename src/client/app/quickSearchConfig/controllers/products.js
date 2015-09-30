@@ -66,20 +66,20 @@
                 });
                 updateOrder(vm.pickedProducts);
                 buildPreview();
+
+                $scope.$watch('vm.filters.rateBelowPar', function(newVal, oldVal){
+                    if(vm.filters.pricingMethod === 2 && oldVal != newVal){
+                        buildPricingFromPar();
+                    }
+                });
+
+                $scope.$watch('vm.filters.rateAbovePar', function(newVal, oldVal){
+                    if(vm.filters.pricingMethod === 2 && oldVal != newVal){
+                        buildPricingFromPar();
+                    }
+                });
             });
         }
-
-        $scope.$watch('vm.filters.rateBelowPar', function(oldVal, newVal){
-            if(vm.filters.pricingMethod === 2){
-                buildPricingFromPar();
-            }
-        });
-
-        $scope.$watch('vm.filters.rateAbovePar', function(oldVal, newVal){
-            if(vm.filters.pricingMethod === 2){
-                buildPricingFromPar();
-            }
-        });
 
         function buildPricingFromPar(){
             var prices = _.clone(vm.filters.prices.$values);
@@ -297,6 +297,7 @@
         }
 
         function cancel() {
+            initialize();
             $rootScope.isDirty = false;
         }
 
