@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService'];
+    ProductsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', '$scope', 'quickSearchConfigService'];
     /* @ngInject */
-    function ProductsController(logger, $stateParams, $state, $rootScope, quickSearchConfigService) {
+    function ProductsController(logger, $stateParams, $state, $rootScope, $scope, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -37,7 +37,6 @@
         vm.itemUp = itemUp;
         vm.itemDown = itemDown;
         vm.removeItem = removeItem;
-        //vm.refreshPicked = refreshPicked;
         vm.filterCategory = filterCategory;
         vm.filterItems = filterItems;
 
@@ -69,6 +68,18 @@
                 buildPreview();
             });
         }
+
+        $scope.$watch('vm.filters.rateBelowPar', function(oldVal, newVal){
+            if(vm.filters.pricingMethod === 2){
+                buildPricingFromPar();
+            }
+        });
+
+        $scope.$watch('vm.filters.rateAbovePar', function(oldVal, newVal){
+            if(vm.filters.pricingMethod === 2){
+                buildPricingFromPar();
+            }
+        });
 
         function buildPricingFromPar(){
             var prices = _.clone(vm.filters.prices.$values);
@@ -110,20 +121,6 @@
             _.each(items, function (item) {
                 item.products = [];
                 item.products = _.clone(vm.filters.prices.$values);
-                //if(vm.filters.pricingMethod === 1){
-                //    item.products = _.clone(vm.pricingFilter.prices);
-                //}
-                //if(vm.pricingFilter.filterType === 'par'){
-                //    for(var i = vm.pricingFilter.belowPar; i < 0; i++){
-                //        item.products.push({value: 100 + i});
-                //    }
-                //
-                //    item.products.push({value: 100});
-                //
-                //    for(var x = 1; x <= vm.pricingFilter.abovePar; x++){
-                //        item.products.push({value: 100 + x});
-                //    }
-                //}
             });
             vm.preview = items;
         }
@@ -238,16 +235,6 @@
             }
         }
 
-        //function refreshPicked() {
-        //    vm.pickedProducts = [];
-        //    var items = _.flatten(_.pluck(vm.list1, 'items'));
-        //    _.each(items, function (x) {
-        //        x.picked = false;
-        //    });
-        //    $rootScope.isDirty = true;
-        //    buildPreview();
-        //}
-
         function filterCategory(category) {
             if (vm.filterText === undefined || vm.filterText.length < 3) {
                 return true;
@@ -314,8 +301,12 @@
         }
 
         function save() {
-            //TODO post vm.data
-            $rootScope.isDirty = false;
+            vm.data.data.productCategories.$values = vm.availableProducts;
+            vm.data.data.filters.productFilters.$values = vm.pickedProducts;
+
+            quickSearchConfigService.postFilters(vm.data).then(function (data) {
+                $rootScope.isDirty = false;
+            });
         }
     }
 })();

@@ -17,6 +17,7 @@
             getResults: getResults,
             postResults: postResults,
             getFilters: getFilters,
+            postFilters: postFilters,
             getLoanOfficers: getLoanOfficers,
             postLoanOfficers: postLoanOfficers
         };
@@ -111,6 +112,16 @@
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
+                }, function (response) {
+                    console.warn('error' + response);
+                });
+        }
+
+        function postFilters(data) {
+            var url = '//localhost:63312/api/config/search/filters/save';// + entityId + '/' + formId;
+            return $http.post(url, angular.toJson(data))
+                .then(function (response) {
+                    return response;
                 }, function (response) {
                     console.warn('error' + response);
                 });
