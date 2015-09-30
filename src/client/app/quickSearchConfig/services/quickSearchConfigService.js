@@ -23,7 +23,7 @@
         return service;
 
         function getForms() {
-            var entityId = 31;
+            var entityId = 3431303331;
 
             var url = '//localhost:63312/api/config/search/Forms/' + entityId;
             return $http.get(url)
@@ -35,7 +35,7 @@
         }
 
         function getInputs() {
-            var entityId = 31;
+            var entityId = 3431303331;
             var formId = 31;
 
             var url = '//localhost:63312/api/config/search/Inputs/' + entityId + '/' + formId;
@@ -69,7 +69,7 @@
         }
 
         function postInputs(data) {
-            var entityId = 31;
+            var entityId = 3431303331;
             var formId = 31;
             var url = '//localhost:63312/api/config/search/inputs/save';// + entityId + '/' + formId;
             return $http.post(url, angular.toJson(data))
@@ -81,7 +81,7 @@
         }
 
         function getDefaults() {
-            var entityId = 31;
+            var entityId = 3431303331;
             var formId = 31;
 
             var url = '//localhost:63312/api/config/search/defaults/' + entityId + '/' + formId;
@@ -104,7 +104,7 @@
         }
 
         function getFilters() {
-            var entityId = 31;
+            var entityId = 3431303331;
             var formId = 31;
 
             var url = '//localhost:63312/api/config/search/filters/' + entityId + '/' + formId;
@@ -117,7 +117,7 @@
         }
 
         function getLoanOfficers(clientId, formId) {
-            clientId = 31;
+            clientId = 3431303331;
             formId = 31;
 
             var url = '//localhost:63312/api/config/search/loanOfficers/' + clientId + '/' + formId;
@@ -140,7 +140,7 @@
         }
 
         function getResults() {
-            var entityId = 31;
+            var entityId = 3431303331;
             var formId = 31;
 
             var url = '//localhost:63312/api/config/search/results/' + entityId + '/' + formId;
@@ -153,8 +153,7 @@
         }
 
         function postResults(data){
-            var entityId = 31;
-            var formId = 31;
+
             var url = '//localhost:63312/api/config/search/results/save';// + entityId + '/' + formId;
             return $http.post(url, angular.toJson(data))
                 .then(function (response) {

@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['logger', '$stateParams', '$state', '$rootScope'];
+    ProductsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService'];
     /* @ngInject */
-    function ProductsController(logger, $stateParams, $state, $rootScope) {
+    function ProductsController(logger, $stateParams, $state, $rootScope, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -18,20 +18,16 @@
         vm.save = save;
         $rootScope.isDirty = false;
 
-        vm.pricingFilter = {
-            filterType: 'price',
-            prices: [{value: 99}, {value: 100}, {value: 101}],
-            belowPar: -2,
-            abovePar: 2
-        };
+        vm.filters = {};
 
         vm.addPrice = addPrice;
         vm.removePrice = removePrice;
 
         vm.filterText = '';
-        vm.list1 = buildList();
-        vm.pickedItems = [];
+        vm.availableProducts = [];
+        vm.pickedProducts = [];
         vm.preview = null;
+        vm.buildPricingFromPar = buildPricingFromPar;
         vm.buildPreview = buildPreview;
 
         vm.moveItem = moveItem;
@@ -41,7 +37,7 @@
         vm.itemUp = itemUp;
         vm.itemDown = itemDown;
         vm.removeItem = removeItem;
-        vm.refreshPicked = refreshPicked;
+        //vm.refreshPicked = refreshPicked;
         vm.filterCategory = filterCategory;
         vm.filterItems = filterItems;
 
@@ -51,88 +47,117 @@
             vm.editMode = $stateParams.editMode;
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
+            initialize();
         }
 
-        function buildList() {
-            var cat = 1;
-            var id = 1;
-            var arr = [];
-
-            for (var x = 0; x < 3; x++) {
-                var items = [];
-
-                for (var y = 0; y < 20; y++) {
-                    items.push({
-                        id: id,
-                        name: 'item' + id,
-                        selected: false,
-                        picked: false,
-                        order: 1
+        function initialize() {
+            quickSearchConfigService.getFilters(31, vm.formId).then(function (data) {
+                vm.clientId = data.clientId;
+                vm.data = data;
+                vm.filters = vm.data.data.filters;
+                vm.filters.rateBelowPar = -1 * Math.abs(vm.filters.rateBelowPar);
+                vm.availableProducts = vm.data.data.productCategories.$values;
+                vm.pickedProducts = vm.data.data.filters.productFilters.$values;
+                _.each(vm.availableProducts, function (item) {
+                    _.each(item.products.$values, function (prod) {
+                        if (_.where(vm.pickedProducts, {productId: prod.productId}).length > 0) {
+                            prod.picked = true;
+                        }
                     });
-                    id = id + 1;
-                }
-
-                arr.push({
-                    category: 'category' + cat,
-                    selected: false,
-                    sortOrder: 0,
-                    items: items
                 });
-                cat = cat + 1;
-            }
-            return arr;
+                updateOrder(vm.pickedProducts);
+                buildPreview();
+            });
         }
 
-        function buildPreview(){
-            var items = _.clone(vm.pickedItems);
+        function buildPricingFromPar(){
+            var prices = _.clone(vm.filters.prices.$values);
+            vm.filters.prices.$values = [];
+            if(vm.filters.rateAbovePar < 0){
+                vm.filters.rateAbovePar = 0;
+            }
+            if(vm.filters.rateBelowPar > 0){
+                vm.filters.rateBelowPar = 0;
+            }
+
+            for(var i = vm.filters.rateBelowPar; i < 0; i++){
+                var x = _.clone(prices[0]);
+                x.id = 0;
+                x.price = 100 + i;
+                vm.filters.prices.$values.push(x);
+            }
+
+            var t = _.clone(prices[0]);
+            t.id = 0;
+            t.price = 100;
+            vm.filters.prices.$values.push(t);
+
+            for (var z = 1; z <= vm.filters.rateAbovePar; z++) {
+                var p = _.clone(prices[0]);
+                p.id = 0;
+                p.price = 100 + z;
+                vm.filters.prices.$values.push(p);
+            }
+            $rootScope.isDirty = true;
+            buildPreview();
+        }
+
+        function buildPreview() {
+            var items = _.clone(vm.pickedProducts);
             items = items.sort(function (obj1, obj2) {
-                return obj1.order - obj2.order;
+                return obj1.sortOrder - obj2.sortOrder;
             });
-            _.each(items, function(item){
-               item.products = [];
-                if(vm.pricingFilter.filterType === 'price'){
-                    item.products = _.clone(vm.pricingFilter.prices);
-                }
-                if(vm.pricingFilter.filterType === 'par'){
-                    for(var i = vm.pricingFilter.belowPar; i < 0; i++){
-                        item.products.push({value: 100 + i});
-                    }
-
-                    item.products.push({value: 100});
-
-                    for(var x = 1; x <= vm.pricingFilter.abovePar; x++){
-                        item.products.push({value: 100 + x});
-                    }
-                }
+            _.each(items, function (item) {
+                item.products = [];
+                item.products = _.clone(vm.filters.prices.$values);
+                //if(vm.filters.pricingMethod === 1){
+                //    item.products = _.clone(vm.pricingFilter.prices);
+                //}
+                //if(vm.pricingFilter.filterType === 'par'){
+                //    for(var i = vm.pricingFilter.belowPar; i < 0; i++){
+                //        item.products.push({value: 100 + i});
+                //    }
+                //
+                //    item.products.push({value: 100});
+                //
+                //    for(var x = 1; x <= vm.pricingFilter.abovePar; x++){
+                //        item.products.push({value: 100 + x});
+                //    }
+                //}
             });
             vm.preview = items;
         }
 
         function addPrice() {
-            if (vm.pricingFilter.prices.length < 10) {
-                vm.pricingFilter.prices.push({value: 0});
+            if (vm.filters.prices.$values.length < 10) {
+                if (vm.filters.prices.$values.length > 0) {
+                    var price = _.clone(vm.filters.prices.$values[0]);
+                    price.id = 0;
+                    price.price = 0;
+                    vm.filters.prices.$values.push(price);
+                }
             }
             $rootScope.isDirty = true;
             buildPreview();
         }
 
         function moveCategory(cat) {
-            var itemIds = _.pluck(vm.pickedItems, 'id');
-            _.each(cat.items, function (item) {
+            var itemIds = _.pluck(vm.pickedProducts, 'productId');
+            _.each(cat.products.$values, function (item) {
                 if (!_.contains(itemIds, item.id)) {
                     move(item);
                 }
             });
-            updateOrder(vm.pickedItems);
+            updateOrder(vm.pickedProducts);
             buildPreview();
         }
 
         function moveItem(item) {
-            var itemIds = _.pluck(vm.pickedItems, 'id');
-            if (!_.contains(itemIds, item.id)) {
+            var itemIds = _.pluck(vm.pickedProducts, 'productId');
+            if (!_.contains(itemIds, item.productId)) {
                 move(item);
             }
-            updateOrder(vm.pickedItems);
+            updateOrder(vm.pickedProducts);
             buildPreview();
         }
 
@@ -140,101 +165,103 @@
             var newItem = _.clone(item);
             newItem.selected = false;
             item.picked = true;
-            vm.pickedItems.push(newItem);
+            vm.pickedProducts.push(newItem);
+            updateOrder(vm.pickedProducts);
             $rootScope.isDirty = true;
         }
 
         function selectItem(item) {
-            _.each(vm.pickedItems, function (x) {
+            _.each(vm.pickedProducts, function (x) {
                 x.selected = false;
             });
             item.selected = true;
-            vm.selectedIndex = item.order;
+            vm.selectedIndex = item.sortOrder;
         }
 
         function removePrice(index) {
-            vm.pricingFilter.prices.splice(index, 1);
-            $rootScope.isDirty = true;
-            buildPreview();
+            if(vm.filters.prices.$values.length > 1) {
+                vm.filters.prices.$values.splice(index, 1);
+                $rootScope.isDirty = true;
+                buildPreview();
+            }
         }
 
         function itemUp() {
-            for (var i = 0; i < vm.pickedItems.length; i++) {
-                if (vm.pickedItems[i].selected) {
+            for (var i = 0; i < vm.pickedProducts.length; i++) {
+                if (vm.pickedProducts[i].selected) {
                     var num = i - 1;
-                    if ((num <= vm.pickedItems.length - 1) && num >= 0) {
-                        vm.pickedItems[i] = vm.pickedItems.splice(num, 1, vm.pickedItems[i])[0];
+                    if ((num <= vm.pickedProducts.length - 1) && num >= 0) {
+                        vm.pickedProducts[i] = vm.pickedProducts.splice(num, 1, vm.pickedProducts[i])[0];
                         $rootScope.isDirty = true;
                     }
                     break;
                 }
             }
-            updateOrder(vm.pickedItems);
+            updateOrder(vm.pickedProducts);
             buildPreview();
         }
 
         function itemDown() {
-            for (var i = 0; i < vm.pickedItems.length; i++) {
-                if (vm.pickedItems[i].selected) {
+            for (var i = 0; i < vm.pickedProducts.length; i++) {
+                if (vm.pickedProducts[i].selected) {
                     var num = i + 1;
-                    if ((num <= vm.pickedItems.length - 1) && num >= 0) {
-                        vm.pickedItems[i] = vm.pickedItems.splice(num, 1, vm.pickedItems[i])[0];
+                    if ((num <= vm.pickedProducts.length - 1) && num >= 0) {
+                        vm.pickedProducts[i] = vm.pickedProducts.splice(num, 1, vm.pickedProducts[i])[0];
                         $rootScope.isDirty = true;
                     }
                     break;
                 }
             }
-            updateOrder(vm.pickedItems);
+            updateOrder(vm.pickedProducts);
             buildPreview();
         }
 
         function removeItem() {
-            for (var i = 0; i < vm.pickedItems.length; i++) {
-                if (vm.pickedItems[i].selected) {
-                    var x = vm.pickedItems.splice(i, 1);
+            for (var i = 0; i < vm.pickedProducts.length; i++) {
+                if (vm.pickedProducts[i].selected) {
+                    var x = vm.pickedProducts.splice(i, 1);
                     unPickItem(x[0]);
                     $rootScope.isDirty = true;
                 }
             }
-            updateOrder(vm.pickedItems);
+            updateOrder(vm.pickedProducts);
             vm.selectedIndex = null;
             buildPreview();
         }
 
         function updateOrder(list) {
             for (var i = 0; i < list.length; i++) {
-                list[i].order = i;
-                if(list[i].selected){
+                list[i].sortOrder = i;
+                if (list[i].selected) {
                     vm.selectedIndex = i;
                 }
             }
         }
 
-        function refreshPicked() {
-            vm.pickedItems = [];
-            var items = _.flatten(_.pluck(vm.list1, 'items'));
-            _.each(items, function (x) {
-                x.picked = false;
-            });
-            $rootScope.isDirty = true;
-            buildPreview();
-        }
+        //function refreshPicked() {
+        //    vm.pickedProducts = [];
+        //    var items = _.flatten(_.pluck(vm.list1, 'items'));
+        //    _.each(items, function (x) {
+        //        x.picked = false;
+        //    });
+        //    $rootScope.isDirty = true;
+        //    buildPreview();
+        //}
 
         function filterCategory(category) {
             if (vm.filterText === undefined || vm.filterText.length < 3) {
                 return true;
             }
             var found = false;
-            if (category.category.indexOf(vm.filterText) > -1) {
+            if (category.name.indexOf(vm.filterText) > -1) {
                 found = true;
             }
-            _.each(category.items, function (item) {
-                if (item.name.indexOf(vm.filterText) > -1) {
+            _.each(category.products.$values, function (item) {
+                if (item.productName.indexOf(vm.filterText) > -1) {
                     found = true;
                     return null;
                 }
             });
-
             return found;
         }
 
@@ -244,12 +271,12 @@
                     return true;
                 }
                 var found = false;
-                if (item.name.indexOf(vm.filterText) > -1) {
+                if (item.productName.indexOf(vm.filterText) > -1) {
                     found = true;
                 }
                 var catCheck = false;
 
-                _.forEach(cat.items, function (obj) {
+                _.forEach(cat.$values, function (obj) {
                     if (catCheck) {
                         return null;
                     }
@@ -266,12 +293,13 @@
         }
 
         function unPickItem(item) {
-            var items = _.flatten(_.pluck(vm.list1, 'items'));
-            _.each(items, function (x) {
-                if (x.id === item.id) {
-                    x.picked = false;
-                    return true;
-                }
+            _.each(vm.availableProducts, function (cat) {
+                _.each(cat.products.$values, function (x) {
+                    if (x.productId === item.productId) {
+                        x.picked = false;
+                        return true;
+                    }
+                });
             });
         }
 
