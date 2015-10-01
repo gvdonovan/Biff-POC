@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label>Page Number</label>
-                <input type="number" ng-model="vm.pageNumber" class="form-control"/>
+                <select ng-model="vm.pageNumber" ng-options="x as x for x in vm.availablePages" class="form-control" ng-change="vm.updateTitle();"></select>
             </div>
             <button class="btn btn-warning" ng-click="vm.initialize();">GET TEST</button>
         </div>
@@ -21,7 +21,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading clearfix">
                     <div class="col-xs-10">
-                        <h3 class="panel-title">Test Form</h3>
+                        <h3 class="panel-title">{{vm.title}}</h3>
                     </div>
                     <div class="col-xs-2 text-right">
                         <a class="clickable" ng-click="vm.toggleSections()" style="color: #FFFFFF">Toggle All

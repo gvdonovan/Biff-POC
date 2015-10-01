@@ -14,7 +14,9 @@
         vm.formId = null;
         vm.biff = false;
         vm.pageNumber = 0;
+        vm.availablePages = [];
         vm.initialize = initialize;
+        vm.updateTitle = updateTitle;
         vm.state = '';
         vm.go = go;
         vm.next = next;
@@ -43,8 +45,10 @@
         function initialize() {
             vm.model = {};
             testerService.getSection(vm.formId, vm.biff).then(function (data) {
-                vm.clientId = data.clientId;
-                vm.formId = data.formId;
+                vm.data = data;
+                for(var i = 0; i < data.pages.$values.length; i++){
+                    vm.availablePages.push(i);
+                }
                 vm.fields = data.pages.$values[vm.pageNumber].fields.$values;
                 vm.model = nest(data.data, vm.fields);
                 _.each(vm.fields, function (field) {
@@ -55,7 +59,14 @@
                         }
                     });
                 });
+                updateTitle();
             });
+        }
+
+        function updateTitle(){
+            vm.title = vm.data.pages.$values[vm.pageNumber].name;
+            vm.fields = [];
+            vm.fields = vm.data.pages.$values[vm.pageNumber].fields.$values;
         }
 
         function toggleSections() {
