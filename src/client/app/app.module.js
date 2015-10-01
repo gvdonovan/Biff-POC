@@ -13,7 +13,8 @@
         'app.loanApplication',
         'app.results',
         'app.preview',
-        'app.default'
+        'app.default',
+        'app.tester'
     ]);
   
 })();

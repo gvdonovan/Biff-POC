@@ -1,0 +1,41 @@
+<div class="well col-xs-10 col-xs-offset-1">
+    <div class="panel">
+        <div class="col-xs-4">
+            <div class="form-group">
+                <label>Form Id</label>
+                <input type="text" ng-model="vm.formId" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>Toggle</label>
+                <toggle-switch ng-model="vm.biff" on-label="True" off-label="False"></toggle-switch>
+            </div>
+            <div class="form-group">
+                <label>Page Number</label>
+                <input type="number" ng-model="vm.pageNumber" class="form-control"/>
+            </div>
+            <button class="btn btn-warning" ng-click="vm.initialize();">GET TEST</button>
+        </div>
+    </div>
+    <div class=" col-xs-12">
+        <form name="vm.formState.defaultsForm" novalidate>
+            <div class="panel panel-primary">
+                <div class="panel-heading clearfix">
+                    <div class="col-xs-10">
+                        <h3 class="panel-title">Test Form</h3>
+                    </div>
+                    <div class="col-xs-2 text-right">
+                        <a class="clickable" ng-click="vm.toggleSections()" style="color: #FFFFFF">Toggle All
+                            <i class="glyphicon"
+                               ng-class="{'glyphicon-chevron-down': vm.sectionsOpen, 'glyphicon-chevron-right': !vm.sectionsOpen}"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <formly-form model="vm.model" fields="vm.fields"></formly-form>
+                </div>
+                <div class="panel-footer">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
