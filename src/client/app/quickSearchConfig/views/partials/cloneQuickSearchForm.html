@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{vm.title}}</h3>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <form name="formName" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : formName.name.$invalid && !formName.name.$pristine }">
+                <label>Name *</label>
+                <input name="name" ng-model="vm.formName" type="text" placeholder="Name" class="form-control" required>
+                <p ng-show="formName.name.$invalid && !formName.name.$pristine" class="help-block">Name is required</p>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-xs-12">
+        <button class="pull-right btn btn-primary col-xs-2" type="button" ng-click="vm.create()" ng-disabled="formName.$invalid">Create</button>
+        <div class="pull-right">&nbsp;</div>
+        <button class="pull-right btn btn-primary col-xs-2" type="button" ng-click="vm.cancel()">Cancel</button>
+    </div>
+</div>

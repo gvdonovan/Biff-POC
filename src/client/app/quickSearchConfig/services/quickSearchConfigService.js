@@ -9,6 +9,8 @@
 
     function QuickSearchConfigService(logger, $http) {
         var service = {
+            newForm: newForm,
+            cloneForm: cloneForm,
             getForms: getForms,
             getInputs: getInputs,
             postInputs: postInputs,
@@ -22,6 +24,14 @@
             postLoanOfficers: postLoanOfficers
         };
         return service;
+
+        function newForm(clientId, formName){
+
+        }
+
+        function cloneForm(clientId, formId, formName){
+
+        }
 
         function getForms() {
             var entityId = 3431303331;

@@ -14,6 +14,7 @@
     /* @ngInject */
     function FormListController($state, modalService, quickSearchConfigService) {
         var vm = this;
+        vm.clientId = null;
         vm.add = add;
         vm.clone = clone;
         vm.edit = edit;
@@ -28,18 +29,42 @@
 
         function initialize() {
             quickSearchConfigService.getForms().then(function (data) {
+                vm.clientId = data.clientId;
                 vm.data = data;
                 vm.forms = data.forms.$values;
             });
         }
 
         function add() {
-            //TODO create form then pass id
-            $state.go('quickSearchConfigInputs', {formId: 1});
+            var template = 'app/quickSearchConfig/views/partials/cloneQuickSearchForm.html';
+            var controller = 'cloneQuickSearchFormController';
+            var title = 'Create New Quick Search Form';
+            var message = null;//'Navigating away from this page will discard your current changes. Do you wish to proceed?';
+
+            modalService.openModal(template, controller, null, title, message, null)
+                .then(function (formData) {
+                    if (formData) {
+                        quickSearchConfigService.newForm(vm.clientId, formData.name).then(function (data) {
+                            initialize();
+                        });
+                    }
+                });
         }
 
-        function clone(id){
-            //TODO call clone
+        function clone(form){
+            var template = 'app/quickSearchConfig/views/partials/cloneQuickSearchForm.html';
+            var controller = 'cloneQuickSearchFormController';
+            var title = 'Clone Quick Search Form';
+            var message = null;//'Navigating away from this page will discard your current changes. Do you wish to proceed?';
+
+            modalService.openModal(template, controller, null, title, message, {form: form})
+                .then(function (formData) {
+                    if (formData) {
+                        quickSearchConfigService.cloneForm(vm.clientId,formData.id, formData.name).then(function (data) {
+                            initialize();
+                        });
+                    }
+                });
         }
 
         function edit(id) {
@@ -57,7 +82,7 @@
             var title = 'Confirm';
             var message = 'Do you wish to ' + m + '[' + form.name + ']' + '?';
 
-            modalService.openConfirmModal(template, controller, null, title, message, null)
+            modalService.openConfirmModal(template, controller, null, title, message, {})
                 .then(function (isConfirmed) {
                     if (!isConfirmed) {
                         vm.forms[index].isActive = !form.isActive;
