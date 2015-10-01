@@ -28,7 +28,7 @@
         }
 
         function initialize() {
-            quickSearchConfigService.getForms().then(function (data) {
+            quickSearchConfigService.getForms(vm.clientId).then(function (data) {
                 vm.clientId = data.clientId;
                 vm.data = data;
                 vm.forms = data.forms.$values;

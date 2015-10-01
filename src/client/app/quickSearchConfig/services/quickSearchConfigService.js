@@ -26,17 +26,7 @@
         return service;
 
         function newForm(clientId, formName){
-
-        }
-
-        function cloneForm(clientId, formId, formName){
-
-        }
-
-        function getForms() {
-            var entityId = 3431303331;
-
-            var url = '//localhost:63312/api/config/search/Forms/' + entityId;
+            var url = '//localhost:63312/api/config/search/Forms/New/' + clientId + '/' + formName;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -45,11 +35,33 @@
                 });
         }
 
-        function getInputs() {
-            var entityId = 3431303331;
-            var formId = 31;
+        function cloneForm(clientId, formId, formName){
+            var url = '//localhost:63312/api/config/search/Forms/Clone/' + clientId + '/' + formId + '/' + formName;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                }, function (response) {
+                    console.warn('error' + response);
+                });
+        }
 
-            var url = '//localhost:63312/api/config/search/Inputs/' + entityId + '/' + formId;
+        function getForms(clientId) {
+            clientId = 3431303331;
+
+            var url = '//localhost:63312/api/config/search/Forms/' + clientId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                }, function (response) {
+                    console.warn('error' + response);
+                });
+        }
+
+        function getInputs(clientId, formId) {
+            clientId = 3431303331;
+            formId = 31;
+
+            var url = '//localhost:63312/api/config/search/Inputs/' + clientId + '/' + formId;
             return $http.get(url)
                 .then(function (response) {
 
@@ -80,9 +92,7 @@
         }
 
         function postInputs(data) {
-            var entityId = 3431303331;
-            var formId = 31;
-            var url = '//localhost:63312/api/config/search/inputs/save';// + entityId + '/' + formId;
+            var url = '//localhost:63312/api/config/search/inputs/save';
             return $http.post(url, angular.toJson(data))
                 .then(function (response) {
                     return response;
@@ -91,11 +101,11 @@
                 });
         }
 
-        function getDefaults() {
-            var entityId = 3431303331;
-            var formId = 31;
+        function getDefaults(clientId, formId) {
+            clientId = 3431303331;
+            formId = 31;
 
-            var url = '//localhost:63312/api/config/search/defaults/' + entityId + '/' + formId;
+            var url = '//localhost:63312/api/config/search/defaults/' + clientId + '/' + formId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -105,7 +115,7 @@
         }
 
         function postDefaults(clientId, formId, data) {
-            var url = '//localhost:63312/api/config/search/defaults/save';// + entityId + '/' + formId;
+            var url = '//localhost:63312/api/config/search/defaults/save';
             return $http.post(url, angular.toJson({clientId: clientId, formId: formId, data: data}))
                 .then(function (response) {
                     return response;
@@ -114,11 +124,11 @@
                 });
         }
 
-        function getFilters() {
-            var entityId = 3431303331;
-            var formId = 31;
+        function getFilters(clientId, formId) {
+            clientId = 3431303331;
+            formId = 31;
 
-            var url = '//localhost:63312/api/config/search/filters/' + entityId + '/' + formId;
+            var url = '//localhost:63312/api/config/search/filters/' + clientId + '/' + formId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -128,7 +138,7 @@
         }
 
         function postFilters(data) {
-            var url = '//localhost:63312/api/config/search/filters/save';// + entityId + '/' + formId;
+            var url = '//localhost:63312/api/config/search/filters/save';
             return $http.post(url, angular.toJson(data))
                 .then(function (response) {
                     return response;
@@ -151,7 +161,7 @@
         }
 
         function postLoanOfficers(data) {
-            var url = '//localhost:63312/api/config/search/loanOfficers/save';// + entityId + '/' + formId;
+            var url = '//localhost:63312/api/config/search/loanOfficers/save';
             return $http.post(url, angular.toJson(data))
                 .then(function (response) {
                     return response;
@@ -160,11 +170,11 @@
                 });
         }
 
-        function getResults() {
-            var entityId = 3431303331;
-            var formId = 31;
+        function getResults(clientId, formId) {
+            clientId = 3431303331;
+            formId = 31;
 
-            var url = '//localhost:63312/api/config/search/results/' + entityId + '/' + formId;
+            var url = '//localhost:63312/api/config/search/results/' + clientId + '/' + formId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -175,7 +185,7 @@
 
         function postResults(data){
 
-            var url = '//localhost:63312/api/config/search/results/save';// + entityId + '/' + formId;
+            var url = '//localhost:63312/api/config/search/results/save';
             return $http.post(url, angular.toJson(data))
                 .then(function (response) {
                     return response;

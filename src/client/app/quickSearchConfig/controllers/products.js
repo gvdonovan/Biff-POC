@@ -11,6 +11,7 @@
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
+        vm.clientId = null;
 
         vm.state = '';
         vm.go = go;
@@ -50,7 +51,7 @@
         }
 
         function initialize() {
-            quickSearchConfigService.getFilters(31, vm.formId).then(function (data) {
+            quickSearchConfigService.getFilters(vm.clientId, vm.formId).then(function (data) {
                 vm.clientId = data.clientId;
                 vm.data = data;
                 vm.filters = vm.data.data.filters;

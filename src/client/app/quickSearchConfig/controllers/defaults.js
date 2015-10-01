@@ -50,7 +50,7 @@
 
         function initialize() {
             vm.model = {};
-            quickSearchConfigService.getDefaults().then(function (data) {
+            quickSearchConfigService.getDefaults(vm.clientId, vm.formId).then(function (data) {
                 vm.clientId = data.clientId;
                 vm.formId = data.formId;
                 vm.fields = data.form.pages.$values[0].fields.$values;

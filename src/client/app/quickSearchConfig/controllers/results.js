@@ -12,6 +12,7 @@
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
+        vm.clientId = null;
 
         vm.state = '';
         vm.updateApplyNow = updateApplyNow;
@@ -35,11 +36,11 @@
 
         function initialize() {
             var promises = [
-                quickSearchConfigService.getResults(),
+                quickSearchConfigService.getResults(vm.clientId, vm.formId),
                 qsResultsService.getResults(true)
             ];
 
-            $q.all(promises).then(function(data){
+            $q.all(promises).then(function (data) {
                 vm.data = data[0];
                 vm.formFields = data[0].form.pages.$values[0].fields.$values;
                 _.each(vm.formFields, function (field) {
@@ -67,9 +68,9 @@
             //});
         }
 
-        function updateApplyNow(){
-            _.each(vm.searchResults, function(result){
-                _.each(result.items, function(item){
+        function updateApplyNow() {
+            _.each(vm.searchResults, function (result) {
+                _.each(result.items, function (item) {
                     item.apply = vm.data.form.applyNowText;
                 });
             });

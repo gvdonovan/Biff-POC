@@ -12,6 +12,7 @@
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
+        vm.clientId = null;
 
         vm.go = go;
         vm.state = '';
@@ -46,13 +47,14 @@
             logger.info('Activated Inputs View');
 
             vm.editMode = $stateParams.editMode;
+            vm.clientId = $stateParams.clientId;
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
             initialize();
         }
 
         function initialize() {
-            quickSearchConfigService.getInputs().then(function (data) {
+            quickSearchConfigService.getInputs(vm.clientId, vm.formId).then(function (data) {
                 vm.data = data;
                 vm.fields = vm.data.form.pages.$values[0].fields.$values;
                 vm.updatePreview();
