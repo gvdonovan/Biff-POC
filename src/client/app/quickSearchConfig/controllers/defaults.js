@@ -56,12 +56,17 @@
                 vm.fields = data.form.pages.$values[0].fields.$values;
                 vm.model = nest(data.data, vm.fields);
                 _.each(vm.fields, function (field) {
-                    field.data.fields = field.data.fields.$values;
-                    _.each(field.data.fields, function (item) {
-                        if (item.type === 'select' || item.type === 'radio') {
-                            item.templateOptions.options = item.templateOptions.options.$values;
-                        }
-                    });
+                    if(field.type == 'nested') {
+                        field.data.fields = field.data.fields.$values;
+                        _.each(field.data.fields, function (item) {
+                            if (item.type === 'select' || item.type === 'radio') {
+                                item.templateOptions.options = item.templateOptions.options.$values;
+                            }
+                        });
+                    }
+                    else if (field.type === 'select' || field.type === 'radio') {
+                        field.templateOptions.options = field.templateOptions.options.$values;
+                    }
                 });
             });
         }
