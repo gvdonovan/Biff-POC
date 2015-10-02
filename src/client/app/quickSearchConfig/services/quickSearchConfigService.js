@@ -84,7 +84,7 @@
 
         function getInputs(clientId, formId) {
             clientId = 3431303331;
-            formId = 31;
+            formId = 32;
 
             var url = '//localhost:63312/api/config/search/Inputs/' + clientId + '/' + formId;
             return $http.get(url)
