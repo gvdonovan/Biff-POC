@@ -54,7 +54,7 @@
                 _.each(vm.fields, function (field) {
                     field.data.fields = field.data.fields.$values;
                     _.each(field.data.fields, function (item) {
-                        if (item.type === 'select') {
+                        if (item.type === 'select' || item.type === 'radio') {
                             item.templateOptions.options = item.templateOptions.options.$values;
                         }
                     });

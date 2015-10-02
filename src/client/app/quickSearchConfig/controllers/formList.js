@@ -45,7 +45,7 @@
                 .then(function (formData) {
                     if (formData) {
                         quickSearchConfigService.newForm(vm.clientId, formData.name).then(function (data) {
-                            initialize();
+                            edit(data);
                         });
                     }
                 });
@@ -61,7 +61,7 @@
                 .then(function (formData) {
                     if (formData) {
                         quickSearchConfigService.cloneForm(vm.clientId,formData.id, formData.name).then(function (data) {
-                            initialize();
+                            edit(data);
                         });
                     }
                 });

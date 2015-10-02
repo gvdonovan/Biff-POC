@@ -12,6 +12,8 @@
             newForm: newForm,
             cloneForm: cloneForm,
             getForms: getForms,
+            getSettings: getSettings,
+            postSettings: postSettings,
             getInputs: getInputs,
             postInputs: postInputs,
             getDefaults: getDefaults,
@@ -52,6 +54,29 @@
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
+                }, function (response) {
+                    console.warn('error' + response);
+                });
+        }
+
+        function getSettings(clientId, formId) {
+            clientId = 3431303331;
+            formId = 32;
+
+            var url = '//localhost:63312/api/config/search/settings/' + clientId + '/' + formId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                }, function (response) {
+                    console.warn('error' + response);
+                });
+        }
+
+        function postSettings(data) {
+            var url = '//localhost:63312/api/config/search/settings/save';
+            return $http.post(url, angular.toJson(data))
+                .then(function (response) {
+                    return response;
                 }, function (response) {
                     console.warn('error' + response);
                 });
@@ -103,7 +128,7 @@
 
         function getDefaults(clientId, formId) {
             clientId = 3431303331;
-            formId = 31;
+            formId = 32;
 
             var url = '//localhost:63312/api/config/search/defaults/' + clientId + '/' + formId;
             return $http.get(url)
@@ -126,7 +151,7 @@
 
         function getFilters(clientId, formId) {
             clientId = 3431303331;
-            formId = 31;
+            formId = 32;
 
             var url = '//localhost:63312/api/config/search/filters/' + clientId + '/' + formId;
             return $http.get(url)
@@ -149,7 +174,7 @@
 
         function getLoanOfficers(clientId, formId) {
             clientId = 3431303331;
-            formId = 31;
+            formId = 32;
 
             var url = '//localhost:63312/api/config/search/loanOfficers/' + clientId + '/' + formId;
             return $http.get(url)
@@ -172,7 +197,7 @@
 
         function getResults(clientId, formId) {
             clientId = 3431303331;
-            formId = 31;
+            formId = 32;
 
             var url = '//localhost:63312/api/config/search/results/' + clientId + '/' + formId;
             return $http.get(url)
