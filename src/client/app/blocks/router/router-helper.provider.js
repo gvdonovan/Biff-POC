@@ -15,16 +15,17 @@
             resolveAlways: {}
         };
 
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
+        $locationProvider.hashPrefix('!');
 
         this.configure = function (cfg) {
             angular.extend(config, cfg);
         };
 
         this.$get = RouterHelper;
-        RouterHelper.$inject = ['$location', '$rootScope', '$state', 'logger', 'modalService'];
+        RouterHelper.$inject = ['$location', '$rootScope', '$state', 'logger', 'modalService', 'spaFolder'];
         /* @ngInject */
-        function RouterHelper($location, $rootScope, $state, logger, modalService) {
+        function RouterHelper($location, $rootScope, $state, logger, modalService, spaFolder) {
             var handlingStateChangeError = false;
             var hasOtherwise = false;
             var stateCounts = {
@@ -60,7 +61,7 @@
                     if ($rootScope.isDirty && isWarned === false) {
                         event.preventDefault();
 
-                        var template = 'app/blocks/modal/templates/confirm.html';
+                        var template = spaFolder + 'app/blocks/modal/templates/confirm.html';
                         var controller = 'confirmModalController';
                         var title = 'Confirm';
                         var message = 'Navigating away from this page will discard your current changes. Do you wish to proceed?';
@@ -94,7 +95,7 @@
                         stateCounts.errors++;
                         handlingStateChangeError = true;
                         var destination = (toState &&
-                            (toState.title || toState.name || toState.loadedTemplateUrl)) ||
+                                (toState.title || toState.name || toState.loadedTemplateUrl)) ||
                             'unknown target';
                         var msg = 'Error routing to ' + destination + '. ' +
                             (error.data || '') + '. <br/>' + (error.statusText || '') +

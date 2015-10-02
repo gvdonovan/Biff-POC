@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('DefaultsController', DefaultsController);
 
-    DefaultsController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'quickSearchConfigService'];
+    DefaultsController.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'quickSearchConfigService', 'spaFolder'];
     /* @ngInject */
-    function DefaultsController($scope, $rootScope, $stateParams, $state, quickSearchConfigService) {
+    function DefaultsController($scope, $rootScope, $stateParams, $state, quickSearchConfigService, spaFolder) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -30,6 +30,9 @@
         vm.model = {};
 
         vm.fields = [];
+
+        vm.navigationUrl = navigationUrl;
+        vm.wizardButtonsUrl = wizardButtonsUrl;
 
         activate();
 
@@ -56,15 +59,14 @@
                 vm.fields = data.form.pages.$values[0].fields.$values;
                 vm.model = nest(data.data, vm.fields);
                 _.each(vm.fields, function (field) {
-                    if(field.type == 'nested') {
+                    if (field.type == 'nested') {
                         field.data.fields = field.data.fields.$values;
                         _.each(field.data.fields, function (item) {
                             if (item.type === 'select' || item.type === 'radio') {
                                 item.templateOptions.options = item.templateOptions.options.$values;
                             }
                         });
-                    }
-                    else if (field.type === 'select' || field.type === 'radio') {
+                    } else if (field.type === 'select' || field.type === 'radio') {
                         field.templateOptions.options = field.templateOptions.options.$values;
                     }
                 });
@@ -80,16 +82,25 @@
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+                $state.go(state, {
+                    editMode: vm.editMode,
+                    formId: vm.formId
+                });
             }
         }
 
         function next() {
-            $state.go('quickSearchConfigProducts', {editMode: vm.editMode, formId: vm.formId});
+            $state.go('quickSearchConfigProducts', {
+                editMode: vm.editMode,
+                formId: vm.formId
+            });
         }
 
         function previous() {
-            $state.go('quickSearchConfigInputs', {editMode: vm.editMode, formId: vm.formId});
+            $state.go('quickSearchConfigInputs', {
+                editMode: vm.editMode,
+                formId: vm.formId
+            });
         }
 
         function cancel() {
@@ -134,12 +145,20 @@
                     });
                 }
             });
-            for(var p in model){
-                if(!nestedModel.hasOwnProperty(p) && !_.contains(keysAdded, p)){
+            for (var p in model) {
+                if (!nestedModel.hasOwnProperty(p) && !_.contains(keysAdded, p)) {
                     nestedModel[p] = model[p];
                 }
             }
             return nestedModel;
+        }
+
+        function navigationUrl() {
+            return spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
+        }
+
+        function wizardButtonsUrl() {
+            return spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
         }
     }
 })();

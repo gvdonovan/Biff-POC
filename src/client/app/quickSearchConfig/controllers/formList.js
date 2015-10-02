@@ -10,9 +10,9 @@
         ])
         .controller('FormListController', FormListController);
 
-    FormListController.$inject = ['$state', 'modalService', 'quickSearchConfigService'];
+    FormListController.$inject = ['$state', 'modalService', 'quickSearchConfigService', 'spaFolder'];
     /* @ngInject */
-    function FormListController($state, modalService, quickSearchConfigService) {
+    function FormListController($state, modalService, quickSearchConfigService, spaFolder) {
         var vm = this;
         vm.clientId = null;
         vm.add = add;
@@ -20,6 +20,8 @@
         vm.edit = edit;
         vm.forms = [];
         vm.toggle = toggle;
+
+        vm.wizardButtonsUrl = wizardButtonsUrl;
 
         activate();
 
@@ -39,7 +41,7 @@
             var template = 'app/quickSearchConfig/views/partials/cloneQuickSearchForm.html';
             var controller = 'cloneQuickSearchFormController';
             var title = 'Create New Quick Search Form';
-            var message = null;//'Navigating away from this page will discard your current changes. Do you wish to proceed?';
+            var message = null; //'Navigating away from this page will discard your current changes. Do you wish to proceed?';
 
             modalService.openModal(template, controller, null, title, message, null)
                 .then(function (formData) {
@@ -55,9 +57,11 @@
             var template = 'app/quickSearchConfig/views/partials/cloneQuickSearchForm.html';
             var controller = 'cloneQuickSearchFormController';
             var title = 'Clone Quick Search Form';
-            var message = null;//'Navigating away from this page will discard your current changes. Do you wish to proceed?';
+            var message = null; //'Navigating away from this page will discard your current changes. Do you wish to proceed?';
 
-            modalService.openModal(template, controller, null, title, message, {form: form})
+            modalService.openModal(template, controller, null, title, message, {
+                    form: form
+                })
                 .then(function (formData) {
                     if (formData) {
                         quickSearchConfigService.cloneForm(vm.clientId, formData.id, formData.name).then(function (data) {
@@ -69,7 +73,10 @@
 
         function edit(id) {
             //Request then next page
-            $state.go('quickSearchConfigInputs', {editMode: true, formId: id});
+            $state.go('quickSearchConfigInputs', {
+                editMode: true,
+                formId: id
+            });
         }
 
         function toggle(index) {
@@ -77,7 +84,7 @@
 
             var m = form.isActive ? 'Activate ' : 'Deactivate ';
 
-            var template = 'app/blocks/modal/templates/confirm.html';
+            var template = spaFolder + 'app/blocks/modal/templates/confirm.html';
             var controller = 'confirmModalController';
             var title = 'Confirm';
             var message = 'Do you wish to ' + m + '[' + form.name + ']' + '?';
@@ -88,6 +95,10 @@
                         vm.forms[index].isActive = !form.isActive;
                     }
                 });
+        }
+
+        function wizardButtonsUrl() {
+            return spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
         }
 
     }

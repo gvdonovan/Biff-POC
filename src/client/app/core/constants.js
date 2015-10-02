@@ -1,9 +1,10 @@
 /* global toastr:false, moment:false */
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.core')
         .constant('toastr', toastr)
-        .constant('moment', moment);
+        .constant('moment', moment)
+        .constant('spaFolder', 'eOSpa/');
 })();

@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .controller('LoanOfficersController', LoanOfficersController);
 
-    LoanOfficersController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService'];
+    LoanOfficersController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService', 'spaFolder'];
     /* @ngInject */
-    function LoanOfficersController(logger, $stateParams, $state, $rootScope, quickSearchConfigService) {
+    function LoanOfficersController(logger, $stateParams, $state, $rootScope, quickSearchConfigService, spaFolder) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -31,6 +31,9 @@
         vm.filterCategory = filterCategory;
         vm.filterItems = filterItems;
 
+        vm.navigationUrl = navigationUrl;
+        vm.wizardButtonsUrl = wizardButtonsUrl;
+
         activate();
 
         function activate() {
@@ -50,7 +53,9 @@
                 _.each(vm.availableOfficers, function (cat) {
                     _.each(cat.loanOfficers.$values, function (person) {
                         person['fullName'] = person.loanOfficerFirstName + ' ' + person.loanOfficerLastName;
-                        if (_.where(vm.pickedOfficers, {loanOfficerId: person.loanOfficerId}).length > 0) {
+                        if (_.where(vm.pickedOfficers, {
+                                loanOfficerId: person.loanOfficerId
+                            }).length > 0) {
                             person.picked = true;
                         }
                     });
@@ -163,7 +168,10 @@
 
         function go(state) {
             if (vm.editMode.toLowerCase() == 'true') {
-                $state.go(state, {editMode: vm.editMode, formId: vm.formId});
+                $state.go(state, {
+                    editMode: vm.editMode,
+                    formId: vm.formId
+                });
             }
         }
 
@@ -179,6 +187,14 @@
             quickSearchConfigService.postLoanOfficers(vm.data).then(function (data) {
                 $rootScope.isDirty = false;
             });
+        }
+
+        function navigationUrl() {
+            return spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
+        }
+
+        function wizardButtonsUrl() {
+            return spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
         }
     }
 })();

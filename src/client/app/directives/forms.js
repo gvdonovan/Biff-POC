@@ -3,15 +3,17 @@
 
     angular
         .module('app')
-        .directive('formsAlias', formsAlias)
+        .directive('formsAlias', formsAlias);
 
-    function formsAlias() {
+    formsAlias.$inject = ['spaFolder'];
+
+    function formsAlias(spaFolder) {
         var directive = {
             restrict: 'A',
             scope: {
                 datasource: '='
             },
-            templateUrl: 'app/directives/templates/alias.html',
+            templateUrl: spaFolder + 'app/directives/templates/alias.html',
             controller: aliasController
         };
 
@@ -28,7 +30,10 @@
 
         function addAlias() {
             console.warn($scope);
-            $scope.datasource.push({firstName: '', lastName: ''});
+            $scope.datasource.push({
+                firstName: '',
+                lastName: ''
+            });
         }
 
         function removeAlias(index) {

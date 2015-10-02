@@ -1,13 +1,13 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.layout')
         .controller('ShellController', ShellController);
 
-    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger'];
+    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'spaFolder'];
     /* @ngInject */
-    function ShellController($rootScope, $timeout, config, logger) {
+    function ShellController($rootScope, $timeout, config, logger, spaFolder) {
         var vm = this;
         vm.busyMessage = 'Please wait ...';
         vm.isBusy = true;
@@ -18,6 +18,8 @@
             link: 'http://twitter.com/john_papa'
         };
 
+        vm.navUrl = navUrl;
+
         activate();
 
         function activate() {
@@ -27,9 +29,14 @@
 
         function hideSplash() {
             //Force a 1 second delay so we can see the splash.
-            $timeout(function() {
+            $timeout(function () {
                 $rootScope.showSplash = false;
             }, 1000);
+        }
+
+        function navUrl() {
+
+            return spaFolder + 'app/layout/views/nav.html';
         }
     }
 })();

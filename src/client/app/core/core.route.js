@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -6,9 +6,9 @@
         .run(appRun);
 
     /* @ngInject */
-    function appRun(routerHelper, forms, formlyConfig) {
-        var otherwise = '/404';
-        routerHelper.configureStates(getStates(), otherwise);
+    function appRun(routerHelper, forms, formlyConfig, spaFolder) {
+        var otherwise = '/quickSearchConfig';
+        routerHelper.configureStates(getStates(spaFolder), otherwise);
         forms.datePickerConfig(formlyConfig);
         forms.borrowerAliasConfig(formlyConfig);
         forms.panelWrapper(formlyConfig);
@@ -16,13 +16,13 @@
         apiCheck.globalConfig.disabled = true;
     }
 
-    function getStates() {
+    function getStates(spaFolder) {
         return [
             {
                 state: '404',
                 config: {
                     url: '/404',
-                    templateUrl: 'app/core/404.html',
+                    templateUrl: spaFolder + 'app/core/404.html',
                     title: '404'
                 }
             }

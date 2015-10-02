@@ -4,28 +4,31 @@
         padding-left: 10px;
         padding-right: 10px;
     }
-    .results-height{
+    
+    .results-height {
         height: 733px;
         overflow-y: auto;
     }
-    .label-soft{
+    
+    .label-soft {
         font-weight: normal;
     }
+
 </style>
 <div>
     <div class="well qsSteps col-xs-10 col-xs-offset-1">
-        <ng-include src="'app/quickSearchConfig/views/partials/navigation.html'"></ng-include>
+        <ng-include src="vm.navigationUrl()"></ng-include>
     </div>
 </div>
 
 <div class="well col-xs-10 col-xs-offset-1">
 
     <div class="col-md-4">
-        <ng-include src="'app/quickSearchConfig/views/partials/resultsConfigForm.html'"></ng-include>
+        <ng-include src="vm.navigationUrl()"></ng-include>
     </div>
 
     <div class="col-md-8">
-        <ng-include src="'app/quickSearchConfig/views/partials/resultsPreviewForm.html'"></ng-include>
+        <ng-include src="vm.navigationUrl()"></ng-include>
     </div>
 
 </div>

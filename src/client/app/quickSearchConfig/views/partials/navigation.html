@@ -2,18 +2,18 @@
 
     <div class="col-lg-9 visible-lg">
         <ul class="nav nav-wizard">
-            <li ng-click="vm.go('quickSearchConfigGeneral')" ng-class="vm.state === 'quickSearchConfigGeneral' ? 'active' : ''"><a href="#">Settings</a></li>
+            <li ng-click="vm.go('quickSearchConfigGeneral')" ng-class="vm.state === 'quickSearchConfigGeneral' ? 'active' : ''"><a>Settings</a></li>
             <li ng-click="vm.go('quickSearchConfigInputs')" ng-class="vm.state === 'quickSearchConfigInputs' ? 'active' : ''"><a>Inputs</a></li>
-            <li ng-click="vm.go('quickSearchConfigDefaults')" ng-class="vm.state === 'quickSearchConfigDefaults' ? 'active' : ''"><a href="#">Defaults</a></li>
-            <li ng-click="vm.go('quickSearchConfigProducts')" ng-class="vm.state === 'quickSearchConfigProducts' ? 'active' : ''"><a href="#">Filters</a></li>
-            <li ng-click="vm.go('quickSearchConfigLoanOfficers')" ng-class="vm.state === 'quickSearchConfigLoanOfficers' ? 'active' : ''"><a href="#">Loan Officers</a></li>
-            <li ng-click="vm.go('quickSearchConfigResults')" ng-class="vm.state === 'quickSearchConfigResults' ? 'active' : ''"><a href="#">Results</a></li>
-            <li ng-click="vm.go('quickSearchPreview')" ng-class="vm.state === 'quickSearchPreview' ? 'active' : ''"><a href="#">Preview</a></li>
+            <li ng-click="vm.go('quickSearchConfigDefaults')" ng-class="vm.state === 'quickSearchConfigDefaults' ? 'active' : ''"><a>Defaults</a></li>
+            <li ng-click="vm.go('quickSearchConfigProducts')" ng-class="vm.state === 'quickSearchConfigProducts' ? 'active' : ''"><a>Filters</a></li>
+            <li ng-click="vm.go('quickSearchConfigLoanOfficers')" ng-class="vm.state === 'quickSearchConfigLoanOfficers' ? 'active' : ''"><a>Loan Officers</a></li>
+            <li ng-click="vm.go('quickSearchConfigResults')" ng-class="vm.state === 'quickSearchConfigResults' ? 'active' : ''"><a>Results</a></li>
+            <li ng-click="vm.go('quickSearchPreview')" ng-class="vm.state === 'quickSearchPreview' ? 'active' : ''"><a>Preview</a></li>
         </ul>
     </div>
 
     <div class="col-xs-3 visible-lg">
-        <ng-include class="pull-right" src="'app/quickSearchConfig/views/partials/wizardButtons.html'"></ng-include>
+        <ng-include class="pull-right" src="vm.wizardButtonsUrl()"></ng-include>
     </div>
 
     <div class="col-xs-8 hidden-lg">
@@ -28,6 +28,6 @@
     </div>
 
     <div class="col-xs-4 hidden-lg">
-        <ng-include class="pull-right" src="'app/quickSearchConfig/views/partials/wizardButtons.html'"></ng-include>
+        <ng-include class="pull-right" src="vm.wizardButtonsUrl()"></ng-include>
     </div>
 </div>

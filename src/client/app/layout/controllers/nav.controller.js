@@ -1,13 +1,13 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.layout')
         .controller('NavController', NavController);
 
-    NavController.$inject = ['$rootScope', '$timeout', 'config', 'logger', '$state', 'routerHelper'];
+    NavController.$inject = ['$rootScope', '$timeout', 'config', 'logger', '$state', 'routerHelper', 'spaFolder'];
     /* @ngInject */
-    function NavController($rootScope, $timeout, config, logger, $state, routerHelper) {
+    function NavController($rootScope, $timeout, config, logger, $state, routerHelper, spaFolder) {
         var vm = this;
         var states = routerHelper.getStates();
 
@@ -18,9 +18,9 @@
         }
 
         function getNavRoutes() {
-            vm.navRoutes = states.filter(function(r) {
+            vm.navRoutes = states.filter(function (r) {
                 return r.settings && r.settings.nav && r.settings.top;
-            }).sort(function(r1, r2) {
+            }).sort(function (r1, r2) {
                 return r1.settings.nav - r2.settings.nav;
             });
         }
