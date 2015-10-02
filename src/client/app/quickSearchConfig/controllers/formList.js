@@ -51,7 +51,7 @@
                 });
         }
 
-        function clone(form){
+        function clone(form) {
             var template = 'app/quickSearchConfig/views/partials/cloneQuickSearchForm.html';
             var controller = 'cloneQuickSearchFormController';
             var title = 'Clone Quick Search Form';
@@ -60,7 +60,7 @@
             modalService.openModal(template, controller, null, title, message, {form: form})
                 .then(function (formData) {
                     if (formData) {
-                        quickSearchConfigService.cloneForm(vm.clientId,formData.id, formData.name).then(function (data) {
+                        quickSearchConfigService.cloneForm(vm.clientId, formData.id, formData.name).then(function (data) {
                             edit(data);
                         });
                     }

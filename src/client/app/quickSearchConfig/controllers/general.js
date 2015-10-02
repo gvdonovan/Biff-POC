@@ -6,16 +6,15 @@
         .module('app.quickSearchConfig')
         .controller('QSConfigGeneralController', QSConfigGeneralController);
 
-    QSConfigGeneralController.$inject = ['logger', '$stateParams', '$state', '$rootScope'];
+    QSConfigGeneralController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService'];
     /* @ngInject */
-    function QSConfigGeneralController(logger, $stateParams, $state, $rootScope) {
+    function QSConfigGeneralController(logger, $stateParams, $state, $rootScope, quickSearchConfigService) {
         var vm = this;
+        vm.clientId = null;
         vm.editMode = false;
         vm.formId = null;
         vm.state = '';
         vm.go = go;
-        vm.next = next;
-        vm.previous = previous;
         vm.cancel = cancel;
         vm.save = save;
 
@@ -25,6 +24,13 @@
             vm.editMode = $stateParams.editMode;
             vm.formId = $stateParams.formId;
             vm.state = $state.current.name;
+            initialize();
+        }
+
+        function initialize(){
+            quickSearchConfigService.getSettings(vm.clientId, vm.formId).then(function (data) {
+                vm.data = data;
+            });
         }
 
         function go(state) {
@@ -33,27 +39,14 @@
             }
         }
 
-        function next() {
-            $state.go('quickSearchConfigInputs', {
-                editMode: vm.editMode,
-                formId: vm.formId
-            });
-        }
-
-        function previous() {
-            $state.go('quickSearchConfig', {
-                editMode: vm.editMode,
-                formId: vm.formId
-            });
-        }
-
         function cancel() {
             $rootScope.isDirty = false;
         }
 
         function save() {
-            //TODO post vm.data
-            $rootScope.isDirty = false;
+            quickSearchConfigService.postSettings(vm.data).then(function (data) {
+                $rootScope.isDirty = false;
+            });
         }
     }
 })();
