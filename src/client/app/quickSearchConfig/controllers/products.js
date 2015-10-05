@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'spaConfig'];
+    ProductsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'spaConfig', 'quickSearchConfigService'];
     /* @ngInject */
-    function ProductsController(logger, $stateParams, $state, $rootScope, spaConfig) {
+    function ProductsController(logger, $stateParams, $state, $rootScope, spaConfig, quickSearchConfigService) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;

@@ -7,6 +7,6 @@
         .constant('toastr', toastr)
         .constant('moment', moment)
         .constant('spaConfig', {
-            spaFolder: 'eOSpa/'
+            spaFolder: ''
         });
 })();
