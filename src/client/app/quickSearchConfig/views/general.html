@@ -28,11 +28,11 @@
             <form name="generalForm" class="form-inline" novalidate>
                 <div class="form-group">
                     <label class="sr-only">Name *</label>
-                    <input ng-model="vm.data.name" type="text" placeholder="Name" class="form-control" ng-change="$root.isDirty = true;" required>
+                    <input ng-model="vm.data.formName" type="text" placeholder="Name" class="form-control" ng-change="$root.isDirty = true;" required>
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="cLayout" ng-model="vm.data.isCustomLayout" class="form-control.input-md" ng-change="$root.isDirty = true;"> Custom Layout
+                        <input type="checkbox" name="cLayout" ng-model="vm.data.customLayout.value" class="form-control.input-md" ng-change="$root.isDirty = true;"> Custom Layout
                     </label>
                 </div>
             </form>
