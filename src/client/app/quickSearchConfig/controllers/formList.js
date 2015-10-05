@@ -10,9 +10,9 @@
         ])
         .controller('FormListController', FormListController);
 
-    FormListController.$inject = ['$state', 'modalService', 'quickSearchConfigService', 'spaFolder'];
+    FormListController.$inject = ['$state', 'modalService', 'quickSearchConfigService', 'spaConfig'];
     /* @ngInject */
-    function FormListController($state, modalService, quickSearchConfigService, spaFolder) {
+    function FormListController($state, modalService, quickSearchConfigService, spaConfig) {
         var vm = this;
         vm.clientId = null;
         vm.add = add;
@@ -84,7 +84,7 @@
 
             var m = form.isActive ? 'Activate ' : 'Deactivate ';
 
-            var template = spaFolder + 'app/blocks/modal/templates/confirm.html';
+            var template = spaConfig.spaFolder + 'app/blocks/modal/templates/confirm.html';
             var controller = 'confirmModalController';
             var title = 'Confirm';
             var message = 'Do you wish to ' + m + '[' + form.name + ']' + '?';
@@ -98,7 +98,7 @@
         }
 
         function wizardButtonsUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
         }
 
     }

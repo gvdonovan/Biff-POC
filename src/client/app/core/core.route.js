@@ -6,9 +6,9 @@
         .run(appRun);
 
     /* @ngInject */
-    function appRun(routerHelper, forms, formlyConfig, spaFolder) {
+    function appRun(routerHelper, forms, formlyConfig, spaConfig) {
         var otherwise = '/quickSearchConfig';
-        routerHelper.configureStates(getStates(spaFolder), otherwise);
+        routerHelper.configureStates(getStates(spaConfig), otherwise);
         forms.datePickerConfig(formlyConfig);
         forms.borrowerAliasConfig(formlyConfig);
         forms.panelWrapper(formlyConfig);
@@ -16,13 +16,13 @@
         apiCheck.globalConfig.disabled = true;
     }
 
-    function getStates(spaFolder) {
+    function getStates(spaConfig) {
         return [
             {
                 state: '404',
                 config: {
                     url: '/404',
-                    templateUrl: spaFolder + 'app/core/404.html',
+                    templateUrl: spaConfig.spaFolder + 'app/core/404.html',
                     title: '404'
                 }
             }

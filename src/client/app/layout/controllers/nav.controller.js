@@ -5,9 +5,9 @@
         .module('app.layout')
         .controller('NavController', NavController);
 
-    NavController.$inject = ['$rootScope', '$timeout', 'config', 'logger', '$state', 'routerHelper', 'spaFolder'];
+    NavController.$inject = ['$rootScope', '$timeout', 'config', 'logger', '$state', 'routerHelper', 'spaConfig'];
     /* @ngInject */
-    function NavController($rootScope, $timeout, config, logger, $state, routerHelper, spaFolder) {
+    function NavController($rootScope, $timeout, config, logger, $state, routerHelper, spaConfig) {
         var vm = this;
         var states = routerHelper.getStates();
 

@@ -5,15 +5,15 @@
         .module('app')
         .directive('formsAlias', formsAlias);
 
-    formsAlias.$inject = ['spaFolder'];
+    formsAlias.$inject = ['spaConfig'];
 
-    function formsAlias(spaFolder) {
+    function formsAlias(spaConfig) {
         var directive = {
             restrict: 'A',
             scope: {
                 datasource: '='
             },
-            templateUrl: spaFolder + 'app/directives/templates/alias.html',
+            templateUrl: spaConfig.spaFolder + 'app/directives/templates/alias.html',
             controller: aliasController
         };
 

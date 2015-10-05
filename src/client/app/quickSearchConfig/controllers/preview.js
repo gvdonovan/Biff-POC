@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('QuickSearchPreviewController', QuickSearchPreviewController);
 
-    QuickSearchPreviewController.$inject = ['logger', '$stateParams', '$q', '$state', '$rootScope', 'quickSearchConfigService', 'qsResultsService', 'spaFolder'];
+    QuickSearchPreviewController.$inject = ['logger', '$stateParams', '$q', '$state', '$rootScope', 'quickSearchConfigService', 'qsResultsService', 'spaConfig'];
     /* @ngInject */
-    function QuickSearchPreviewController(logger, $stateParams, $q, $state, $rootScope, quickSearchConfigService, qsResultsService, spaFolder) {
+    function QuickSearchPreviewController(logger, $stateParams, $q, $state, $rootScope, quickSearchConfigService, qsResultsService, spaConfig) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -107,11 +107,11 @@
         }
 
         function navigationUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
         }
 
         function wizardButtonsUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
         }
     }
 })();

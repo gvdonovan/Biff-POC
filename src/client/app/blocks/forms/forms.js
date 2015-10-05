@@ -5,10 +5,10 @@
         .module('blocks.forms')
         .factory('forms', forms);
 
-    forms.$inject = ['spaFolder'];
+    forms.$inject = ['spaConfig'];
 
     /* @ngInject */
-    function forms(spaFolder) {
+    function forms(spaConfig) {
         var service = {
             datePickerConfig: datePickerConfig,
             borrowerAliasConfig: borrowerAliasConfig,
@@ -20,7 +20,7 @@
         function datePickerConfig(formlyConfig) {
             formlyConfig.setType({
                 name: 'datepicker',
-                templateUrl: spaFolder + 'app/blocks/forms/templates/datepicker.html',
+                templateUrl: spaConfig.spaFolder + 'app/blocks/forms/templates/datepicker.html',
                 wrapper: ['bootstrapLabel', 'bootstrapHasError'],
                 defaultOptions: {
                     templateOptions: {
@@ -35,7 +35,7 @@
         function borrowerAliasConfig(formlyConfig) {
             formlyConfig.setType({
                 name: 'alias',
-                templateUrl: spaFolder + 'app/blocks/forms/templates/alias.html'
+                templateUrl: spaConfig.spaFolder + 'app/blocks/forms/templates/alias.html'
             });
         }
 
@@ -49,7 +49,7 @@
             formlyConfig.setWrapper({
                 name: 'panel',
                 types: ['nested'],
-                templateUrl: spaFolder + 'app/blocks/forms/templates/panelWrapper.html'
+                templateUrl: spaConfig.spaFolder + 'app/blocks/forms/templates/panelWrapper.html'
             });
         }
     }

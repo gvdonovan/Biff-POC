@@ -5,13 +5,13 @@
         .module('app.quickSearchConfig')
         .run(appRun);
 
-    appRun.$inject = ['routerHelper', 'spaFolder'];
+    appRun.$inject = ['routerHelper', 'spaConfig'];
     /* @ngInject */
-    function appRun(routerHelper, spaFolder) {
-        routerHelper.configureStates(getStates(spaFolder));
+    function appRun(routerHelper, spaConfig) {
+        routerHelper.configureStates(getStates(spaConfig));
     }
 
-    function getStates(spaFolder) {
+    function getStates(spaConfig) {
 
         var states = [
             {
@@ -19,7 +19,7 @@
                 config: {
                     url: '/quickSearchConfig',
                     params: {},
-                    templateUrl: spaFolder + 'app/quickSearchConfig/views/formList.html',
+                    templateUrl: spaConfig.spaFolder + 'app/quickSearchConfig/views/formList.html',
                     controller: 'FormListController',
                     controllerAs: 'vm',
                     title: 'Forms',
@@ -38,7 +38,7 @@
                     params: {
                         editMode: 'false'
                     },
-                    templateUrl: spaFolder + 'app/quickSearchConfig/views/general.html',
+                    templateUrl: spaConfig.spaFolder + 'app/quickSearchConfig/views/general.html',
                     controller: 'QSConfigGeneralController',
                     controllerAs: 'vm',
                     title: 'Form General'
@@ -51,7 +51,7 @@
                     params: {
                         editMode: 'false'
                     },
-                    templateUrl: spaFolder + 'app/quickSearchConfig/views/inputs.html',
+                    templateUrl: spaConfig.spaFolder + 'app/quickSearchConfig/views/inputs.html',
                     controller: 'InputsController',
                     controllerAs: 'vm',
                     title: 'Form Inputs'
@@ -64,7 +64,7 @@
                     params: {
                         editMode: 'false'
                     },
-                    templateUrl: spaFolder + 'app/quickSearchConfig/views/defaults.html',
+                    templateUrl: spaConfig.spaFolder + 'app/quickSearchConfig/views/defaults.html',
                     controller: 'DefaultsController',
                     controllerAs: 'vm',
                     title: 'Form Defaults'
@@ -77,7 +77,7 @@
                     params: {
                         editMode: 'false'
                     },
-                    templateUrl: spaFolder + 'app/quickSearchConfig/views/products.html',
+                    templateUrl: spaConfig.spaFolder + 'app/quickSearchConfig/views/products.html',
                     controller: 'ProductsController',
                     controllerAs: 'vm',
                     title: 'Form Products'
@@ -90,7 +90,7 @@
                     params: {
                         editMode: 'false'
                     },
-                    templateUrl: spaFolder + 'app/quickSearchConfig/views/loanOfficers.html',
+                    templateUrl: spaConfig.spaFolder + 'app/quickSearchConfig/views/loanOfficers.html',
                     controller: 'LoanOfficersController',
                     controllerAs: 'vm',
                     title: 'Form defaults'
@@ -103,7 +103,7 @@
                     params: {
                         editMode: 'false'
                     },
-                    templateUrl: spaFolder + 'app/quickSearchConfig/views/results.html',
+                    templateUrl: spaConfig.spaFolder + 'app/quickSearchConfig/views/results.html',
                     controller: 'QSConfigResultsController',
                     controllerAs: 'vm',
                     title: 'Form Results'
@@ -116,7 +116,7 @@
                     params: {
                         editMode: 'false'
                     },
-                    templateUrl: spaFolder + 'app/quickSearchConfig/views/preview.html',
+                    templateUrl: spaConfig.spaFolder + 'app/quickSearchConfig/views/preview.html',
                     controller: 'QuickSearchPreviewController',
                     controllerAs: 'vm',
                     title: 'Preview'

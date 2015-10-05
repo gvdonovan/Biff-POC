@@ -5,9 +5,9 @@
         .module('app.layout')
         .controller('ShellController', ShellController);
 
-    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'spaFolder'];
+    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'spaConfig'];
     /* @ngInject */
-    function ShellController($rootScope, $timeout, config, logger, spaFolder) {
+    function ShellController($rootScope, $timeout, config, logger, spaConfig) {
         var vm = this;
         vm.busyMessage = 'Please wait ...';
         vm.isBusy = true;
@@ -36,7 +36,7 @@
 
         function navUrl() {
 
-            return spaFolder + 'app/layout/views/nav.html';
+            return spaConfig.spaFolder + 'app/layout/views/nav.html';
         }
     }
 })();

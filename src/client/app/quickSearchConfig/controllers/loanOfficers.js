@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .controller('LoanOfficersController', LoanOfficersController);
 
-    LoanOfficersController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService', 'spaFolder'];
+    LoanOfficersController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService', 'spaConfig'];
     /* @ngInject */
-    function LoanOfficersController(logger, $stateParams, $state, $rootScope, quickSearchConfigService, spaFolder) {
+    function LoanOfficersController(logger, $stateParams, $state, $rootScope, quickSearchConfigService, spaConfig) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -190,11 +190,11 @@
         }
 
         function navigationUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
         }
 
         function wizardButtonsUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
         }
     }
 })();

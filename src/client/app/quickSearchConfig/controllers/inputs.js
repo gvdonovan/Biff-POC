@@ -6,9 +6,9 @@
         .module('app.quickSearchConfig')
         .controller('InputsController', InputsController);
 
-    InputsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService', 'spaFolder'];
+    InputsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'quickSearchConfigService', 'spaConfig'];
     /* @ngInject */
-    function InputsController(logger, $stateParams, $state, $rootScope, quickSearchConfigService, spaFolder) {
+    function InputsController(logger, $stateParams, $state, $rootScope, quickSearchConfigService, spaConfig) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -276,19 +276,19 @@
         }
 
         function navigationUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
         }
 
         function inputsConfigUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/inputsConfigForm.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/inputsConfigForm.html';
         }
 
         function inputsPreviewUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/inputsPreviewForm.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/inputsPreviewForm.html';
         }
 
         function wizardButtonsUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
         }
     }
 })();

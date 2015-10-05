@@ -5,9 +5,9 @@
         .module('app.quickSearchConfig')
         .controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'spaFolder'];
+    ProductsController.$inject = ['logger', '$stateParams', '$state', '$rootScope', 'spaConfig'];
     /* @ngInject */
-    function ProductsController(logger, $stateParams, $state, $rootScope, spaFolder) {
+    function ProductsController(logger, $stateParams, $state, $rootScope, spaConfig) {
         var vm = this;
         vm.editMode = false;
         vm.formId = null;
@@ -316,11 +316,11 @@
         }
 
         function navigationUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/navigation.html';
         }
 
         function wizardButtonsUrl() {
-            return spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
+            return spaConfig.spaFolder + 'app/quickSearchConfig/views/partials/wizardButtons.html';
         }
     }
 })();

@@ -5,20 +5,20 @@
         .module('app.home')
         .run(appRun);
 
-    appRun.$inject = ['routerHelper', 'spaFolder'];
+    appRun.$inject = ['routerHelper', 'spaConfig'];
     /* @ngInject */
-    function appRun(routerHelper, spaFolder) {
-        routerHelper.configureStates(getStates(spaFolder));
+    function appRun(routerHelper, spaConfig) {
+        routerHelper.configureStates(getStates(spaConfig));
     }
 
-    function getStates(spaFolder) {
+    function getStates(spaConfig) {
 
         var states = [
             {
                 state: 'home',
                 config: {
                     url: '/',
-                    templateUrl: spaFolder + 'app/home/views/home.html',
+                    templateUrl: spaConfig.spaFolder + 'app/home/views/home.html',
                     controller: 'HomeController',
                     controllerAs: 'vm',
                     title: 'E-Originations',
@@ -35,7 +35,7 @@
                 state: 'login',
                 config: {
                     url: '/login',
-                    templateUrl: spaFolder + 'app/home/views/login.html',
+                    templateUrl: spaConfig.spaFolder + 'app/home/views/login.html',
                     controller: 'loginController',
                     controllerAs: 'vm',
                     title: 'Login',
@@ -51,7 +51,7 @@
                 state: 'register',
                 config: {
                     url: '/register',
-                    templateUrl: spaFolder + 'app/home/views/register.html',
+                    templateUrl: spaConfig.spaFolder + 'app/home/views/register.html',
                     controller: 'registerController',
                     controllerAs: 'vm',
                     title: 'Register',
