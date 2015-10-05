@@ -13,6 +13,7 @@
         vm.editMode = false;
         vm.formId = null;
         vm.biff = false;
+        vm.options = {};
         vm.pageNumber = 0;
         vm.availablePages = [];
         vm.initialize = initialize;
@@ -46,33 +47,37 @@
             vm.model = {};
             testerService.getSection(vm.formId, vm.biff).then(function (data) {
                 vm.data = data;
-                for(var i = 0; i < data.pages.$values.length; i++){
+                for (var i = 0; i < data.pages.$values.length; i++) {
                     vm.availablePages.push(i);
                 }
-                vm.fields = data.pages.$values[vm.pageNumber].fields.$values;
-                vm.model = nest(data.data, vm.fields);
-                _.each(vm.fields, function (field) {
-                    if(field.type == 'nested') {
-                        field.data.fields = field.data.fields.$values;
-                        _.each(field.data.fields, function (item) {
-                            if (item.type === 'select' || item.type === 'radio') {
-                                item.templateOptions.options = item.templateOptions.options.$values;
-                            }
-                        });
-                    }
-                    else if (field.type === 'select' || field.type === 'radio') {
-                        field.templateOptions.options = field.templateOptions.options.$values;
-                    }
+                _.each(data.pages.$values, function(biff)
+                {
+                    //vm.model = nest(data.data, vm.fields);
+                    _.each(biff.fields.$values, function (field) {
+                        if (field.type == 'nested') {
+                            field.data.fields = field.data.fields.$values;
+                            _.each(field.data.fields, function (item) {
+                                if (item.type === 'select' || item.type === 'radio') {
+                                    item.templateOptions.options = item.templateOptions.options.$values;
+                                }
+                            });
+                        }
+                        else if (field.type === 'select' || field.type === 'radio') {
+                            field.templateOptions.options = field.templateOptions.options.$values;
+                        }
+                    });
                 });
-
+                vm.fields = data.pages.$values[vm.pageNumber].fields.$values;
                 updateTitle();
             });
         }
 
-        function updateTitle(){
+        function updateTitle() {
             vm.title = vm.data.pages.$values[vm.pageNumber].name;
             vm.fields = [];
+            vm.model = {};
             vm.fields = vm.data.pages.$values[vm.pageNumber].fields.$values;
+            vm.options.resetModel();
         }
 
         function toggleSections() {
@@ -138,8 +143,8 @@
                     });
                 }
             });
-            for(var p in model){
-                if(!nestedModel.hasOwnProperty(p) && !_.contains(keysAdded, p)){
+            for (var p in model) {
+                if (!nestedModel.hasOwnProperty(p) && !_.contains(keysAdded, p)) {
                     nestedModel[p] = model[p];
                 }
             }
