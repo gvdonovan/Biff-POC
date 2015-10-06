@@ -28,6 +28,8 @@
                 return template.replace('"option[to.valueProp || \'value\'] as option[to.labelProp || \'name\'] group by option[to.groupProp || \'group\'] for option in to.options"',
                     '"option as option.name for option in to.options.$values"');
             }
+
+            return template;
         });
 
 
