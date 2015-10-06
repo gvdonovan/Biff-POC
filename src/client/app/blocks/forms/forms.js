@@ -12,7 +12,9 @@
         var service = {
             datePickerConfig: datePickerConfig,
             borrowerAliasConfig: borrowerAliasConfig,
-            panelWrapper: panelWrapper
+            disclosureConfig: disclosureConfig,
+            panelWrapper: panelWrapper,
+            yesNoWrapper: yesNoWrapper
         };
 
         return service;
@@ -24,7 +26,7 @@
                 wrapper: ['bootstrapLabel', 'bootstrapHasError'],
                 defaultOptions: {
                     templateOptions: {
-                        addonLeft: {
+                        addonRight: {
                             class: 'glyphicon glyphicon-calendar'
                         }
                     }
@@ -39,7 +41,37 @@
             });
         }
 
-        function panelWrapper(formlyConfig){
+        function disclosureConfig(formlyConfig) {
+            formlyConfig.setType({
+                name: 'disclosure',
+                templateUrl: 'app/blocks/forms/templates/disclosure.html'
+            });
+        }
+
+        function yesNoWrapper(formlyConfig) {
+            formlyConfig.setType({
+                name: 'YesNoRadio',
+                extends: 'radio',
+                defaultOptions: {
+                    className: 'col-xs-3 radio-horizontal',    // for horizontal radio buttons, add a class and style in CSS (see style.css)
+                    templateOptions: {
+                        label: "Yes/No Radio",
+                        options: [
+                            {
+                                name: 'Yes',
+                                value: 1
+                            },
+                            {
+                                name: 'No',
+                                value: 2
+                            }
+                        ]
+                    }
+                }
+            });
+        }
+
+        function panelWrapper(formlyConfig) {
 
             formlyConfig.setType({
                 name: 'nested',
