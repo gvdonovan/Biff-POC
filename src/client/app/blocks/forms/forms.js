@@ -12,7 +12,8 @@
         var service = {
             datePickerConfig: datePickerConfig,
             borrowerAliasConfig: borrowerAliasConfig,
-            panelWrapper: panelWrapper
+            panelWrapper: panelWrapper,
+            asyncSelectHandler: asyncSelectHandler
         };
 
         return service;
@@ -39,7 +40,7 @@
             });
         }
 
-        function panelWrapper(formlyConfig){
+        function panelWrapper(formlyConfig) {
 
             formlyConfig.setType({
                 name: 'nested',
@@ -51,6 +52,31 @@
                 types: ['nested'],
                 templateUrl: 'app/blocks/forms/templates/panelWrapper.html'
             });
+        }
+
+        function asyncSelectHandler(formlyConfig) {
+            formlyConfig.setType({
+                name: 'asyncSelectHandler',
+                extends: 'select',
+                controller: asyncSelectHandlerController
+            });
+        }
+
+        /* @ngInject */
+        function asyncSelectHandlerController($scope, valuesService) {
+            var valueToWatch = 'model.' +  $scope.to.keyToWatch;
+            $scope.$watch(valueToWatch, function(newValue, oldValue){
+                if(newValue !== oldValue){
+                    if($scope.model[$scope.options.key] && oldValue) {
+                        // reset this select
+                        $scope.model[$scope.options.key] = '';
+                    }
+
+                    valuesService.getCounties('biff').then(function(data){
+                       console.log('data');
+                    });
+                }
+            })
         }
     }
 })();

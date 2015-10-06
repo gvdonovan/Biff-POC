@@ -12,6 +12,7 @@
         forms.datePickerConfig(formlyConfig);
         forms.borrowerAliasConfig(formlyConfig);
         forms.panelWrapper(formlyConfig);
+        forms.asyncSelectHandler(formlyConfig);
         formlyConfig.disableWarnings = true;
         apiCheck.globalConfig.disabled = true;
     }
