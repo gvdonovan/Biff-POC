@@ -33,14 +33,16 @@ module.exports = function() {
         images: client + 'images/**/*.*',
         index: client + 'index.html',
         // app js, with no specs
-        js: [ 
-            clientApp + '**/*.js', 
+        js: [
+            clientApp + '**/*.js',
             '!' + clientApp + '**/*.spec.js'
-            ],
+        ],
         jsOrder: [
-            '**/app.module.js', 
-            '**/*.module.js', '**/*.js'
-            ],
+            '**/app.module.js',
+            '**/*.module.js',
+            'blocks/**/*.js',
+            '**/*.js'
+        ],
         less: client + 'styles/',
         report: report,
         root: root,
@@ -111,10 +113,12 @@ module.exports = function() {
             nodeModules + '/mocha/mocha.js',
             nodeModules + '/chai/chai.js',
             nodeModules + '/mocha-clean/index.js',
-            nodeModules + '/sinon-chai/lib/sinon-chai.js'
+            nodeModules + '/sinon-chai/lib/sinon-chai.js',
+            nodeModules + '/karma-chai-sinon/index.js'
+
         ],
         specHelpers: [client + 'test-helpers/*.js'],
-        specs: [clientApp + '**/*.spec.js'],
+        specs: [client + 'tests/**/*.js'],
         serverIntegrationSpecs: [client + '/tests/server-integration/**/*.spec.js'],
 
         /**
@@ -170,5 +174,5 @@ module.exports = function() {
         };
         options.preprocessors[clientApp + '**/!(*.spec)+(.js)'] = ['coverage'];
         return options;
-    }    
+    }
 };
